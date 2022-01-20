@@ -12,3 +12,4 @@ Nom de l'équipage : Mugiwara Cook
 Nom du fidèle navire : Trinidad
 
 Notre drapeau : 
+![alt text](https://github.com/pns-si3-qgl/qgl-21-22-mugiwara_cook/flag.png)
