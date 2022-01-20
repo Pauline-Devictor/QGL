@@ -1,4 +1,4 @@
-package fr.unice.polytech.si3.qgl.teamid;
+package fr.unice.polytech.si3.qgl.mugiwara_cook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
