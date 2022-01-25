@@ -5,6 +5,9 @@ public class Position {
     double y;
     double orientation;
 
+    public Position(){
+        //Jackson
+    }
     public Position(double x, double y, double orientation){
         this.x = x;
         this.y = y;
