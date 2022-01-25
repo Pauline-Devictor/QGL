@@ -9,6 +9,8 @@ public class Cockpit implements ICockpit {
 
 	public void initGame(String game) {
 		System.out.println("Init game input: " + game);
+		Constructor constructor = new Constructor();
+		constructor.construct(game);
 	}
 
 	public String nextRound(String round) {
