@@ -1,17 +1,15 @@
 package fr.unice.polytech.si3.qgl.mugiwara_cook.actions;
 
-public class Oar {
+public class Oar extends Action {
     public final static String TYPE = "OAR";
     String type = TYPE;
     int sailorId;
 
-    public Oar(){
-        //Json
-    }
-
     public Oar(int sailorId){
+        super(TYPE);
         this.sailorId = sailorId;
     }
+
     public String getType() {
         return type;
     }

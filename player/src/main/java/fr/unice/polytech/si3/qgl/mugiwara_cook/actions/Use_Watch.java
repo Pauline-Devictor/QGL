@@ -1,15 +1,12 @@
 package fr.unice.polytech.si3.qgl.mugiwara_cook.actions;
 
-public class Use_Watch {
+public class Use_Watch extends  Action{
     public final static String TYPE = "USE_WATCH";
     String type = TYPE;
     int sailorId;
 
-    public Use_Watch(){
-        //Json
-    }
-
     public Use_Watch(int sailorId){
+        super(TYPE);
         this.sailorId = sailorId;
     }
 

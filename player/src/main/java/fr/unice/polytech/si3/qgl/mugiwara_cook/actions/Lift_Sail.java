@@ -1,15 +1,12 @@
 package fr.unice.polytech.si3.qgl.mugiwara_cook.actions;
 
-public class Lift_Sail {
+public class Lift_Sail extends Action{
     public final static String TYPE = "Lift_Sail";
     String type = TYPE;
     int sailorId;
 
-    public Lift_Sail(){
-        //Json
-    }
-
     public Lift_Sail(int sailorId){
+        super(TYPE);
         this.sailorId = sailorId;
     }
 
