@@ -1,5 +1,6 @@
-package fr.unice.polytech.si3.qgl.mugiwara_cook;
+package fr.unice.polytech.si3.qgl.mugiwara_cook.sea;
 
+import fr.unice.polytech.si3.qgl.mugiwara_cook.Position;
 import fr.unice.polytech.si3.qgl.mugiwara_cook.shapes.Shape;
 
 public class Checkpoint {

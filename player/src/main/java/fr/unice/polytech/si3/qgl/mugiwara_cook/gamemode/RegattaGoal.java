@@ -1,6 +1,6 @@
 package fr.unice.polytech.si3.qgl.mugiwara_cook.gamemode;
 
-import fr.unice.polytech.si3.qgl.mugiwara_cook.Checkpoint;
+import fr.unice.polytech.si3.qgl.mugiwara_cook.sea.Checkpoint;
 
 public class RegattaGoal {
     String mode = "REGATTA";
