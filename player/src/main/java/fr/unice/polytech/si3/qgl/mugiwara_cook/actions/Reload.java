@@ -2,7 +2,6 @@ package fr.unice.polytech.si3.qgl.mugiwara_cook.actions;
 
 public class Reload extends  Action{
     public final static String TYPE = "RELOAD";
-    String type = TYPE;
     int sailorId;
 
     public Reload(int sailorId){

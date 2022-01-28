@@ -5,7 +5,6 @@ package fr.unice.polytech.si3.qgl.mugiwara_cook.ship.equipment;
  */
 public class Watch extends Equipment {
     public final static String TYPE = "Watch";
-    String type = TYPE;
     int x;
     int y;
 

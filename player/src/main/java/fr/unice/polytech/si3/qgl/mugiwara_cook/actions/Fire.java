@@ -2,7 +2,6 @@ package fr.unice.polytech.si3.qgl.mugiwara_cook.actions;
 
 public class Fire extends Action {
     public final static String TYPE = "FIRE";
-    String type = TYPE;
     int sailorId;
 
     public Fire(int sailorId){

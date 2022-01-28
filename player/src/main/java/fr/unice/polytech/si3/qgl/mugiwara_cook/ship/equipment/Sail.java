@@ -5,7 +5,6 @@ package fr.unice.polytech.si3.qgl.mugiwara_cook.ship.equipment;
  */
 public class Sail extends Equipment {
     public final static String TYPE = "Sail";
-    String type = TYPE;
     int x;
     int y;
     boolean openned;

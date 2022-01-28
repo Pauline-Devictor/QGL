@@ -2,7 +2,6 @@ package fr.unice.polytech.si3.qgl.mugiwara_cook.actions;
 
 public class Aim extends Action{ //TODO angle condition
     public final static String TYPE = "AIM";
-    String type = TYPE;
     int sailorId;
     double angle;
 

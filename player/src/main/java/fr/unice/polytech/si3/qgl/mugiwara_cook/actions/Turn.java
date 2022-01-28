@@ -2,7 +2,6 @@ package fr.unice.polytech.si3.qgl.mugiwara_cook.actions;
 
 public class Turn extends Action { //TODO turn condition
     public final static String TYPE = "TURN";
-    String type = TYPE;
     int sailorId;
     double rotation;
 

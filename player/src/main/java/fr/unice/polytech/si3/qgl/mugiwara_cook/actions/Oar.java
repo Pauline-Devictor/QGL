@@ -2,7 +2,6 @@ package fr.unice.polytech.si3.qgl.mugiwara_cook.actions;
 
 public class Oar extends Action {
     public final static String TYPE = "OAR";
-    String type = TYPE;
     int sailorId;
 
     public Oar(int sailorId){

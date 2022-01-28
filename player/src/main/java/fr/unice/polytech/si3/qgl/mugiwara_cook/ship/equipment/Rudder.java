@@ -5,7 +5,6 @@ package fr.unice.polytech.si3.qgl.mugiwara_cook.ship.equipment;
  */
 public class Rudder extends Equipment{
     public final static String TYPE = "Rudder";
-    String type = TYPE;
     int x;
     int y;
 
