@@ -3,27 +3,15 @@ package fr.unice.polytech.si3.qgl.mugiwara_cook.sea;
 import fr.unice.polytech.si3.qgl.mugiwara_cook.Position;
 import fr.unice.polytech.si3.qgl.mugiwara_cook.shapes.Shape;
 
-public class Reef {
+public class Reef extends visibleEntity {
     public final static String TYPE = "Reef";
-    String type = TYPE;
     Position position;
     Shape shape;
 
-    public Reef(){
-        //Json
-    }
-
     public Reef(Position position, Shape shape){
+        super(TYPE);
         this.position = position;
         this.shape = shape;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public Position getPosition() {
