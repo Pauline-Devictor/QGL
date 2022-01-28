@@ -1,25 +1,14 @@
-package fr.unice.polytech.si3.qgl.mugiwara_cook.gamemode;
+package fr.unice.polytech.si3.qgl.mugiwara_cook.goal;
 
 import fr.unice.polytech.si3.qgl.mugiwara_cook.sea.Checkpoint;
 
-public class RegattaGoal {
-    String mode = "REGATTA";
+public class RegattaGoal extends Goal {
+    public final static String MODE = "REGATTA";
     Checkpoint[] checkpoints;
 
-    public RegattaGoal() {
-        //Json
-    }
-
     public RegattaGoal(Checkpoint[] checkpoints){
+        super(MODE);
         this.checkpoints = checkpoints;
-    }
-
-    public String getMode() {
-        return mode;
-    }
-
-    public void setMode(String mode) {
-        this.mode = mode;
     }
 
     public Checkpoint[] getCheckpoints() {
