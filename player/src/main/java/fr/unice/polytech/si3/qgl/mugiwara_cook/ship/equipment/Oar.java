@@ -5,6 +5,7 @@ package fr.unice.polytech.si3.qgl.mugiwara_cook.ship.equipment;
  */
 public class Oar extends Equipment {
     public final static String TYPE = "Oar";
+    String type = TYPE;
     int x;
     int y;
 
@@ -29,6 +30,5 @@ public class Oar extends Equipment {
     public void setY(int y) {
         this.y = y;
     }
-
 
 }
