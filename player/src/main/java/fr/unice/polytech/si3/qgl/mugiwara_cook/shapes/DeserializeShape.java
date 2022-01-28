@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
+import fr.unice.polytech.si3.qgl.mugiwara_cook.MyMapper;
 import fr.unice.polytech.si3.qgl.mugiwara_cook.Point;
 
 import java.io.IOException;
@@ -43,8 +44,8 @@ public class DeserializeShape extends StdDeserializer<Shape> {
             case "Polygon":
                 double orientation2 = node.get("orientation").asDouble();
                 String verticlesString = node.get("verticles").toString();
-                ObjectMapper objectMapper = new ObjectMapper();
-                Point[] verticles = objectMapper.readValue(verticlesString, Point[].class);
+                MyMapper mapper = new MyMapper();
+                Point[] verticles = mapper.readValue(verticlesString, Point[].class);
                 return new Polygon(orientation2,verticles);
             default:
                 return null;
