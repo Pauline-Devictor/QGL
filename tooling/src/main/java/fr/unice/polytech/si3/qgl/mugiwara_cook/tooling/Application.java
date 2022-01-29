@@ -1,6 +1,8 @@
 package fr.unice.polytech.si3.qgl.mugiwara_cook.tooling;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.unice.polytech.si3.qgl.mugiwara_cook.Cockpit;
+import fr.unice.polytech.si3.qgl.mugiwara_cook.ship.Deck;
 
 public class Application {
 	

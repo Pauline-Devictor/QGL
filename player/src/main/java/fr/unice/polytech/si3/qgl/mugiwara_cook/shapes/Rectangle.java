@@ -37,5 +37,4 @@ public class Rectangle extends Shape {
         this.orientation = orientation;
     }
 
-
 }
