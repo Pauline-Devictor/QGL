@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import fr.unice.polytech.si3.qgl.mugiwara_cook.MyMapper;
 import fr.unice.polytech.si3.qgl.mugiwara_cook.Point;
@@ -28,7 +27,7 @@ public class DeserializeShape extends StdDeserializer<Shape> {
         String type = node.get("type").asText();
         return createShape(type,node);
     }
-    //TODO class object mapper
+
     public Shape createShape(String type,JsonNode node) throws JsonProcessingException {
         switch (type){
             case "Rectangle":

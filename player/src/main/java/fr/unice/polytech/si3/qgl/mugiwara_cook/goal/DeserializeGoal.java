@@ -24,12 +24,12 @@ public class DeserializeGoal  extends StdDeserializer<Goal> {
     public Goal deserialize(JsonParser jp, DeserializationContext ctxt)
             throws IOException, JsonProcessingException {
         JsonNode node = jp.getCodec().readTree(jp);
-        String type = node.get("type").asText();
-        return createEquipment(type,node);
+        String mode = node.get("mode").asText();
+        return createGoal(mode,node);
     }
 
-    public Goal createEquipment(String type,JsonNode node) throws JsonProcessingException {
-        switch (type){
+    public Goal createGoal(String mode,JsonNode node) throws JsonProcessingException {
+        switch (mode){
             case "BATTLE":
                return new BattleGoal();
             case "REGATTA":
