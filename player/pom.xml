@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>fr.unice.polytech.si3.qgl</groupId>
-	<artifactId>mugiwara_cook</artifactId> <!-- CHANGE ME -->
+	<artifactId>Mugiwara_Cook</artifactId> <!-- CHANGE ME -->
 	<version>0.1-SNAPSHOT</version>
 
 	<properties>

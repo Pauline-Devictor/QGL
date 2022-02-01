@@ -1,5 +1,5 @@
-# qgl-21-22-mugiwara_cook
-qgl-21-22-mugiwara_cook created by GitHub Classroom
+# qgl-21-22-Mugiwara_Cook
+qgl-21-22-Mugiwara_Cook created by GitHub Classroom
 
 Membres de l'équipage :
 Habib Belmokhtar,
