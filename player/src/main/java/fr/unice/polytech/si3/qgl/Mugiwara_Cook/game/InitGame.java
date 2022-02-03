@@ -1,5 +1,6 @@
-package fr.unice.polytech.si3.qgl.Mugiwara_Cook;
+package fr.unice.polytech.si3.qgl.Mugiwara_Cook.game;
 
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Sailor;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.goal.Goal;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.Ship;
 

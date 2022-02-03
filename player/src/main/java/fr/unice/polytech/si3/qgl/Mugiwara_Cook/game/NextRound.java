@@ -1,4 +1,4 @@
-package fr.unice.polytech.si3.qgl.Mugiwara_Cook;
+package fr.unice.polytech.si3.qgl.Mugiwara_Cook.game;
 
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.Wind;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.visibleEntity;
