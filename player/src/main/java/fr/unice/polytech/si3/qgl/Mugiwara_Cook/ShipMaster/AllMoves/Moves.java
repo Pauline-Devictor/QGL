@@ -8,6 +8,6 @@ abstract public class Moves {
     public Moves() {
         x = 1;
         y = 1;
-        orientation = 3.14;
+        orientation = 6;
     }
 }
