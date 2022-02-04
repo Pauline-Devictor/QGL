@@ -140,33 +140,6 @@ public class Application {
 		System.out.println("An instance of my team player: " + cockpit);
 		System.out.println("When called, it returns some JSON: " + cockpit.nextRound(""));
 		cockpit.nextRound("{\n" +
-				"  \"goal\": {\n" +
-				"    \"mode\": \"REGATTA\",\n" +
-				"    \"checkpoints\": [\n" +
-				"      {\n" +
-				"        \"position\": {\n" +
-				"          \"x\": 1000,\n" +
-				"          \"y\": 0,\n" +
-				"          \"orientation\": 0\n" +
-				"        },\n" +
-				"        \"shape\": {\n" +
-				"          \"type\": \"circle\",\n" +
-				"          \"radius\": 50\n" +
-				"        }\n" +
-				"      },\n" +
-				"      {\n" +
-				"        \"position\": {\n" +
-				"          \"x\": 0,\n" +
-				"          \"y\": 0,\n" +
-				"          \"orientation\": 0\n" +
-				"        },\n" +
-				"        \"shape\": {\n" +
-				"          \"type\": \"circle\",\n" +
-				"          \"radius\": 50\n" +
-				"        }\n" +
-				"      }\n" +
-				"    ]\n" +
-				"  },\n" +
 				"  \"ship\": {\n" +
 				"    \"type\": \"ship\",\n" +
 				"    \"life\": 100,\n" +
@@ -230,45 +203,27 @@ public class Application {
 				"      \"orientation\": 0\n" +
 				"    }\n" +
 				"  },\n" +
-				"  \"sailors\": [\n" +
+				"  \"visibleEntities\": [\n" +
 				"    {\n" +
-				"      \"x\": 0,\n" +
-				"      \"y\": 0,\n" +
-				"      \"id\": 0,\n" +
-				"      \"name\": \"Edward Teach\"\n" +
-				"    },\n" +
-				"    {\n" +
-				"      \"x\": 0,\n" +
-				"      \"y\": 1,\n" +
-				"      \"id\": 1,\n" +
-				"      \"name\": \"Edward Pouce\"\n" +
-				"    },\n" +
-				"    {\n" +
-				"      \"x\": 0,\n" +
-				"      \"y\": 2,\n" +
-				"      \"id\": 2,\n" +
-				"      \"name\": \"Tom Pouce\"\n" +
-				"    },\n" +
-				"    {\n" +
-				"      \"x\": 1,\n" +
-				"      \"y\": 0,\n" +
-				"      \"id\": 3,\n" +
-				"      \"name\": \"Jack Teach\"\n" +
-				"    },\n" +
-				"    {\n" +
-				"      \"x\": 1,\n" +
-				"      \"y\": 1,\n" +
-				"      \"id\": 4,\n" +
-				"      \"name\": \"Jack Teach\"\n" +
-				"    },\n" +
-				"    {\n" +
-				"      \"x\": 1,\n" +
-				"      \"y\": 2,\n" +
-				"      \"id\": 5,\n" +
-				"      \"name\": \"Tom Pouce\"\n" +
+				"      \"type\": \"stream\",\n" +
+				"      \"position\": {\n" +
+				"        \"x\": 500,\n" +
+				"        \"y\": 0,\n" +
+				"        \"orientation\": 0\n" +
+				"      },\n" +
+				"      \"shape\": {\n" +
+				"        \"type\": \"rectangle\",\n" +
+				"        \"width\": 50,\n" +
+				"        \"height\": 500,\n" +
+				"        \"orientation\": 0\n" +
+				"      },\n" +
+				"      \"strength\": 40\n" +
 				"    }\n" +
 				"  ],\n" +
-				"  \"shipCount\": 1\n" +
+				"  \"wind\": {\n" +
+				"    \"orientation\": 0,\n" +
+				"    \"strength\": 110\n" +
+				"  }\n" +
 				"}");
 	}
 }

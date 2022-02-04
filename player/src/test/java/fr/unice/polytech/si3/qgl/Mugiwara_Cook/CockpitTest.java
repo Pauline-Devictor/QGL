@@ -14,7 +14,7 @@ class CockpitTest {
         this.cockpit = new Cockpit();
     }
 
-    @Test
+    /*@Test
     void nextRoundTest() {
         assertEquals("[ {\n" +
                 "    \"sailorId\": 0,\n" +
@@ -25,5 +25,5 @@ class CockpitTest {
                 "    \"type\": \"OAR\"\n" +
                 "  }\n" +
                 "]", this.cockpit.nextRound("{}"));
-    }
+    }*/
 }
