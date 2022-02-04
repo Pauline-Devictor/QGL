@@ -1,9 +1,9 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea;
 
-abstract public class visibleEntity {
+abstract public class VisibleEntity {
     String type;
 
-    public visibleEntity(String type){
+    public VisibleEntity(String type){
         this.type = type;
     }
 

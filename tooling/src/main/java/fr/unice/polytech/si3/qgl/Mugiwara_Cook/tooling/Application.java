@@ -138,7 +138,7 @@ public class Application {
 				"  \"shipCount\": 1\n" +
 				"}");
 		System.out.println("An instance of my team player: " + cockpit);
-		System.out.println("When called, it returns some JSON: " + cockpit.nextRound(""));
+		System.out.println("When called, it returns some JSON:");
 		cockpit.nextRound("{\n" +
 				"  \"ship\": {\n" +
 				"    \"type\": \"ship\",\n" +

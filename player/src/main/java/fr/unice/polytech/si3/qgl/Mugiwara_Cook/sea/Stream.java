@@ -3,7 +3,7 @@ package fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Position;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shapes.Shape;
 
-public class Stream extends visibleEntity {
+public class Stream extends VisibleEntity {
     public final static String TYPE = "Stream";
     Position position;
     Shape shape;

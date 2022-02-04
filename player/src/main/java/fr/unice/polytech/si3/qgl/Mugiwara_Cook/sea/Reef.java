@@ -3,7 +3,7 @@ package fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Position;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shapes.Shape;
 
-public class Reef extends visibleEntity {
+public class Reef extends VisibleEntity {
     public final static String TYPE = "Reef";
     Position position;
     Shape shape;
