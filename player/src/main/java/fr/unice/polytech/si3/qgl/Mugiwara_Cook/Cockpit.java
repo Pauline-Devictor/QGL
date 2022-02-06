@@ -11,6 +11,7 @@ import fr.unice.polytech.si3.qgl.regatta.cockpit.ICockpit;
 public class Cockpit implements ICockpit {
 	MyMapper myMapper= new MyMapper();
 	InitGame initGame;
+	Captain captain;
 	public Cockpit(){
 		//Json
 	}
@@ -23,9 +24,15 @@ public class Cockpit implements ICockpit {
 		System.out.println("Init game input: " + game);
 		try {
 			this.initGame = myMapper.readValue(game, InitGame.class);
+			this.captain=new Captain(initGame.getShip(),initGame.getSailors());
+
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public InitGame getInitGame() {
+		return initGame;
 	}
 
 	/**
