@@ -1,6 +1,8 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.actions;
 
-public class Aim extends Action{ //TODO angle condition
+import static java.lang.Math.abs;
+
+public class Aim extends Action{
     public final static String TYPE = "AIM";
     int sailorId;
     double angle;
@@ -8,7 +10,10 @@ public class Aim extends Action{ //TODO angle condition
     public Aim(int sailorId, double angle){
         super(TYPE);
         this.sailorId = sailorId;
-        this.angle = angle;
+        if(abs(angle)<=90)
+            this.angle = angle;
+        else
+            angle=0;
     }
 
     public int getSailorId() {
@@ -24,7 +29,7 @@ public class Aim extends Action{ //TODO angle condition
     }
 
     public void setAngle(double angle) {
-        this.angle = angle;
+        if(abs(angle)<=90)
+            this.angle = angle;
     }
-    //TODO
 }
