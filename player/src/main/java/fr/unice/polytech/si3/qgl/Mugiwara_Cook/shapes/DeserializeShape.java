@@ -42,10 +42,10 @@ public class DeserializeShape extends StdDeserializer<Shape> {
 
             case "polygon":
                 double orientation2 = node.get("orientation").asDouble();
-                String verticlesString = node.get("verticles").toString();
+                String verticesString = node.get("vertices").toString();
                 MyMapper mapper = new MyMapper();
-                Point[] verticles = mapper.readValue(verticlesString, Point[].class);
-                return new Polygon(orientation2,verticles);
+                Point[] vertices = mapper.readValue(verticesString, Point[].class);
+                return new Polygon(orientation2,vertices);
             default:
                 return null;
         }
