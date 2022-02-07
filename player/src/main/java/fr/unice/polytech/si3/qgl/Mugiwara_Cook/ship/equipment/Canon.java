@@ -1,7 +1,7 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment;
 
 public class Canon extends Equipment {
-    public final static String TYPE = "Canon";
+    public final static String TYPE = "canon";
     int x;
     int y;
     boolean loaded;

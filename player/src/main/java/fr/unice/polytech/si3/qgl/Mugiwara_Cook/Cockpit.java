@@ -6,11 +6,14 @@ import java.util.List;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.game.InitGame;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.game.NextRound;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.goal.RegattaGoal;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.Checkpoint;
 import fr.unice.polytech.si3.qgl.regatta.cockpit.ICockpit;
 
 public class Cockpit implements ICockpit {
 	MyMapper myMapper= new MyMapper();
 	InitGame initGame;
+	Checkpoint[] checkpoints;
 
 	public Cockpit(){
 		//Json
@@ -24,7 +27,8 @@ public class Cockpit implements ICockpit {
 		System.out.println("Init game input: " + game);
 		try {
 			this.initGame = myMapper.readValue(game, InitGame.class);
-
+			if (this.initGame.getGoal().getClass() == RegattaGoal.class)
+				this.checkpoints = ((RegattaGoal) this.initGame.getGoal()).getCheckpoints();
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}

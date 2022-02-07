@@ -4,7 +4,7 @@ import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Position;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shapes.Shape;
 
 public class Stream extends VisibleEntity {
-    public final static String TYPE = "Stream";
+    public final static String TYPE = "stream";
     Position position;
     Shape shape;
     double strength;

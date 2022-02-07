@@ -1,7 +1,7 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.shapes;
 
 public class Circle extends Shape{
-    public final static String TYPE = "Circle";
+    public final static String TYPE = "circle";
     double radius;
 
     public Circle(double radius) {

@@ -30,17 +30,17 @@ public class DeserializeShape extends StdDeserializer<Shape> {
 
     public Shape createShape(String type,JsonNode node) throws JsonProcessingException {
         switch (type){
-            case "Rectangle":
+            case "rectangle":
                 double width = node.get("width").asDouble();
                 double height = node.get("height").asDouble();
                 double orientation = node.get("orientation").asDouble();
                 return new Rectangle(width,height,orientation);
 
-            case "Circle":
+            case "circle":
                 double radius = node.get("radius").asDouble();
                 return new Circle(radius);
 
-            case "Polygon":
+            case "polygon":
                 double orientation2 = node.get("orientation").asDouble();
                 String verticlesString = node.get("verticles").toString();
                 MyMapper mapper = new MyMapper();

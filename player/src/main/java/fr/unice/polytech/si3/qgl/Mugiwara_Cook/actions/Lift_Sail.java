@@ -1,7 +1,7 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.actions;
 
 public class Lift_Sail extends Action{
-    public final static String TYPE = "Lift_Sail";
+    public final static String TYPE = "LIFT_SAIL";
     int sailorId;
 
     public Lift_Sail(int sailorId){

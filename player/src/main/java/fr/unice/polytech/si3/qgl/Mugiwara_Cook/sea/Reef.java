@@ -4,7 +4,7 @@ import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Position;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shapes.Shape;
 
 public class Reef extends VisibleEntity {
-    public final static String TYPE = "Reef";
+    public final static String TYPE = "reef";
     Position position;
     Shape shape;
 
