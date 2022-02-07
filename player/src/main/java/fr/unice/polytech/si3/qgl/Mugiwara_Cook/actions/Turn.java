@@ -1,6 +1,8 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.actions;
 
-public class Turn extends Action { //TODO turn condition
+import static java.lang.Math.abs;
+
+public class Turn extends Action {
     public final static String TYPE = "TURN";
     int sailorId;
     double rotation;
@@ -8,7 +10,10 @@ public class Turn extends Action { //TODO turn condition
     public Turn(int sailorId,double rotation){
         super(TYPE);
         this.sailorId = sailorId;
-        this.rotation = rotation;
+        if(abs(rotation)<=90)
+            this.rotation = rotation;
+        else
+            rotation=0;
     }
 
     public int getSailorId() {
@@ -24,8 +29,8 @@ public class Turn extends Action { //TODO turn condition
     }
 
     public void setRotation(double rotation) {
-        this.rotation = rotation;
+        if(abs(rotation)<=90)
+            this.rotation = rotation;
     }
-
 
 }
