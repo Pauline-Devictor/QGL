@@ -37,12 +37,18 @@ public class OarMove extends Moves {
         x = 0;
         y = 0;
         for (int i = 0; i < this.DECOMP; i++) {
-            x += -((this.distance / this.DECOMP) * Math.sin(((this.currentOrientation * i) / this.DECOMP) + this.origialOrientation));
-            y += (this.distance / this.DECOMP) * Math.cos(((this.currentOrientation * i) / this.DECOMP) + this.origialOrientation);
+            x += (this.distance / this.DECOMP) * Math.cos(((this.currentOrientation * i) / this.DECOMP) + this.origialOrientation);
+            y += (this.distance / this.DECOMP) * Math.sin(((this.currentOrientation * i) / this.DECOMP) + this.origialOrientation);
         }
         this.x = this.originalX + x;
         this.y = this.originalY + y;
         this.orientation = this.origialOrientation + this.currentOrientation;
+    }
+
+
+    public void getDetail() {
+        System.out.println("RAME: " + oarLeft + "][" + oarRight);
+        super.getDetail();
     }
 
 }
