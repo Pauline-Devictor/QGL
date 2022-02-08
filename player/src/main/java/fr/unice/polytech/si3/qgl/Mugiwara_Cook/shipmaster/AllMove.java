@@ -28,4 +28,8 @@ public class AllMove {
         movesList.forEach(m -> m.getDetail());
     }
 
+    public List<Moves> getMovesList(){
+        return movesList;
+    }
+
 }

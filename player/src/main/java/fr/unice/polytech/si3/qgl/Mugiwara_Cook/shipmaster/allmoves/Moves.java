@@ -15,4 +15,17 @@ abstract public class Moves {
     public void getDetail() {
         System.out.println("x: " + x + ", y: " + y + " et l'orientation: " + orientation);
     }
+
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    public double getOrientation() {
+        return orientation;
+    }
+
 }

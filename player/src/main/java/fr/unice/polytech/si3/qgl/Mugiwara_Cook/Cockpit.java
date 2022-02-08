@@ -39,7 +39,6 @@ public class Cockpit implements ICockpit {
             e.printStackTrace();
         }
         allPossibility = new AllPossibility(initGame);
-        allPossibility.getAllPossibility().forEach(ap -> System.out.println(ap[0]+" : "+ap[1]));
     }
 
     /**
@@ -56,7 +55,7 @@ public class Cockpit implements ICockpit {
             e.printStackTrace();
         }
         BestMove bestMove = new BestMove(allPossibility, nextRound);
-        bestMove.processing();
+        bestMove.processing(this.checkpoints);
 
         return "[ {\n" +
                 "    \"sailorId\": 0,\n" +
