@@ -7,6 +7,7 @@ import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.Ship;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Oar;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static java.lang.Math.abs;
 
@@ -14,6 +15,9 @@ public class Captain {
     Action[] actions;
     Ship ship;
     Sailor[] sailors;
+
+    List<Integer> sailorLeft = new ArrayList<>();
+    List<Integer> sailorRight = new ArrayList<>();
 
     public Captain(Ship ship, Sailor[] sailors) {
         this.sailors = sailors;
@@ -122,10 +126,23 @@ public class Captain {
             Sailor sailor = sailors[i];
             int x = sailor.HowManyCaseFarFromOarX(oars.get(i));
             int y = sailor.HowManyCaseFarFromOarY(oars.get(i));
+            if(sailor.getY()+y==0){
+                sailorLeft.add(sailor.getId());
+            }else{
+                sailorRight.add(sailor.getId());
+            }
             Moving move = new Moving(sailor.getId(), x, y);
             moves.add(move);
         }
         return moves;
+    }
+
+    public List<Integer> getSailorLeft(){
+        return sailorLeft;
+    }
+
+    public List<Integer> getSailorRight(){
+        return sailorRight;
     }
 
 }

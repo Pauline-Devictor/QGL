@@ -25,7 +25,8 @@ public class Cockpit implements ICockpit {
     NextRound nextRound;
     Checkpoint[] checkpoints;
     AllPossibility allPossibility;
-
+    ArrayList<Action> m;
+    Captain captain;
 
     public Cockpit() {
         //Json
@@ -45,18 +46,11 @@ public class Cockpit implements ICockpit {
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
-        System.out.println(initGame);
         allPossibility = new AllPossibility(initGame);
 
-        Captain captain = new Captain(this.initGame.getShip(),this.initGame.getSailors());
-        ArrayList<Action> m = captain.sailorsFollowMyCommand();
+        this.captain = new Captain(this.initGame.getShip(), this.initGame.getSailors());
+        this.m = captain.sailorsFollowMyCommand();
 
-        try {
-            System.out.println(new ObjectMapper().writeValueAsString(m));
-        } catch (JsonProcessingException e) {
-            System.out.println("FAIL");
-            System.out.println(e.getMessage());
-        }
     }
 
     /**
@@ -79,19 +73,24 @@ public class Cockpit implements ICockpit {
 
         int[] oarLeftRight = oarMove.getOar();
 
-        System.out.println(oarLeftRight[0] + " : " + oarLeftRight[1]);
+        for (int i = 0; i < oarLeftRight[0]; i++) {
+            this.m.add(new Oar(this.captain.getSailorLeft().get(i)));
+        }
+        for (int i = 0; i < oarLeftRight[1]; i++) {
+            this.m.add(new Oar(this.captain.getSailorRight().get(i)));
+        }
 
-        return "[ {\n" +
-                "    \"sailorId\": 0,\n" +
-                "    \"type\": \"OAR\"\n" +
-                "  },\n" +
-                "  {\n" +
-                "    \"sailorId\": 1,\n" +
-                "    \"type\": \"OAR\"\n" +
-                "  }\n" +
-                "]";
+        try {
+            String json = new ObjectMapper().writeValueAsString(m);
+            m.clear();
+            return json;
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+
     }
-
 
 
     @Override

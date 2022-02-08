@@ -50,7 +50,7 @@ public class OarMove extends Moves {
     }
 
     public void getDetail() {
-        System.out.println("RAME: " + oarLeft + "][" + oarRight);
+        //System.out.println("RAME: " + oarLeft + "][" + oarRight);
         super.getDetail();
     }
 
