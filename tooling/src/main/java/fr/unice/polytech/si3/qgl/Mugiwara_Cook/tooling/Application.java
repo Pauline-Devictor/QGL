@@ -1,6 +1,9 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.tooling;
 
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Captain;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Cockpit;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Sailor;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.actions.Moving;
 
 public class Application {
 	
@@ -225,5 +228,8 @@ public class Application {
 				"    \"strength\": 110\n" +
 				"  }\n" +
 				"}");
+
+		System.out.println(cockpit.getInitGame().getShip().getOars().size());
+
 	}
 }

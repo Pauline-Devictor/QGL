@@ -13,6 +13,7 @@ import fr.unice.polytech.si3.qgl.Mugiwara_Cook.goal.RegattaGoal;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.Checkpoint;
 
 public class Cockpit implements ICockpit {
+
     MyMapper myMapper = new MyMapper();
     InitGame initGame;
     NextRound nextRound;
@@ -68,8 +69,50 @@ public class Cockpit implements ICockpit {
                 "]";
     }
 
+
+
     @Override
     public List<String> getLogs() {
         return new ArrayList<>();
+    }
+
+    public MyMapper getMyMapper() {
+        return myMapper;
+    }
+
+    public void setMyMapper(MyMapper myMapper) {
+        this.myMapper = myMapper;
+    }
+
+    public InitGame getInitGame() {
+        return initGame;
+    }
+
+    public void setInitGame(InitGame initGame) {
+        this.initGame = initGame;
+    }
+
+    public NextRound getNextRound() {
+        return nextRound;
+    }
+
+    public void setNextRound(NextRound nextRound) {
+        this.nextRound = nextRound;
+    }
+
+    public Checkpoint[] getCheckpoints() {
+        return checkpoints;
+    }
+
+    public void setCheckpoints(Checkpoint[] checkpoints) {
+        this.checkpoints = checkpoints;
+    }
+
+    public AllPossibility getAllPossibility() {
+        return allPossibility;
+    }
+
+    public void setAllPossibility(AllPossibility allPossibility) {
+        this.allPossibility = allPossibility;
     }
 }

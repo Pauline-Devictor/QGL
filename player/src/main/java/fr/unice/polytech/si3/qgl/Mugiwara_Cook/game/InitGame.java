@@ -21,6 +21,8 @@ public class InitGame {
         this.shipCount = shipCount;
     }
 
+
+
     public Goal getGoal() {
         return goal;
     }

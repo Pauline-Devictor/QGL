@@ -8,10 +8,11 @@ public class Oar extends Equipment {
     int x;
     int y;
 
+
     public Oar(int x,int y) {
         super(TYPE);
         this.x = x;
-        this.y=y;
+        this.y = y;
     }
 
     public int getX() {
