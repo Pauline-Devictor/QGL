@@ -1,8 +1,12 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook;
 
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.actions.Action;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.actions.Moving;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.Deck;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.Ship;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Oar;
+
+import java.util.ArrayList;
 
 import static java.lang.Math.abs;
 
@@ -103,6 +107,20 @@ public class Captain {
             if (e.getId() == sailorId) sailor = e;
         }
         return sailor;
+    }
+
+    /**
+     * "attribut" une rame à chaque marin, nom à changer et methode a modifier dans l'avenir.
+     * @return La list des mouvements de marin
+     */
+    public ArrayList<Moving> sailorsFollowMyCommand(){
+        ArrayList<Moving> moves= new ArrayList<>();
+        ArrayList<Oar> oars=ship.getOars();
+        for(int i=0;i< sailors.length;i++){
+            Moving move=new Moving(sailors[i].getId(),oars.get(i).getX(),oars.get(i).getX());
+            moves.add(move);
+        }
+        return moves;
     }
 
 }
