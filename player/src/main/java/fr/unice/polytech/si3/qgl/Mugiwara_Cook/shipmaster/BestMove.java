@@ -32,14 +32,15 @@ public class BestMove {
         for (Moves moves : allMove.getMovesList()) {
             double angle = ((checkpoints[0].getPosition().getX() - moves.getX()) * Math.cos(moves.getOrientation()) + (checkpoints[0].getPosition().getY() - moves.getY()) * Math.sin(moves.getOrientation()))
                     / (Math.sqrt(Math.pow(checkpoints[0].getPosition().getX() - moves.getX(), 2) + Math.pow(checkpoints[0].getPosition().getY() - moves.getY(), 2)));
-           angle = Math.acos(angle)*180/Math.PI;
-            System.out.println(angle +" degree");
+            angle = Math.acos(angle) * 180 / Math.PI;
+            System.out.println(angle + " degree donc orientation du bateau: " + (moves.getOrientation() * 180 / Math.PI) + ":" + moves.getOrientation());
             if (angle < angleMin) {
                 angleMin = angle;
                 bestOne = moves;
             }
         }
         this.bestOne = bestOne;
+        System.out.println((bestOne.getOrientation() * 180.0 / Math.PI) +":"+ bestOne.getX());
     }
 
 }

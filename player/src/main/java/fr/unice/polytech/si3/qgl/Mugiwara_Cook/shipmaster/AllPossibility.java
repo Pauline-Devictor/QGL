@@ -29,7 +29,7 @@ public class AllPossibility {
 
         for (int i = 0; i <= oarLeft; i++) {
             for (int k = 0; k <= oarRight; k++) {
-                if (i + k <= initGame.getSailors().length) {
+                if (i + k <= initGame.getSailors().length && i + k != 0) {
                     listOarPossibility.add(new int[]{i, k});
                 }
             }
@@ -44,7 +44,7 @@ public class AllPossibility {
         return listOarPossibility.size();
     }
 
-    public int getNbOar(){
+    public int getNbOar() {
         return nbMaxOar;
     }
 

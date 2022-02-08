@@ -12,7 +12,7 @@ public class Application {
 				"    \"checkpoints\": [\n" +
 				"      {\n" +
 				"        \"position\": {\n" +
-				"          \"x\": 1000,\n" +
+				"          \"x\": -500,\n" +
 				"          \"y\": 0,\n" +
 				"          \"orientation\": 0\n" +
 				"        },\n" +
@@ -48,16 +48,16 @@ public class Application {
 				"      \"length\": 6\n" +
 				"    },\n" +
 				"    \"entities\": [\n" +
-				"      {\n" +
-				"        \"x\": 1,\n" +
-				"        \"y\": 0,\n" +
-				"        \"type\": \"oar\"\n" +
-				"      },\n" +
-				"      {\n" +
-				"        \"x\": 1,\n" +
-				"        \"y\": 2,\n" +
-				"        \"type\": \"oar\"\n" +
-				"      },\n" +
+//				"      {\n" +
+//				"        \"x\": 1,\n" +
+//				"        \"y\": 0,\n" +
+//				"        \"type\": \"oar\"\n" +
+//				"      },\n" +
+//				"      {\n" +
+//				"        \"x\": 1,\n" +
+//				"        \"y\": 2,\n" +
+//				"        \"type\": \"oar\"\n" +
+//				"      },\n" +
 				"      {\n" +
 				"        \"x\": 3,\n" +
 				"        \"y\": 0,\n" +
@@ -144,8 +144,8 @@ public class Application {
 				"    \"type\": \"ship\",\n" +
 				"    \"life\": 100,\n" +
 				"    \"position\": {\n" +
-				"      \"x\": 0,\n" +
-				"      \"y\": 0,\n" +
+				"      \"x\":  0,\n" +
+				"      \"y\":  0,\n" +
 				"      \"orientation\": 0\n" +
 				"    },\n" +
 				"    \"name\": \"Les copaings d'abord!\",\n" +
