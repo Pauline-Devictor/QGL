@@ -5,8 +5,10 @@ import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.Deck;
 
 import static java.lang.Math.abs;
 
-public class Moving extends Action { //TODO condition xdistance and ydistance
-    public final static String TYPE = "Moving";
+
+public class Moving extends Action{ //TODO condition xdistance and ydistance
+    public final static String TYPE = "MOVING";
+
     int sailorId;
     int xdistance;
     int ydistance;

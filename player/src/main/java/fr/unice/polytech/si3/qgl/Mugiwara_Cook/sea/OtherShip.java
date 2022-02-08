@@ -4,7 +4,7 @@ import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Position;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shapes.Shape;
 
 public class OtherShip extends VisibleEntity {
-    public final static String TYPE = "Ship";
+    public final static String TYPE = "ship";
     int life;
     Position position;
     Shape shape;

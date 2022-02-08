@@ -4,7 +4,7 @@ package fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment;
  * Rame
  */
 public class Oar extends Equipment {
-    public final static String TYPE = "Oar";
+    public final static String TYPE = "oar";
     int x;
     int y;
 

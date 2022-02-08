@@ -29,27 +29,27 @@ public class DeserializeAction extends StdDeserializer<Action> {
     //add in MyMapper
     public Action createShape(String type,int sailorId,JsonNode node) throws JsonProcessingException {
         switch (type){
-            case "Aim":
+            case "AIM":
                 double angle = node.get("angle").asDouble();
                 return new Aim(sailorId, angle);
-            case "Fire":
+            case "FIRE":
                 return new Fire(sailorId);
-            case "Lift_Sail":
+            case "LIFT_SAIL":
                 return new Lift_Sail(sailorId);
-            case "Lower_Sail":
+            case "LOWER_SAIL":
                 return new Lower_Sail(sailorId);
-            case "Moving":
+            case "MOVING":
                 int xdistance = node.get("xdistance").asInt();
                 int ydistance = node.get("ydistance").asInt();
                 return new Moving(sailorId, xdistance,ydistance);
-            case "Oar":
+            case "OAR":
                 return new Oar(sailorId);
-            case "Reload":
+            case "RELOAD":
                 return new Reload(sailorId);
             case "Turn":
                 double rotation = node.get("rotation").asDouble();
                 return new Turn(sailorId,rotation);
-            case "Use_Watch":
+            case "USE_WATCH":
                 return new Use_Watch(sailorId);
             default:
                 return null;
