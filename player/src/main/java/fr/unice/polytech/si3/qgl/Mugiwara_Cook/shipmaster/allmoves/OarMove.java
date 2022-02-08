@@ -45,6 +45,9 @@ public class OarMove extends Moves {
         this.orientation = this.origialOrientation + this.currentOrientation;
     }
 
+    public int[] getOar(){
+        return new int[]{oarLeft,oarRight};
+    }
 
     public void getDetail() {
         System.out.println("RAME: " + oarLeft + "][" + oarRight);

@@ -4,10 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.actions.Action;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.actions.Moving;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.actions.Oar;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.game.ActionJSON;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.game.InitGame;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.game.NextRound;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.AllPossibility;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.BestMove;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.allmoves.OarMove;
 import fr.unice.polytech.si3.qgl.regatta.cockpit.ICockpit;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.goal.RegattaGoal;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.Checkpoint;
@@ -39,7 +45,18 @@ public class Cockpit implements ICockpit {
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
+        System.out.println(initGame);
         allPossibility = new AllPossibility(initGame);
+
+        Captain captain = new Captain(this.initGame.getShip(),this.initGame.getSailors());
+        ArrayList<Action> m = captain.sailorsFollowMyCommand();
+
+        try {
+            System.out.println(new ObjectMapper().writeValueAsString(m));
+        } catch (JsonProcessingException e) {
+            System.out.println("FAIL");
+            System.out.println(e.getMessage());
+        }
     }
 
     /**
@@ -57,6 +74,12 @@ public class Cockpit implements ICockpit {
         }
         BestMove bestMove = new BestMove(allPossibility, nextRound);
         bestMove.processing(this.checkpoints);
+
+        OarMove oarMove = (OarMove) bestMove.getBestMove();
+
+        int[] oarLeftRight = oarMove.getOar();
+
+        System.out.println(oarLeftRight[0] + " : " + oarLeftRight[1]);
 
         return "[ {\n" +
                 "    \"sailorId\": 0,\n" +

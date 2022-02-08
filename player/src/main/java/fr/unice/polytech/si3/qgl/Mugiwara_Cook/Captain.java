@@ -82,6 +82,7 @@ public class Captain {
 
     /**
      * Permet de savoir si le sailor ne va pas tomber dans l'eau en utiliser une configuration de déplacement en Y
+     *
      * @param sailorId  le sailorid du sailor qui va se deplacer
      * @param ydistance distance à parcourir en y
      * @return true s'il ne tombe pas sinon false
@@ -111,16 +112,17 @@ public class Captain {
 
     /**
      * "attribut" une rame à chaque marin, nom à changer et methode a modifier dans l'avenir.
+     *
      * @return La list des mouvements de marin
      */
-    public ArrayList<Moving> sailorsFollowMyCommand(){
-        ArrayList<Moving> moves= new ArrayList<>();
-        ArrayList<Oar> oars=ship.getOars();
-        for(int i=0;i< sailors.length;i++){
-            Sailor sailor=sailors[i];
-            int x=sailor.HowManyCaseFarFromOarX(oars.get(i));
-            int y=sailor.HowManyCaseFarFromOarY(oars.get(i));
-            Moving move=new Moving(sailor.getId(),x,y);
+    public ArrayList<Action> sailorsFollowMyCommand() {
+        ArrayList<Action> moves = new ArrayList<>();
+        ArrayList<Oar> oars = ship.getOars();
+        for (int i = 0; i < sailors.length; i++) {
+            Sailor sailor = sailors[i];
+            int x = sailor.HowManyCaseFarFromOarX(oars.get(i));
+            int y = sailor.HowManyCaseFarFromOarY(oars.get(i));
+            Moving move = new Moving(sailor.getId(), x, y);
             moves.add(move);
         }
         return moves;

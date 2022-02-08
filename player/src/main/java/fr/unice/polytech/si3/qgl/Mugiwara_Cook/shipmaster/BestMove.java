@@ -25,7 +25,7 @@ public class BestMove {
         bestOne(allMove, checkpoints);
     }
 
-    public void bestOne(AllMove allMove, Checkpoint[] checkpoints) {
+    public void bestOne(AllMove allMove, Checkpoint[] checkpoints) {  //A refactor
         double angleMin = 360;
         Moves bestOne = null;
         checkpoints[0].getPosition();
@@ -41,6 +41,10 @@ public class BestMove {
         }
         this.bestOne = bestOne;
         System.out.println((bestOne.getOrientation() * 180.0 / Math.PI) +":"+ bestOne.getX());
+    }
+
+    public Moves getBestMove(){
+        return bestOne;
     }
 
 }

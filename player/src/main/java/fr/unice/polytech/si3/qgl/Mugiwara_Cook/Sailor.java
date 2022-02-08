@@ -8,16 +8,15 @@ public class Sailor {
     int y;
     String name;
 
-    public Sailor(){
+    public Sailor() {
     }
 
-    public Sailor(int id, int x, int y, String name){
+    public Sailor(int id, int x, int y, String name) {
         this.id = id;
         this.x = x;
         this.y = y;
         this.name = name;
     }
-
 
 
     public int getId() {
@@ -57,8 +56,8 @@ public class Sailor {
      * @param oar la rame que le sailor veut atteindre
      * @return la distance en x pour atteindre la rame
      */
-    public int HowManyCaseFarFromOarX(Oar oar){
-        int x=(this.x)-oar.getX();
+    public int HowManyCaseFarFromOarX(Oar oar) {
+        int x = oar.getX() - this.x;
         return x;
     }
 
@@ -66,11 +65,10 @@ public class Sailor {
      * @param oar la rame que le sailor veut atteindre
      * @return la distance en y pour atteindre la rame
      */
-    public int HowManyCaseFarFromOarY(Oar oar){
-        int y=(this.y)-oar.getY();
+    public int HowManyCaseFarFromOarY(Oar oar) {
+        int y = oar.getY() - this.y;
         return y;
     }
-
 
 
 }
