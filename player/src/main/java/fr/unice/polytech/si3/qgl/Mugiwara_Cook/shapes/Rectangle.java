@@ -1,7 +1,7 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.shapes;
 
 public class Rectangle extends Shape {
-    public final static String TYPE = "Rectangle";
+    public final static String TYPE = "rectangle";
     double width;
     double height;
     double orientation;

@@ -7,7 +7,7 @@ import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Equipment;
 import java.util.List;
 
 public class Ship {
-    public final static String TYPE = "Ship";
+    public final static String TYPE = "ship";
     String type = TYPE;
     int life;
     Position position;

@@ -9,11 +9,14 @@ import fr.unice.polytech.si3.qgl.Mugiwara_Cook.game.NextRound;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.AllPossibility;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.BestMove;
 import fr.unice.polytech.si3.qgl.regatta.cockpit.ICockpit;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.goal.RegattaGoal;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.Checkpoint;
 
 public class Cockpit implements ICockpit {
     MyMapper myMapper = new MyMapper();
     InitGame initGame;
     NextRound nextRound;
+    Checkpoint[] checkpoints;
     AllPossibility allPossibility;
 
 
@@ -30,10 +33,13 @@ public class Cockpit implements ICockpit {
         System.out.println("Init game input: " + game);
         try {
             this.initGame = myMapper.readValue(game, InitGame.class);
+            if (this.initGame.getGoal().getClass() == RegattaGoal.class)
+                this.checkpoints = ((RegattaGoal) this.initGame.getGoal()).getCheckpoints();
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
         allPossibility = new AllPossibility(initGame);
+        allPossibility.getAllPossibility().forEach(ap -> System.out.println(ap[0]+" : "+ap[1]));
     }
 
     /**

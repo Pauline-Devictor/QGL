@@ -18,7 +18,7 @@ public class AllPossibility {
     public void oarPossibility(InitGame initGame) {
         List<Oar> listOar = new ArrayList<>();
         initGame.getShip().getEntities().forEach(ent -> {
-            if (ent != null && ent.getType().equals("Oar")) {
+            if (ent != null && ent.getType().equals("oar")) {
                 listOar.add((Oar) ent);
             }
         });

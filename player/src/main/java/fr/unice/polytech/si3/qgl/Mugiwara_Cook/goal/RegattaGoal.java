@@ -4,7 +4,8 @@ import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.Checkpoint;
 
 public class RegattaGoal extends Goal {
     public final static String MODE = "REGATTA";
-    Checkpoint[] checkpoints;
+    public String mode = MODE;
+    public Checkpoint[] checkpoints;
 
     public RegattaGoal(Checkpoint[] checkpoints){
         super(MODE);
@@ -18,6 +19,5 @@ public class RegattaGoal extends Goal {
     public void setCheckpoints(Checkpoint[] checkpoints) {
         this.checkpoints = checkpoints;
     }
-
 
 }

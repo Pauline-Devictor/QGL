@@ -3,7 +3,7 @@ package fr.unice.polytech.si3.qgl.Mugiwara_Cook.shapes;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Point;
 
 public class Polygon extends Shape{
-    public final static String TYPE = "Polygon";
+    public final static String TYPE = "polygon";
     double orientation;
     Point[] vertices;
 

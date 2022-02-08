@@ -38,7 +38,7 @@ public class DeserializeEquipment  extends StdDeserializer<Equipment> {
                 return new Oar(x,y);
             case "rudder":
                 return new Rudder(x,y);
-            case "rail":
+            case "sail":
                 boolean openned = node.get("openned").asBoolean();
                 return new Sail(x,y,openned);
             case "watch":
