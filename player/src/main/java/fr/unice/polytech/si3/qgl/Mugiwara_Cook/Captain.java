@@ -117,7 +117,10 @@ public class Captain {
         ArrayList<Moving> moves= new ArrayList<>();
         ArrayList<Oar> oars=ship.getOars();
         for(int i=0;i< sailors.length;i++){
-            Moving move=new Moving(sailors[i].getId(),oars.get(i).getX(),oars.get(i).getX());
+            Sailor sailor=sailors[i];
+            int x=sailor.HowManyCaseFarFromOarX(oars.get(i));
+            int y=sailor.HowManyCaseFarFromOarY(oars.get(i));
+            Moving move=new Moving(sailor.getId(),x,y);
             moves.add(move);
         }
         return moves;

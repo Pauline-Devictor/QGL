@@ -1,5 +1,7 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook;
 
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Oar;
+
 public class Sailor {
     int id;
     int x;
@@ -48,6 +50,25 @@ public class Sailor {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+
+    /**
+     * @param oar la rame que le sailor veut atteindre
+     * @return la distance en x pour atteindre la rame
+     */
+    public int HowManyCaseFarFromOarX(Oar oar){
+        int x=(this.x)-oar.getX();
+        return x;
+    }
+
+    /**
+     * @param oar la rame que le sailor veut atteindre
+     * @return la distance en y pour atteindre la rame
+     */
+    public int HowManyCaseFarFromOarY(Oar oar){
+        int y=(this.y)-oar.getY();
+        return y;
     }
 
 
