@@ -1,6 +1,9 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.tooling;
 
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Captain;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Cockpit;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Sailor;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.actions.Moving;
 
 public class Application {
 	
@@ -225,5 +228,11 @@ public class Application {
 				"    \"strength\": 110\n" +
 				"  }\n" +
 				"}");
+		/*Captain captain=new Captain(cockpit.getInitGame().getShip(),cockpit.getInitGame().getSailors());
+		System.out.println(captain.SailorIsAllowedToMove(-3,-2));
+		System.out.println(captain.SailorIsAllowedToMove(-10,0));
+		System.out.println(captain.SailorIsNotGoingToFallInTheSea(0,0,1));
+		System.out.println(captain.SailorIsNotGoingToFallInTheSea(0,0,10));*/
+
 	}
 }

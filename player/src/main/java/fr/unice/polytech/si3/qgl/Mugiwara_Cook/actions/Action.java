@@ -1,5 +1,8 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.actions;
 
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Cockpit;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.game.InitGame;
+
 abstract public class Action {
     String type;
 
