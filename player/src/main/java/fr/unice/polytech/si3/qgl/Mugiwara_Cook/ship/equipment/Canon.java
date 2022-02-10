@@ -1,16 +1,18 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class Canon extends Equipment {
     public final static String TYPE = "canon";
     int x;
     int y;
     boolean loaded;
     double angle;
+    @JsonIgnore
+    boolean used = false;
 
     public Canon(int x, int y,boolean loaded,double angle) {
-        super(TYPE);
-        this.x = x;
-        this.y = y;
+        super(TYPE,x,y);
         this.loaded = loaded;
         this.angle = angle;
     }
@@ -47,4 +49,11 @@ public class Canon extends Equipment {
         this.angle = angle;
     }
 
+    public boolean isUsed() {
+        return used;
+    }
+
+    public void setUsed(boolean used) {
+        this.used = used;
+    }
 }
