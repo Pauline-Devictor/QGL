@@ -1,6 +1,12 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook;
 
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Equipment;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Oar;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+
+import static java.lang.Math.abs;
 
 public class Sailor {
     int id;
@@ -70,5 +76,37 @@ public class Sailor {
         return y;
     }
 
+    /**
+     *
+     * @param sailor un sailor dont on veut la plus proche rame
+     * @param OarList liste des rames sur le bateau
+     * @return la rame la plus proche
+     * Note : cette méhode trouve la rame la plus proche, elle ne prend pas en compte la limite des 5 cases
+     */
+    public Oar FindClosestOarFromSailor(Sailor sailor, ArrayList<Oar> OarList){
+        Oar closestOar = OarList.get(0);
+        for(int i=1;i<OarList.size();i++){
+            if(abs(OarList.get(i).getX() - sailor.getX()) <= abs(closestOar.getX() - sailor.getX()) && abs(OarList.get(i).getY() - sailor.getY()) <= abs(closestOar.getY() - sailor.getY())){
+                closestOar=OarList.get(i);
+            }
+        }
+        return closestOar;
+    }
 
+    //WORK IN PROGRESS
+    /**public Equipment FindSpecificClosestEquipementFromSailor(Sailor sailor, String chosenEquipementType, ArrayList<Equipment> entities,Class classe){
+        Equipment closestEquipement;
+        //chosenEquipementType.getClass()
+        entities.stream()
+                .filter(equipment -> equipment.getType().equals(chosenEquipementType))
+                .forEach(equipment -> {
+                    if(abs((classe) equipment))
+                });
+        for(int i=1;i<OarList.size();i++){
+            if(OarList.get(i).getX()<= closestOar.getX() && OarList.get(i).getY()<= closestOar.getY()){
+                closestOar=OarList.get(i);
+            }
+        }
+        return closestEquipement;
+    }*/
 }
