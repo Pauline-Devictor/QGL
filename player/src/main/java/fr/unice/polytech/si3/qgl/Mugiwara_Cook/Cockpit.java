@@ -49,7 +49,7 @@ public class Cockpit implements ICockpit {
         allPossibility = new AllPossibility(initGame);
 
         this.captain = new Captain(this.initGame.getShip(), this.initGame.getSailors());
-        this.m = captain.sailorsFollowMyCommand();
+        this.m = captain.sailorsMoveToOars();
 
     }
 

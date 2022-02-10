@@ -47,7 +47,7 @@ public class Captain {
      * @param ydistance le nombre de déplacement en y
      * @return un boolean qui dit vrai s'il respect les conditions, faux sinon
      */
-    public boolean SailorIsAllowedToMove(int xdistance, int ydistance) {
+    public boolean sailorIsAllowedToMove(int xdistance, int ydistance) {
         if (abs(xdistance) + abs(ydistance) <= 5) return true;
         return false;
     }
@@ -60,8 +60,8 @@ public class Captain {
      * @param ydistance distance à parcourir en y
      * @return true s'il ne tombe pas sinon false
      */
-    public boolean SailorIsNotGoingToFallInTheSea(int sailorId, int xdistance, int ydistance) {
-        if (SailorIsNotGoingToFallInTheSeaX(sailorId, xdistance) && SailorIsNotGoingToFallInTheSeaY(sailorId, ydistance)) {
+    public boolean sailorIsNotGoingToFallInTheSea(int sailorId, int xdistance, int ydistance) {
+        if (sailorIsNotGoingToFallInTheSeaX(sailorId, xdistance) && sailorIsNotGoingToFallInTheSeaY(sailorId, ydistance)) {
             return true;
         }
         return false;
@@ -75,7 +75,7 @@ public class Captain {
      * @param xdistance distance à parcourir en x
      * @return true s'il ne tombe pas sinon false
      */
-    public boolean SailorIsNotGoingToFallInTheSeaX(int sailorId, int xdistance) {
+    public boolean sailorIsNotGoingToFallInTheSeaX(int sailorId, int xdistance) {
         int xmaxship = ship.getDeck().getLength();
         int xsailor = findASailorWithId(sailorId).getX();
         if ((0 <= xsailor + xdistance && xsailor + xdistance <= xmaxship)) {
@@ -92,7 +92,7 @@ public class Captain {
      * @param ydistance distance à parcourir en y
      * @return true s'il ne tombe pas sinon false
      */
-    public boolean SailorIsNotGoingToFallInTheSeaY(int sailorId, int ydistance) {
+    public boolean sailorIsNotGoingToFallInTheSeaY(int sailorId, int ydistance) {
         int ymaxship = ship.getDeck().getWidth();
         int ysailor = findASailorWithId(sailorId).getY();
         if ((0 <= ysailor + ydistance && ysailor + ydistance <= ymaxship)) {
@@ -125,15 +125,34 @@ public class Captain {
 
     // On aura peut-être un problème avec les limites de déplacements des marins
     // Cette méthodes reste à revoir plus tard car elle compare les marins aux râmes dans leur ordre d'apparition dans sailors
+    // Laisser la partie commentée pour plus tard
+
     public ArrayList<Action> sailorsMoveToOars(){
         ArrayList<Action> moves = new ArrayList<>();
         ArrayList<Oar> oars = ship.getOars();
-        for (int i = 0; i < sailors.length; i++){
+        /**for (int i = 0; i < sailors.length; i++){
+            if(sailors[i].getY()+sailors[i].HowManyCaseFarFromOarY(sailors[i].findClosestOarFromSailor(oars))==0){
+                sailorLeft.add(sailors[i].getId());
+            }else{
+                sailorRight.add(sailors[i].getId());
+            }
             Moving sailorMove = new Moving(sailors[i].getId(),sailors[i].findClosestOarFromSailor(oars).getX(),sailors[i].findClosestOarFromSailor(oars).getY());
             oars.remove(sailors[i].findClosestOarFromSailor(oars));
             moves.add(sailorMove);
+        }*/
+        int i=0;
+        while(i<sailors.length && oars.size()>=1){
+
+            if(sailors[i].getY()+sailors[i].HowManyCaseFarFromOarY(sailors[i].findClosestOarFromSailor(oars))==0){
+                sailorLeft.add(sailors[i].getId());
+            }else{
+                sailorRight.add(sailors[i].getId());
+            }
+            Moving sailorMove = new Moving(sailors[i].getId(),sailors[i].findClosestOarFromSailor(oars).getX(),sailors[i].findClosestOarFromSailor(oars).getY());
+            oars.remove(sailors[i].findClosestOarFromSailor(oars));
+            moves.add(sailorMove);
+            i++;
         }
         return moves;
     }
-
 }
