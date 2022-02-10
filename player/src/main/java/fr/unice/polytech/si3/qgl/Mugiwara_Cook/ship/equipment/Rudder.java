@@ -14,6 +14,8 @@ public class Rudder extends Equipment{
 
     public Rudder(int x, int y) {
         super(TYPE,x,y);
+        this.x=x;
+        this.y=y;
     }
 
     public int getX() {

@@ -12,6 +12,8 @@ public class Sail extends Equipment {
     public Sail(int x, int y, boolean openned) {
         super(TYPE,x,y);
         this.openned = openned;
+        this.x=x;
+        this.y=y;
     }
 
     public int getX() {

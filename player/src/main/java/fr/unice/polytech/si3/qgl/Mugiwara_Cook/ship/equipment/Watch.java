@@ -14,6 +14,8 @@ public class Watch extends Equipment {
 
     public Watch(int x, int y) {
         super(TYPE,x,y);
+        this.x=x;
+        this.y=y;
     }
 
     public int getX() {

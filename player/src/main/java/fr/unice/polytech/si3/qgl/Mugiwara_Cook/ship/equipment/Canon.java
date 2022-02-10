@@ -15,6 +15,8 @@ public class Canon extends Equipment {
         super(TYPE,x,y);
         this.loaded = loaded;
         this.angle = angle;
+        this.x=x;
+        this.y=y;
     }
 
     public int getX() {

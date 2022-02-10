@@ -62,7 +62,7 @@ public class Sailor {
      * @param oar la rame que le sailor veut atteindre
      * @return la distance en x pour atteindre la rame
      */
-    public int HowManyCaseFarFromOarX(Oar oar) {
+    public int howManyCaseFarFromOarX(Oar oar) {
         int x = oar.getX() - this.x;
         return x;
     }
@@ -71,7 +71,7 @@ public class Sailor {
      * @param oar la rame que le sailor veut atteindre
      * @return la distance en y pour atteindre la rame
      */
-    public int HowManyCaseFarFromOarY(Oar oar) {
+    public int howManyCaseFarFromOarY(Oar oar) {
         int y = oar.getY() - this.y;
         return y;
     }

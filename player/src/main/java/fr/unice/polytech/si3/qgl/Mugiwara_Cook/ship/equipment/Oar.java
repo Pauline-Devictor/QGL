@@ -15,6 +15,8 @@ public class Oar extends Equipment {
 
     public Oar(int x,int y) {
         super(TYPE,x,y);
+        this.x=x;
+        this.y=y;
     }
 
     public int getX() {

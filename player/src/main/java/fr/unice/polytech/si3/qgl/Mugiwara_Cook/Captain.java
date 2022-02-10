@@ -143,7 +143,7 @@ public class Captain {
         int i=0;
         while(i<sailors.length && oars.size()>=1){
 
-            if(sailors[i].getY()+sailors[i].HowManyCaseFarFromOarY(sailors[i].findClosestOarFromSailor(oars))==0){
+            if(sailors[i].getY()+sailors[i].howManyCaseFarFromOarY(sailors[i].findClosestOarFromSailor(oars))==0){
                 sailorLeft.add(sailors[i].getId());
             }else{
                 sailorRight.add(sailors[i].getId());
