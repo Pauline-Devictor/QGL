@@ -78,35 +78,40 @@ public class Sailor {
 
     /**
      *
-     * @param sailor un sailor dont on veut la plus proche rame
      * @param OarList liste des rames sur le bateau
      * @return la rame la plus proche
      * Note : cette méhode trouve la rame la plus proche, elle ne prend pas en compte la limite des 5 cases
      */
-    public Oar FindClosestOarFromSailor(Sailor sailor, ArrayList<Oar> OarList){
+    public Oar findClosestOarFromSailor(ArrayList<Oar> OarList){
         Oar closestOar = OarList.get(0);
         for(int i=1;i<OarList.size();i++){
-            if(abs(OarList.get(i).getX() - sailor.getX()) <= abs(closestOar.getX() - sailor.getX()) && abs(OarList.get(i).getY() - sailor.getY()) <= abs(closestOar.getY() - sailor.getY())){
+            if(abs(OarList.get(i).getX() - this.getX()) <= abs(closestOar.getX() - this.getX()) && abs(OarList.get(i).getY() - this.getY()) <= abs(closestOar.getY() - this.getY())){
                 closestOar=OarList.get(i);
             }
         }
         return closestOar;
     }
 
-    //WORK IN PROGRESS
-    /**public Equipment FindSpecificClosestEquipementFromSailor(Sailor sailor, String chosenEquipementType, ArrayList<Equipment> entities,Class classe){
-        Equipment closestEquipement;
-        //chosenEquipementType.getClass()
-        entities.stream()
-                .filter(equipment -> equipment.getType().equals(chosenEquipementType))
-                .forEach(equipment -> {
-                    if(abs((classe) equipment))
-                });
-        for(int i=1;i<OarList.size();i++){
-            if(OarList.get(i).getX()<= closestOar.getX() && OarList.get(i).getY()<= closestOar.getY()){
-                closestOar=OarList.get(i);
+    /**
+     *
+     * @param sailor un rameur donné
+     * @param chosenEquipementType le type de l'equipement que l'on a choisi
+     * @param entities l'attribut entities de la classe Ship
+     * @return
+     */
+    public Equipment findSpecificClosestEquipementFromSailor(Sailor sailor, String chosenEquipementType, ArrayList<Equipment> entities){
+
+        Equipment closestEquipement = null;
+        boolean trouve = false;
+
+        for(int i=0; i<entities.size();i++){
+            if(!trouve && entities.get(i).getType().equals(chosenEquipementType)){
+                closestEquipement = entities.get(i);
+                trouve = true;
             }
+            if(entities.get(i).getType().equals(chosenEquipementType) && trouve && abs( entities.get(i).getX() - sailor.getX() ) <= abs( closestEquipement.getX() - sailor.getX()) && abs( entities.get(i).getY() - sailor.getY() ) <= abs( closestEquipement.getY() - sailor.getY()))
+                closestEquipement = entities.get(i);
         }
         return closestEquipement;
-    }*/
+    }
 }

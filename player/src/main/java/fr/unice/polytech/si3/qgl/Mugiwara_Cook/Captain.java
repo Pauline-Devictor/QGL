@@ -8,6 +8,7 @@ import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Oar;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Arrays;
 
 import static java.lang.Math.abs;
 
@@ -114,35 +115,25 @@ public class Captain {
         return sailor;
     }
 
-    /**
-     * "attribut" une rame à chaque marin, nom à changer et methode a modifier dans l'avenir.
-     *
-     * @return La list des mouvements de marin
-     */
-    public ArrayList<Action> sailorsFollowMyCommand() {
-        ArrayList<Action> moves = new ArrayList<>();
-        ArrayList<Oar> oars = ship.getOars();
-        for (int i = 0; i < sailors.length; i++) {
-            Sailor sailor = sailors[i];
-            int x = sailor.HowManyCaseFarFromOarX(oars.get(i));
-            int y = sailor.HowManyCaseFarFromOarY(oars.get(i));
-            if(sailor.getY()+y==0){
-                sailorLeft.add(sailor.getId());
-            }else{
-                sailorRight.add(sailor.getId());
-            }
-            Moving move = new Moving(sailor.getId(), x, y);
-            moves.add(move);
-        }
-        return moves;
-    }
-
     public List<Integer> getSailorLeft(){
         return sailorLeft;
     }
 
     public List<Integer> getSailorRight(){
         return sailorRight;
+    }
+
+    // On aura peut-être un problème avec les limites de déplacements des marins
+    // Cette méthodes reste à revoir plus tard car elle compare les marins aux râmes dans leur ordre d'apparition dans sailors
+    public ArrayList<Action> sailorsMoveToOars(){
+        ArrayList<Action> moves = new ArrayList<>();
+        ArrayList<Oar> oars = ship.getOars();
+        for (int i = 0; i < sailors.length; i++){
+            Moving sailorMove = new Moving(sailors[i].getId(),sailors[i].findClosestOarFromSailor(oars).getX(),sailors[i].findClosestOarFromSailor(oars).getY());
+            oars.remove(sailors[i].findClosestOarFromSailor(oars));
+            moves.add(sailorMove);
+        }
+        return moves;
     }
 
 }
