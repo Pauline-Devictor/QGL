@@ -10,9 +10,7 @@ public class Sail extends Equipment {
     boolean openned;
 
     public Sail(int x, int y, boolean openned) {
-        super(TYPE);
-        this.x = x;
-        this.y = y;
+        super(TYPE,x,y);
         this.openned = openned;
     }
 

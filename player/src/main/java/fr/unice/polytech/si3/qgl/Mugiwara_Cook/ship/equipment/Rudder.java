@@ -1,5 +1,7 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * Gouvernail
  */
@@ -7,11 +9,11 @@ public class Rudder extends Equipment{
     public final static String TYPE = "rudder";
     int x;
     int y;
+    @JsonIgnore
+    boolean used = false;
 
     public Rudder(int x, int y) {
-        super(TYPE);
-        this.x = x;
-        this.y = y;
+        super(TYPE,x,y);
     }
 
     public int getX() {
@@ -31,5 +33,11 @@ public class Rudder extends Equipment{
     }
 
 
+    public boolean isUsed() {
+        return used;
+    }
 
+    public void setUsed(boolean used) {
+        this.used = used;
+    }
 }
