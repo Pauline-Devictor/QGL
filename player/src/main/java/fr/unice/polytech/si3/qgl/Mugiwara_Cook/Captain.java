@@ -76,7 +76,7 @@ public class Captain {
      * @return true s'il ne tombe pas sinon false
      */
     public boolean sailorIsNotGoingToFallInTheSeaX(int sailorId, int xdistance) {
-        int xmaxship = ship.getDeck().getLength();
+        int xmaxship = ship.getDeck().getLength()-1;
         int xsailor = findASailorWithId(sailorId).getX();
         if ((0 <= xsailor + xdistance && xsailor + xdistance <= xmaxship)) {
             return true;
@@ -93,7 +93,7 @@ public class Captain {
      * @return true s'il ne tombe pas sinon false
      */
     public boolean sailorIsNotGoingToFallInTheSeaY(int sailorId, int ydistance) {
-        int ymaxship = ship.getDeck().getWidth();
+        int ymaxship = ship.getDeck().getWidth()-1;
         int ysailor = findASailorWithId(sailorId).getY();
         if ((0 <= ysailor + ydistance && ysailor + ydistance <= ymaxship)) {
             return true;
@@ -148,7 +148,7 @@ public class Captain {
             }else{
                 sailorRight.add(sailors[i].getId());
             }
-            Moving sailorMove = new Moving(sailors[i].getId(),sailors[i].findClosestOarFromSailor(oars).getX(),sailors[i].findClosestOarFromSailor(oars).getY());
+            Moving sailorMove = new Moving(sailors[i].getId(),sailors[i].findClosestOarFromSailor(oars).getX()-sailors[i].getX(),sailors[i].findClosestOarFromSailor(oars).getY()-sailors[i].getY());
             oars.remove(sailors[i].findClosestOarFromSailor(oars));
             moves.add(sailorMove);
             i++;

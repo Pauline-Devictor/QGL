@@ -20,10 +20,6 @@ public class Moving extends Action{ //TODO condition xdistance and ydistance
         this.ydistance = ydistance;
     }
 
-
-
-
-
     public int getSailorId() {
         return sailorId;
     }
