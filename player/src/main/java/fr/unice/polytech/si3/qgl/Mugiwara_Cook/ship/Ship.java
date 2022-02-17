@@ -1,12 +1,11 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship;
 
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Position;
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shapes.Shape;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.Position;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes.Shape;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Equipment;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Oar;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Ship {

@@ -1,4 +1,4 @@
-package fr.unice.polytech.si3.qgl.Mugiwara_Cook.shapes;
+package fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes;
 
 public class Circle extends Shape{
     public final static String TYPE = "circle";

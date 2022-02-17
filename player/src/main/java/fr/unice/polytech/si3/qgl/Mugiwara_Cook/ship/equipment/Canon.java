@@ -4,8 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class Canon extends Equipment {
     public final static String TYPE = "canon";
-    int x;
-    int y;
     boolean loaded;
     double angle;
     @JsonIgnore
@@ -15,24 +13,6 @@ public class Canon extends Equipment {
         super(TYPE,x,y);
         this.loaded = loaded;
         this.angle = angle;
-        this.x=x;
-        this.y=y;
-    }
-
-    public int getX() {
-        return x;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public void setY(int y) {
-        this.y = y;
     }
 
     public boolean isLoaded() {

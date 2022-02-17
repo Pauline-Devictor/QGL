@@ -1,4 +1,4 @@
-package fr.unice.polytech.si3.qgl.Mugiwara_Cook.shapes;
+package fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes;
 
 abstract public class Shape {
     String type;

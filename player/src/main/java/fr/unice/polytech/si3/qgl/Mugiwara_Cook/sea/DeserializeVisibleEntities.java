@@ -6,8 +6,8 @@ import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.MyMapper;
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Position;
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shapes.Shape;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.Position;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes.Shape;
 
 import java.io.IOException;
 

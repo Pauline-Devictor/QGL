@@ -2,6 +2,7 @@ package fr.unice.polytech.si3.qgl.Mugiwara_Cook;
 
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.actions.Action;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.actions.Moving;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.VisibleEntity;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.Deck;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.Ship;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Oar;
