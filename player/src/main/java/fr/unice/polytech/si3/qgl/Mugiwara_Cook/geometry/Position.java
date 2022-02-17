@@ -1,4 +1,4 @@
-package fr.unice.polytech.si3.qgl.Mugiwara_Cook;
+package fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry;
 
 public class Position {
     double x;
@@ -36,4 +36,12 @@ public class Position {
         this.orientation = orientation;
     }
 
+    /**
+     * Calculate the distance between current item and another one
+     * @param itemPosition Other item
+     * @return distance
+     */
+    public double distance(Position itemPosition){
+        return Math.sqrt(Math.pow(itemPosition.getX() - this.x, 2) - Math.pow(itemPosition.getY()-this.y, 2));
+    }
 }

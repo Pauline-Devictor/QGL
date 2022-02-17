@@ -6,11 +6,11 @@ import java.util.List;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.actions.Action;
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.actions.Moving;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.actions.Oar;
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.game.ActionJSON;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.game.InitGame;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.game.NextRound;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.VisibleEntity;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes.Circle;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.AllPossibility;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.BestMove;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.allmoves.OarMove;
@@ -27,6 +27,7 @@ public class Cockpit implements ICockpit {
     AllPossibility allPossibility;
     ArrayList<Action> m;
     Captain captain;
+    Checkpoint currentCheckpoint;
 
     public Cockpit() {
         //Json
@@ -50,7 +51,7 @@ public class Cockpit implements ICockpit {
 
         this.captain = new Captain(this.initGame.getShip(), this.initGame.getSailors());
         this.m = captain.sailorsMoveToOars();
-
+        this.currentCheckpoint = this.checkpoints[0];
     }
 
     /**
@@ -136,5 +137,26 @@ public class Cockpit implements ICockpit {
 
     public void setAllPossibility(AllPossibility allPossibility) {
         this.allPossibility = allPossibility;
+    }
+
+    /**
+     * Determine if the ship will collide with the given entity
+     * @param visibleEntity entity to check
+     * @return boolean
+     */
+    public boolean isCollision(VisibleEntity visibleEntity){ //TODO autre forme
+        if (visibleEntity.getShape() instanceof Circle)
+            return (captain.getShip().getPosition().distance(visibleEntity.getPosition())
+                <=((Circle) visibleEntity.getShape()).getRadius() );
+        return false;
+    }
+
+    /**
+     * Determine if the ship is in the Checkpoint
+     * @return boolean
+     */
+    public boolean inCheckpoint(){
+        return (captain.getShip().getPosition().distance(currentCheckpoint.getPosition())
+        <=((Circle) currentCheckpoint.getShape()).getRadius() );
     }
 }

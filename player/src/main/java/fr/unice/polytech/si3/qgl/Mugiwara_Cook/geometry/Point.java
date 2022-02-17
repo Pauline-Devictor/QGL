@@ -1,4 +1,4 @@
-package fr.unice.polytech.si3.qgl.Mugiwara_Cook;
+package fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry;
 
 public class Point {
     int x;
