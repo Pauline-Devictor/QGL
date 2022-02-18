@@ -1,31 +1,24 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.tooling;
 
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Cockpit;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.game.InitGame;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove.allmoves.Moves;
 
-public class Application {
+public class BasicSimulator {
+    Cockpit cockpit = new Cockpit();
+    double x = 0;
+    double y = 0;
+    double orientation = 0;
 
-    public static void main(String[] args) {
-        basicSimulation();
-    }
-
-    public static void basicSimulation() {
-        BasicSimulator basicSimulator = new BasicSimulator();
-
-        for (int i = 0; i < 20; i++) {
-            basicSimulator.simu();
-        }
-    }
-
-    public static void simulation() {
-        Cockpit cockpit = new Cockpit();
+    public BasicSimulator() {
         cockpit.initGame("{\n" +
                 "  \"goal\": {\n" +
                 "    \"mode\": \"REGATTA\",\n" +
                 "    \"checkpoints\": [\n" +
                 "      {\n" +
                 "        \"position\": {\n" +
-                "          \"x\": -500,\n" +
-                "          \"y\": 0,\n" +
+                "          \"x\": 0,\n" +
+                "          \"y\": -500,\n" +
                 "          \"orientation\": 0\n" +
                 "        },\n" +
                 "        \"shape\": {\n" +
@@ -35,8 +28,8 @@ public class Application {
                 "      },\n" +
                 "      {\n" +
                 "        \"position\": {\n" +
-                "          \"x\": 0,\n" +
-                "          \"y\": 0,\n" +
+                "          \"x\": 600,\n" +
+                "          \"y\": -80,\n" +
                 "          \"orientation\": 0\n" +
                 "        },\n" +
                 "        \"shape\": {\n" +
@@ -60,16 +53,16 @@ public class Application {
                 "      \"length\": 6\n" +
                 "    },\n" +
                 "    \"entities\": [\n" +
-//				"      {\n" +
-//				"        \"x\": 1,\n" +
-//				"        \"y\": 0,\n" +
-//				"        \"type\": \"oar\"\n" +
-//				"      },\n" +
-//				"      {\n" +
-//				"        \"x\": 1,\n" +
-//				"        \"y\": 2,\n" +
-//				"        \"type\": \"oar\"\n" +
-//				"      },\n" +
+				"      {\n" +
+				"        \"x\": 1,\n" +
+				"        \"y\": 0,\n" +
+				"        \"type\": \"oar\"\n" +
+				"      },\n" +
+				"      {\n" +
+				"        \"x\": 1,\n" +
+				"        \"y\": 2,\n" +
+				"        \"type\": \"oar\"\n" +
+				"      },\n" +
                 "      {\n" +
                 "        \"x\": 3,\n" +
                 "        \"y\": 0,\n" +
@@ -128,18 +121,18 @@ public class Application {
                 "      \"id\": 2,\n" +
                 "      \"name\": \"Tom Pouce\"\n" +
                 "    },\n" +
-//				"    {\n" +
-//				"      \"x\": 1,\n" +
-//				"      \"y\": 0,\n" +
-//				"      \"id\": 3,\n" +
-//				"      \"name\": \"Jack Teach\"\n" +
-//				"    },\n" +
-//				"    {\n" +
-//				"      \"x\": 1,\n" +
-//				"      \"y\": 1,\n" +
-//				"      \"id\": 4,\n" +
-//				"      \"name\": \"Jack Teach\"\n" +
-//				"    },\n" +
+				"    {\n" +
+				"      \"x\": 1,\n" +
+				"      \"y\": 0,\n" +
+				"      \"id\": 3,\n" +
+				"      \"name\": \"Jack Teach\"\n" +
+				"    },\n" +
+				"    {\n" +
+				"      \"x\": 1,\n" +
+				"      \"y\": 1,\n" +
+				"      \"id\": 4,\n" +
+				"      \"name\": \"Jack Teach\"\n" +
+				"    },\n" +
                 "    {\n" +
                 "      \"x\": 1,\n" +
                 "      \"y\": 2,\n" +
@@ -148,17 +141,19 @@ public class Application {
                 "    }\n" +
                 "  ],\n" +
                 "  \"shipCount\": 1\n" +
-                "}");
-        System.out.println("An instance of my team player: " + cockpit);
+                "}"); System.out.println("An instance of my team player: " + cockpit);
         System.out.println("When called, it returns some JSON:");
-        cockpit.nextRound("{\n" +
+    }
+
+    public void simu() {
+        Moves moves = cockpit.nextRoundSimu("{\n" +
                 "  \"ship\": {\n" +
                 "    \"type\": \"ship\",\n" +
                 "    \"life\": 100,\n" +
                 "    \"position\": {\n" +
-                "      \"x\":  0,\n" +
-                "      \"y\":  0,\n" +
-                "      \"orientation\": 0\n" +
+                "      \"x\":  "+x+",\n" +
+                "      \"y\":  "+y+",\n" +
+                "      \"orientation\": "+orientation+"\n" +
                 "    },\n" +
                 "    \"name\": \"Les copaings d'abord!\",\n" +
                 "    \"deck\": {\n" +
@@ -237,8 +232,10 @@ public class Application {
                 "    \"strength\": 110\n" +
                 "  }\n" +
                 "}");
+        x = moves.getX();
+        y = moves.getY();
+        orientation = moves.getOrientation();
 
-        System.out.println(cockpit.getInitGame().getShip().getOars().size());
-
+        System.out.print(" ["+x+","+y+","+orientation+"],");
     }
 }

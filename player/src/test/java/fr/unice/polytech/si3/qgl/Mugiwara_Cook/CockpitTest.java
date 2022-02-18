@@ -91,12 +91,12 @@ class CockpitTest {
                 "  ],\n" +
                 "  \"shipCount\": 1\n" +
                 "}");
-        this.cockpit.currentCheckpoint = this.cockpit.getCheckpoints()[0];
+//        this.cockpit.currentCheckpoint = this.cockpit.getCheckpoints()[0];
     }
-    @Test
-    void shipInCheckpoint(){
-        assertTrue(this.cockpit.inCheckpoint());
-    }
+//    @Test
+//    void shipInCheckpoint(){
+//        assertTrue(this.cockpit.inCheckpoint());
+//    }
 
     /*@Test
     void nextRoundTest() {
