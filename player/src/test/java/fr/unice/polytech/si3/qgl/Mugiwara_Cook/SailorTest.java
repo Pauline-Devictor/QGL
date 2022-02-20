@@ -2,6 +2,7 @@ package fr.unice.polytech.si3.qgl.Mugiwara_Cook;
 
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Equipment;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Oar;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -11,10 +12,20 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SailorTest {
 
-    Sailor sailor1 = new Sailor(1,4,2,"gogol");
-    Sailor sailor2 = new Sailor(1,1,0,"frere de gogol");
-    Oar rame1 = new Oar(0,0);
-    Oar rame2 = new Oar(3,1);
+    Sailor sailor1;
+    Sailor sailor2;
+    Oar rame1;
+    Oar rame2;
+    Oar rameVide;
+
+    @BeforeEach
+    void set(){
+        sailor1 = new Sailor(1,4,2,"un nom");
+        sailor2 = new Sailor(1,1,0,"un autre nom");
+        rame1 = new Oar(0,0);
+        rame2 = new Oar(3,1);
+
+    }
 
     @Test
     void howManyCaseFarFromOarX() {
@@ -44,5 +55,31 @@ class SailorTest {
         entities.add((Equipment) rame1);
         entities.add((Equipment) rame2);
         assertEquals((Equipment) rame1,sailor2.findSpecificClosestEquipementFromSailor(sailor2,"oar",entities));
+    }
+
+    @Test
+    void attach1Oar(){
+        sailor1.attachOar(rame1);
+        assertEquals(sailor1.getOar(),rame1);
+    }
+
+    @Test
+    void attachNoOar(){
+        sailor1.attachOar(rameVide);
+        assertEquals(sailor1.getOar(),rameVide);
+
+    }
+
+    @Test
+    void assignTrue(){
+        sailor1.attachOar(rame1);
+        assertTrue(sailor1.assign());
+    }
+
+    @Test
+    void assignFalse(){
+        sailor2.attachOar(rameVide);
+        assertFalse(sailor1.assign());
+        assertFalse(sailor2.assign());
     }
 }
