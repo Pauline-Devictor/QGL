@@ -5,10 +5,10 @@ abstract public class Equipment {
     protected int x;
     protected int y;
 
-    public Equipment(String type,int x, int y){
+    public Equipment(String type,int x,int y){
         this.type = type;
         this.x = x;
-        this.y =y;
+        this.y = y;
     }
 
     public String getType() {

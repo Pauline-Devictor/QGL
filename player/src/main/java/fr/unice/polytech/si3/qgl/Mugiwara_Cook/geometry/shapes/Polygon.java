@@ -1,6 +1,6 @@
-package fr.unice.polytech.si3.qgl.Mugiwara_Cook.shapes;
+package fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes;
 
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Point;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.Point;
 
 public class Polygon extends Shape{
     public final static String TYPE = "polygon";

@@ -7,29 +7,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  */
 public class Watch extends Equipment {
     public final static String TYPE = "watch";
-    int x;
-    int y;
     @JsonIgnore
-    boolean used;
+    boolean used = false;
 
     public Watch(int x, int y) {
         super(TYPE,x,y);
-    }
-
-    public int getX() {
-        return x;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public void setY(int y) {
-        this.y = y;
     }
 
     public boolean isUsed() {

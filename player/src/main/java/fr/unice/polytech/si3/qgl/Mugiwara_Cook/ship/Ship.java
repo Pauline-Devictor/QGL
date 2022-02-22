@@ -1,13 +1,13 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship;
 
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Position;
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shapes.Shape;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.Position;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes.Shape;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Equipment;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Oar;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Ship {
     public final static String TYPE = "ship";
@@ -23,7 +23,7 @@ public class Ship {
         // only for jackson
     }
 
-    public Ship(int life, Position position, String name, Deck deck, List<Equipment> entities, Shape shape){
+    public Ship(int life, Position position, String name, Deck deck, List<Equipment> entities, Shape shape) {
         this.life = life;
         this.position = position;
         this.name = name;
@@ -72,8 +72,6 @@ public class Ship {
         return entities;
     }
 
-
-
     public void setEntities(List<Equipment> entities) {
         this.entities = entities;
     }
@@ -88,13 +86,34 @@ public class Ship {
 
     /**
      * permet de recuperer la list des rames.
+     *
      * @return la list des rames.
      */
-    public ArrayList<Oar> getOars(){
-        ArrayList<Oar> oars=new ArrayList<>();
-        for(Equipment e: entities){
-            if(e instanceof Oar) oars.add((Oar) e);
+    public ArrayList<Oar> getOars() {
+        ArrayList<Oar> oars = new ArrayList<>();
+        for (Equipment e : entities) {
+            if (e instanceof Oar) oars.add((Oar) e);
         }
         return oars;
+    }
+
+    public int getNbOars() {
+        return this.getOars().size();
+    }
+
+    public List<Oar> getUsableOarsLeft() {
+        return this.getOars().stream()
+                .filter(oar -> oar.getY() == 0)
+                .filter(oar -> oar.getSailor() != null)
+                .filter(oar -> oar.getSailor().onIsAssignOar() == true)
+                .collect(Collectors.toList());
+    }
+
+    public List<Oar> getUsableOarsRight() {
+        return this.getOars().stream()
+                .filter(oar -> (this.getDeck().getWidth() - 1) == oar.getY())
+                .filter(oar -> oar.getSailor() != null)
+                .filter(oar -> oar.getSailor().onIsAssignOar() == true)
+                .collect(Collectors.toList());
     }
 }

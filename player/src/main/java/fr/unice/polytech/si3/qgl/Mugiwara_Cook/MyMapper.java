@@ -8,8 +8,8 @@ import fr.unice.polytech.si3.qgl.Mugiwara_Cook.goal.DeserializeGoal;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.goal.Goal;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.DeserializeVisibleEntities;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.VisibleEntity;
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shapes.DeserializeShape;
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shapes.Shape;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes.DeserializeShape;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes.Shape;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.DeserializeEquipment;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Equipment;
 
