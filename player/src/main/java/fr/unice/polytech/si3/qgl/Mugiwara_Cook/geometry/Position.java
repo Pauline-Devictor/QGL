@@ -42,6 +42,6 @@ public class Position {
      * @return distance
      */
     public double distance(Position itemPosition){
-        return Math.sqrt(Math.pow(itemPosition.getX() - this.x, 2) - Math.pow(itemPosition.getY()-this.y, 2));
+        return Math.sqrt(Math.pow(itemPosition.getX() - this.x, 2) + Math.pow(itemPosition.getY()-this.y, 2));
     }
 }
