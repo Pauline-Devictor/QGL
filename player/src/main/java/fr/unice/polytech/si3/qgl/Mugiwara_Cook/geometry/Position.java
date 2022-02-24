@@ -37,6 +37,7 @@ public class Position {
     }
 
 
+    
     /**
      * Calculate the distance between current item and another one
      * @param itemPosition Other item
