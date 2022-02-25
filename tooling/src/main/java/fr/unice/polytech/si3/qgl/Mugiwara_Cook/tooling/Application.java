@@ -9,11 +9,9 @@ public class Application {
     }
 
     public static void basicSimulation() {
-        BasicSimulator basicSimulator = new BasicSimulator();
+        AdvanceSimulator advanceSimulator = new AdvanceSimulator();
 
-        for (int i = 0; i < 20; i++) {
-            basicSimulator.simu();
-        }
+        advanceSimulator.createNextRound();
     }
 
     public static void simulation() {

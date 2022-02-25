@@ -127,6 +127,7 @@ public class Sailor {
         this.oar = oar;
     }
 
+    @JsonIgnore
     public Oar getOar() {
         return this.oar;
     }
@@ -151,7 +152,7 @@ public class Sailor {
         }
 
         this.x += xMove;
-        this.y -= yMove;
+        this.y += yMove;
         actionJSON.addAction(new Moving(this.id, xMove, yMove));
 
         return this.onIsAssignOar();

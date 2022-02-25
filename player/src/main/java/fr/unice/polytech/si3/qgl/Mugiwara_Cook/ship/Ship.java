@@ -1,5 +1,6 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.Position;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes.Shape;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Equipment;
@@ -89,6 +90,7 @@ public class Ship {
      *
      * @return la list des rames.
      */
+    @JsonIgnore
     public ArrayList<Oar> getOars() {
         ArrayList<Oar> oars = new ArrayList<>();
         for (Equipment e : entities) {
@@ -97,10 +99,11 @@ public class Ship {
         return oars;
     }
 
+    @JsonIgnore
     public int getNbOars() {
         return this.getOars().size();
     }
-
+    @JsonIgnore
     public List<Oar> getUsableOarsLeft() {
         return this.getOars().stream()
                 .filter(oar -> oar.getY() == 0)
@@ -108,7 +111,7 @@ public class Ship {
                 .filter(oar -> oar.getSailor().onIsAssignOar() == true)
                 .collect(Collectors.toList());
     }
-
+    @JsonIgnore
     public List<Oar> getUsableOarsRight() {
         return this.getOars().stream()
                 .filter(oar -> (this.getDeck().getWidth() - 1) == oar.getY())

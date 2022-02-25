@@ -1,5 +1,6 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.game;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Sailor;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.goal.Goal;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.Ship;
@@ -58,13 +59,14 @@ public class InitGame {
         this.shipCount = shipCount;
     }
 
+    @JsonIgnore
     public List<Sailor> getUsableSailorLeft() {
         return Arrays.asList(this.sailors).stream()
                 .filter(sailor -> sailor.getOar().getY() == 0)
                 .filter(sailor -> sailor.onIsAssignOar() == true)
                 .collect(Collectors.toList());
     }
-
+    @JsonIgnore
     public List<Sailor> getUsableSailorRight() {
         return Arrays.asList(this.sailors).stream()
                 .filter(sailor -> sailor.getOar().getY() == (this.ship.getDeck().getWidth() - 1))
