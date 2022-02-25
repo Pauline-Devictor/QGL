@@ -10,13 +10,15 @@ import java.util.Arrays;
 import java.util.List;
 
 public class MovingSimulator {
-    ArrayList<Sailor> sailorsMove;
     ArrayList<Sailor> sailorsDie;
     InitGame init;
     ArrayList<Sailor> alreadyMove;
 
     public MovingSimulator(InitGame initGame) {
         this.init = initGame;
+
+        this.alreadyMove = new ArrayList<>();
+        this.sailorsDie = new ArrayList<>();
     }
 
     public void movingSimulator(List<Action> movingList) {
@@ -49,7 +51,6 @@ public class MovingSimulator {
     }
 
     private void moveSailorRestore() {
-        sailorsMove.clear();
         alreadyMove.clear();
     }
 }

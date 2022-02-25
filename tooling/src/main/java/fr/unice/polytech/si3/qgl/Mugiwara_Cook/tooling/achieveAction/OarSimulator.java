@@ -18,6 +18,7 @@ public class OarSimulator {
 
     public OarSimulator(InitGame init) {
         this.init = init;
+        this.idUsedOarList = new ArrayList<>();
     }
 
     public int[] whoRow(List<Action> movingList) {

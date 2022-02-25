@@ -30,7 +30,7 @@ public class Referee {
 
     public void read(String actionJSON){
         try {
-            nextAction = myMapper.readValue(actionJSON, NextAction.class);
+            nextAction = new NextAction(myMapper.readValue(actionJSON, Action[].class));
         } catch (JsonProcessingException e) {
             System.out.println("MDR");
             e.printStackTrace();
