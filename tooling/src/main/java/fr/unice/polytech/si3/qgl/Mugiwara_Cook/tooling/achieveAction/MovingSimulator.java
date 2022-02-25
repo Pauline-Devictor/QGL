@@ -17,6 +17,9 @@ public class MovingSimulator {
 
     public MovingSimulator(InitGame initGame) {
         this.init = initGame;
+        this.sailorsDie = new ArrayList<>();
+        this.alreadyMove = new ArrayList<>();
+        this.sailorsMove = new ArrayList<>();
     }
 
     public void movingSimulator(List<Action> movingList) {

@@ -93,9 +93,9 @@ public class AdvanceSimulator {
                 e.printStackTrace();
             }
 
-            System.out.println("Action recup: " + action.substring(1, action.length() - 1));
+            System.out.println("Action recup: " + action);
 
-            referee.read(action.substring(1, action.length() - 1));
+            referee.read(action);
             referee.execute();
         }
     }
