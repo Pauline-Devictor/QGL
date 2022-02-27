@@ -60,15 +60,15 @@ public class InitGame {
 
     public List<Sailor> getUsableSailorLeft() {
         return Arrays.asList(this.sailors).stream()
-                .filter(sailor -> sailor.getOar().getY() == 0)
-                .filter(sailor -> sailor.onIsAssignOar() == true)
+                .filter(sailor -> sailor.getEquipment().getY() == 0)
+                .filter(sailor -> sailor.onIsAssignEquipment() == true)
                 .collect(Collectors.toList());
     }
 
     public List<Sailor> getUsableSailorRight() {
         return Arrays.asList(this.sailors).stream()
-                .filter(sailor -> sailor.getOar().getY() == (this.ship.getDeck().getWidth() - 1))
-                .filter(sailor -> sailor.onIsAssignOar() == true)
+                .filter(sailor -> sailor.getEquipment().getY() == (this.ship.getDeck().getWidth() - 1))
+                .filter(sailor -> sailor.onIsAssignEquipment() == true)
                 .collect(Collectors.toList());
     }
 }

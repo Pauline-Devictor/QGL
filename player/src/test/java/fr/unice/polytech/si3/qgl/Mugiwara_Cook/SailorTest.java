@@ -59,26 +59,26 @@ class SailorTest {
 
     @Test
     void attach1Oar(){
-        sailor1.attachOar(rame1);
-        assertEquals(sailor1.getOar(),rame1);
+        sailor1.attachEquipment(rame1);
+        assertEquals(sailor1.getEquipment(),rame1);
     }
 
     @Test
     void attachNoOar(){
-        sailor1.attachOar(rameVide);
-        assertEquals(sailor1.getOar(),rameVide);
+        sailor1.attachEquipment(rameVide);
+        assertEquals(sailor1.getEquipment(),rameVide);
 
     }
 
     @Test
     void assignTrue(){
-        sailor1.attachOar(rame1);
+        sailor1.attachEquipment(rame1);
         assertTrue(sailor1.assign());
     }
 
     @Test
     void assignFalse(){
-        sailor2.attachOar(rameVide);
+        sailor2.attachEquipment(rameVide);
         assertFalse(sailor1.assign());
         assertFalse(sailor2.assign());
     }

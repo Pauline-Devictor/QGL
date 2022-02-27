@@ -28,7 +28,7 @@ public class Captain2 {
         if (this.initGame.getGoal().getClass() == RegattaGoal.class)
             this.currentCheckpoint = ((RegattaGoal) this.initGame.getGoal()).getCheckpoints()[this.nbCurrentCheckpoint];
 
-        this.captainSailorMove.assignOar();
+        this.captainSailorMove.assignEquipement();
     }
 
     /**
@@ -39,7 +39,7 @@ public class Captain2 {
      */
     public void nextMove(NextRound nextRound) {
 
-        this.captainSailorMove.moveToAssignOar();
+        this.captainSailorMove.moveToAssignEquipment();
 
         if (this.inCheckpoint(nextRound)) {
             this.nbCurrentCheckpoint++;
@@ -51,7 +51,7 @@ public class Captain2 {
 
     public Moves nextMoveSimu(NextRound nextRound) {
 
-        this.captainSailorMove.moveToAssignOar();
+        this.captainSailorMove.moveToAssignEquipment();
 
         if (this.inCheckpoint(nextRound)) {
             this.nbCurrentCheckpoint++;

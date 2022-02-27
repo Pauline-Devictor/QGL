@@ -34,7 +34,9 @@ public class Oar extends Equipment {
         return this.sailor;
     }
 
-    public Sailor findClosestSailorWithOutAssignOar(Sailor[] sailors) {
+
+    @Override
+    public Sailor findClosestSailorWithOutAssignEquipment(Sailor[] sailors) {
         Sailor closestSailor = null;
 
         for (Sailor sailor : sailors) {
@@ -43,8 +45,7 @@ public class Oar extends Equipment {
         }
 
         for (Sailor sailor : sailors) {
-            if (closestSailor != null && (abs(sailor.getX() - this.getX()) + abs(sailor.getY() - this.getY())) <=
-                    (abs(closestSailor.getX() - this.getX()) + abs(closestSailor.getY() - this.getY())) && !(sailor.assign())) {
+            if (closestSailor != null && sailor.sailorIsAllowedToMove(sailor.getX() - this.getX(),sailor.getY() - this.getY()) && !(sailor.assign())) {
                 closestSailor = sailor;
             }
         }

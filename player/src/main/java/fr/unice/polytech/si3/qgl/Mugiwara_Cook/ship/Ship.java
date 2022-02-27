@@ -4,6 +4,7 @@ import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.Position;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes.Shape;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Equipment;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Oar;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Rudder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -91,21 +92,42 @@ public class Ship {
      */
     public ArrayList<Oar> getOars() {
         ArrayList<Oar> oars = new ArrayList<>();
-        for (Equipment e : entities) {
-            if (e instanceof Oar) oars.add((Oar) e);
+        for (Equipment e:this.getEquipement("oar")){
+            oars.add((Oar) e);
         }
         return oars;
     }
+
+    public ArrayList<Rudder> getRudder() {
+        ArrayList<Rudder> rudders = new ArrayList<>();
+        for (Equipment e:this.getEquipement("rudder")){
+            rudders.add((Rudder) e);
+        }
+        return rudders;
+    }
+
+    public ArrayList<Equipment> getEquipement(String type) {
+        ArrayList<Equipment> equipments = new ArrayList<>();
+        for (Equipment e : entities) {
+            if (e.getType()==type) equipments.add(e);
+        }
+        return equipments;
+    }
+
+
+
 
     public int getNbOars() {
         return this.getOars().size();
     }
 
+
+
     public List<Oar> getUsableOarsLeft() {
         return this.getOars().stream()
                 .filter(oar -> oar.getY() == 0)
                 .filter(oar -> oar.getSailor() != null)
-                .filter(oar -> oar.getSailor().onIsAssignOar() == true)
+                .filter(oar -> oar.getSailor().onIsAssignEquipment() == true)
                 .collect(Collectors.toList());
     }
 
@@ -113,7 +135,7 @@ public class Ship {
         return this.getOars().stream()
                 .filter(oar -> (this.getDeck().getWidth() - 1) == oar.getY())
                 .filter(oar -> oar.getSailor() != null)
-                .filter(oar -> oar.getSailor().onIsAssignOar() == true)
+                .filter(oar -> oar.getSailor().onIsAssignEquipment() == true)
                 .collect(Collectors.toList());
     }
 }

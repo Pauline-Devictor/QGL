@@ -1,5 +1,9 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment;
 
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Sailor;
+
+import static java.lang.Math.abs;
+
 abstract public class Equipment {
     protected String type;
     protected int x;
@@ -33,5 +37,11 @@ abstract public class Equipment {
 
     public void setY(int y) {
         this.y = y;
+    }
+
+
+    public Sailor findClosestSailorWithOutAssignEquipment(Sailor[] sailors) {
+        Sailor sailor=new Sailor();
+        return sailor;
     }
 }
