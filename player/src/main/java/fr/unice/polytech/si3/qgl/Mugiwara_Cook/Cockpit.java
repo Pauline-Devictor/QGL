@@ -101,6 +101,10 @@ public class Cockpit implements ICockpit {
         this.nextRound = nextRound;
     }
 
+    public Captain2 getCaptain2() {
+        return captain2;
+    }
+
 //    /**
 //     * Determine if the ship will collide with the given entity
 //     * @param visibleEntity entity to check

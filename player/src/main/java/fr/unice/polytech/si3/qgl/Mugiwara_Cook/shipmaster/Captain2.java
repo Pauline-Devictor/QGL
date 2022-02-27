@@ -6,7 +6,6 @@ import fr.unice.polytech.si3.qgl.Mugiwara_Cook.goal.*;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.*;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainMoves.*;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove.*;
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove.allmoves.Moves;
 
 
 public class Captain2 {
@@ -59,4 +58,7 @@ public class Captain2 {
                 <= ((Circle) currentCheckpoint.getShape()).getRadius());
     }
 
+    public Checkpoint getCurrentCheckpoint() {
+        return this.currentCheckpoint;
+    }
 }
