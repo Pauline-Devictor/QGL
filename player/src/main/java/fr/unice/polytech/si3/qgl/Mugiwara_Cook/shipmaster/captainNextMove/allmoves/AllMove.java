@@ -14,7 +14,7 @@ public class AllMove {
 
     public void calculateMove(Ship ship, AllPossibility allPossibility) {
         for (int[] oar : allPossibility.getAllPossibility()) {
-            movesList.add(new Moves(ship,oar));
+            movesList.add(new Moves(ship, oar));
         }
     }
 

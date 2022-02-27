@@ -1,5 +1,7 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class Position {
     double x;
     double y;
@@ -43,5 +45,10 @@ public class Position {
      */
     public double distance(Position itemPosition){
         return Math.sqrt(Math.pow(itemPosition.getX() - this.x, 2) + Math.pow(itemPosition.getY()-this.y, 2));
+    }
+
+    @JsonIgnore
+    public String getListPosition(){
+        return "[" + this.getX() + "," + this.getY() + "," + this.getOrientation() + "]";
     }
 }

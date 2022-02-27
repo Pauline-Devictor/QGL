@@ -72,16 +72,6 @@ public class Cockpit implements ICockpit {
         return null;
     }
 
-    public Moves nextRoundSimu(String round) {
-        try {
-            nextRound = myMapper.readValue(round, NextRound.class);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-
-        return captain2.nextMoveSimu(nextRound);
-    }
-
     @Override
     public List<String> getLogs() {
         return new ArrayList<>();

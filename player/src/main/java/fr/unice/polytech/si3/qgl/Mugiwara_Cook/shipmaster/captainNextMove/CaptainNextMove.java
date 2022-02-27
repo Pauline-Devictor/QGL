@@ -47,15 +47,4 @@ public class CaptainNextMove {
             this.actionJSON.addAction(new Oar(this.initGame.getUsableSailorRight().get(i).getId()));
         }
     }
-
-    public Moves calculateNextMoveSimu(Checkpoint checkpoint, NextRound nextRound) {
-        this.calculatePossibility();
-
-        BestMove bestMove = new BestMove(allPossibility, nextRound);
-        bestMove.processing(checkpoint);
-
-        return bestMove.getBestMove();
-
-    }
-
 }

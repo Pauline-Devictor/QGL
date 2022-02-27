@@ -49,6 +49,11 @@ public class Ship {
         return position;
     }
 
+    @JsonIgnore
+    public Position getPositionRoute() {
+        return new Position(this.position.getX(), this.position.getY(),this.position.getOrientation());
+    }
+
     public void setPosition(Position position) {
         this.position = position;
     }

@@ -49,18 +49,6 @@ public class Captain2 {
         this.captainNextMove.calculateNextMove(this.currentCheckpoint, nextRound);
     }
 
-    public Moves nextMoveSimu(NextRound nextRound) {
-
-        this.captainSailorMove.moveToAssignOar();
-
-        if (this.inCheckpoint(nextRound)) {
-            this.nbCurrentCheckpoint++;
-            this.currentCheckpoint = ((RegattaGoal) this.initGame.getGoal()).getCheckpoints()[this.nbCurrentCheckpoint];
-        }
-
-       return this.captainNextMove.calculateNextMoveSimu(this.currentCheckpoint, nextRound);
-    }
-
     /**
      * Determine if the ship is in the Checkpoint
      *

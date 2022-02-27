@@ -28,6 +28,7 @@ public class OarSimulator {
         {
             if (action.getType().equals("OAR")) {
                 if (onOar(getSailorFromId((Oar) action))) {
+                    System.out.println(getSailorFromId((Oar) action).getName());
                     if (onLeft(getSailorFromId((Oar) action))) oars[0]++;
                     else oars[1]++;
                     idUsedOarList.add(((Oar) action).getSailorId());
@@ -43,15 +44,15 @@ public class OarSimulator {
 
     private boolean onOar(Sailor sailor) {
         for (Equipment equipment : this.init.getShip().getEntities()) {
-            if (equipment.getType().equals("oar")) {
-                return sailor.getX() == equipment.getX() && sailor.getY() == equipment.getY();
+            if (equipment.getType().equals("oar") && sailor.getX() == equipment.getX() && sailor.getY() == equipment.getY()) {
+                return true;
             }
         }
         return false;
     }
 
     private boolean onLeft(Sailor sailor) {
-        if (sailor.getX() == 0) return true;
+        if (sailor.getY() == 0) return true;
         return false;
     }
 
