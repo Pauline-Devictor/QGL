@@ -13,6 +13,10 @@ abstract public class Equipment {
     @JsonIgnore
     boolean used = false;
 
+    @JsonIgnore
+    Sailor sailor=null;
+
+
     public boolean isUsed() {
         return used;
     }
@@ -52,5 +56,30 @@ abstract public class Equipment {
         this.y = y;
     }
 
-    public Sailor findClosestSailorWithOutAssignEquipment(Sailor[] sailors){ return null; }
+    public Sailor getSailor(){ return this.sailor; }
+
+    public Sailor findClosestSailorWithOutAssignEquipment(Sailor[] sailors) {
+        Sailor closestSailor = null;
+
+        for (Sailor sailor : sailors) {
+            if (!(sailor.assign()))
+                closestSailor = sailor;
+        }
+
+        for (Sailor sailor : sailors) {
+            if (closestSailor != null && sailor.sailorIsAllowedToMove(sailor.getX() - this.getX(),sailor.getY() - this.getY()) && !(sailor.assign())) {
+                closestSailor = sailor;
+            }
+        }
+
+        this.sailor = closestSailor;
+        this.used=true;
+
+        if (this.sailor == null)
+            System.out.println(this.x + " et " + this.y + " assignee a: personne");
+        else
+            System.out.println(this.x + " et " + this.y + " assignee a: " + this.sailor.getId());
+        return closestSailor;
+    }
+
 }

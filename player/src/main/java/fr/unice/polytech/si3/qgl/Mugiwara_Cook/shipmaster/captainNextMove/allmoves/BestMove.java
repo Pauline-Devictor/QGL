@@ -8,7 +8,7 @@ public class BestMove {
     NextRound nextRound;
     AllPossibility allPossibility;
     Moves bestOne;
-    Double rudderOrientation;
+
 
     public BestMove(AllPossibility allPossibility, NextRound nextRound) {
         this.nextRound = nextRound;
@@ -34,7 +34,6 @@ public class BestMove {
                 bestOne = moves;
 
                 if (angle(bestOne,checkpoint) != 0){
-                    //rudderOrientation = angle(bestOne,checkpoint);
                     bestOne.setRudderOrientation(angle(bestOne,checkpoint));
                 }
             }

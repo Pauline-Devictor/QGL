@@ -34,8 +34,6 @@ public class CaptainNextMove {
     public void calculateNextMove(Checkpoint checkpoint, NextRound nextRound) {
         this.calculatePossibility();
 
-        int indexSailorLeft=0;
-        int indexSailorRight=0;
         BestMove bestMove = new BestMove(allPossibility, nextRound);
         bestMove.processing(checkpoint);
 
@@ -50,7 +48,7 @@ public class CaptainNextMove {
             this.actionJSON.addAction(new Oar(this.initGame.getUsableSailorRight().get(i).getId()));
         }
         if(oarMove.getRudderOrientation()!=0){
-            this.actionJSON.addAction(new Turn(this.initGame.getShip().getRudder().get(0).getSailorAssignedToRudder().getId(), oarMove.getRudderOrientation()));
+            this.actionJSON.addAction(new Turn(this.initGame.getShip().getRudder().get(0).getSailor().getId(), oarMove.getRudderOrientation()));
         }
     }
 }
