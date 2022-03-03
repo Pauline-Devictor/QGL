@@ -51,6 +51,7 @@ public class Oar extends Equipment {
         }
 
         this.sailor = closestSailor;
+        this.used=true;
 
         if (this.sailor == null)
             System.out.println(this.x + " et " + this.y + " assignee a: personne");
