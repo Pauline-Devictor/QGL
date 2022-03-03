@@ -29,6 +29,35 @@
 				<artifactId>jacoco-maven-plugin</artifactId>
 				<version>0.8.7</version>
 			</plugin>
+		<plugin>
+			<groupId>org.pitest</groupId>
+			<artifactId>pitest-maven</artifactId>
+			<version>1.7.3</version>
+			<dependencies>
+				<dependency>
+					<groupId>org.pitest</groupId>
+					<artifactId>pitest-junit5-plugin</artifactId>
+					<version>0.15</version>
+				</dependency>
+			</dependencies>
+			<executions>
+				<execution>
+					<id>pitest</id>
+					<phase>test</phase>
+					<goals>
+						<goal>mutationCoverage</goal>
+					</goals>
+				</execution>
+			</executions>
+			<configuration>
+				<targetClasses>
+					<param>fr.unice.polytech.si3.qgl.Mugiwara_Cook.*</param>
+				</targetClasses>
+				<targetTests>
+					<param>fr.unice.polytech.si3.qgl.Mugiwara_Cook.*</param>
+				</targetTests>
+			</configuration>
+		</plugin>
 		</plugins>
 	</build>
 
@@ -63,6 +92,7 @@
 		    <scope>test</scope>
 		</dependency>
 	</dependencies>
+
 	<profiles>
 		<profile>
 			<id>coverage</id>
@@ -89,7 +119,35 @@
 				</plugins>
 			</build>
 		</profile>
+
+		<profile>
+			<id>pitest</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.pitest</groupId>
+						<artifactId>pitest-maven</artifactId>
+						<executions>
+							<execution>
+								<id>mutationCoverage</id>
+								<goals>
+									<goal>mutationCoverage</goal>
+								</goals>
+							</execution>
+							<execution>
+								<id>report</id>
+								<goals>
+									<goal>report</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
 	</profiles>
+
 	<repositories>
 		<repository>
 		  <id>io-labs-snapshots</id>
