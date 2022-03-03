@@ -128,8 +128,10 @@ public class Sailor {
         this.equipment = equipment;
     }
 
+
     public Equipment getEquipment() {
         return this.equipment;
+
     }
 
     public boolean onIsAssignEquipment() {
@@ -153,7 +155,7 @@ public class Sailor {
         }
 
         this.x += xMove;
-        this.y -= yMove;
+        this.y += yMove;
         actionJSON.addAction(new Moving(this.id, xMove, yMove));
 
         return this.onIsAssignEquipment();

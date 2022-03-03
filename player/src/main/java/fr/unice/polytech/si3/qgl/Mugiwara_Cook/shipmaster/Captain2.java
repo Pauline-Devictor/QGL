@@ -6,7 +6,6 @@ import fr.unice.polytech.si3.qgl.Mugiwara_Cook.goal.*;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.*;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainMoves.*;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove.*;
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove.allmoves.Moves;
 
 
 public class Captain2 {
@@ -49,17 +48,6 @@ public class Captain2 {
         this.captainNextMove.calculateNextMove(this.currentCheckpoint, nextRound);
     }
 
-    public Moves nextMoveSimu(NextRound nextRound) {
-
-        this.captainSailorMove.moveToAssignEquipment();
-
-        if (this.inCheckpoint(nextRound)) {
-            this.nbCurrentCheckpoint++;
-            this.currentCheckpoint = ((RegattaGoal) this.initGame.getGoal()).getCheckpoints()[this.nbCurrentCheckpoint];
-        }
-
-       return this.captainNextMove.calculateNextMoveSimu(this.currentCheckpoint, nextRound);
-    }
 
     /**
      * Determine if the ship is in the Checkpoint
@@ -71,4 +59,7 @@ public class Captain2 {
                 <= ((Circle) currentCheckpoint.getShape()).getRadius());
     }
 
+    public Checkpoint getCurrentCheckpoint() {
+        return this.currentCheckpoint;
+    }
 }

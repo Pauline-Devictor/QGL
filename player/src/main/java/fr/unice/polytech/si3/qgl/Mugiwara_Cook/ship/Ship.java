@@ -1,5 +1,6 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.Position;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes.Shape;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Equipment;
@@ -49,6 +50,11 @@ public class Ship {
         return position;
     }
 
+    @JsonIgnore
+    public Position getPositionRoute() {
+        return new Position(this.position.getX(), this.position.getY(), this.position.getOrientation());
+    }
+
     public void setPosition(Position position) {
         this.position = position;
     }
@@ -90,9 +96,10 @@ public class Ship {
      *
      * @return la list des rames.
      */
+    @JsonIgnore
     public ArrayList<Oar> getOars() {
         ArrayList<Oar> oars = new ArrayList<>();
-        for (Equipment e:this.getEquipement("oar")){
+        for (Equipment e : this.getEquipement("oar")) {
             oars.add((Oar) e);
         }
         return oars;
@@ -100,7 +107,7 @@ public class Ship {
 
     public ArrayList<Rudder> getRudder() {
         ArrayList<Rudder> rudders = new ArrayList<>();
-        for (Equipment e:this.getEquipement("rudder")){
+        for (Equipment e : this.getEquipement("rudder")) {
             rudders.add((Rudder) e);
         }
         return rudders;
@@ -109,20 +116,17 @@ public class Ship {
     public ArrayList<Equipment> getEquipement(String type) {
         ArrayList<Equipment> equipments = new ArrayList<>();
         for (Equipment e : entities) {
-            if (e.getType()==type) equipments.add(e);
+            if (e.getType() == type) equipments.add(e);
         }
         return equipments;
     }
 
-
-
-
+    @JsonIgnore
     public int getNbOars() {
         return this.getOars().size();
     }
 
-
-
+    @JsonIgnore
     public List<Oar> getUsableOarsLeft() {
         return this.getOars().stream()
                 .filter(oar -> oar.getY() == 0)
@@ -131,6 +135,7 @@ public class Ship {
                 .collect(Collectors.toList());
     }
 
+    @JsonIgnore
     public List<Oar> getUsableOarsRight() {
         return this.getOars().stream()
                 .filter(oar -> (this.getDeck().getWidth() - 1) == oar.getY())

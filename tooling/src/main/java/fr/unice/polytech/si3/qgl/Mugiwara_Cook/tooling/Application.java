@@ -1,6 +1,9 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.tooling;
 
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Cockpit;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.Position;
+
+import java.util.ArrayList;
 
 public class Application {
 
@@ -9,11 +12,8 @@ public class Application {
     }
 
     public static void basicSimulation() {
-        BasicSimulator basicSimulator = new BasicSimulator();
-
-        for (int i = 0; i < 20; i++) {
-            basicSimulator.simu();
-        }
+        Map map = new Map();
+        map.run();
     }
 
     public static void simulation() {
