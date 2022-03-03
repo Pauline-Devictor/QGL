@@ -52,4 +52,6 @@ public class Rudder extends Equipment{
             System.out.println(this.x + " et " + this.y + " assignee a: " + this.sailor.getId());
         return closestSailor;
     }
+
+    public Sailor getSailorAssignedToRudder(){ return this.sailor; }
 }

@@ -21,16 +21,6 @@ abstract public class Equipment {
         this.used = used;
     }
 
-    public Sailor getSailor() {
-        return sailor;
-    }
-
-    public void setSailor(Sailor sailor) {
-        this.sailor = sailor;
-    }
-
-    @JsonIgnore
-    Sailor sailor = null;
 
     public Equipment(String type,int x,int y){
         this.type = type;
@@ -62,11 +52,5 @@ abstract public class Equipment {
         this.y = y;
     }
 
-
-    public Sailor findClosestSailorWithOutAssignEquipment(Sailor[] sailors) {
-        Sailor sailor=new Sailor();
-        return sailor;
-    }
-
-
+    public Sailor findClosestSailorWithOutAssignEquipment(Sailor[] sailors){ return null; }
 }

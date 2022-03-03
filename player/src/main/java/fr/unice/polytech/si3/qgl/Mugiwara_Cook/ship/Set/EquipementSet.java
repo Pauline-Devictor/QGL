@@ -80,7 +80,4 @@ public class EquipementSet {
         this.rudder = rudder;
     }
 
-
-
-
 }

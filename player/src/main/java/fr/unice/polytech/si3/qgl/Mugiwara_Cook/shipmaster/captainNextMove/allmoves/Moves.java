@@ -18,6 +18,7 @@ public class Moves {
     double origialOrientation;
     double currentFinalOrientation;
     float distance;
+    double rudderOrientation;
 
     //Simulateur
     ArrayList<Position> positionArrayList;
@@ -69,6 +70,10 @@ public class Moves {
     public double getOrientation() {
         return orientation;
     }
+
+    public void setRudderOrientation(double rudderOrientation) { this.rudderOrientation = rudderOrientation; }
+
+    public double getRudderOrientation(){ return rudderOrientation; }
 
     //Simulateur
     public ArrayList<Position> getDetailPosition() {

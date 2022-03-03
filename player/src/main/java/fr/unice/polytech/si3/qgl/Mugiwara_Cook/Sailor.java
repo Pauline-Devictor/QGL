@@ -83,6 +83,7 @@ public class Sailor {
     }
 
     /**
+     *
      * @param OarList liste des rames sur le bateau
      * @return la rame la plus proche
      * Note : cette méhode trouve la rame la plus proche, elle ne prend pas en compte la limite des 5 cases
@@ -132,6 +133,9 @@ public class Sailor {
     public Equipment getEquipment() {
         return this.equipment;
 
+    }
+    public boolean itemIsTooFar(Equipment item){
+        return abs(item.getX() - getX()) + abs(item.getY() - getY()) > 5;
     }
 
     public boolean onIsAssignEquipment() {

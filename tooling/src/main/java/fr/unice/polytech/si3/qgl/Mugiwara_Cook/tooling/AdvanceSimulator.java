@@ -17,6 +17,7 @@ import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.Deck;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.Ship;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Equipment;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Oar;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Rudder;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove.allmoves.Moves;
 
 import java.util.ArrayList;
@@ -62,17 +63,19 @@ public class AdvanceSimulator {
         Equipment oar4 = new Oar(2, 1);
         Equipment oar5 = new Oar(3, 0);
         Equipment oar6 = new Oar(3, 1);
-        List<Equipment> equipmentList = new ArrayList<>(List.of(oar1, oar2, oar3, oar4, oar5, oar6));
+        Equipment rudder = new Rudder(0,0);
+        List<Equipment> equipmentList = new ArrayList<>(List.of(oar1, oar2, oar3, oar4, oar5, oar6,rudder));
 
         Shape shapeShip = new Rectangle(2, 4, 0);
         Ship ship = new Ship(100, new Position(0, 0, 0), "BOAT", deck, equipmentList, shapeShip);
 
-        final int NB_MARIN = 6;
+        final int NB_MARIN = 7;
         Sailor[] listSailor = new Sailor[NB_MARIN];
         for (int i = 0; i < NB_MARIN; i++) {
             listSailor[i] = new Sailor(i, rand.nextInt(deck.getLength()), rand.nextInt(deck.getWidth()), "Marin" + i);
         }
 
+        //rudder.findClosestSailorWithOutAssignEquipment(listSailor);
         int shipCount = 1;
 
         return new InitGame(goal, ship, listSailor, shipCount);
@@ -92,6 +95,7 @@ public class AdvanceSimulator {
             try {
                 nextRoundjSON = new ObjectMapper().writeValueAsString(nextRound);
                 action = cockpit.nextRound(nextRoundjSON);
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
