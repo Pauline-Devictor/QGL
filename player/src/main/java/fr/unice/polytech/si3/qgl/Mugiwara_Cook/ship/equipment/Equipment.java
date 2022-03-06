@@ -31,6 +31,9 @@ abstract public class Equipment {
         this.x = x;
         this.y = y;
     }
+    public void setSailor(Sailor sailor){
+        this.sailor=sailor;
+    }
 
     public String getType() {
         return type;

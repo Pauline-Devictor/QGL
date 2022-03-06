@@ -172,6 +172,6 @@ public class Sailor {
      */
     public boolean sailorIsAllowedToMove(int xdistance, int ydistance) {
         if (abs(xdistance) + abs(ydistance) <= 5) return true;
-       return false;
-   }
+        return false;
+    }
 }
