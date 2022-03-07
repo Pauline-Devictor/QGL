@@ -82,4 +82,36 @@ class SailorTest {
         assertFalse(sailor1.assign());
         assertFalse(sailor2.assign());
     }
+
+    @Test
+    void toFarFromEquipement(){
+        sailor2 = new Sailor(1,0,0,"un autre nom");
+        rame2 = new Oar(5,1);
+        boolean true1= sailor2.itemIsTooFar(rame2);
+        assertTrue(true1);
+    }
+
+    @Test
+    void notToFarFromEquipement(){
+        sailor2 = new Sailor(1,0,0,"un autre nom");
+        rame2 = new Oar(4,1);
+        boolean false1= sailor2.itemIsTooFar(rame2);
+        assertFalse(false1);
+    }
+    @Test
+    void sailorIsOnEquipement(){
+        sailor2 = new Sailor(1,0,0,"un autre nom");
+        rame2 = new Oar(0,0);
+        sailor2.attachEquipment(rame2);
+        boolean true1= sailor2.onIsAssignEquipment();
+        assertTrue(true1);
+    }
+    @Test
+    void sailorIsNotOnEquipement(){
+        sailor2 = new Sailor(1,0,0,"un autre nom");
+        rame2 = new Oar(0,1);
+        sailor2.attachEquipment(rame2);
+        boolean false1= sailor2.onIsAssignEquipment();
+        assertFalse(false1);
+    }
 }

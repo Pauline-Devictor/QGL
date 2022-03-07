@@ -105,6 +105,7 @@ public class Ship {
         return oars;
     }
 
+    @JsonIgnore
     public ArrayList<Rudder> getRudder() {
         ArrayList<Rudder> rudders = new ArrayList<>();
         for (Equipment e : this.getEquipement("rudder")) {
@@ -112,6 +113,7 @@ public class Ship {
         }
         return rudders;
     }
+
 
     public ArrayList<Equipment> getEquipement(String type) {
         ArrayList<Equipment> equipments = new ArrayList<>();

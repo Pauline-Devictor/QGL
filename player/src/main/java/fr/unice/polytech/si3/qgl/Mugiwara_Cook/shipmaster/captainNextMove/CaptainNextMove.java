@@ -3,6 +3,7 @@ package fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.actions.*;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.game.*;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.*;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Rudder;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove.allmoves.*;
 
 import java.util.Arrays;
@@ -20,7 +21,7 @@ public class CaptainNextMove {
     }
 
     /**
-     * Calcule les possibiliters en fonction de ou sont les marins
+     * Calcule les possibilités en fonction de ou sont les marins
      */
     public void calculatePossibility() {
         this.allPossibility.oarPossibility(initGame.sailorRudder());
@@ -50,5 +51,6 @@ public class CaptainNextMove {
         for (int i = 0; i < oarLeftRight[4]; i++) {
             this.actionJSON.addAction(new Oar(this.initGame.getUsableSailorRight().get(i).getId()));
         }
+
     }
 }

@@ -30,6 +30,7 @@ public class Referee {
     public void read(String actionJSON) {
         try {
             nextAction = new NextAction(myMapper.readValue(actionJSON, Action[].class));
+            //System.out.println(nextAction.getActionList()[0].getType());
         } catch (JsonProcessingException e) {
             System.out.println("MDR");
             e.printStackTrace();
@@ -38,7 +39,9 @@ public class Referee {
 
     public Moves execute() {
         List<Action> actionList = Arrays.stream(this.nextAction.getActionList()).toList();
+        System.out.println("MDR " + actionList.get(0).getType());
         movingSimulator.movingSimulator(actionList);
+
         int[] oars = oarSimulator.whoRow(actionList);
 
         System.out.println(oars[0] + " : " + oars[1]);

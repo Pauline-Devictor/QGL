@@ -1,6 +1,7 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Sailor;
 
 public class Canon extends Equipment {
     public final static String TYPE = "canon";
@@ -38,4 +39,5 @@ public class Canon extends Equipment {
     public void setUsed(boolean used) {
         this.used = used;
     }
+
 }

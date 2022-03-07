@@ -46,7 +46,7 @@ public class DeserializeAction extends StdDeserializer<Action> {
                 return new Oar(sailorId);
             case "RELOAD":
                 return new Reload(sailorId);
-            case "Turn":
+            case "TURN":
                 double rotation = node.get("rotation").asDouble();
                 return new Turn(sailorId,rotation);
             case "USE_WATCH":

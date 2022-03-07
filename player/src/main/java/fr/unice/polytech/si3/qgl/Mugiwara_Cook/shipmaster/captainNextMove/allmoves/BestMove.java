@@ -8,6 +8,7 @@ public class BestMove {
     AllPossibility allPossibility;
     double[] bestOne;
 
+
     public BestMove(AllPossibility allPossibility, NextRound nextRound) {
         this.nextRound = nextRound;
         this.allPossibility = allPossibility;
@@ -47,6 +48,5 @@ public class BestMove {
     public double[] getBestMove() {
         return bestOne;
     }
-
 
 }

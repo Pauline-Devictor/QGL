@@ -100,5 +100,18 @@
 //        assertEquals(sailor4move,movesTest.get(3));
 //    }
 //
+//    @Test
+//    void moveSailorCloserToEquipment(){
+//
+//        ArrayList<Action> movesTest = new ArrayList<>();
+//        Moving firstMove = new Moving(1,5,0);
+//        movesTest.add(firstMove);
+//        Equipment rame1 = new Oar(8,2);
+//        Equipment rame2 = new Oar(3,1);
+//        Equipment rame3 = new Oar(0,0);
+//        //System.out.println(captain.moveSailorCloserToEquipment(sailor1,rame1).getXdistance() + "+" + captain.moveSailorCloserToEquipment(sailor1,rame1).getYdistance());
+//        //assertEquals(movesTest.get(0),captain.moveSailorCloserToEquipment(sailor1,rame1));
+//        //assertTrue(firstMove.equals(captain.moveSailorCloserToEquipment(sailor1,rame1)));
+//    }
 //
 //}
