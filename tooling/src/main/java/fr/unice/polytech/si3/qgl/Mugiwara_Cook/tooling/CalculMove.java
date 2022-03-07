@@ -1,7 +1,7 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.tooling;
 
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.Ship;
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove.allmoves.Moves;
+
 
 public class CalculMove {
 

@@ -2,12 +2,11 @@ package fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove.allmo
 
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.game.*;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.*;
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove.allmoves.*;
 
 public class BestMove {
     NextRound nextRound;
     AllPossibility allPossibility;
-    Moves bestOne;
+    double[] bestOne;
 
     public BestMove(AllPossibility allPossibility, NextRound nextRound) {
         this.nextRound = nextRound;
@@ -15,37 +14,39 @@ public class BestMove {
     }
 
     public void processing(Checkpoint checkpoints) {
-        AllMove allMove = new AllMove();
-        allMove.calculateMove(nextRound.getShip(), allPossibility);
-
-        this.bestOne(allMove, checkpoints);
+        this.bestOne(checkpoints);
     }
 
-    public void bestOne(AllMove allMove, Checkpoint checkpoint) {
+    public void bestOne(Checkpoint checkpoint) {
+        double angle = this.angleCheckpoint(checkpoint);
+        System.out.println("ANGLE obj: " + angle);
+        double[] bestOnePossibility = null;
         double angleMin = 180;
-        Moves bestOne = null;
-
-        checkpoint.getPosition();
-        for (Moves moves : allMove.getMovesList()) {
-            double angle = this.angle(moves, checkpoint);
-            if (angle + 10 < angleMin) {
-                angleMin = angle;
-                bestOne = moves;
+        System.out.println("TOUT LES ANGLES");
+        for (int i = 0; i < this.allPossibility.getAllPossibility().size(); i++) {
+            System.out.println(this.allPossibility.getAllPossibility().get(i)[1]);
+            System.out.println("Angle min: " + (angle - this.allPossibility.getAllPossibility().get(i)[1]));
+            if (Math.abs(angle - this.allPossibility.getAllPossibility().get(i)[1]) < angleMin) {
+                System.out.println("PIXEL");
+                angleMin = angle - this.allPossibility.getAllPossibility().get(i)[1];
+                bestOnePossibility = this.allPossibility.getAllPossibility().get(i);
             }
         }
-
-        this.bestOne = bestOne;
+        this.bestOne = bestOnePossibility;
+        System.out.println("Le BEST: " + bestOnePossibility[1]);
     }
 
-    public double angle(Moves moves, Checkpoint checkpoint) {
-        double angle = ((checkpoint.getPosition().getX() - moves.getX()) * Math.cos(moves.getOrientation()) + (checkpoint.getPosition().getY() - moves.getY()) * Math.sin(moves.getOrientation()))
-                / (Math.sqrt(Math.pow(checkpoint.getPosition().getX() - moves.getX(), 2) + Math.pow(checkpoint.getPosition().getY() - moves.getY(), 2)));
-        return Math.acos(angle) * 180 / Math.PI;
+    public double angleCheckpoint(Checkpoint checkpoint) {
+        double angle = ((checkpoint.getPosition().getX() - nextRound.getShip().getPosition().getX()) * Math.cos(nextRound.getShip().getPosition().getOrientation()) + (checkpoint.getPosition().getY() - nextRound.getShip().getPosition().getY()) * Math.sin(nextRound.getShip().getPosition().getOrientation()))
+                / (Math.sqrt(Math.pow(checkpoint.getPosition().getX() - nextRound.getShip().getPosition().getX(), 2) + Math.pow(checkpoint.getPosition().getY() - nextRound.getShip().getPosition().getY(), 2)));
+//        return Math.acos(angle) * 180 / Math.PI;
+        return Math.acos(angle);
     }
 
 
-    public Moves getBestMove() {
+    public double[] getBestMove() {
         return bestOne;
     }
+
 
 }

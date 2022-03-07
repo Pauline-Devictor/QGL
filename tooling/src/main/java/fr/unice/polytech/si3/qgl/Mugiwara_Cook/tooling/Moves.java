@@ -1,4 +1,4 @@
-package fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove.allmoves;
+package fr.unice.polytech.si3.qgl.Mugiwara_Cook.tooling;
 
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.Position;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes.Circle;

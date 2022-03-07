@@ -5,6 +5,8 @@ import fr.unice.polytech.si3.qgl.Mugiwara_Cook.game.*;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.*;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove.allmoves.*;
 
+import java.util.Arrays;
+
 public class CaptainNextMove {
     AllPossibility allPossibility;
     ActionJSON actionJSON;
@@ -21,7 +23,7 @@ public class CaptainNextMove {
      * Calcule les possibiliters en fonction de ou sont les marins
      */
     public void calculatePossibility() {
-        this.allPossibility.oarPossibility();
+        this.allPossibility.oarPossibility(initGame.sailorRudder());
     }
 
     /**
@@ -32,18 +34,20 @@ public class CaptainNextMove {
      */
     public void calculateNextMove(Checkpoint checkpoint, NextRound nextRound) {
         this.calculatePossibility();
+//        this.allPossibility.getDetail();
 
         BestMove bestMove = new BestMove(allPossibility, nextRound);
         bestMove.processing(checkpoint);
 
-        Moves oarMove = bestMove.getBestMove();
+        double[] oarLeftRight = bestMove.getBestMove();
+        for (double v : Arrays.stream(oarLeftRight).toArray()) {
+            System.out.println(v);
+        }
 
-        int[] oarLeftRight = oarMove.getOar();
-
-        for (int i = 0; i < oarLeftRight[0]; i++) {
+        for (int i = 0; i < oarLeftRight[3]; i++) {
             this.actionJSON.addAction(new Oar(this.initGame.getUsableSailorLeft().get(i).getId()));
         }
-        for (int i = 0; i < oarLeftRight[1]; i++) {
+        for (int i = 0; i < oarLeftRight[4]; i++) {
             this.actionJSON.addAction(new Oar(this.initGame.getUsableSailorRight().get(i).getId()));
         }
     }

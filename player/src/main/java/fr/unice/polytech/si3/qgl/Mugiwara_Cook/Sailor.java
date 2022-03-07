@@ -18,7 +18,7 @@ public class Sailor {
     String name;
 
     @JsonIgnore
-    Equipment equipment=null;
+    Equipment equipment = null;
 
     public Sailor() {
     }
@@ -161,6 +161,7 @@ public class Sailor {
         return this.onIsAssignEquipment();
 
     }
+
     /**
      * @param xdistance le nombre de déplacement en x
      * @param ydistance le nombre de déplacement en y
@@ -168,6 +169,6 @@ public class Sailor {
      */
     public boolean sailorIsAllowedToMove(int xdistance, int ydistance) {
         if (abs(xdistance) + abs(ydistance) <= 5) return true;
-       return false;
-   }
+        return false;
+    }
 }

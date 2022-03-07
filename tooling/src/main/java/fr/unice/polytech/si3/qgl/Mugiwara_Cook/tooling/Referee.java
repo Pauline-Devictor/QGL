@@ -3,14 +3,11 @@ package fr.unice.polytech.si3.qgl.Mugiwara_Cook.tooling;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.MyMapper;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.actions.Action;
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.actions.Moving;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.game.InitGame;
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.Position;
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove.allmoves.Moves;
+
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.tooling.achieveAction.MovingSimulator;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.tooling.achieveAction.OarSimulator;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -44,8 +41,12 @@ public class Referee {
         movingSimulator.movingSimulator(actionList);
         int[] oars = oarSimulator.whoRow(actionList);
 
-
+        System.out.println(oars[0] + " : " + oars[1]);
         Moves moves = this.calculMove.calcul(this.init.getShip(), oars);
+
+        System.out.println(moves.getX());
+        System.out.println(moves.getY());
+        System.out.println(moves.getOrientation());
 
         this.init.getShip().getPosition().setX(moves.getX());
         this.init.getShip().getPosition().setY(moves.getY());

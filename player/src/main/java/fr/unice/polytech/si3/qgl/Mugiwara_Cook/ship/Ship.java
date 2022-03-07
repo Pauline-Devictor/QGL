@@ -143,4 +143,19 @@ public class Ship {
                 .filter(oar -> oar.getSailor().onIsAssignEquipment() == true)
                 .collect(Collectors.toList());
     }
+
+    @JsonIgnore
+    public List<Oar> getOarsRight() {
+        return this.getOars().stream()
+                .filter(oar -> (this.getDeck().getWidth() - 1) == oar.getY())
+                .collect(Collectors.toList());
+    }
+
+    @JsonIgnore
+    public List<Oar> getOarsLeft() {
+        return this.getOars().stream()
+                .filter(oar -> (this.getDeck().getWidth() - 1) == oar.getY())
+                .collect(Collectors.toList());
+    }
+
 }

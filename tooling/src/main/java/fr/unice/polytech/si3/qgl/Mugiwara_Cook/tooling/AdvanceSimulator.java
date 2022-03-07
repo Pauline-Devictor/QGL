@@ -17,7 +17,8 @@ import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.Deck;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.Ship;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Equipment;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Oar;
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove.allmoves.Moves;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Rudder;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.tooling.Moves;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,13 +49,17 @@ public class AdvanceSimulator {
     private InitGame createInitGame() {
         Random rand = new Random();
 
-        Checkpoint checkpoint1 = new Checkpoint(new Position(1890.4823989569727, -1738.2812500000007, 0), new Circle(100));
-        Checkpoint checkpoint2 = new Checkpoint(new Position(-143.41590612777003, 1861.9791666666665, 0), new Circle(80));
-        Checkpoint[] listCheckpoint = {checkpoint1, checkpoint2};
+        Checkpoint checkpoint1 = new Checkpoint(new Position(500, 500, 0), new Circle(100));
+        Checkpoint checkpoint2 = new Checkpoint(new Position(-500, -500, 0), new Circle(100));
+        Checkpoint checkpoint3 = new Checkpoint(new Position(500, -500, 0), new Circle(80));
+        Checkpoint checkpoint4 = new Checkpoint(new Position(-500, 500, 0), new Circle(100));
+//        Checkpoint checkpoint5 = new Checkpoint(new Position(1132.5943610732181, 2342.236768018018, 0), new Circle(80));
+
+        Checkpoint[] listCheckpoint = {checkpoint1, checkpoint2, checkpoint3, checkpoint4};
         Goal goal = new RegattaGoal(listCheckpoint);
 
 
-        Deck deck = new Deck(2, 4);  //longeur-largeur
+        Deck deck = new Deck(2, 5);  //longeur-largeur
 
         Equipment oar1 = new Oar(1, 0);
         Equipment oar2 = new Oar(1, 1);
@@ -62,6 +67,7 @@ public class AdvanceSimulator {
         Equipment oar4 = new Oar(2, 1);
         Equipment oar5 = new Oar(3, 0);
         Equipment oar6 = new Oar(3, 1);
+//        Equipment rudder = new Rudder(4, 1);
         List<Equipment> equipmentList = new ArrayList<>(List.of(oar1, oar2, oar3, oar4, oar5, oar6));
 
         Shape shapeShip = new Rectangle(2, 4, 0);
@@ -82,9 +88,9 @@ public class AdvanceSimulator {
         Route route = new Route(((RegattaGoal) this.init.getGoal()).getCheckpoints());
         route.addPosition(this.init.getShip().getPositionRoute());
         Checkpoint[] checkpoint = ((RegattaGoal) this.init.getGoal()).getCheckpoints();
-        int checkpointNumber =0;
+        int checkpointNumber = 0;
 
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 100; i++) {
             NextRound nextRound = new NextRound(this.init.getShip(), new Wind(0, 0), null);
 
             String nextRoundjSON;
@@ -100,10 +106,10 @@ public class AdvanceSimulator {
             Moves moves = referee.execute();
             route.addPosition(moves.getDetailPosition());
 
-            if (moves.inCheckpoint(checkpoint[checkpointNumber])){
+            if (moves.inCheckpoint(checkpoint[checkpointNumber])) {
                 checkpointNumber++;
             }
-            if (checkpoint.length == checkpointNumber){
+            if (checkpoint.length == checkpointNumber) {
                 break;
             }
         }

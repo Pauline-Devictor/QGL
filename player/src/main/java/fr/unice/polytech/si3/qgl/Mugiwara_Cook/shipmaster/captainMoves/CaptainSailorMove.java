@@ -2,6 +2,11 @@ package fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainMoves;
 
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.*;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.game.*;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Equipment;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class CaptainSailorMove {
     InitGame initGame;
@@ -12,33 +17,52 @@ public class CaptainSailorMove {
         this.actionJSON = actionJSON;
     }
 
-    /**
-     * /**
-     * Assigne une rame a un marin et inversement
-     * <p>
-     * public void assignOar() {
-     * this.initGame.getShip().getOars().forEach(oar -> {
-     * Sailor sailor = oar.findClosestSailorWithOutAssignEquipment(initGame.getSailors());
-     * if (sailor != null)
-     * sailor.attachEquipment(oar);
-     * });
-     * }
-     **/
     public void assignEquipement() {
-        this.initGame.getShip().getEquipement("rudder").forEach(equipment -> {
-            Sailor sailor = equipment.findClosestSailorWithOutAssignEquipment(initGame.getSailors());
-            if (sailor != null) {
-                sailor.attachEquipment(equipment);
-            }
-        });
-        this.initGame.getShip().getEquipement("oar").forEach(equipment -> {
-            Sailor sailor = equipment.findClosestSailorWithOutAssignEquipment(initGame.getSailors());
-            if (sailor != null) {
-                sailor.attachEquipment(equipment);
-            }
-        });
+        assignSpecificEquipement("oar", 6);
+//        assignSpecificEquipement("rudder", 1);
+//        assignSpecificEquipement("oar", 4);
     }
 
+    private void assignSpecificEquipement(String equipement, int numberSailorAssign) {
+        int numberAssign = 0;
+        List<Equipment> equipmentArrayList = this.initGame.getShip().getEquipement(equipement).stream()
+                .filter(equipment -> equipment.getSailor() == null)
+                .collect(Collectors.toList());
+        System.out.println(equipmentArrayList.get(0).getType());
+        while (numberAssign < numberSailorAssign && numberAssign < this.initGame.getSailors().length) {
+            Sailor sailor = equipmentArrayList.get(numberAssign).findClosestSailorWithOutAssignEquipment(initGame.getSailors());
+            if (sailor != null) {
+                sailor.attachEquipment(equipmentArrayList.get(numberAssign));
+                numberAssign++;
+            }
+        }
+    }
+
+//    public ArrayList<Integer> howManySailorsForEachTypeOfEquipement() {
+//        int maxOarLeft = this.initGame.getShip().getOarsLeft().size();
+//        int maxOarRight = this.initGame.getShip().getOarsRight().size();
+//        int oarLeft = 1;
+//        int oarRight = 1;
+//        int rudder = 0;
+//
+//        int sailor = this.initGame.getSailors().length - 2;
+//        if (sailor - 1 > 0) {
+//            rudder++;
+//            sailor--;
+//        }
+//        while (sailor > 0) {
+//            if (sailor > 1) {
+//                oarLeft++;
+//                oarRight++;
+//                sailor -= 2;
+//            } else {
+//                oarLeft++;
+//                sailor--;
+//            }
+//        }
+//
+//        return new ArrayList<Integer>(List.of(oarLeft, oarRight, rudder));
+//    }
 
 
     /**
