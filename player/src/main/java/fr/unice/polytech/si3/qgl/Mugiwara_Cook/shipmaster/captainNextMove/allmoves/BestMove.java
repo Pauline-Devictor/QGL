@@ -19,18 +19,21 @@ public class BestMove {
     }
 
     public void bestOne(Checkpoint checkpoint) {
+        System.out.println("======================================================================= " + this.nextRound.getShip().getPosition().getOrientation());
         double angle = this.angleCheckpoint(checkpoint);
         System.out.println("ANGLE obj: " + angle);
         double[] bestOnePossibility = null;
-        double angleMin = 180;
+        double angleMin = Math.PI;
         System.out.println("TOUT LES ANGLES");
         for (int i = 0; i < this.allPossibility.getAllPossibility().size(); i++) {
             System.out.println(this.allPossibility.getAllPossibility().get(i)[1]);
+            System.out.println(this.allPossibility.getAllPossibility().get(i)[3] + " : " + this.allPossibility.getAllPossibility().get(i)[4]);
             System.out.println("Angle min: " + (angle - this.allPossibility.getAllPossibility().get(i)[1]));
             if (Math.abs(angle - this.allPossibility.getAllPossibility().get(i)[1]) < angleMin) {
                 System.out.println("PIXEL");
-                angleMin = angle - this.allPossibility.getAllPossibility().get(i)[1];
+                angleMin = Math.abs(angle - this.allPossibility.getAllPossibility().get(i)[1]);
                 bestOnePossibility = this.allPossibility.getAllPossibility().get(i);
+                System.out.println(bestOnePossibility[1]);
             }
         }
         this.bestOne = bestOnePossibility;
