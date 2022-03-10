@@ -70,7 +70,7 @@ public class CaptainSailorMove {
      */
     public void moveToAssignEquipment() {
         for (int i = 0; i < this.initGame.getSailors().length; i++) {
-            if (!(this.initGame.getSailors()[i].onIsAssignEquipment()))
+            if (this.initGame.getSailors()[i].getEquipment() != null && !(this.initGame.getSailors()[i].onIsAssignEquipment()))
                 this.initGame.getSailors()[i].moveToEquipment(this.actionJSON);
         }
     }

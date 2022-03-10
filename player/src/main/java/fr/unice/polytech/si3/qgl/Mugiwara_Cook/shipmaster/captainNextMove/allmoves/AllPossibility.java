@@ -18,6 +18,7 @@ public class AllPossibility {
     }
 
     public void oarPossibility(boolean rudder) {
+        listOarPossibility.clear();
         int rudderTrue = 0;
         if (rudder) rudderTrue = 1;
 

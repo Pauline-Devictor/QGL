@@ -76,7 +76,7 @@ public class AdvanceSimulator {
         Shape shapeShip = new Rectangle(2, 4, 0);
         Ship ship = new Ship(100, new Position(0, 0, 0), "BOAT", deck, equipmentList, shapeShip);
 
-        final int NB_MARIN = 6;
+        final int NB_MARIN = 7;
         Sailor[] listSailor = new Sailor[NB_MARIN];
         for (int i = 0; i < NB_MARIN; i++) {
             listSailor[i] = new Sailor(i, rand.nextInt(deck.getLength()), rand.nextInt(deck.getWidth()), "Marin" + i);
@@ -94,7 +94,7 @@ public class AdvanceSimulator {
         Checkpoint[] checkpoint = ((RegattaGoal) this.init.getGoal()).getCheckpoints();
         int checkpointNumber = 0;
 
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 3; i++) {
             NextRound nextRound = new NextRound(this.init.getShip(), new Wind(0, 0), null);
 
             String nextRoundjSON;

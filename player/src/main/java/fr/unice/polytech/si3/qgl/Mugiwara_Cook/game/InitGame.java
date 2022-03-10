@@ -63,6 +63,8 @@ public class InitGame {
     @JsonIgnore
     public List<Sailor> getUsableSailorLeft() {
         return Arrays.asList(this.sailors).stream()
+                .filter(sailor -> sailor.getEquipment() != null)
+                .filter(sailor -> sailor.getEquipment().getType().equals("oar"))
                 .filter(sailor -> sailor.getEquipment().getY() == 0)
                 .filter(sailor -> sailor.onIsAssignEquipment() == true)
                 .collect(Collectors.toList());
@@ -71,6 +73,8 @@ public class InitGame {
     @JsonIgnore
     public List<Sailor> getUsableSailorRight() {
         return Arrays.asList(this.sailors).stream()
+                .filter(sailor -> sailor.getEquipment() != null)
+                .filter(sailor -> sailor.getEquipment().getType().equals("oar"))
                 .filter(sailor -> sailor.getEquipment().getY() == (this.ship.getDeck().getWidth() - 1))
                 .filter(sailor -> sailor.onIsAssignEquipment() == true)
                 .collect(Collectors.toList());
