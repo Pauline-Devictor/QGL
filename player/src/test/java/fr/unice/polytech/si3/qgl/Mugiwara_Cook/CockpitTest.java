@@ -10,7 +10,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class CockpitTest {
 
     Cockpit cockpit;
-    File jsonInit;
 
     @BeforeEach
     void setUp() {

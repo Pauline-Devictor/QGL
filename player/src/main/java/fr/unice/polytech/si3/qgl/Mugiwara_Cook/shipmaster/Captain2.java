@@ -4,7 +4,7 @@ import fr.unice.polytech.si3.qgl.Mugiwara_Cook.game.*;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes.*;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.goal.*;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.*;
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainMoves.*;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainSailorMoves.*;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove.*;
 
 

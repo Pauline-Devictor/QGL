@@ -117,10 +117,13 @@ public class Ship {
 
     public ArrayList<Equipment> getEquipement(String type) {
         ArrayList<Equipment> equipments = new ArrayList<>();
-        for (Equipment e : entities) {
+        if (entities != null){
+            for (Equipment e : entities) {
             if (e.getType() == type) equipments.add(e);
+            }
         }
         return equipments;
+
     }
 
     @JsonIgnore
