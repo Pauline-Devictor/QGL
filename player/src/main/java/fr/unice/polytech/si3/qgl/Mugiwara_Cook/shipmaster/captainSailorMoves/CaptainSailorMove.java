@@ -1,10 +1,9 @@
-package fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainMoves;
+package fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainSailorMoves;
 
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.*;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.game.*;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Equipment;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,8 +18,6 @@ public class CaptainSailorMove {
 
     public void assignEquipement() {
         assignSpecificEquipement("oar", 6);
-//        assignSpecificEquipement("rudder", 1);
-//        assignSpecificEquipement("oar", 4);
     }
 
     private void assignSpecificEquipement(String equipement, int numberSailorAssign) {
@@ -37,33 +34,6 @@ public class CaptainSailorMove {
             }
         }
     }
-
-//    public ArrayList<Integer> howManySailorsForEachTypeOfEquipement() {
-//        int maxOarLeft = this.initGame.getShip().getOarsLeft().size();
-//        int maxOarRight = this.initGame.getShip().getOarsRight().size();
-//        int oarLeft = 1;
-//        int oarRight = 1;
-//        int rudder = 0;
-//
-//        int sailor = this.initGame.getSailors().length - 2;
-//        if (sailor - 1 > 0) {
-//            rudder++;
-//            sailor--;
-//        }
-//        while (sailor > 0) {
-//            if (sailor > 1) {
-//                oarLeft++;
-//                oarRight++;
-//                sailor -= 2;
-//            } else {
-//                oarLeft++;
-//                sailor--;
-//            }
-//        }
-//
-//        return new ArrayList<Integer>(List.of(oarLeft, oarRight, rudder));
-//    }
-
 
     /**
      * Deplace les marins vers leur rame attitré

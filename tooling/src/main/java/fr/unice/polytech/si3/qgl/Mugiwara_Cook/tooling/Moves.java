@@ -23,12 +23,13 @@ public class Moves {
     //Simulateur
     ArrayList<Position> positionArrayList;
 
-    public Moves(Ship ship, int[] oars) {
+    public Moves(Ship ship, int[] oars, double angleRudder) {
         this.oarLeft = oars[0];
         this.oarRight = oars[1];
         this.origialOrientation = ship.getPosition().getOrientation();
         this.originalX = ship.getPosition().getX();
         this.originalY = ship.getPosition().getY();
+        this.rudderOrientation = angleRudder;
 
         positionArrayList = new ArrayList<>();
 
@@ -38,7 +39,7 @@ public class Moves {
     }
 
     public void angle(int oarAll) {
-        this.currentFinalOrientation = (Math.PI / 2) / (oarAll / 2) * (this.oarRight - this.oarLeft);
+        this.currentFinalOrientation = ((Math.PI / 2) / (oarAll / 2) * (this.oarRight - this.oarLeft)) + this.rudderOrientation;
     }
 
     public void distance(int oarAll) {
@@ -71,17 +72,13 @@ public class Moves {
         return orientation;
     }
 
-    public void setRudderOrientation(double rudderOrientation) { this.rudderOrientation = rudderOrientation; }
-
-    public double getRudderOrientation(){ return rudderOrientation; }
-
     //Simulateur
     public ArrayList<Position> getDetailPosition() {
         return positionArrayList;
     }
 
     public boolean inCheckpoint(Checkpoint currentCheckpoint) {
-        return new Position(this.originalX,this.originalY,this.orientation).distance(currentCheckpoint.getPosition())
+        return new Position(this.originalX, this.originalY, this.orientation).distance(currentCheckpoint.getPosition())
                 <= ((Circle) currentCheckpoint.getShape()).getRadius();
     }
 

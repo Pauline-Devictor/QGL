@@ -1,30 +1,22 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove;
 
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.actions.*;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.actions.Oar;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.game.*;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.*;
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Rudder;
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove.allmoves.*;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove.choice.ChoiceAngle;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove.choice.ChoiseDistance;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove.possible.AngleOption;
 
-import java.util.Arrays;
+import java.util.List;
 
 public class CaptainNextMove {
-    AllPossibility allPossibility;
     ActionJSON actionJSON;
     InitGame initGame;
 
 
     public CaptainNextMove(InitGame initGame, ActionJSON actionJSON) {
-        this.allPossibility = new AllPossibility(initGame);
         this.actionJSON = actionJSON;
         this.initGame = initGame;
-    }
-
-    /**
-     * Calcule les possibilités en fonction de ou sont les marins
-     */
-    public void calculatePossibility() {
-        this.allPossibility.oarPossibility(initGame.sailorRudder());
     }
 
     /**
@@ -34,23 +26,32 @@ public class CaptainNextMove {
      * @param nextRound
      */
     public void calculateNextMove(Checkpoint checkpoint, NextRound nextRound) {
-        this.calculatePossibility();
-//        this.allPossibility.getDetail();
+        List<AngleOption> angleOptionList = this.calculatePossibility();
 
-        BestMove bestMove = new BestMove(allPossibility, nextRound);
-        bestMove.processing(checkpoint);
+        AngleOption bestAngleOption = new ChoiceAngle().choiceBestDelta(angleOptionList,checkpoint,nextRound.getShip());
 
-        double[] oarLeftRight = bestMove.getBestMove();
-        for (double v : Arrays.stream(oarLeftRight).toArray()) {
-            System.out.println(v);
-        }
+        System.out.println("Voici celle retenue: ");
+        bestAngleOption.getDetail();
 
-        for (int i = 0; i < oarLeftRight[3]; i++) {
+        int[] oarLeftRight = new ChoiseDistance().choiceBestNbOar(bestAngleOption,checkpoint,nextRound.getShip(),initGame);
+
+        for (int i = 0; i < oarLeftRight[0]; i++) {
             this.actionJSON.addAction(new Oar(this.initGame.getUsableSailorLeft().get(i).getId()));
         }
-        for (int i = 0; i < oarLeftRight[4]; i++) {
+        for (int i = 0; i < oarLeftRight[1]; i++) {
             this.actionJSON.addAction(new Oar(this.initGame.getUsableSailorRight().get(i).getId()));
         }
+    }
 
+    /**
+     * Calcule les possibilités en fonction de ou sont les marins
+     */
+    public List<AngleOption> calculatePossibility() { //TODO: a simplifier
+        List<AngleOption> possibleAngle = AngleOption.creationOptionFromOarCount(initGame.getUsableSailorLeft().size(), initGame.getUsableSailorRight().size(), initGame.getShip().getNbOars());
+        System.out.println("Voici toute les possibilite: ");
+        for (AngleOption angleOption : possibleAngle) {
+            angleOption.getDetail();
+        }
+        return possibleAngle;
     }
 }

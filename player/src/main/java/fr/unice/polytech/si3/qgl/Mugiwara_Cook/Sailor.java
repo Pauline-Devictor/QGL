@@ -35,10 +35,6 @@ public class Sailor {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public int getX() {
         return x;
     }
@@ -57,10 +53,6 @@ public class Sailor {
 
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
 
@@ -143,11 +135,8 @@ public class Sailor {
     }
 
     public boolean moveToEquipment(ActionJSON actionJSON) {
-
-        int xMove = 0;
-        int yMove = 0;
-        xMove = this.howManyCaseFarFromOarX(this.equipment);
-        yMove = this.howManyCaseFarFromOarY(this.equipment);
+        int xMove = this.howManyCaseFarFromOarX(this.equipment);
+        int yMove = this.howManyCaseFarFromOarY(this.equipment);
         while (abs(xMove) + abs(yMove) > 5) {
             if (xMove != 0) {
                 if (xMove < 0) xMove++;
@@ -157,7 +146,6 @@ public class Sailor {
                 else yMove--;
             }
         }
-
         this.x += xMove;
         this.y += yMove;
         actionJSON.addAction(new Moving(this.id, xMove, yMove));

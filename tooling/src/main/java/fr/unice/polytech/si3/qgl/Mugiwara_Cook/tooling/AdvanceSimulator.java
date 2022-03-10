@@ -82,7 +82,6 @@ public class AdvanceSimulator {
             listSailor[i] = new Sailor(i, rand.nextInt(deck.getLength()), rand.nextInt(deck.getWidth()), "Marin" + i);
         }
 
-        //rudder.findClosestSailorWithOutAssignEquipment(listSailor);
         int shipCount = 1;
 
         return new InitGame(goal, ship, listSailor, shipCount);
@@ -94,7 +93,7 @@ public class AdvanceSimulator {
         Checkpoint[] checkpoint = ((RegattaGoal) this.init.getGoal()).getCheckpoints();
         int checkpointNumber = 0;
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 300; i++) {
             NextRound nextRound = new NextRound(this.init.getShip(), new Wind(0, 0), null);
 
             String nextRoundjSON;

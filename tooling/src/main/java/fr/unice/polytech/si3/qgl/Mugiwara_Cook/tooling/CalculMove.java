@@ -8,7 +8,7 @@ public class CalculMove {
     public CalculMove() {
     }
 
-    public Moves calcul(Ship ship, int[] oars){
-       return new Moves(ship, oars);
+    public Moves calcul(Ship ship, int[] oars, double angleRudder) {
+        return new Moves(ship, oars, angleRudder);
     }
 }

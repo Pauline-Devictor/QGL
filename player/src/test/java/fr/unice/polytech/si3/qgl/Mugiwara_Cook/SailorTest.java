@@ -114,4 +114,18 @@ class SailorTest {
         boolean false1= sailor2.onIsAssignEquipment();
         assertFalse(false1);
     }
+
+    @Test
+    void isAllowedToMove(){
+        assertFalse(sailor1.sailorIsAllowedToMove(5,6));
+        assertFalse(sailor1.sailorIsAllowedToMove(5,1));
+        assertTrue(sailor1.sailorIsAllowedToMove(5,0));
+        assertTrue(sailor1.sailorIsAllowedToMove(0,5));
+        assertTrue(sailor1.sailorIsAllowedToMove(3,2));
+        assertTrue(sailor1.sailorIsAllowedToMove(0,0));
+    }
+
+    @Test //TODO
+    void CanmoveToEquipment(){
+    }
 }

@@ -77,14 +77,6 @@ public class Cockpit implements ICockpit {
         return new ArrayList<>();
     }
 
-    public MyMapper getMyMapper() {
-        return myMapper;
-    }
-
-    public void setMyMapper(MyMapper myMapper) {
-        this.myMapper = myMapper;
-    }
-
     public InitGame getInitGame() {
         return initGame;
     }
@@ -93,36 +85,7 @@ public class Cockpit implements ICockpit {
         this.initGame = initGame;
     }
 
-    public NextRound getNextRound() {
-        return nextRound;
-    }
-
-    public void setNextRound(NextRound nextRound) {
-        this.nextRound = nextRound;
-    }
-
     public Captain2 getCaptain2() {
         return captain2;
     }
-
-//    /**
-//     * Determine if the ship will collide with the given entity
-//     * @param visibleEntity entity to check
-//     * @return boolean
-//     */
-//    public boolean isCollision(VisibleEntity visibleEntity){ //TODO autre forme
-//        if (visibleEntity.getShape() instanceof Circle)
-//            return (captain.getShip().getPosition().distance(visibleEntity.getPosition())
-//                <=((Circle) visibleEntity.getShape()).getRadius() );
-//        return false;
-//    }
-
-//    /**
-//     * Determine if the ship is in the Checkpoint
-//     * @return boolean
-//     */
-//    public boolean inCheckpoint(){
-//        return (captain.getShip().getPosition().distance(currentCheckpoint.getPosition())
-//        <=((Circle) currentCheckpoint.getShape()).getRadius() );
-//    }
 }

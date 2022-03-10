@@ -1,4 +1,4 @@
-package fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainMoves;
+package fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainSailorMoves;
 
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Cockpit;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.MyMapper;
