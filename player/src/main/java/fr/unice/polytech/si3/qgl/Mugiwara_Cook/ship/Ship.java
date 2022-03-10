@@ -156,7 +156,7 @@ public class Ship {
     @JsonIgnore
     public List<Oar> getOarsLeft() {
         return this.getOars().stream()
-                .filter(oar -> (this.getDeck().getWidth() - 1) == oar.getY())
+                .filter(oar -> (0) == oar.getY())
                 .collect(Collectors.toList());
     }
 

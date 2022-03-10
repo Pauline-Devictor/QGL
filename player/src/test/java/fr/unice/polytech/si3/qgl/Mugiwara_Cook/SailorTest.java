@@ -1,11 +1,14 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook;
 
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.actions.Action;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.game.ActionJSON;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Equipment;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Oar;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static java.lang.Math.abs;
 import static org.junit.jupiter.api.Assertions.*;
@@ -113,5 +116,21 @@ class SailorTest {
         sailor2.attachEquipment(rame2);
         boolean false1= sailor2.onIsAssignEquipment();
         assertFalse(false1);
+    }
+    @Test
+    void moveToEquipment(){
+        ActionJSON actionJson = new ActionJSON();
+        sailor2.attachEquipment(rame1);
+        assertTrue(sailor2.moveToEquipment(actionJson));
+        assertEquals(sailor2.getX(),rame1.getX());
+        assertEquals(sailor2.getY(),rame1.getY());
+    }
+    @Test
+    void dontMoveToEquipement(){
+        ActionJSON actionJson = new ActionJSON();
+        sailor1.attachEquipment(rame1);
+        assertFalse(sailor1.moveToEquipment(actionJson));
+        assertNotEquals(sailor1.getX(),rame1.getX());
+        assertEquals(sailor1.getY(),rame1.getY());
     }
 }
