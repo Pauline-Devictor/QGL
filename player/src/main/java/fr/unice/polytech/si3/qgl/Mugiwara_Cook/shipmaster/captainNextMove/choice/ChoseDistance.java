@@ -2,17 +2,16 @@ package fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove.choic
 
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.game.InitGame;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.Checkpoint;
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.Ship;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove.possible.AngleOption;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove.possible.DistanceOption;
 
 import java.util.List;
 
-public class ChoiseDistance {
+public class ChoseDistance {
 
-    public int[] choiceBestNbOar(AngleOption angleOption, Checkpoint checkpoint, Ship ship, InitGame initGame) {
-        double distance = this.distanceBetweenPointAndCheckpoint(checkpoint, ship.getPosition().getX(), ship.getPosition().getY());
-        List<DistanceOption> distanceOption = DistanceOption.creationDistanceOptionFromOarCount(angleOption.getDelta(), initGame.getUsableSailorLeft().size(), initGame.getUsableSailorRight().size(), ship.getNbOars());
+    public static int[] choiceBestNbOar(AngleOption angleOption, Checkpoint checkpoint,InitGame initGame) {
+        double distance = distanceBetweenPointAndCheckpoint(checkpoint, initGame.getShip().getPosition().getX(), initGame.getShip().getPosition().getY());
+        List<DistanceOption> distanceOption = DistanceOption.creationDistanceOptionFromOarCount(angleOption.getDelta(), initGame.getUsableSailorLeft().size(), initGame.getUsableSailorRight().size(), initGame.getShip().getNbOars());
 
         DistanceOption distanceClosest = distanceOption.get(0);
         for (DistanceOption distanceOp : distanceOption) {
@@ -26,7 +25,7 @@ public class ChoiseDistance {
         return distanceClosest.getOarLeftRight();
     }
 
-    public double distanceBetweenPointAndCheckpoint(Checkpoint checkpoint, double xPoint, double yPoint) {
+    public static double distanceBetweenPointAndCheckpoint(Checkpoint checkpoint, double xPoint, double yPoint) {
         return (double) Math.sqrt(Math.pow(checkpoint.getPosition().getX() - xPoint, 2) + Math.pow(checkpoint.getPosition().getY() - yPoint, 2));
     }
 

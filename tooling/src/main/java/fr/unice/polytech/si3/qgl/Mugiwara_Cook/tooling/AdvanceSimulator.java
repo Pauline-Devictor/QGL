@@ -69,9 +69,9 @@ public class AdvanceSimulator {
         Equipment oar5 = new Oar(3, 0);
         Equipment oar6 = new Oar(3, 1);
 
-      //Equipment rudder = new Rudder(4, 1);
-        List<Equipment> equipmentList = new ArrayList<>(List.of(oar1, oar2, oar3, oar4, oar5, oar6));
-        //List<Equipment> equipmentList = new ArrayList<>(List.of(oar1, oar2, oar3, oar4, oar5, oar6,rudder));
+        Equipment rudder = new Rudder(4, 1);
+        //List<Equipment> equipmentList = new ArrayList<>(List.of(oar1, oar2, oar3, oar4, oar5, oar6));
+        List<Equipment> equipmentList = new ArrayList<>(List.of(oar1, oar2, oar3, oar4,oar6, oar5, oar6,rudder));
 
         Shape shapeShip = new Rectangle(2, 4, 0);
         Ship ship = new Ship(100, new Position(0, 0, 0), "BOAT", deck, equipmentList, shapeShip);
@@ -93,7 +93,7 @@ public class AdvanceSimulator {
         Checkpoint[] checkpoint = ((RegattaGoal) this.init.getGoal()).getCheckpoints();
         int checkpointNumber = 0;
 
-        for (int i = 0; i < 300; i++) {
+        for (int i = 0; i < 100; i++) {
             NextRound nextRound = new NextRound(this.init.getShip(), new Wind(0, 0), null);
 
             String nextRoundjSON;

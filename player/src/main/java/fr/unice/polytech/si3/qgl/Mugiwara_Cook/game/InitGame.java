@@ -3,6 +3,7 @@ package fr.unice.polytech.si3.qgl.Mugiwara_Cook.game;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Sailor;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.goal.Goal;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.Checkpoint;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.Ship;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Oar;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Rudder;
@@ -88,6 +89,18 @@ public class InitGame {
                     return false;
         }
         return true;
+    }
+
+    @JsonIgnore
+    public Sailor getUsableSailorRudder() {
+        if (this.sailorRudder()){
+        return Arrays.asList(this.sailors).stream()
+                .filter(sailor -> sailor.getEquipment() != null)
+                .filter(sailor -> sailor.getEquipment().getType().equals("rudder"))
+                .filter(sailor -> sailor.onIsAssignEquipment() == true)
+                .collect(Collectors.toList()).get(0);
+        }else
+            return null;
     }
 
     @JsonIgnore

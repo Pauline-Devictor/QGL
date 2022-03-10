@@ -18,6 +18,7 @@ public class CaptainSailorMove {
 
     public void assignEquipement() {
         assignSpecificEquipement("oar", 6);
+        assignSpecificEquipement("rudder",1);
     }
 
     private void assignSpecificEquipement(String equipement, int numberSailorAssign) {

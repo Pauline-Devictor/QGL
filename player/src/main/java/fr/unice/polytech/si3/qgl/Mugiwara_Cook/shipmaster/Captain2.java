@@ -4,6 +4,7 @@ import fr.unice.polytech.si3.qgl.Mugiwara_Cook.game.*;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes.*;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.goal.*;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.*;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove.choice.ChoseActions;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainSailorMoves.*;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove.*;
 
@@ -12,8 +13,9 @@ public class Captain2 {
     InitGame initGame;
     ActionJSON actionJSON;
 
-    CaptainNextMove captainNextMove;
+    //CaptainNextMove captainNextMove;
     CaptainSailorMove captainSailorMove;
+    ChoseActions choseActions;
 
     Checkpoint currentCheckpoint;
     int nbCurrentCheckpoint = 0;
@@ -21,7 +23,8 @@ public class Captain2 {
     public Captain2(InitGame initGame, ActionJSON actionJSON) {
         this.initGame = initGame;
         this.actionJSON = actionJSON;
-        this.captainNextMove = new CaptainNextMove(this.initGame, this.actionJSON);
+        //this.captainNextMove = new CaptainNextMove(this.initGame, this.actionJSON);
+        this.choseActions = new ChoseActions(this.actionJSON, this.initGame);
         this.captainSailorMove = new CaptainSailorMove(this.initGame, this.actionJSON);
 
         if (this.initGame.getGoal().getClass() == RegattaGoal.class)
@@ -45,7 +48,9 @@ public class Captain2 {
             this.currentCheckpoint = ((RegattaGoal) this.initGame.getGoal()).getCheckpoints()[this.nbCurrentCheckpoint];
         }
 
-        this.captainNextMove.calculateNextMove(this.currentCheckpoint, nextRound);
+        //this.captainNextMove.calculateNextMove(this.currentCheckpoint, nextRound);
+        this.choseActions.moveToTheNextCheckpoint(this.currentCheckpoint, nextRound);
+        System.out.println("LE JSON ACTION EST:"+actionJSON.getListAction().size());
     }
 
 
