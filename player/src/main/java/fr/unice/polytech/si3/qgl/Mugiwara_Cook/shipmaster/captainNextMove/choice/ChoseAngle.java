@@ -9,23 +9,19 @@ import java.util.List;
 public class ChoseAngle {
 
     public static AngleOption choiceBestDelta(List<AngleOption> angleOptionList, Checkpoint checkpoint, Ship ship) {
-        System.out.println("==============================================");
         AngleOption bestAngleOption = null;
-        System.out.println("ANGLE SOUHAITER: " + angleBetweenPointAndCheckpoint(checkpoint, ship.getPosition().getX(), ship.getPosition().getY(), ship.getPosition().getOrientation()));
         if (isOkayToUseOnlyTheRudderToTurn(checkpoint, ship) != 0) {
             return angleOptionList.get(0); //Puisque la premiere option d'angle c'est 0.0 degree et un delta de 0.
         } else {
             double angleMinimun = Math.PI;
             for (AngleOption angleOption : angleOptionList) {
                 if (angleBetweenPointAndCheckpoint(checkpoint, ship.getPosition().getX(), ship.getPosition().getY(), ship.getPosition().getOrientation() + angleOption.getAngle()) < angleMinimun) {
-                    System.out.println("Nouveau angle retenu car: " + angleMinimun + " > " + angleBetweenPointAndCheckpoint(checkpoint, ship.getPosition().getX(), ship.getPosition().getY(), ship.getPosition().getOrientation() + angleOption.getAngle()));
                     angleOption.setAngle(realAngleBetweenPointAndCheckpoint(checkpoint, ship.getPosition().getX(), ship.getPosition().getY(), ship.getPosition().getOrientation(), angleOption.getAngle()));
                     bestAngleOption = angleOption;
                     angleMinimun = angleBetweenPointAndCheckpoint(checkpoint, ship.getPosition().getX(), ship.getPosition().getY(), ship.getPosition().getOrientation() + angleOption.getAngle());
                 }
             }
         }
-        System.out.println("ICI C'EST LE FALAMPIM" + bestAngleOption.getAngle() + "   " + bestAngleOption.getDelta());
         return bestAngleOption;
     }
 
@@ -41,7 +37,6 @@ public class ChoseAngle {
     public static double angleBetweenPointAndCheckpoint(Checkpoint checkpoint, double xPoint, double yPoint, double orientation) {
         double angle = ((checkpoint.getPosition().getX() - xPoint) * Math.cos(orientation) + (checkpoint.getPosition().getY() - yPoint) * Math.sin(orientation))
                 / (Math.sqrt(Math.pow(checkpoint.getPosition().getX() - xPoint, 2) + Math.pow(checkpoint.getPosition().getY() - yPoint, 2)));
-//        return Math.acos(angle) * 180 / Math.PI;
         return Math.acos(angle);
     }
 
@@ -62,14 +57,12 @@ public class ChoseAngle {
 
     public static double isOkayToUseOnlyTheRudderToTurn(Checkpoint checkpoint, Ship ship) {
         double teta = angleBetweenPointAndCheckpoint(checkpoint, ship.getPosition().getX(), ship.getPosition().getY(), ship.getPosition().getOrientation());
-        System.out.println("LE GROS PORC " + teta);
-        System.out.println(Math.PI / 4);
         if (teta >= Math.PI / 4)
             return 0;
         return realAngleBetweenPointAndCheckpoint(checkpoint, ship.getPosition().getX(), ship.getPosition().getY(), ship.getPosition().getOrientation(), teta);
     }
 
     public static double choseAngleForRudder(Checkpoint checkpoint, Ship ship, AngleOption angleOption) {
-        return angleBetweenPointAndCheckpoint(checkpoint, ship.getPosition().getX(), ship.getPosition().getY(), ship.getPosition().getOrientation()+ angleOption.getAngle()) - angleBetweenPointAndCheckpoint(checkpoint, ship.getPosition().getX(), ship.getPosition().getY(), ship.getPosition().getOrientation());
+        return angleBetweenPointAndCheckpoint(checkpoint, ship.getPosition().getX(), ship.getPosition().getY(), ship.getPosition().getOrientation() + angleOption.getAngle()) - angleBetweenPointAndCheckpoint(checkpoint, ship.getPosition().getX(), ship.getPosition().getY(), ship.getPosition().getOrientation());
     }
 }

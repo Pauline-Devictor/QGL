@@ -42,41 +42,48 @@ public class AdvanceSimulator {
             e.printStackTrace();
         }
 
-        cockpit.initGame(initGamejSON);
-
         referee = new Referee(this.init);
     }
 
     private InitGame createInitGame() {
         Random rand = new Random();
 
-        Checkpoint checkpoint1 = new Checkpoint(new Position(500, 500, 0), new Circle(100));
-        Checkpoint checkpoint2 = new Checkpoint(new Position(-500, -500, 0), new Circle(100));
-        Checkpoint checkpoint3 = new Checkpoint(new Position(500, -500, 0), new Circle(80));
-        Checkpoint checkpoint4 = new Checkpoint(new Position(-500, 500, 0), new Circle(100));
+        Checkpoint checkpoint1 = new Checkpoint(new Position(-5586.701434159062, -195.31249999999972, 0), new Circle(100));
+        Checkpoint checkpoint2 = new Checkpoint(new Position(-3259.452411994781, 1835.937500000001, 0), new Circle(100));
+        Checkpoint checkpoint3 = new Checkpoint(new Position(-1401.564537157755, 4108.072916666667, 0), new Circle(80));
+        Checkpoint checkpoint4 = new Checkpoint(new Position(-3650.5867014341584, 1529.9479166666674, 0), new Circle(100));
+        Checkpoint checkpoint5 = new Checkpoint(new Position(-5495.436766623214, 4127.604166666669, 0), new Circle(100));
+        Checkpoint checkpoint6 = new Checkpoint(new Position(-1140.8083441981753, -273.43749999999847, 0), new Circle(100));
+        Checkpoint checkpoint7 = new Checkpoint(new Position(-3604.9543676662297, 2154.9479166666674, 0), new Circle(100));
+        Checkpoint checkpoint8 = new Checkpoint(new Position(3337.6792698826616, 1809.8958333333335, 0), new Circle(100));
+        Checkpoint checkpoint9 = new Checkpoint(new Position(-3650.58670143416, 1842.4479166666663, 0), new Circle(100));
 //        Checkpoint checkpoint5 = new Checkpoint(new Position(1132.5943610732181, 2342.236768018018, 0), new Circle(80));
 
-        Checkpoint[] listCheckpoint = {checkpoint1, checkpoint2, checkpoint3, checkpoint4};
+        Checkpoint[] listCheckpoint = {checkpoint1, checkpoint2, checkpoint3, checkpoint4, checkpoint5, checkpoint6, checkpoint7, checkpoint8, checkpoint9};
         Goal goal = new RegattaGoal(listCheckpoint);
 
 
-        Deck deck = new Deck(2, 5);  //longeur-largeur
+        Deck deck = new Deck(3, 7);  //longeur-largeur
 
-        Equipment oar1 = new Oar(1, 0);
-        Equipment oar2 = new Oar(1, 1);
-        Equipment oar3 = new Oar(2, 0);
-        Equipment oar4 = new Oar(2, 1);
-        Equipment oar5 = new Oar(3, 0);
-        Equipment oar6 = new Oar(3, 1);
+        Equipment oar1 = new Oar(1, 2);
+        Equipment oar2 = new Oar(2, 2);
+        Equipment oar3 = new Oar(3, 2);
+        Equipment oar4 = new Oar(4, 2);
+        Equipment oar5 = new Oar(5, 2);
+        Equipment oar6 = new Oar(1, 0);
+        Equipment oar7 = new Oar(2, 0);
+        Equipment oar8 = new Oar(3, 0);
+        Equipment oar9 = new Oar(4, 0);
+        Equipment oar10 = new Oar(5, 0);
 
-        Equipment rudder = new Rudder(4, 1);
-        //List<Equipment> equipmentList = new ArrayList<>(List.of(oar1, oar2, oar3, oar4, oar5, oar6));
-        List<Equipment> equipmentList = new ArrayList<>(List.of(oar1, oar2, oar3, oar4,oar6, oar5, oar6,rudder));
+
+        Equipment rudder = new Rudder(6, 1);
+        List<Equipment> equipmentList = new ArrayList<>(List.of(oar1, oar2, oar3, oar4, oar6, oar5, oar6, oar7, oar8, oar9, oar10, rudder));
 
         Shape shapeShip = new Rectangle(2, 4, 0);
-        Ship ship = new Ship(100, new Position(0, 0, 0), "BOAT", deck, equipmentList, shapeShip);
+        Ship ship = new Ship(100, new Position(-3650.58670143416, 1842.4479166666663, -2.740166925631097), "BOAT", deck, equipmentList, shapeShip);
 
-        final int NB_MARIN = 7;
+        final int NB_MARIN = 12;
         Sailor[] listSailor = new Sailor[NB_MARIN];
         for (int i = 0; i < NB_MARIN; i++) {
             listSailor[i] = new Sailor(i, rand.nextInt(deck.getLength()), rand.nextInt(deck.getWidth()), "Marin" + i);
@@ -93,7 +100,7 @@ public class AdvanceSimulator {
         Checkpoint[] checkpoint = ((RegattaGoal) this.init.getGoal()).getCheckpoints();
         int checkpointNumber = 0;
 
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 150; i++) {
             NextRound nextRound = new NextRound(this.init.getShip(), new Wind(0, 0), null);
 
             String nextRoundjSON;

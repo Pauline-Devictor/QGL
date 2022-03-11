@@ -19,7 +19,7 @@ public class Cockpit implements ICockpit {
     InitGame initGame;
     NextRound nextRound;
 
-    Captain2 captain2;
+    Captain captain2;
 
     public Cockpit() {
         //Json
@@ -39,7 +39,7 @@ public class Cockpit implements ICockpit {
             e.printStackTrace();
         }
 
-        captain2 = new Captain2(this.initGame, this.actionJSON);
+        captain2 = new Captain(this.initGame, this.actionJSON);
 
     }
 
@@ -85,7 +85,7 @@ public class Cockpit implements ICockpit {
         this.initGame = initGame;
     }
 
-    public Captain2 getCaptain2() {
+    public Captain getCaptain2() {
         return captain2;
     }
 }

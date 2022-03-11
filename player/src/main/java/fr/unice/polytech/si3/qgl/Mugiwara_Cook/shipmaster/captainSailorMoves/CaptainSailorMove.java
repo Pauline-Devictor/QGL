@@ -17,7 +17,7 @@ public class CaptainSailorMove {
     }
 
     public void assignEquipement() {
-        assignSpecificEquipement("oar", 6);
+        assignSpecificEquipement("oar", 10);
         assignSpecificEquipement("rudder",1);
     }
 
@@ -31,6 +31,7 @@ public class CaptainSailorMove {
             Sailor sailor = equipmentArrayList.get(numberAssign).findClosestSailorWithOutAssignEquipment(initGame.getSailors());
             if (sailor != null) {
                 sailor.attachEquipment(equipmentArrayList.get(numberAssign));
+                equipmentArrayList.get(numberAssign).setSailor(sailor);
                 numberAssign++;
             }
         }
