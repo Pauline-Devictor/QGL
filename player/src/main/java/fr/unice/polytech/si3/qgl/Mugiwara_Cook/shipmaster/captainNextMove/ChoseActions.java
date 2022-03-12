@@ -44,6 +44,9 @@ public class ChoseActions {
         int[] oarComposition = ChoseDistance.choiceBestNbOar(bestAngleOption, checkpoint, initGame.getShip(),nextRound.getShip().getPosition());
         double angleForRudder = ChoseAngle.choseAngleForRudder(checkpoint, nextRound.getShip(), bestAngleOption);
 
+        if(angleForRudder>Math.PI/4) angleForRudder=Math.PI/4;
+        if(angleForRudder<-Math.PI/4) angleForRudder=-Math.PI/4;
+        System.out.println("LANGLE EST "+angleForRudder);
         moves.primaryMoveOar(oarComposition[0], oarComposition[1]);
         moves.primaryMoveTurn(angleForRudder);
     }

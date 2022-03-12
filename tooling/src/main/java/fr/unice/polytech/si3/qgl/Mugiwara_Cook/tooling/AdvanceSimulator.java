@@ -29,6 +29,7 @@ public class AdvanceSimulator {
     InitGame init;
     Cockpit cockpit = new Cockpit();
     Referee referee;
+    private static final int TURN=300;
 
     public AdvanceSimulator() {
         this.init = this.createInitGame();
@@ -100,7 +101,7 @@ public class AdvanceSimulator {
         Checkpoint[] checkpoint = ((RegattaGoal) this.init.getGoal()).getCheckpoints();
         int checkpointNumber = 0;
 
-        for (int i = 0; i < 150; i++) {
+        for (int i = 0; i < TURN; i++) {
             NextRound nextRound = new NextRound(this.init.getShip(), new Wind(0, 0), null);
 
             String nextRoundjSON;
