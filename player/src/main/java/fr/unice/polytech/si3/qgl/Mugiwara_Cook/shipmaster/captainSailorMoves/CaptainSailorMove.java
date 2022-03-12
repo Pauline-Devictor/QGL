@@ -17,7 +17,7 @@ public class CaptainSailorMove {
     }
 
     public void assignEquipement() {
-        assignSpecificEquipement("oar", 10);
+        assignSpecificEquipement("oar", 6);
         assignSpecificEquipement("rudder",1);
     }
 

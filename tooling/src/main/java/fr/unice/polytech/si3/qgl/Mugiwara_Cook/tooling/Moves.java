@@ -39,6 +39,8 @@ public class Moves {
     }
 
     public void angle(int oarAll) {
+        System.out.println("Oriantation du bateau: " + this.origialOrientation);
+        System.out.println("ANGLE des oars " + ((Math.PI / 2) / (oarAll / 2) * (this.oarRight - this.oarLeft)) + " et l'angle du rudder: " + this.rudderOrientation + " et le total: " + (((Math.PI / 2) / (oarAll / 2) * (this.oarRight - this.oarLeft)) + this.rudderOrientation));
         this.currentFinalOrientation = ((Math.PI / 2) / (oarAll / 2) * (this.oarRight - this.oarLeft)) + this.rudderOrientation;
     }
 
@@ -54,10 +56,7 @@ public class Moves {
         }
 
         this.orientation = this.origialOrientation + this.currentFinalOrientation;
-    }
-
-    public int[] getOar() {
-        return new int[]{oarLeft, oarRight};
+        System.out.println("Oriantation (FINAL): " + this.orientation);
     }
 
     public double getX() {

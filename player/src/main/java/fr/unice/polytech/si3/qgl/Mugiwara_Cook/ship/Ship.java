@@ -129,16 +129,10 @@ public class Ship {
 
     @JsonIgnore
     public int getNbUsableOarsLeft() {
-        this.getOars().forEach(oar -> {
-            if (oar.getSailor() != null)
-                System.out.println("LIER: " + oar.getSailor().getName());
-            else
-                System.out.println("PAS LIER");
-        });
         return this.getOars().stream()
                 .filter(oar -> oar.getY() == 0)
                 .filter(oar -> oar.getSailor() != null)
-//                .filter(oar -> oar.getSailor().onIsAssignEquipment() == true)
+                .filter(oar -> oar.getSailor().onIsAssignEquipment() == true)
                 .collect(Collectors.toList()).size();
     }
 

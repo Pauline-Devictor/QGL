@@ -30,20 +30,29 @@ public class ChoseActions {
     }
 
     public void turnWithRudderAndGoFarWithOars(Checkpoint checkpoint, NextRound nextRound) {
+        System.out.println("turnWithRudderAndGoFarWithOars");
         moves.primaryMoveTurn(ChoseAngle.isOkayToUseOnlyTheRudderToTurn(checkpoint, nextRound.getShip()));
 
-        int[] oarComposition = ChoseDistance.choiceBestNbOar(new AngleOption(0, 0), checkpoint, initGame.getShip(),nextRound.getShip().getPosition());
+        int[] oarComposition = ChoseDistance.choiceBestNbOar(new AngleOption(0, 0), checkpoint, initGame.getShip(), nextRound.getShip().getPosition());
 
         moves.primaryMoveOar(oarComposition[0], oarComposition[1]);
     }
 
     public void turnWithOarsAndCorrectWithRudder(Checkpoint checkpoint, NextRound nextRound) {
+        System.out.println("turnWithOarsAndCorrectWithRudder");
         List<AngleOption> angleOptionList = AngleOption.creationOptionFromOarCount(initGame.getShip().getNbUsableOarsLeft(), initGame.getShip().getNbUsableOarsRight(), nextRound.getShip().getNbOars());
+//        angleOptionList.forEach(angleOption -> angleOption.getDetail());
         AngleOption bestAngleOption = ChoseAngle.choiceBestDelta(angleOptionList, checkpoint, nextRound.getShip());
-
-        int[] oarComposition = ChoseDistance.choiceBestNbOar(bestAngleOption, checkpoint, initGame.getShip(),nextRound.getShip().getPosition());
+//        System.out.print("Meilleur angle: ");
+//        bestAngleOption.getDetail();
+        int[] oarComposition = ChoseDistance.choiceBestNbOar(bestAngleOption, checkpoint, initGame.getShip(), nextRound.getShip().getPosition());
         double angleForRudder = ChoseAngle.choseAngleForRudder(checkpoint, nextRound.getShip(), bestAngleOption);
 
+        System.out.println("angleForRudder: "+angleForRudder);
+        if (angleForRudder > Math.PI / 4) angleForRudder = Math.PI / 4;
+        if (angleForRudder < -Math.PI / 4) angleForRudder = -Math.PI / 4;
+
+        System.out.println("OARS: " + oarComposition[0] + "][" + oarComposition[1]);
         moves.primaryMoveOar(oarComposition[0], oarComposition[1]);
         moves.primaryMoveTurn(angleForRudder);
     }

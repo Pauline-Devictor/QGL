@@ -77,15 +77,7 @@ public class Cockpit implements ICockpit {
         return new ArrayList<>();
     }
 
-    public InitGame getInitGame() {
-        return initGame;
-    }
-
     public void setInitGame(InitGame initGame) {
         this.initGame = initGame;
-    }
-
-    public Captain getCaptain2() {
-        return captain2;
     }
 }

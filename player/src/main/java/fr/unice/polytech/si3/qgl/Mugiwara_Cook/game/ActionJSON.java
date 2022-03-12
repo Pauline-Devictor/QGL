@@ -8,10 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ActionJSON {
-    public List<Action> getListAction() {
-        return listAction;
-    }
-
     List<Action> listAction;
 
     public ActionJSON() {

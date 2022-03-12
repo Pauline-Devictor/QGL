@@ -6,6 +6,7 @@ import java.util.List;
 public class AngleOption {
     double angle;
     int delta; //NBoarRight - NBoarLeft
+    double completAngleRudder;
 
 
     /**

@@ -50,9 +50,11 @@ public class Captain {
         if (this.inCheckpoint(nextRound)) {
             this.nbCurrentCheckpoint++;
             this.currentCheckpoint = ((RegattaGoal) this.initGame.getGoal()).getCheckpoints()[this.nbCurrentCheckpoint];
+            System.out.println("OBEJTIF CHECKPOINT: " + this.currentCheckpoint.getPosition().getY() + ":" + this.currentCheckpoint.getPosition().getX());
         }
 
-        this.choseActions.moveToTheNextCheckpoint(this.currentCheckpoint, nextRound);
+        if (initGame.allSailorIsOnAssign())
+            this.choseActions.moveToTheNextCheckpoint(this.currentCheckpoint, nextRound);
     }
 
     /**

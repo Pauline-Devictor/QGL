@@ -28,7 +28,6 @@ public class OarSimulator {
         {
             if (action.getType().equals("OAR")) {
                 if (onOar(getSailorFromId((Oar) action))) {
-                    System.out.println(getSailorFromId((Oar) action).getName());
                     if (onLeft(getSailorFromId((Oar) action))) oars[0]++;
                     else oars[1]++;
                     idUsedOarList.add(((Oar) action).getSailorId());
