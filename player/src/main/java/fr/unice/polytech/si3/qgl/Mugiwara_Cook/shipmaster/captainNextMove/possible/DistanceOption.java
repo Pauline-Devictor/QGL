@@ -4,18 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DistanceOption {
-    int[] oarLeftRight;
+    int[] oarLeftRight;  //[0] rames à gauche et [1] rame à droite
     double distance;
-
-    /**
-     * @param distance distance que la composition de rame nous fait parcourir
-     * @param oarLeftRight [0] rames à droite et [1] rame à gauche
-     */
-
-    public DistanceOption(double distance, int[] oarLeftRight) {
-        this.distance = distance;
-        this.oarLeftRight = oarLeftRight;
-    }
 
     /**
      * Renvois une liste de couple angle et des compostion de rames
@@ -26,7 +16,7 @@ public class DistanceOption {
      */
     public static List<DistanceOption> creationDistanceOptionFromOarCount(int delta, int leftCount, int rightCount, int oarTotal) {
         List<DistanceOption> distanceOptionList = new ArrayList<>();
-        System.out.println(leftCount + " : " + rightCount);
+
         for (int nbOarsLeft = 0; nbOarsLeft <= leftCount; nbOarsLeft++) {
             for (int nbOarsRight = 0; nbOarsRight <= rightCount; nbOarsRight++) {
                 if (nbOarsRight - nbOarsLeft == delta) {
@@ -37,6 +27,14 @@ public class DistanceOption {
         return distanceOptionList;
     }
 
+    /**
+     * @param distance distance que la composition de rame nous fait parcourir
+     * @param oarLeftRight [0] rames à gauche et [1] rame à droite
+     */
+    public DistanceOption(double distance, int[] oarLeftRight) {
+        this.distance = distance;
+        this.oarLeftRight = oarLeftRight;
+    }
 
     /**
      * donne le couple distance en fonction de la composition de rames
@@ -46,22 +44,12 @@ public class DistanceOption {
      * @return le couple distance ,
      */
     static public DistanceOption distance(int oarLeft, int oarRight, int oarTotal) {
-        return new DistanceOption((165 * (oarLeft + oarRight)) / oarTotal, new int[]{oarLeft, oarRight});
+        return new DistanceOption((165 * (oarLeft + oarRight)) / (double) oarTotal, new int[]{oarLeft, oarRight});
     }
 
     public int[] getOarLeftRight() {
         return oarLeftRight;
     }
-
-   /**
-    * public int getOarLeft() {
-        return oarLeftRight[0];
-    }
-
-    public int getOarRight() {
-        return oarLeftRight[1];
-    }
-    **/
 
     public double getDistance() {
         return distance;

@@ -16,7 +16,7 @@ public class DrawRoute extends JPanel {
     }
 
     public void paint(Graphics g) {
-        final int DIVI = 3;
+        final int DIVI = 10;
 
         Dimension tailleEcran = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 

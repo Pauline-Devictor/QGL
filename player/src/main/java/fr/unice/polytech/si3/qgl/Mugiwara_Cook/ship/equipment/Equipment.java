@@ -14,7 +14,7 @@ abstract public class Equipment {
     boolean used = false;
 
     @JsonIgnore
-    Sailor sailor=null;
+    Sailor sailor = null;
 
 
     public boolean isUsed() {
@@ -26,13 +26,14 @@ abstract public class Equipment {
     }
 
 
-    public Equipment(String type,int x,int y){
+    public Equipment(String type, int x, int y) {
         this.type = type;
         this.x = x;
         this.y = y;
     }
-    public void setSailor(Sailor sailor){
-        this.sailor=sailor;
+
+    public void setSailor(Sailor sailor) {
+        this.sailor = sailor;
     }
 
     public String getType() {
@@ -59,7 +60,9 @@ abstract public class Equipment {
         this.y = y;
     }
 
-    public Sailor getSailor(){ return this.sailor; }
+    public Sailor getSailor() {
+        return this.sailor;
+    }
 
     public Sailor findClosestSailorWithOutAssignEquipment(Sailor[] sailors) {
         Sailor closestSailor = null;
@@ -70,13 +73,13 @@ abstract public class Equipment {
         }
 
         for (Sailor sailor : sailors) {
-            if (closestSailor != null && sailor.sailorIsAllowedToMove(sailor.getX() - this.getX(),sailor.getY() - this.getY()) && !(sailor.assign())) {
+            if (closestSailor != null && sailor.sailorIsAllowedToMove(sailor.getX() - this.getX(), sailor.getY() - this.getY()) && !(sailor.assign())) {
                 closestSailor = sailor;
             }
         }
 
         this.sailor = closestSailor;
-        this.used=true;
+        this.used = true;
 
         if (this.sailor == null)
             System.out.println(this.x + " et " + this.y + " assignee a: personne");
