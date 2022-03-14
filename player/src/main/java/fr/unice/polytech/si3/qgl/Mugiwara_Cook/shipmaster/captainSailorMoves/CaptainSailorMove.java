@@ -16,8 +16,26 @@ public class CaptainSailorMove {
         this.actionJSON = actionJSON;
     }
 
+    /**
+     * Assigne les equipements celon une priorité qu'il faudra affiner.
+     */
     public void assignEquipement() {
-        assignSpecificEquipement("oar", 6);
+        int nbsailors = initGame.getSailors().length;
+        if (nbsailors >= 2 && initGame.getShip().getEquipement("oar").size()>=2) {
+            assignSpecificEquipement("oar", 2);
+            nbsailors -= 2;
+        }
+        if (nbsailors >= 1 && initGame.getShip().getEquipement("rudder").size()>=1) {
+
+            assignSpecificEquipement("rudder", 1);
+            nbsailors--;
+        }
+        while (nbsailors >= 2) {
+            if (nbsailors >= 2 && initGame.getShip().getEquipement("oar").size()>=2) {
+                assignSpecificEquipement("oar", 2);
+                nbsailors -= 2;
+            }
+        }
     }
 
     private void assignSpecificEquipement(String equipement, int numberSailorAssign) {
@@ -30,6 +48,7 @@ public class CaptainSailorMove {
             Sailor sailor = equipmentArrayList.get(numberAssign).findClosestSailorWithOutAssignEquipment(initGame.getSailors());
             if (sailor != null) {
                 sailor.attachEquipment(equipmentArrayList.get(numberAssign));
+                equipmentArrayList.get(numberAssign).setSailor(sailor);
                 numberAssign++;
             }
         }

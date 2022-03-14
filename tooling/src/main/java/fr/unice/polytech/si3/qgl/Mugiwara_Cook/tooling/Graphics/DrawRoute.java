@@ -16,8 +16,7 @@ public class DrawRoute extends JPanel {
     }
 
     public void paint(Graphics g) {
-        final int DIVI = 3;
-
+        final int DIVI = 11;
         Dimension tailleEcran = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 
         int hauteur = (int) tailleEcran.getHeight();
@@ -40,7 +39,7 @@ public class DrawRoute extends JPanel {
             if (i % 1000 == 0) {
                 g.setColor(new Color(255, 0, 0));
                 g.fillOval((int) (route.getPositionArrayList().get(i).getX()) / DIVI - 3 + largeur / 2, (int) (-route.getPositionArrayList().get(i).getY()) / DIVI - 3 + hauteur / 2, 6, 6);
-                System.out.println(route.getPositionArrayList().get(i).getListPosition());
+                System.out.println(route.getPositionArrayList().get(i).getListPosition()+",");
                 k++;
             }
             g.setColor(new Color(0, 0, 0));

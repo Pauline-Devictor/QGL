@@ -4,30 +4,37 @@ import fr.unice.polytech.si3.qgl.Mugiwara_Cook.game.*;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes.*;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.goal.*;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.*;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove.ChoseActions;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainSailorMoves.*;
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove.*;
 
 
-public class Captain2 {
+public class Captain {
     InitGame initGame;
     ActionJSON actionJSON;
 
-    CaptainNextMove captainNextMove;
     CaptainSailorMove captainSailorMove;
+    ChoseActions choseActions;
 
     Checkpoint currentCheckpoint;
     int nbCurrentCheckpoint = 0;
 
-    public Captain2(InitGame initGame, ActionJSON actionJSON) {
+    public Captain(InitGame initGame, ActionJSON actionJSON) {
         this.initGame = initGame;
         this.actionJSON = actionJSON;
-        this.captainNextMove = new CaptainNextMove(this.initGame, this.actionJSON);
+        this.choseActions = new ChoseActions(this.actionJSON, this.initGame);
         this.captainSailorMove = new CaptainSailorMove(this.initGame, this.actionJSON);
 
         if (this.initGame.getGoal().getClass() == RegattaGoal.class)
             this.currentCheckpoint = ((RegattaGoal) this.initGame.getGoal()).getCheckpoints()[this.nbCurrentCheckpoint];
 
         this.captainSailorMove.assignEquipement();
+
+        this.initGame.getShip().getEntities().forEach(equipment -> {
+            if (equipment.getSailor() != null)
+                System.out.println(equipment.getType() + "Lier a: " + equipment.getSailor().getName());
+            else
+                System.out.println("Ne pas etre lier");
+        });
     }
 
     /**
@@ -43,11 +50,12 @@ public class Captain2 {
         if (this.inCheckpoint(nextRound)) {
             this.nbCurrentCheckpoint++;
             this.currentCheckpoint = ((RegattaGoal) this.initGame.getGoal()).getCheckpoints()[this.nbCurrentCheckpoint];
+            System.out.println("OBEJTIF CHECKPOINT: " + this.currentCheckpoint.getPosition().getY() + ":" + this.currentCheckpoint.getPosition().getX());
         }
 
-        this.captainNextMove.calculateNextMove(this.currentCheckpoint, nextRound);
+        if (initGame.allSailorIsOnAssign())
+            this.choseActions.moveToTheNextCheckpoint(this.currentCheckpoint, nextRound);
     }
-
 
     /**
      * Determine if the ship is in the Checkpoint
@@ -57,9 +65,5 @@ public class Captain2 {
     public boolean inCheckpoint(NextRound nextRound) {
         return (nextRound.getShip().getPosition().distance(currentCheckpoint.getPosition())
                 <= ((Circle) currentCheckpoint.getShape()).getRadius());
-    }
-
-    public Checkpoint getCurrentCheckpoint() {
-        return this.currentCheckpoint;
     }
 }

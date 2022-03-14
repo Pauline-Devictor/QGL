@@ -1,13 +1,16 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Sailor;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.Position;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes.Shape;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Equipment;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Oar;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Rudder;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Sail;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -50,11 +53,6 @@ public class Ship {
         return position;
     }
 
-    @JsonIgnore
-    public Position getPositionRoute() {
-        return new Position(this.position.getX(), this.position.getY(), this.position.getOrientation());
-    }
-
     public void setPosition(Position position) {
         this.position = position;
     }
@@ -92,7 +90,7 @@ public class Ship {
     }
 
     /**
-     * permet de recuperer la list des rames.
+     * Permet de recuperer la list des rames.
      *
      * @return la list des rames.
      */
@@ -117,9 +115,9 @@ public class Ship {
 
     public ArrayList<Equipment> getEquipement(String type) {
         ArrayList<Equipment> equipments = new ArrayList<>();
-        if (entities != null){
+        if (entities != null) {
             for (Equipment e : entities) {
-            if (e.getType() == type) equipments.add(e);
+                if (e.getType() == type) equipments.add(e);
             }
         }
         return equipments;
@@ -132,35 +130,31 @@ public class Ship {
     }
 
     @JsonIgnore
-    public List<Oar> getUsableOarsLeft() {
+    public int getNbUsableOarsLeft() {
         return this.getOars().stream()
                 .filter(oar -> oar.getY() == 0)
                 .filter(oar -> oar.getSailor() != null)
                 .filter(oar -> oar.getSailor().onIsAssignEquipment() == true)
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()).size();
     }
 
     @JsonIgnore
-    public List<Oar> getUsableOarsRight() {
+    public int getNbUsableOarsRight() {
         return this.getOars().stream()
                 .filter(oar -> (this.getDeck().getWidth() - 1) == oar.getY())
                 .filter(oar -> oar.getSailor() != null)
                 .filter(oar -> oar.getSailor().onIsAssignEquipment() == true)
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()).size();
     }
 
+    /**
+     * Pour le simulateur.
+     *
+     * @return
+     */
     @JsonIgnore
-    public List<Oar> getOarsRight() {
-        return this.getOars().stream()
-                .filter(oar -> (this.getDeck().getWidth() - 1) == oar.getY())
-                .collect(Collectors.toList());
-    }
-
-    @JsonIgnore
-    public List<Oar> getOarsLeft() {
-        return this.getOars().stream()
-                .filter(oar -> (0) == oar.getY())
-                .collect(Collectors.toList());
+    public Position getPositionRoute() {
+        return new Position(this.position.getX(), this.position.getY(), this.position.getOrientation());
     }
 
 }

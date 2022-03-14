@@ -107,8 +107,5 @@ public class Application {
                 "    \"strength\": 110\n" +
                 "  }\n" +
                 "}");
-
-        System.out.println(cockpit.getInitGame().getShip().getOars().size());
-
     }
 }

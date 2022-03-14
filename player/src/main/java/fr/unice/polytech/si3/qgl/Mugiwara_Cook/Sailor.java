@@ -30,7 +30,6 @@ public class Sailor {
         this.name = name;
     }
 
-
     public int getId() {
         return id;
     }
@@ -54,7 +53,6 @@ public class Sailor {
     public String getName() {
         return name;
     }
-
 
     /**
      * @param equipment l'equipement que le sailor veut atteindre
@@ -124,7 +122,6 @@ public class Sailor {
 
     public Equipment getEquipment() {
         return this.equipment;
-
     }
     public boolean itemIsTooFar(Equipment item){
         return abs(item.getX() - getX()) + abs(item.getY() - getY()) > 5;
@@ -151,7 +148,6 @@ public class Sailor {
         actionJSON.addAction(new Moving(this.id, xMove, yMove));
 
         return this.onIsAssignEquipment();
-
     }
 
     /**
