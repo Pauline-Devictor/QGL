@@ -45,7 +45,6 @@ public class AdvanceSimulator {
 
         referee = new Referee(this.init);
     }
-
     private InitGame createInitGame() {
         Random rand = new Random();
 
@@ -53,7 +52,6 @@ public class AdvanceSimulator {
 //        Checkpoint checkpoint2 = new Checkpoint(new Position(0, -500, 0), new Circle(100));
 //        Checkpoint checkpoint3 = new Checkpoint(new Position(500, -500, 0), new Circle(80));
 //        Checkpoint checkpoint4 = new Checkpoint(new Position(-500, 500, 0), new Circle(100));
-
 
         Checkpoint checkpoint1 = new Checkpoint(new Position(-5586.701434159062, -195.31249999999972, 0), new Circle(200));
         Checkpoint checkpoint2 = new Checkpoint(new Position(-3259.452411994781, 1835.937500000001, 0), new Circle(200));
@@ -69,8 +67,7 @@ public class AdvanceSimulator {
         Checkpoint[] listCheckpoint = {checkpoint1, checkpoint2, checkpoint3, checkpoint4, checkpoint5, checkpoint6, checkpoint7, checkpoint8};
         Goal goal = new RegattaGoal(listCheckpoint);
 
-
-        Deck deck = new Deck(3, 7);  //longeur-largeur
+        Deck deck = new Deck(3, 7);  //longeur, largeur
 
         Equipment oar1 = new Oar(1, 2);
         Equipment oar2 = new Oar(2, 2);
@@ -84,11 +81,10 @@ public class AdvanceSimulator {
         Equipment oar10 = new Oar(5, 0);
 
 
-        Equipment rudder = new Rudder(3, 1);
+        Equipment rudder = new Rudder(6, 1);
         List<Equipment> equipmentList = new ArrayList<>(List.of(oar1, oar2, oar3, oar6, oar6, oar7, oar8, oar4, oar5, oar9, oar10, rudder));
 
         Shape shapeShip = new Rectangle(2, 4, 0);
-//        Ship ship = new Ship(100, new Position(-3650.58670143416, 1842.4479166666663, -2.740166925631097), "BOAT", deck, equipmentList, shapeShip);
         Ship ship = new Ship(100, new Position(-3650.58670143416, 1842.4479166666663, -2.740166925631097), "BOAT", deck, equipmentList, shapeShip);
 
         final int NB_MARIN = 7;
@@ -98,7 +94,6 @@ public class AdvanceSimulator {
         }
 
         int shipCount = 1;
-
         return new InitGame(goal, ship, listSailor, shipCount);
     }
 
