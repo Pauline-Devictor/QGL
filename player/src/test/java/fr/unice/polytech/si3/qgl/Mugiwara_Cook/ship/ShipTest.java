@@ -105,74 +105,11 @@ class ShipTest {
         }
     }*/
 
-    /**
     @Test
-    public void UsableLeftOar(){
-        List<Equipment> oars =new ArrayList<>();
-        for (int i=0;i<10;i++) {
-            Oar oarl = new Oar(i + 4, 0);
-            Oar oarr =new Oar(i,99);
-            oars.add(oarl);
-            oars.add(oarr);
-        }
-        for (int i=0;i<10;i++) {
-            Oar oarl = new Oar(i + 4, 0);
-            Sailor sailor= new Sailor();
-            sailor.setX(i+4);
-            sailor.setY(0);
-            oarl.setSailor(sailor);
-            Oar oarr =new Oar(i,99);
-            oars.add(oarl);
-            oars.add(oarr);
-        }
-        ship=new Ship(100,position,"test",new Deck(100,100),oars,new Circle(23.0));
-        assertEquals(ship.getUsableOarsLeft().size(),10);
-    }**/
-    @Test
-    void getUsableOarsLeft(){
-        List<Oar> leftOarList = new ArrayList<>();
-        leftOarList.add((Oar) this.entities.get(1));
-        leftOarList.add((Oar) this.entities.get(2));
-        leftOarList.add((Oar) this.entities.get(3));
-        leftOarList.add((Oar) this.entities.get(4));
-        assertEquals(ship.getUsableOarsLeft(),leftOarList);
-    }
-    @Test
-    void getUsableOarsRight(){
-        List<Oar> rightOarList = new ArrayList<>();
-        rightOarList.add((Oar) this.entities.get(5));
-        rightOarList.add((Oar) this.entities.get(6));
-        rightOarList.add((Oar) this.entities.get(7));
-        rightOarList.add((Oar) this.entities.get(8));
-        assertEquals(ship.getUsableOarsRight(),rightOarList);
-    }
-    @Test
-    void getUsableOarsRightFalse(){
-        List<Oar> rightOarList = new ArrayList<>();
-        rightOarList.add((Oar) this.entities.get(5));
-        rightOarList.add((Oar) this.entities.get(6));
-        rightOarList.add((Oar) this.entities.get(7));
-        Oar rame = new Oar(23,67);
-        Sailor sailor = new Sailor(90,2,78,"Lost sailor");
-        rightOarList.add((Oar) rame);
-        assertNotEquals(ship.getUsableOarsRight(),rightOarList);
-    }
-    @Test
-    void getOarsRight(){
-        List<Oar> rightOarList = new ArrayList<>();
-        rightOarList.add((Oar) this.entities.get(5));
-        rightOarList.add((Oar) this.entities.get(6));
-        rightOarList.add((Oar) this.entities.get(7));
-        rightOarList.add((Oar) this.entities.get(8));
-        assertEquals(rightOarList,ship.getOarsRight());
-    }
-    @Test
-    void getOarsLeft(){
-        List<Oar> leftOarList = new ArrayList<>();
-        leftOarList.add((Oar) this.entities.get(1));
-        leftOarList.add((Oar) this.entities.get(2));
-        leftOarList.add((Oar) this.entities.get(3));
-        leftOarList.add((Oar) this.entities.get(4));
-        assertEquals(ship.getOarsLeft(),leftOarList);
+    void getNbUsableOarsRight(){
+        assertEquals(ship.getNbUsableOarsRight(),4);
+    } @Test
+    void getNbUsableOarsLeft(){
+        assertEquals(ship.getNbUsableOarsRight(),4);
     }
 }
