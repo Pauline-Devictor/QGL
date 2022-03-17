@@ -30,10 +30,6 @@ public class DeserializeEquipment  extends StdDeserializer<Equipment> {
 
     public Equipment createEquipment(String type,JsonNode node,int x, int y){
         switch (type){
-            case "canon":
-                boolean loaded = node.get("loaded").asBoolean();
-                double angle = node.get("angle").asDouble();
-                return new Canon(x,y,loaded,angle);
             case "oar":
                 return new Oar(x,y);
             case "rudder":
@@ -41,8 +37,6 @@ public class DeserializeEquipment  extends StdDeserializer<Equipment> {
             case "sail":
                 boolean openned = node.get("openned").asBoolean();
                 return new Sail(x,y,openned);
-            case "watch":
-                return new Watch(x,y);
             default:
                 return null;
         }

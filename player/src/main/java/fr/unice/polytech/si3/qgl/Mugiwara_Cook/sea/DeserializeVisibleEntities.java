@@ -36,9 +36,6 @@ public class DeserializeVisibleEntities  extends StdDeserializer<VisibleEntity> 
 
     public VisibleEntity createVisibleEntity(String type,JsonNode node,Position position,Shape shape) throws JsonProcessingException {
         switch (type){
-            case "otherShip":
-                int life = node.get("life").asInt();
-                return new OtherShip(life,position,shape);
             case "reef":
                 return new Reef(position,shape);
             case "stream":
