@@ -2,50 +2,53 @@ package fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainSailorMoves;
 
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.*;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.game.*;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.Ship;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Equipment;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Sail;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class CaptainSailorMove {
-    InitGame initGame;
-    ActionJSON actionJSON;
+    Ship ship;
+    Sailor[] sailors;
 
-    public CaptainSailorMove(InitGame initGame, ActionJSON actionJSON) {
-        this.initGame = initGame;
-        this.actionJSON = actionJSON;
+    public CaptainSailorMove(Ship ship, Sailor[] sailors) {
+        this.ship = ship;
+        this.sailors = sailors;
     }
 
     /**
-     * Assigne les equipements celon une priorité qu'il faudra affiner.
+     * Assigne les equipements selon une priorité qu'il faudra affiner.
      */
     public void assignEquipement() {
-        int nbsailors = initGame.getSailors().length;
-        if (nbsailors >= 2 && initGame.getShip().getEquipement("oar").size()>=2) {
+        int nbsailors = this.sailors.length;
+        if (nbsailors >= 2 && this.ship.getEquipement("oar").size() >= 2) {
             assignSpecificEquipement("oar", 2);
             nbsailors -= 2;
         }
-        if (nbsailors >= 1 && initGame.getShip().getEquipement("rudder").size()>=1) {
+        if (nbsailors >= 1 && this.ship.getEquipement("rudder").size() >= 1) {
 
             assignSpecificEquipement("rudder", 1);
             nbsailors--;
         }
         while (nbsailors >= 2) {
-            if (nbsailors >= 2 && initGame.getShip().getEquipement("oar").size()>=2) {
+            if (nbsailors >= 2 && this.ship.getEquipement("oar").size() >= 2) {
                 assignSpecificEquipement("oar", 2);
                 nbsailors -= 2;
             }
         }
     }
 
-    private void assignSpecificEquipement(String equipement, int numberSailorAssign) {
+    public void assignSpecificEquipement(String equipement, int numberSailorAssign) {
         int numberAssign = 0;
-        List<Equipment> equipmentArrayList = this.initGame.getShip().getEquipement(equipement).stream()
+        List<Equipment> equipmentArrayList = this.ship.getEquipement(equipement).stream()
                 .filter(equipment -> equipment.getSailor() == null)
                 .collect(Collectors.toList());
         System.out.println(equipmentArrayList.get(0).getType());
-        while (numberAssign < numberSailorAssign && numberAssign < this.initGame.getSailors().length) {
-            Sailor sailor = equipmentArrayList.get(numberAssign).findClosestSailorWithOutAssignEquipment(initGame.getSailors());
+        while (numberAssign < numberSailorAssign && numberAssign < this.sailors.length) {
+            Sailor sailor = equipmentArrayList.get(numberAssign).findClosestSailorWithOutAssignEquipment(this.sailors);
             if (sailor != null) {
                 sailor.attachEquipment(equipmentArrayList.get(numberAssign));
                 equipmentArrayList.get(numberAssign).setSailor(sailor);
@@ -57,10 +60,10 @@ public class CaptainSailorMove {
     /**
      * Deplace les marins vers leur rame attitré
      */
-    public void moveToAssignEquipment() {
-        for (int i = 0; i < this.initGame.getSailors().length; i++) {
-            if (this.initGame.getSailors()[i].getEquipment() != null && !(this.initGame.getSailors()[i].onIsAssignEquipment()))
-                this.initGame.getSailors()[i].moveToEquipment(this.actionJSON);
+    public void moveToAssignEquipment(ActionJSON actionJSON) {
+        for (int i = 0; i < this.sailors.length; i++) {
+            if (this.sailors[i].getEquipment() != null && !(this.sailors[i].onIsAssignEquipment()))
+                this.sailors[i].moveToEquipment(actionJSON);
         }
     }
 

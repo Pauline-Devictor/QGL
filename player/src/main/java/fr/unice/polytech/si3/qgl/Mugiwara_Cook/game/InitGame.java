@@ -7,15 +7,25 @@ import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.Checkpoint;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.Ship;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Oar;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Rudder;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class InitGame {
+    @Getter
+    @Setter
     Goal goal;
+    @Getter
+    @Setter
     Ship ship;
+    @Getter
+    @Setter
     Sailor[] sailors;
+    @Getter
+    @Setter
     int shipCount;
 
     public InitGame() {
@@ -26,38 +36,6 @@ public class InitGame {
         this.goal = goal;
         this.ship = ship;
         this.sailors = sailors;
-        this.shipCount = shipCount;
-    }
-
-    public Goal getGoal() {
-        return goal;
-    }
-
-    public void setGoal(Goal goal) {
-        this.goal = goal;
-    }
-
-    public Ship getShip() {
-        return ship;
-    }
-
-    public void setShip(Ship ship) {
-        this.ship = ship;
-    }
-
-    public Sailor[] getSailors() {
-        return sailors;
-    }
-
-    public void setSailors(Sailor[] sailors) {
-        this.sailors = sailors;
-    }
-
-    public int getShipCount() {
-        return shipCount;
-    }
-
-    public void setShipCount(int shipCount) {
         this.shipCount = shipCount;
     }
 
@@ -93,13 +71,13 @@ public class InitGame {
 
     @JsonIgnore
     public Sailor getUsableSailorRudder() {
-        if (this.sailorRudder()){
-        return Arrays.asList(this.sailors).stream()
-                .filter(sailor -> sailor.getEquipment() != null)
-                .filter(sailor -> sailor.getEquipment().getType().equals("rudder"))
-                .filter(sailor -> sailor.onIsAssignEquipment() == true)
-                .collect(Collectors.toList()).get(0);
-        }else
+        if (this.sailorRudder()) {
+            return Arrays.asList(this.sailors).stream()
+                    .filter(sailor -> sailor.getEquipment() != null)
+                    .filter(sailor -> sailor.getEquipment().getType().equals("rudder"))
+                    .filter(sailor -> sailor.onIsAssignEquipment() == true)
+                    .collect(Collectors.toList()).get(0);
+        } else
             return null;
     }
 

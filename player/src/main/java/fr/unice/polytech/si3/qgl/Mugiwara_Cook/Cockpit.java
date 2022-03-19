@@ -9,6 +9,8 @@ import fr.unice.polytech.si3.qgl.Mugiwara_Cook.game.*;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.*;
 
 import fr.unice.polytech.si3.qgl.regatta.cockpit.*;
+import lombok.Getter;
+import lombok.Setter;
 
 
 public class Cockpit implements ICockpit {
@@ -16,9 +18,11 @@ public class Cockpit implements ICockpit {
     MyMapper myMapper = new MyMapper();
     ActionJSON actionJSON = new ActionJSON();
 
+    @Setter
     InitGame initGame;
     NextRound nextRound;
 
+    @Getter
     Captain captain2;
 
     public Cockpit() {
@@ -75,9 +79,5 @@ public class Cockpit implements ICockpit {
     @Override
     public List<String> getLogs() {
         return new ArrayList<>();
-    }
-
-    public void setInitGame(InitGame initGame) {
-        this.initGame = initGame;
     }
 }

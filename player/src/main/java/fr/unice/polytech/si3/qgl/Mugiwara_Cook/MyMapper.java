@@ -15,14 +15,13 @@ import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Equipment;
 
 public class MyMapper extends ObjectMapper {
 
-    public MyMapper(){
+    public MyMapper() {
         SimpleModule module = new SimpleModule();
         module.addDeserializer(Shape.class, new DeserializeShape());
-        module.addDeserializer(Equipment.class,new DeserializeEquipment());
+        module.addDeserializer(Equipment.class, new DeserializeEquipment());
         module.addDeserializer(Action.class, new DeserializeAction());
         module.addDeserializer(Goal.class, new DeserializeGoal());
-        module.addDeserializer(VisibleEntity.class,new DeserializeVisibleEntities());
+        module.addDeserializer(VisibleEntity.class, new DeserializeVisibleEntities());
         registerModule(module);
-
     }
 }

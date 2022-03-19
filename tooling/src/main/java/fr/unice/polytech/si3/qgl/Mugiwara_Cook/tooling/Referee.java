@@ -44,6 +44,7 @@ public class Referee {
 
         int[] oars = oarSimulator.whoRow(actionList);
         double angleRudder = rudderSimulation.whatAngle(actionList);
+//        double distanceSail =
 
         Moves moves = this.calculMove.calcul(this.init.getShip(), oars, angleRudder);
 

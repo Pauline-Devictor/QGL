@@ -1,17 +1,23 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove.possible;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class DistanceOption {
+    @Getter
     int[] oarLeftRight;  //[0] rames à gauche et [1] rame à droite
+    @Getter
     double distance;
 
     /**
      * Renvois une liste de couple angle et des compostion de rames
-     * @param leftCount nombre de rames à gauche
+     *
+     * @param leftCount  nombre de rames à gauche
      * @param rightCount nombre de rames à droite
-     * @param oarTotal nombre de rame total
+     * @param oarTotal   nombre de rame total
      * @return tous les angles possibles (associé à un delta)en fonction des compositions de rames
      */
     public static List<DistanceOption> creationDistanceOptionFromOarCount(int delta, int leftCount, int rightCount, int oarTotal) {
@@ -28,7 +34,7 @@ public class DistanceOption {
     }
 
     /**
-     * @param distance distance que la composition de rame nous fait parcourir
+     * @param distance     distance que la composition de rame nous fait parcourir
      * @param oarLeftRight [0] rames à gauche et [1] rame à droite
      */
     public DistanceOption(double distance, int[] oarLeftRight) {
@@ -38,21 +44,14 @@ public class DistanceOption {
 
     /**
      * donne le couple distance en fonction de la composition de rames
-     * @param oarLeft nombre de rames à gauche
+     *
+     * @param oarLeft  nombre de rames à gauche
      * @param oarRight nombre de rames à droite
      * @param oarTotal nombre de rames total
      * @return le couple distance ,
      */
     static public DistanceOption distance(int oarLeft, int oarRight, int oarTotal) {
         return new DistanceOption((165 * (oarLeft + oarRight)) / (double) oarTotal, new int[]{oarLeft, oarRight});
-    }
-
-    public int[] getOarLeftRight() {
-        return oarLeftRight;
-    }
-
-    public double getDistance() {
-        return distance;
     }
 
     public void getDetail() {

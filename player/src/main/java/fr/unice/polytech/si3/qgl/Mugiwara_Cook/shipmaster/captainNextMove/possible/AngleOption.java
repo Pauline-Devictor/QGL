@@ -1,10 +1,16 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove.possible;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class AngleOption {
+    @Getter
+    @Setter
     double angle;
+    @Getter
     int delta; //NBoarRight - NBoarLeft
     double completAngleRudder;
 
@@ -43,18 +49,6 @@ public class AngleOption {
      */
     public static AngleOption angle(int oarLeft, int oarRight, int oarTotal) {
         return new AngleOption((Math.PI / 2) / ((oarTotal) / 2) * (oarRight - oarLeft), oarRight - oarLeft);
-    }
-
-    public double getAngle() {
-        return angle;
-    }
-
-    public int getDelta() {
-        return delta;
-    }
-
-    public void setAngle(double TrueAngle) {
-        this.angle = TrueAngle;
     }
 
     public void getDetail() {
