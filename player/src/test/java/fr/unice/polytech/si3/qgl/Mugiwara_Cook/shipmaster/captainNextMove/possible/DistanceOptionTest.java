@@ -1,6 +1,7 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove.possible;
 
-import org.junit.jupiter.api.BeforeEach;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove.CalculateDistanceHelper;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove.possible.possibleDistance.DistanceOption;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ class DistanceOptionTest {
 
     @Test
     void distanceOption2LeftOar_2RightOar_4Max() {
-        DistanceOption distanceOption = DistanceOption.distance(2, 2, 4);
+        DistanceOption distanceOption = CalculateDistanceHelper.distance(2, 2, 4);
         assertEquals(165, distanceOption.getDistance());
         assertEquals(2, distanceOption.getOarLeftRight()[0]);
         assertEquals(2, distanceOption.getOarLeftRight()[1]);
@@ -20,7 +21,7 @@ class DistanceOptionTest {
 
     @Test
     void distanceOption2LeftOar_2RightOar_8Max() {
-        DistanceOption distanceOption = DistanceOption.distance(2, 2, 8);
+        DistanceOption distanceOption = CalculateDistanceHelper.distance(2, 2, 8);
         assertEquals(82.5, distanceOption.getDistance());
         assertEquals(2, distanceOption.getOarLeftRight()[0]);
         assertEquals(2, distanceOption.getOarLeftRight()[1]);
@@ -28,7 +29,7 @@ class DistanceOptionTest {
 
     @Test
     void distanceOption2LeftOar_4RightOar_8Max() {
-        DistanceOption distanceOption = DistanceOption.distance(2, 4, 8);
+        DistanceOption distanceOption = CalculateDistanceHelper.distance(2, 4, 8);
         assertEquals(123.75, distanceOption.getDistance());
         assertEquals(2, distanceOption.getOarLeftRight()[0]);
         assertEquals(4, distanceOption.getOarLeftRight()[1]);
@@ -36,7 +37,7 @@ class DistanceOptionTest {
 
     @Test
     void distanceOption4LeftOar_1RightOar_8Max() {
-        DistanceOption distanceOption = DistanceOption.distance(4, 1, 8);
+        DistanceOption distanceOption = CalculateDistanceHelper.distance(4, 1, 8);
         assertEquals(103.125, distanceOption.getDistance());
         assertEquals(4, distanceOption.getOarLeftRight()[0]);
         assertEquals(1, distanceOption.getOarLeftRight()[1]);

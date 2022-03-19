@@ -130,6 +130,11 @@ public class Ship {
     }
 
     @JsonIgnore
+    public int getNbEquipment(String equipment) {
+        return this.getEquipement(equipment).size();
+    }
+
+    @JsonIgnore
     public int getNbUsableOarsLeft() {
         return this.getOars().stream()
                 .filter(oar -> oar.getY() == 0)
@@ -137,6 +142,24 @@ public class Ship {
                 .filter(oar -> oar.getSailor().onIsAssignEquipment() == true)
                 .collect(Collectors.toList()).size();
     }
+    @JsonIgnore
+    public int getNbUsableSails() {
+        return this.getEquipement("sail").stream()
+                .filter(sail -> sail.getSailor() != null)
+                .filter(sail -> sail.getSailor().onIsAssignEquipment() == true)
+                .collect(Collectors.toList()).size();
+    }
+    @JsonIgnore
+    public List<Equipment> getUsableSails() {
+        return this.getEquipement("sail").stream()
+                .filter(sail -> sail.getSailor() != null)
+                .filter(sail -> sail.getSailor().onIsAssignEquipment() == true)
+                .collect(Collectors.toList());
+    }
+
+
+
+
 
     @JsonIgnore
     public int getNbUsableOarsRight() {

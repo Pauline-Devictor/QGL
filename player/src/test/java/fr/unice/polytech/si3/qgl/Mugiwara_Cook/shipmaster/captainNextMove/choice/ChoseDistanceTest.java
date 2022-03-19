@@ -3,8 +3,9 @@ package fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove.choic
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.Position;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes.Circle;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.Checkpoint;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.Wind;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.Ship;
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove.possible.AngleOption;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove.possible.possibleAngle.AngleOption;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -15,10 +16,11 @@ import static org.mockito.Mockito.when;
 
 class ChoseDistanceTest {
     Ship ship;
+    Wind wind;
 
     @BeforeEach
     void setUp() {
-
+        wind=new Wind(0,0);
     }
 
     @Test

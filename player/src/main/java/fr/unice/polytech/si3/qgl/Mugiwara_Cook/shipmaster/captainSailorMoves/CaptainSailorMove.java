@@ -30,6 +30,11 @@ public class CaptainSailorMove {
             assignSpecificEquipement("rudder", 1);
             nbsailors--;
         }
+        if (nbsailors >= 1 && initGame.getShip().getEquipement("sail").size()>=1) {
+
+            assignSpecificEquipement("sail", 1);
+            nbsailors--;
+        }
         while (nbsailors >= 2) {
             if (nbsailors >= 2 && initGame.getShip().getEquipement("oar").size()>=2) {
                 assignSpecificEquipement("oar", 2);

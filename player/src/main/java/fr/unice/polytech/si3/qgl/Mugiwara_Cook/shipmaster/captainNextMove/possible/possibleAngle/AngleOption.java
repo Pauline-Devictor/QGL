@@ -1,4 +1,4 @@
-package fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove.possible;
+package fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove.possible.possibleAngle;
 
 import java.util.ArrayList;
 import java.util.List;

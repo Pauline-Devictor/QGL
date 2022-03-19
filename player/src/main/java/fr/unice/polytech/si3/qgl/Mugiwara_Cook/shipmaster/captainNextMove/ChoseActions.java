@@ -7,7 +7,7 @@ import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.Checkpoint;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.PrimaryMoves;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove.choice.ChoseAngle;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove.choice.ChoseDistance;
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove.possible.AngleOption;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove.possible.possibleAngle.AngleOption;
 
 import java.util.List;
 
@@ -32,27 +32,28 @@ public class ChoseActions {
         System.out.println("turnWithRudderAndGoFarWithOars");
         moves.primaryMoveTurn(ChoseAngle.isOkayToUseOnlyTheRudderToTurn(checkpoint, nextRound.getShip()));
 
-        int[] oarComposition = ChoseDistance.choiceBestNbOar(new AngleOption(0, 0), checkpoint, initGame.getShip(), nextRound.getShip().getPosition());
+        int[] oarAndSailComposition = ChoseDistance.choiceBestNbOarAndSail(new AngleOption(0, 0), checkpoint, initGame.getShip(), nextRound.getShip().getPosition(),nextRound.getWind());
 
-        moves.primaryMoveOar(oarComposition[0], oarComposition[1]);
+        moves.primaryMoveOar(oarAndSailComposition[0], oarAndSailComposition[1]);
+        System.out.println("nb sail   "+oarAndSailComposition[2]);
+        moves.primaryMoveSail(oarAndSailComposition[2]);
     }
 
     public void turnWithOarsAndCorrectWithRudder(Checkpoint checkpoint, NextRound nextRound) {
         System.out.println("turnWithOarsAndCorrectWithRudder");
         List<AngleOption> angleOptionList = AngleOption.creationOptionFromOarCount(initGame.getShip().getNbUsableOarsLeft(), initGame.getShip().getNbUsableOarsRight(), nextRound.getShip().getNbOars());
-//        angleOptionList.forEach(angleOption -> angleOption.getDetail());
         AngleOption bestAngleOption = ChoseAngle.choiceBestDelta(angleOptionList, checkpoint, nextRound.getShip());
-//        System.out.print("Meilleur angle: ");
-//        bestAngleOption.getDetail();
-        int[] oarComposition = ChoseDistance.choiceBestNbOar(bestAngleOption, checkpoint, initGame.getShip(), nextRound.getShip().getPosition());
+        int[] oarAndSailComposition = ChoseDistance.choiceBestNbOarAndSail(bestAngleOption, checkpoint, initGame.getShip(), nextRound.getShip().getPosition(),nextRound.getWind());
         double angleForRudder = ChoseAngle.choseAngleForRudder(checkpoint, nextRound.getShip(), bestAngleOption);
 
         System.out.println("angleForRudder: " + angleForRudder);
         if (angleForRudder > Math.PI / 4) angleForRudder = Math.PI / 4;
         if (angleForRudder < -Math.PI / 4) angleForRudder = -Math.PI / 4;
-//        System.out.println("OARS: " + oarComposition[0] + "][" + oarComposition[1]);
-        moves.primaryMoveOar(oarComposition[0], oarComposition[1]);
+        moves.primaryMoveOar(oarAndSailComposition[0], oarAndSailComposition[1]);
+        System.out.println("voila la compo :"+oarAndSailComposition[0]+"  "+oarAndSailComposition[1]+"   "+oarAndSailComposition[2]);
         moves.primaryMoveTurn(angleForRudder);
+        System.out.println("nb sail   "+oarAndSailComposition[2]);
+        moves.primaryMoveSail(oarAndSailComposition[2]);
     }
 
 }

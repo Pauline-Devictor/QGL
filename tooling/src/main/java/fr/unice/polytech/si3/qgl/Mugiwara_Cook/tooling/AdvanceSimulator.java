@@ -18,6 +18,7 @@ import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.Ship;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Equipment;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Oar;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Rudder;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Sail;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.tooling.Moves;
 
 
@@ -80,14 +81,16 @@ public class AdvanceSimulator {
         Equipment oar9 = new Oar(4, 0);
         Equipment oar10 = new Oar(5, 0);
 
+        Equipment sail=new Sail(3,1,false);
+
 
         Equipment rudder = new Rudder(6, 1);
-        List<Equipment> equipmentList = new ArrayList<>(List.of(oar1, oar2, oar3, oar6, oar6, oar7, oar8, oar4, oar5, oar9, oar10, rudder));
+        List<Equipment> equipmentList = new ArrayList<>(List.of(oar1, oar2, oar3, oar6, oar6, oar7, oar8, oar4, oar5, oar9, oar10, rudder,sail));
 
         Shape shapeShip = new Rectangle(2, 4, 0);
         Ship ship = new Ship(100, new Position(-3650.58670143416, 1842.4479166666663, -2.740166925631097), "BOAT", deck, equipmentList, shapeShip);
 
-        final int NB_MARIN = 7;
+        final int NB_MARIN = 8;
         Sailor[] listSailor = new Sailor[NB_MARIN];
         for (int i = 0; i < NB_MARIN; i++) {
             listSailor[i] = new Sailor(i, rand.nextInt(deck.getLength()), rand.nextInt(deck.getWidth()), "Marin" + i);
@@ -104,7 +107,7 @@ public class AdvanceSimulator {
         int checkpointNumber = 0;
 
         for (int i = 0; i < TURN; i++) {
-            NextRound nextRound = new NextRound(this.init.getShip(), new Wind(0, 0), null);
+            NextRound nextRound = new NextRound(this.init.getShip(), new Wind(1, 2), null);
 
             String nextRoundjSON;
             String action = null;
