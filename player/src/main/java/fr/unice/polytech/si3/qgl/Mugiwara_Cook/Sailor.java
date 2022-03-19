@@ -5,6 +5,8 @@ import fr.unice.polytech.si3.qgl.Mugiwara_Cook.actions.Moving;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.game.ActionJSON;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Equipment;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Oar;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -12,12 +14,19 @@ import java.util.ArrayList;
 import static java.lang.Math.abs;
 
 public class Sailor {
+    @Getter
     int id;
+    @Getter
+    @Setter
     int x;
+    @Getter
+    @Setter
     int y;
+    @Getter
     String name;
 
     @JsonIgnore
+    @Getter
     Equipment equipment = null;
 
     public Sailor() {
@@ -28,30 +37,6 @@ public class Sailor {
         this.x = x;
         this.y = y;
         this.name = name;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public int getX() {
-        return x;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    public String getName() {
-        return name;
     }
 
     /**
@@ -73,29 +58,12 @@ public class Sailor {
     }
 
     /**
-     *
-     * @param OarList liste des rames sur le bateau
-     * @return la rame la plus proche
-     * Note : cette méhode trouve la rame la plus proche, elle ne prend pas en compte la limite des 5 cases
-     */
-    public Oar findClosestOarFromSailor(ArrayList<Oar> OarList) {
-        Oar closestOar = OarList.get(0);
-        for (int i = 1; i < OarList.size(); i++) {
-            if (abs(OarList.get(i).getX() - this.getX()) <= abs(closestOar.getX() - this.getX()) && abs(OarList.get(i).getY() - this.getY()) <= abs(closestOar.getY() - this.getY())) {
-                closestOar = OarList.get(i);
-            }
-        }
-        return closestOar;
-    }
-
-    /**
      * @param sailor               un rameur donné
      * @param chosenEquipementType le type de l'equipement que l'on a choisi
      * @param entities             l'attribut entities de la classe Ship
      * @return
      */
     public Equipment findSpecificClosestEquipementFromSailor(Sailor sailor, String chosenEquipementType, ArrayList<Equipment> entities) {
-
         Equipment closestEquipement = null;
         boolean trouve = false;
 
@@ -119,11 +87,7 @@ public class Sailor {
         this.equipment = equipment;
     }
 
-
-    public Equipment getEquipment() {
-        return this.equipment;
-    }
-    public boolean itemIsTooFar(Equipment item){
+    public boolean itemIsTooFar(Equipment item) {
         return abs(item.getX() - getX()) + abs(item.getY() - getY()) > 5;
     }
 

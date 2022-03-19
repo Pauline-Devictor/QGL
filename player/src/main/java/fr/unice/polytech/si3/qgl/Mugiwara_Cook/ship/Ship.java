@@ -8,6 +8,8 @@ import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Equipment;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Oar;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Rudder;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Sail;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,11 +19,23 @@ import java.util.stream.Collectors;
 public class Ship {
     public final static String TYPE = "ship";
     String type = TYPE;
+    @Getter
+    @Setter
     int life;
+    @Getter
+    @Setter
     Position position;
+    @Getter
+    @Setter
     String name;
+    @Getter
+    @Setter
     Deck deck;
+    @Getter
+    @Setter
     List<Equipment> entities;
+    @Getter
+    @Setter
     Shape shape;
 
     public Ship() {
@@ -39,54 +53,6 @@ public class Ship {
 
     public String getType() {
         return TYPE;
-    }
-
-    public int getLife() {
-        return life;
-    }
-
-    public void setLife(int life) {
-        this.life = life;
-    }
-
-    public Position getPosition() {
-        return position;
-    }
-
-    public void setPosition(Position position) {
-        this.position = position;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Deck getDeck() {
-        return deck;
-    }
-
-    public void setDeck(Deck deck) {
-        this.deck = deck;
-    }
-
-    public List<Equipment> getEntities() {
-        return entities;
-    }
-
-    public void setEntities(List<Equipment> entities) {
-        this.entities = entities;
-    }
-
-    public Shape getShape() {
-        return shape;
-    }
-
-    public void setShape(Shape shape) {
-        this.shape = shape;
     }
 
     /**
@@ -117,7 +83,7 @@ public class Ship {
         ArrayList<Equipment> equipments = new ArrayList<>();
         if (entities != null) {
             for (Equipment e : entities) {
-                if (e.getType() == type) equipments.add(e);
+                if (e != null && e.getType() == type) equipments.add(e);
             }
         }
         return equipments;

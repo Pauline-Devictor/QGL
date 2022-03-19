@@ -27,7 +27,6 @@ class SailorTest {
         sailor2 = new Sailor(1,1,0,"un autre nom");
         rame1 = new Oar(0,0);
         rame2 = new Oar(3,1);
-
     }
 
     @Test
@@ -40,16 +39,6 @@ class SailorTest {
     void howManyCaseFarFromOarY() {
         assertEquals(2,abs(sailor1.howManyCaseFarFromOarY(rame1)));
         assertEquals(1,abs(sailor1.howManyCaseFarFromOarY(rame2)));
-    }
-
-    @Test
-    void findClosestOarFromSailor() {
-        ArrayList<Oar> oarsList = new ArrayList<>();
-        oarsList.add(rame1);
-        oarsList.add(rame2);
-        assertTrue(oarsList.get(0)==rame1);
-        assertEquals(rame2,sailor1.findClosestOarFromSailor(oarsList));
-        assertEquals(rame1,sailor2.findClosestOarFromSailor(oarsList));
     }
 
     @Test

@@ -1,32 +1,22 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship;
 
-public class Deck {
+import lombok.Getter;
+import lombok.Setter;
 
+public class Deck {
+    @Getter
+    @Setter
     int width;
+    @Getter
+    @Setter
     int length;
 
-    public Deck(){
+    public Deck() {
         //Json
     }
 
-    public Deck(int width, int length){
-        this.width=width;
-        this.length=length;
-    }
-
-    public int getWidth() {
-        return width;
-    }
-
-    public void setWidth(int width) {
+    public Deck(int width, int length) {
         this.width = width;
-    }
-
-    public int getLength() {
-        return length;
-    }
-
-    public void setLength(int length) {
         this.length = length;
     }
 }

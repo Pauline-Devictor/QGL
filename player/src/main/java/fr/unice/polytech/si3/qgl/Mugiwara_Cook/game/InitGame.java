@@ -8,7 +8,11 @@ import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.Ship;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Equipment;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Oar;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Rudder;
+
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Sail;
+
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,9 +20,17 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class InitGame {
+    @Getter
+    @Setter
     Goal goal;
+    @Getter
+    @Setter
     Ship ship;
+    @Getter
+    @Setter
     Sailor[] sailors;
+    @Getter
+    @Setter
     int shipCount;
 
     public InitGame() {
@@ -29,38 +41,6 @@ public class InitGame {
         this.goal = goal;
         this.ship = ship;
         this.sailors = sailors;
-        this.shipCount = shipCount;
-    }
-
-    public Goal getGoal() {
-        return goal;
-    }
-
-    public void setGoal(Goal goal) {
-        this.goal = goal;
-    }
-
-    public Ship getShip() {
-        return ship;
-    }
-
-    public void setShip(Ship ship) {
-        this.ship = ship;
-    }
-
-    public Sailor[] getSailors() {
-        return sailors;
-    }
-
-    public void setSailors(Sailor[] sailors) {
-        this.sailors = sailors;
-    }
-
-    public int getShipCount() {
-        return shipCount;
-    }
-
-    public void setShipCount(int shipCount) {
         this.shipCount = shipCount;
     }
 
