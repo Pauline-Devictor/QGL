@@ -12,11 +12,12 @@ import static fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove
 public class CalculateDistanceHelper {
 
     public static DistanceWithWindOption distanceForWind(int sailsTotal, int sailsUsed, double angleBetweenBoatAndWind, Wind wind){
-        double distance=(sailsUsed/sailsTotal)*wind.getStrength()*Math.cos(angleBetweenBoatAndWind);
-        System.out.println("No comprendo :"+new DistanceWithWindOption(sailsUsed,distance).getDistance());
-        System.out.println(Math.cos(angleBetweenBoatAndWind));
-        System.out.println((sailsUsed/sailsTotal)*wind.getStrength());
-        return new DistanceWithWindOption(sailsUsed,distance);
+        if(sailsTotal!=0){
+        double sailsTotalDouble=(double) sailsTotal;
+        double sailsUsedDouble=(double) sailsUsed;
+        double distance=(sailsUsedDouble/sailsTotalDouble)*wind.getStrength()*Math.cos(angleBetweenBoatAndWind);
+        return new DistanceWithWindOption(sailsUsed,distance);}
+        else return new DistanceWithWindOption(0,0);
     }
     /**
      * donne le couple distance en fonction de la composition de rames
