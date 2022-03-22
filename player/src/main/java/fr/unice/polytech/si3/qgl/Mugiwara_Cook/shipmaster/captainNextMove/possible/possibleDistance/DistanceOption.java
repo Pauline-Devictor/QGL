@@ -26,7 +26,7 @@ public class DistanceOption {
      */
     public static List<DistanceOption> creationDistanceOptionFromOarCount(int delta, int leftCount, int rightCount, int oarTotal) {
         List<DistanceOption> distanceOptionList = new ArrayList<>();
-
+        System.out.println("reprenons depuis le debut "+delta+"  "+leftCount+"  "+rightCount+"   "+oarTotal);
         for (int nbOarsLeft = 0; nbOarsLeft <= leftCount; nbOarsLeft++) {
             for (int nbOarsRight = 0; nbOarsRight <= rightCount; nbOarsRight++) {
                 if (nbOarsRight - nbOarsLeft == delta) {

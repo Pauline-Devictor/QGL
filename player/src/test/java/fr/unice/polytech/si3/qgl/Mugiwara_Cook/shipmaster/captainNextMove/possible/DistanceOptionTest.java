@@ -116,7 +116,6 @@ class DistanceOptionTest {
     @Test
     void distanceOptionFromOarCount_4LeftOar_1RightOar_8MaxImpossible() {
         List<DistanceOption> distanceOptionList = DistanceOption.creationDistanceOptionFromOarCount(2, 4, 1, 8);
-
         assertEquals(0, distanceOptionList.size());
     }
 

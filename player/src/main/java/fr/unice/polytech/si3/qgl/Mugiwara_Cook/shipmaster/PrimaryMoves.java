@@ -44,12 +44,15 @@ public class PrimaryMoves {
         int nbSailsOpenned = 0;
         for (Equipment s : sails) {
             s = (Sail) s;
+            System.out.println(((Sail) s).isOpenned());
             if (((Sail) s).isOpenned()) nbSailsOpenned++;
         }
         setUpSails(nbsails, sailorsAssignedToSail, nbSailsOpenned);
     }
 
     private void setUpSails(int nbsails, List<Sailor> sailorsAssignedToSail, int nbSailsOpenned) {
+        System.out.println(nbsails);
+        System.out.println(nbSailsOpenned);
         int count = 0;
         while (nbSailsOpenned != nbsails || count > sailorsAssignedToSail.size()) {
             if (nbSailsOpenned > nbsails) {
@@ -61,9 +64,11 @@ public class PrimaryMoves {
 
                 }
             }
-            if (nbSailsOpenned > nbsails) {
+            if (nbSailsOpenned < nbsails) {
+                System.out.println("here we go");
+                System.out.println(sailorsAssignedToSail.get(0).getEquipment());
                 Sail sail = (Sail) sailorsAssignedToSail.get(count).getEquipment();
-                if (sail.isOpenned()) {
+                if (!sail.isOpenned()) {
                     actionJSON.addAction(new Lift_Sail(initGame.getUsableSailorSail().get(count).getId()));
                     sail.setOpenned(true);
                     nbSailsOpenned++;

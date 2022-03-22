@@ -22,8 +22,10 @@ public class ChoseActions {
 
     public void moveToTheNextCheckpoint(Checkpoint checkpoint, NextRound nextRound) {
         if (ChoseAngle.isOkayToUseOnlyTheRudderToTurn(checkpoint, nextRound.getShip()) != 0) {
+            System.out.println("CAS  1");
             this.turnWithRudderAndGoFarWithOars(checkpoint, nextRound);
         } else {
+            System.out.println("CAS 2");
             this.turnWithOarsAndCorrectWithRudder(checkpoint, nextRound);
         }
     }

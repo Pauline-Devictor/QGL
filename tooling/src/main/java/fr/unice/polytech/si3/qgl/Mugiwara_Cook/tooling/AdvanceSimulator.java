@@ -82,15 +82,16 @@ public class AdvanceSimulator {
         Equipment oar10 = new Oar(5, 0);
 
         Equipment sail=new Sail(3,1,false);
+        Equipment sail2=new Sail(5,1,false);
 
 
         Equipment rudder = new Rudder(6, 1);
-        List<Equipment> equipmentList = new ArrayList<>(List.of(oar1, oar2, oar3, oar6, oar6, oar7, oar8, oar4, oar5, oar9, oar10, rudder,sail));
+        List<Equipment> equipmentList = new ArrayList<>(List.of(oar1, oar2, oar3, oar6, oar6, oar7, oar8, oar4, oar5, oar9, oar10, rudder,sail,sail2));
 
         Shape shapeShip = new Rectangle(2, 4, 0);
         Ship ship = new Ship(100, new Position(-3650.58670143416, 1842.4479166666663, -2.740166925631097), "BOAT", deck, equipmentList, shapeShip);
 
-        final int NB_MARIN = 8;
+        final int NB_MARIN = 11;
         Sailor[] listSailor = new Sailor[NB_MARIN];
         for (int i = 0; i < NB_MARIN; i++) {
             listSailor[i] = new Sailor(i, rand.nextInt(deck.getLength()), rand.nextInt(deck.getWidth()), "Marin" + i);
@@ -107,7 +108,7 @@ public class AdvanceSimulator {
         int checkpointNumber = 0;
 
         for (int i = 0; i < TURN; i++) {
-            NextRound nextRound = new NextRound(this.init.getShip(), new Wind(1, 2), null);
+            NextRound nextRound = new NextRound(this.init.getShip(), new Wind(-2.3, 100), null);
 
             String nextRoundjSON;
             String action = null;

@@ -17,7 +17,7 @@ public class ChoseDistance {
     public static int[] choiceBestNbOar(AngleOption angleOption, Checkpoint checkpoint, Ship ship, Position position) {
         double distance = distanceBetweenPointAndCheckpoint(checkpoint, position.getX(), position.getY());
         List<DistanceOption> distanceOption = DistanceOption.creationDistanceOptionFromOarCount(angleOption.getDelta(), ship.getNbUsableOarsLeft(), ship.getNbUsableOarsRight(), ship.getNbOars());
-
+        System.out.println("pfff"+distanceOption.size());
         DistanceOption distanceClosest = distanceOption.get(0);
         for (DistanceOption distanceOp : distanceOption) {
             if (distanceOp.getDistance() <= distance && distanceOp.getDistance() > distanceClosest.getDistance()) {
@@ -28,12 +28,16 @@ public class ChoseDistance {
     }
     public static int[] choiceBestNbSail(int[] nbOfOarsUsed, Checkpoint checkpoint, Ship ship, Position position,Wind wind) {
         int[] nbOarAndNbSail={nbOfOarsUsed[0],nbOfOarsUsed[1],0};
+        System.out.println("on passe la pour les voiles");
         double distance = CalculateDistanceHelper.remainingDistance(nbOfOarsUsed, checkpoint, ship, position);
         List<DistanceWithWindOption> distanceWithWindOptions= DistanceWithWindOption.creationDistanceOptionWithWindFromSailsCount(ship.getNbUsableSails(),ship.getNbEquipment("sail"),wind,ship.getPosition().getOrientation());
+        System.out.println("LA TAILLE DE WINDOPTION "+distanceWithWindOptions.size());
         DistanceWithWindOption distanceClosest = distanceWithWindOptions.get(0);
+        nbOarAndNbSail[2]=distanceClosest.getNbsails();
         for (DistanceWithWindOption distanceOp : distanceWithWindOptions) {
-            System.out.println("Mais pq ca ne marche pas ..."+ distanceOp.getNbsails());
+            System.out.println("Mais pq ca ne marche pas ..."+ distanceOp.getNbsails()+"     "+(distanceOp.getDistance() <= distance)+"     "+(distanceOp.getDistance())+"     "+ distanceClosest.getDistance());
             if (distanceOp.getDistance() <= distance && distanceOp.getDistance() > distanceClosest.getDistance()) {
+                System.out.println("mokoko seed");
                 distanceClosest = distanceOp;
                 nbOarAndNbSail[2]=distanceOp.getNbsails();
             }
