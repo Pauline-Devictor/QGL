@@ -9,18 +9,18 @@ import static java.lang.Math.abs;
 
 abstract public class Equipment {
     @Getter
-    @Setter
+    //@Setter
     protected String type;
     @Getter
-    @Setter
+    //@Setter
     protected int x;
     @Getter
-    @Setter
+    //@Setter
     protected int y;
 
     @JsonIgnore
-    @Getter
-    @Setter
+    //@Getter
+    //@Setter
     boolean used = false;
 
     @JsonIgnore

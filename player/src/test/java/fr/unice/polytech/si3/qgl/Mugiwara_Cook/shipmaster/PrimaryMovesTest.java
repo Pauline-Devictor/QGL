@@ -3,6 +3,7 @@ package fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Cockpit;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.MyMapper;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Sailor;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.actions.Action;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.actions.Turn;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.game.ActionJSON;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.game.InitGame;
@@ -30,6 +31,8 @@ import java.util.List;
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 class PrimaryMovesTest {
     ActionJSON actionJSON;
@@ -126,6 +129,52 @@ class PrimaryMovesTest {
         Turn turn=(Turn) actionJSON.getListAction().get(0);
         assertEquals(turn.getRotation(),-1.2);
     }
+
+    @Test
+    void PrimaryMovesSail(){
+        InitGame initGame1=mock(InitGame.class);
+        Ship ship=mock(Ship.class);
+        when(initGame1.getShip()).thenReturn(ship);
+        ActionJSON actionJSON1=new ActionJSON();
+        PrimaryMoves primaryMoves1=new PrimaryMoves(initGame1,actionJSON1);
+        List<Equipment> sails=  new ArrayList<>();
+        Equipment sail1=new Sail(3,1,false);
+        Equipment sail2=new Sail(5,1,false);
+        Equipment sail3=new Sail(4,1,false);
+        Equipment sail4=new Sail(2,1,false);
+        sails.add(sail1);
+        sails.add(sail2);
+        sails.add(sail3);
+        sails.add(sail4);
+        when(ship.getUsableSails()).thenReturn(sails);
+        List<Sailor> sailorsAssignedToSail=new ArrayList<>();
+        Sailor sailor1= new Sailor(1,3,1,"a");
+        Sailor sailor2= new Sailor(2,5,1,"b");
+        Sailor sailor3= new Sailor(3,4,1,"c");
+        Sailor sailor4= new Sailor(4,2,1,"d");
+        sailor1.setEquipment(sail1);
+        sailor2.setEquipment(sail2);
+        sailor3.setEquipment(sail3);
+        sailorsAssignedToSail.add(sailor1);
+        sailorsAssignedToSail.add(sailor2);
+        sailorsAssignedToSail.add(sailor3);
+        when(initGame1.allSailorAssignedTo("sail")).thenReturn(sailorsAssignedToSail);
+        primaryMoves1.primaryMoveSail(0);
+        assertEquals(primaryMoves1.actionJSON.getListAction().size(),0);
+        when(initGame1.getUsableSailorSail()).thenReturn(sailorsAssignedToSail);
+        System.out.println(sailorsAssignedToSail.size());
+        primaryMoves1.primaryMoveSail(2);
+        List<Action> actions=actionJSON1.getListAction();
+        System.out.println(sailorsAssignedToSail.size());
+        assertEquals(actions.size(),2);
+        assertEquals(actions.get(0).getType(),"LIFT_SAIL");
+        assertEquals(actions.get(1).getType(),"LIFT_SAIL");
+        primaryMoves1.primaryMoveSail(1);
+        assertEquals(actions.size(),3);
+        assertEquals(actions.get(2).getType(),"LOWER_SAIL");
+
+    }
+
 
 
 

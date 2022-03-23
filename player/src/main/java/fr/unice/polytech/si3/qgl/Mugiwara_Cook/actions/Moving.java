@@ -12,13 +12,13 @@ import static java.lang.Math.abs;
 public class Moving extends Action { //TODO condition xdistance and ydistance
     public final static String TYPE = "MOVING";
     @Getter
-    @Setter
+    //@Setter
     int sailorId;
     @Getter
-    @Setter
+    //@Setter
     int xdistance;
     @Getter
-    @Setter
+    //@Setter
     int ydistance;
 
     public Moving(int sailorId, int xdistance, int ydistance) {

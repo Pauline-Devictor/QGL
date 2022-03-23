@@ -6,7 +6,7 @@ import lombok.Setter;
 public class Lift_Sail extends Action {
     public final static String TYPE = "LIFT_SAIL";
     @Getter
-    @Setter
+    //@Setter
     int sailorId;
 
     public Lift_Sail(int sailorId) {

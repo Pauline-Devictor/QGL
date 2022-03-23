@@ -27,6 +27,7 @@ public class Sailor {
 
     @JsonIgnore
     @Getter
+    @Setter
     Equipment equipment = null;
 
     public Sailor() {

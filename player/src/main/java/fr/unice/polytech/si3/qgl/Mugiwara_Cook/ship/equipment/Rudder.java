@@ -13,7 +13,7 @@ import static java.lang.Math.abs;
 public class Rudder extends Equipment {
     public final static String TYPE = "rudder";
     @JsonIgnore
-    @Setter
+    //@Setter
     boolean used = false;
 
     public Rudder(int x, int y) {

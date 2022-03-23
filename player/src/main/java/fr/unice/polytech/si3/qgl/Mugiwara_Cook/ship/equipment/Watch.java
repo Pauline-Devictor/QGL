@@ -9,7 +9,7 @@ import lombok.Setter;
 public class Watch extends Equipment {
     public final static String TYPE = "watch";
     @JsonIgnore
-    @Setter
+    //@Setter
     boolean used = false;
 
     public Watch(int x, int y) {

@@ -6,7 +6,7 @@ import lombok.Setter;
 public class Oar extends Action {
     public final static String TYPE = "OAR";
     @Getter
-    @Setter
+    //@Setter
     int sailorId;
 
     public Oar(int sailorId) {

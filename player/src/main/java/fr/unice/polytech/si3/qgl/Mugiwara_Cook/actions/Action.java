@@ -8,7 +8,7 @@ import lombok.Setter;
 
 abstract public class Action {
     @Getter
-    @Setter
+    //@Setter
     String type;
 
     public Action(String type) {

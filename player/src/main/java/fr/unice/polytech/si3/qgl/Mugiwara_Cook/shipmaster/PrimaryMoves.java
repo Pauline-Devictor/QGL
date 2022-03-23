@@ -41,35 +41,35 @@ public class PrimaryMoves {
     public void primaryMoveSail(int nbsails) {
         List<Equipment> sails = initGame.getShip().getUsableSails();
         List<Sailor> sailorsAssignedToSail = initGame.allSailorAssignedTo("sail");
+        List<Sailor> UsableSailorsForSail =initGame.getUsableSailorSail();
+        System.out.println(UsableSailorsForSail.size());
         int nbSailsOpenned = 0;
         for (Equipment s : sails) {
             s = (Sail) s;
-            System.out.println(((Sail) s).isOpenned());
             if (((Sail) s).isOpenned()) nbSailsOpenned++;
         }
-        setUpSails(nbsails, sailorsAssignedToSail, nbSailsOpenned);
+        setUpSails(nbsails, sailorsAssignedToSail, nbSailsOpenned,UsableSailorsForSail);
     }
 
-    private void setUpSails(int nbsails, List<Sailor> sailorsAssignedToSail, int nbSailsOpenned) {
-        System.out.println(nbsails);
-        System.out.println(nbSailsOpenned);
+    public void setUpSails(int nbsails, List<Sailor> sailorsAssignedToSail, int nbSailsOpenned,List<Sailor> usableSailorsToSail) {
         int count = 0;
         while (nbSailsOpenned != nbsails || count > sailorsAssignedToSail.size()) {
             if (nbSailsOpenned > nbsails) {
                 Sail sail = (Sail) sailorsAssignedToSail.get(count).getEquipment();
                 if (sail.isOpenned()) {
-                    actionJSON.addAction(new Lower_Sail(initGame.getUsableSailorSail().get(count).getId()));
+                    actionJSON.addAction(new Lower_Sail(usableSailorsToSail.get(count).getId()));
                     sail.setOpenned(false);
                     nbSailsOpenned--;
 
                 }
             }
             if (nbSailsOpenned < nbsails) {
-                System.out.println("here we go");
-                System.out.println(sailorsAssignedToSail.get(0).getEquipment());
                 Sail sail = (Sail) sailorsAssignedToSail.get(count).getEquipment();
+                System.out.println("on passe la ");
                 if (!sail.isOpenned()) {
-                    actionJSON.addAction(new Lift_Sail(initGame.getUsableSailorSail().get(count).getId()));
+                    System.out.println("ici aussi");
+                    System.out.println(initGame.getUsableSailorSail().size());
+                    actionJSON.addAction(new Lift_Sail(usableSailorsToSail.get(count).getId()));
                     sail.setOpenned(true);
                     nbSailsOpenned++;
 
