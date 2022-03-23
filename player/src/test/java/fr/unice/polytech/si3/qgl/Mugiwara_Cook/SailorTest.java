@@ -113,6 +113,18 @@ class SailorTest {
         assertTrue(sailor2.moveToEquipment(actionJson));
         assertEquals(sailor2.getX(),rame1.getX());
         assertEquals(sailor2.getY(),rame1.getY());
+        //Cas négatifs
+        sailor2.setX(-6);
+        assertFalse(sailor2.moveToEquipment(actionJson));
+        assertEquals(sailor2.getX(),-1);
+        sailor2.setX(0);
+        //Cas Y
+        sailor2.setY(-6);
+        assertFalse(sailor2.moveToEquipment(actionJson));
+        assertEquals(sailor2.getY(),-1);
+        sailor2.setY(6);
+        assertFalse(sailor2.moveToEquipment(actionJson));
+        assertEquals(sailor2.getY(),1);
     }
     @Test
     void dontMoveToEquipement(){

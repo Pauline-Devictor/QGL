@@ -30,8 +30,6 @@ public class DeserializeGoal  extends StdDeserializer<Goal> {
 
     public Goal createGoal(String mode,JsonNode node) throws JsonProcessingException {
         switch (mode){
-            case "BATTLE":
-               return new BattleGoal();
             case "REGATTA":
                 String checkpointString = node.get("checkpoints").toString();
                 MyMapper mapper = new MyMapper();
