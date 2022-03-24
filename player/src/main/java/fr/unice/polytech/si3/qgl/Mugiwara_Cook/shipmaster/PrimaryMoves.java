@@ -65,10 +65,7 @@ public class PrimaryMoves {
             }
             if (nbSailsOpenned < nbsails) {
                 Sail sail = (Sail) sailorsAssignedToSail.get(count).getEquipment();
-                System.out.println("on passe la ");
                 if (!sail.isOpenned()) {
-                    System.out.println("ici aussi");
-                    System.out.println(initGame.getUsableSailorSail().size());
                     actionJSON.addAction(new Lift_Sail(usableSailorsToSail.get(count).getId()));
                     sail.setOpenned(true);
                     nbSailsOpenned++;

@@ -35,7 +35,8 @@ public class Cockpit implements ICockpit {
      * @param game A Json with the beginning data
      */
     public void initGame(String game) {
-        System.out.println("Init game input: " + game);
+        new Display();
+        Display.info("Init game input: " + game);
 
         try {
             this.initGame = myMapper.readValue(game, InitGame.class);
@@ -54,7 +55,7 @@ public class Cockpit implements ICockpit {
      * @return Json with the list of our actions
      */
     public String nextRound(String round) {
-        System.out.println("Next round input: " + round);
+        Display.info("Next round input: " + round);
 
         try {
             nextRound = myMapper.readValue(round, NextRound.class);

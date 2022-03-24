@@ -1,5 +1,6 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.tooling;
 
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Display;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.Position;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes.Circle;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.Checkpoint;
@@ -56,7 +57,7 @@ public class Moves {
         }
 
         this.orientation = this.origialOrientation + this.currentFinalOrientation;
-        System.out.println("Oriantation (FINAL): " + this.orientation);
+        Display.info("Oriantation (FINAL): " + this.orientation);
     }
 
     public double getX() {

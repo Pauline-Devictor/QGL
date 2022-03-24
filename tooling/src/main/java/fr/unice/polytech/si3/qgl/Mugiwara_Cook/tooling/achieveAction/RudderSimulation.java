@@ -1,5 +1,6 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.tooling.achieveAction;
 
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Display;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Sailor;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.actions.Action;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.actions.Oar;
@@ -22,7 +23,7 @@ public class RudderSimulation {
         for (Action action : movingList) {
             if (action.getType().equals("TURN")) {
                 if (onRudder(getSailorFromId((Turn) action))) {
-                    System.out.println(getSailorFromId((Turn) action).getName());
+                    Display.info(getSailorFromId((Turn) action).getName());
                     return ((Turn) action).getRotation();
                 }
             }

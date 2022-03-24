@@ -1,5 +1,6 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster;
 
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Display;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.game.*;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes.*;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.goal.*;
@@ -33,9 +34,9 @@ public class Captain {
 
         this.initGame.getShip().getEntities().forEach(equipment -> {
             if (equipment.getSailor() != null)
-                System.out.println(equipment.getType() + "Lier a: " + equipment.getSailor().getName());
+                Display.info(equipment.getType() + "Lier a: " + equipment.getSailor().getName());
             else
-                System.out.println("Ne pas etre lier");
+                Display.info("Ne pas etre lier");
         });
     }
 
@@ -52,7 +53,7 @@ public class Captain {
         if (this.inCheckpoint(nextRound)) {
             this.nbCurrentCheckpoint++;
             this.currentCheckpoint = ((RegattaGoal) this.initGame.getGoal()).getCheckpoints()[this.nbCurrentCheckpoint];
-            System.out.println("OBEJTIF CHECKPOINT: " + this.currentCheckpoint.getPosition().getY() + ":" + this.currentCheckpoint.getPosition().getX());
+            Display.info("OBEJTIF CHECKPOINT: " + this.currentCheckpoint.getPosition().getY() + ":" + this.currentCheckpoint.getPosition().getX());
         }
 
         if (initGame.allSailorIsOnAssign())
