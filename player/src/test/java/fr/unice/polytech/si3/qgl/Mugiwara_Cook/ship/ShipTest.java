@@ -7,6 +7,7 @@ import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes.Shape;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Equipment;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Oar;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Rudder;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Sail;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -19,10 +20,7 @@ class ShipTest {
 
     public final static String TYPE = "ship";
     Position position;
-    String name;
-    Deck deck;
     List<Equipment> entities=new ArrayList<>();
-    Shape shape;
     Ship ship;
     ArrayList<Sailor> sailorArrayList;
 
@@ -56,6 +54,7 @@ class ShipTest {
         rame6.setSailor(sailor7);
         rame7.setSailor(sailor8);
         rame8.setSailor(sailor9);
+
         sailor1.attachEquipment(rudder);
         sailor2.attachEquipment(rame1);
         sailor3.attachEquipment(rame2);
@@ -65,15 +64,8 @@ class ShipTest {
         sailor7.attachEquipment(rame6);
         sailor8.attachEquipment(rame7);
         sailor9.attachEquipment(rame8);
-        entities.add(rudder);
-        entities.add(rame1);
-        entities.add(rame2);
-        entities.add(rame3);
-        entities.add(rame4);
-        entities.add(rame5);
-        entities.add(rame6);
-        entities.add(rame7);
-        entities.add(rame8);
+        sailorArrayList = new ArrayList<>(List.of(sailor1,sailor2,sailor3,sailor4,sailor5,sailor6,sailor7,sailor8,sailor9));
+        entities = new ArrayList<>(List.of(rudder,rame1,rame2,rame3,rame4,rame5,rame6,rame7,rame8));
         ship = new Ship(100,position,"test",new Deck(100,100),entities,new Circle(23.0));
     }
 
@@ -104,12 +96,30 @@ class ShipTest {
             assertEquals(ship.getRudder().get(i).getType(),rudders.get(i).getType());
         }
     }*/
+    @Test
+    void getDataOars(){
+        assertEquals(ship.getNbUsableOarsRight(),4);
+        assertEquals(ship.getNbUsableOarsLeft(),4);
+        assertEquals(ship.getNbOars(),8);
+    }
 
     @Test
-    void getNbUsableOarsRight(){
-        assertEquals(ship.getNbUsableOarsRight(),4);
-    } @Test
-    void getNbUsableOarsLeft(){
-        assertEquals(ship.getNbUsableOarsRight(),4);
+    void getDataSails(){
+        //Cas sails vide
+        assertEquals(ship.getNbUsableSails(),0);
+        assertEquals(ship.getUsableSails(),new ArrayList<Equipment>());
+        //Cas sails pas vide
+        Sail sail = new Sail(50,0,false);
+        ship.getEntities().add(sail);
+        sailorArrayList.get(0).attachEquipment(sail);
+        sail.setSailor(sailorArrayList.get(0));
+        assertEquals(ship.getNbUsableSails(),1);
+        List<Sail> sails = new ArrayList<>(List.of(sail));
+        assertEquals(ship.getUsableSails().toString(),sails.toString());
+    }
+
+    @Test
+    void rudderTest(){
+        assertEquals(ship.getRudder().size(),1);
     }
 }

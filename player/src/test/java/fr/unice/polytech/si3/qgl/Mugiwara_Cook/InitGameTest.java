@@ -55,4 +55,10 @@ public class InitGameTest {
         assertFalse(initGame.sailorRudder());
         assertEquals(initGame.getUsableSailorRudder(),null);
     }
+    @Test
+    void sailorUsableTest(){
+        assertTrue(initGame.getUsableSailorSail().isEmpty());
+        //TODO rajouter le cas ou des sailors sont utilisables
+
+    }
 }
