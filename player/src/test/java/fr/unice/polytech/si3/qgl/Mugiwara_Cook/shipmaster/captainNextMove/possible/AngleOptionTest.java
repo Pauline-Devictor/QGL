@@ -57,6 +57,8 @@ class AngleOptionTest {
         assertTrue(angleAngleOptionList.contains(0.0));
         assertTrue(angleAngleOptionList.contains(Math.PI/4));
         assertTrue(angleAngleOptionList.contains(Math.PI/2));
+        assertEquals(5,angleAngleOptionList.size());
+        assertEquals(5,deltaAngleOPtionList.size());
     }
 
     @Test
@@ -83,6 +85,8 @@ class AngleOptionTest {
         assertTrue(angleAngleOptionList.contains(0.0));
         assertTrue(angleAngleOptionList.contains(Math.PI/8));
         assertTrue(angleAngleOptionList.contains(Math.PI/4));
+        assertEquals(7,angleAngleOptionList.size());
+        assertEquals(7,deltaAngleOPtionList.size());
     }
 
 }
