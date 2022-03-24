@@ -19,14 +19,10 @@ public class DistanceWithWindOption {
     }
 
     public static List<DistanceWithWindOption> creationDistanceOptionWithWindFromSailsCount(int allSailsUsable, int allSails, Wind wind, double boatOrientation) {
-        System.out.println("On pas la /////");
         List<DistanceWithWindOption> listDistanceWithWindOption = new ArrayList<>();
         double angleBetweenBoatAndWind = CalculateAngleHelper.angleBetweenBoatAndWind(boatOrientation, wind.getOrientation());
-        System.out.println("l'angle poto"+ angleBetweenBoatAndWind);
-        System.out.println("c'est ca qui pue "+allSailsUsable);
         for (int i = 0; i <= allSailsUsable; i++) {
             listDistanceWithWindOption.add(CalculateDistanceHelper.distanceForWind(allSails, i, angleBetweenBoatAndWind, wind));
-            System.out.println("ALORS PQ CA MARCHE PAS : "+CalculateDistanceHelper.distanceForWind(allSails, i, angleBetweenBoatAndWind, wind).getDistance());
         }
         return listDistanceWithWindOption;
     }

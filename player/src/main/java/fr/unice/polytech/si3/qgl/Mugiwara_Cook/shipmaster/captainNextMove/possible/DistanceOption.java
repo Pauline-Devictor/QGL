@@ -1,5 +1,6 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove.possible;
 
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Display;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -55,6 +56,6 @@ public class DistanceOption {
     }
 
     public void getDetail() {
-        System.out.println("Distance: " + this.getDistance() + "m avec les rames suivante: " + this.getOarLeftRight()[0] + ":" + this.getOarLeftRight()[1]);
+        Display.info("Distance: " + this.getDistance() + "m avec les rames suivante: " + this.getOarLeftRight()[0] + ":" + this.getOarLeftRight()[1]);
     }
 }

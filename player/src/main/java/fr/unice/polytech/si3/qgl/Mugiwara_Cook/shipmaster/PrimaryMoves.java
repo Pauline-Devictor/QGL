@@ -1,5 +1,6 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster;
 
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Display;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Sailor;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.actions.Lift_Sail;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.actions.Lower_Sail;
@@ -42,7 +43,6 @@ public class PrimaryMoves {
         List<Equipment> sails = initGame.getShip().getUsableSails();
         List<Sailor> sailorsAssignedToSail = initGame.allSailorAssignedTo("sail");
         List<Sailor> UsableSailorsForSail =initGame.getUsableSailorSail();
-        System.out.println(UsableSailorsForSail.size());
         int nbSailsOpenned = 0;
         for (Equipment s : sails) {
             s = (Sail) s;

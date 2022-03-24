@@ -1,5 +1,6 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove;
 
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Display;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.Position;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.Checkpoint;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.Wind;
@@ -48,7 +49,6 @@ class CalculateAngleHelperTest {
     @Test
     void realAngleBetweenPointAndCheckpointAngleTurnToTheLeft(){
         double angleBetweenShipOriantationAndCheckpoint=2.0;
-        System.out.println(CalculateAngleHelper.angleBetweenPointAndCheckpoint(checkpoint, positionBoat.getX(), positionBoat.getY(),positionBoat.getOrientation() + (angleBetweenShipOriantationAndCheckpoint/ 2)));
         assertEquals(CalculateAngleHelper.realAngleBetweenPointAndCheckpoint(checkpoint,positionBoat.getX(),positionBoat.getY(),positionBoat.getOrientation(),angleBetweenShipOriantationAndCheckpoint),angleBetweenShipOriantationAndCheckpoint);
     }
 
@@ -56,7 +56,6 @@ class CalculateAngleHelperTest {
     void realAngleBetweenPointAndCheckpointAngleTurnToTheRight(){
         double angleBetweenShipOriantationAndCheckpoint=2.0;
         positionBoat=new Position(0.0,0.0,3.0);
-        System.out.println(CalculateAngleHelper.angleBetweenPointAndCheckpoint(checkpoint, positionBoat.getX(), positionBoat.getY(),positionBoat.getOrientation() + (angleBetweenShipOriantationAndCheckpoint/ 2)));
         assertEquals(CalculateAngleHelper.realAngleBetweenPointAndCheckpoint(checkpoint,positionBoat.getX(),positionBoat.getY(),positionBoat.getOrientation(),angleBetweenShipOriantationAndCheckpoint),-angleBetweenShipOriantationAndCheckpoint);
     }
 

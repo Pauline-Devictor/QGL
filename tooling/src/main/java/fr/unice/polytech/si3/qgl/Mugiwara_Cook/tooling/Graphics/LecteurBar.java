@@ -35,7 +35,7 @@
 //        jButton.addActionListener(new ActionListener() {
 //            public void actionPerformed(ActionEvent ev) {
 //                nbCoup -= 1000;
-//                System.out.println("MDR: " + nbCoup);
+//                Display.info("MDR: " + nbCoup);
 //                frame.getContentPane().add(new DrawRoute(route, nbCoup));
 //            }
 //        });

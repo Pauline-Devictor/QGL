@@ -1,5 +1,6 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove.possible.possibleAngle;
 
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Display;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -52,6 +53,6 @@ public class AngleOption {
     }
 
     public void getDetail() {
-        System.out.println("Angle: " + this.angle + " lier a un delta de: " + this.delta);
+        Display.info("Angle: " + this.angle + " lier a un delta de: " + this.delta);
     }
 }

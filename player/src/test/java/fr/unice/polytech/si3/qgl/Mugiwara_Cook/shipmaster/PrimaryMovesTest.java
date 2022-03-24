@@ -1,6 +1,7 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster;
 
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Cockpit;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Display;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.MyMapper;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Sailor;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.actions.Action;

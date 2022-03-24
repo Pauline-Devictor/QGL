@@ -1,5 +1,6 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove.possible.possibleDistance;
 
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Display;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove.CalculateDistanceHelper;
 
 import java.util.ArrayList;
@@ -26,7 +27,6 @@ public class DistanceOption {
      */
     public static List<DistanceOption> creationDistanceOptionFromOarCount(int delta, int leftCount, int rightCount, int oarTotal) {
         List<DistanceOption> distanceOptionList = new ArrayList<>();
-        System.out.println("reprenons depuis le debut "+delta+"  "+leftCount+"  "+rightCount+"   "+oarTotal);
         for (int nbOarsLeft = 0; nbOarsLeft <= leftCount; nbOarsLeft++) {
             for (int nbOarsRight = 0; nbOarsRight <= rightCount; nbOarsRight++) {
                 if (nbOarsRight - nbOarsLeft == delta) {
@@ -40,22 +40,16 @@ public class DistanceOption {
 
     public static List<DistanceOption> addOarDistanceWithWindDistance(List<DistanceWithWindOption> distanceWithWindOptions,List<DistanceOption> distanceOptions) {
         List<DistanceOption> distanceOptionList = new ArrayList<>();
-        System.out.println("sans vent"+distanceOptionList.size());
-        System.out.println("avec vent"+distanceWithWindOptions.size());
         for(int i=0;i< distanceOptions.size();i++){
             for(int j=0;j< distanceWithWindOptions.size();j++){
                 double distanceOar =distanceOptions.get(i).getDistance();
                 double distanceWind=distanceWithWindOptions.get(j).getDistance();
-                System.out.println("ICIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII");;
-                System.out.println("ca   "+distanceOar+"   "+distanceWind+"   "+distanceOar+distanceWind);
 
                 distanceOptions.get(i).getOarLeftRight()[2]=distanceWithWindOptions.get(j).getNbsails();
                 DistanceOption option=new DistanceOption(distanceOptions.get(i).getOarLeftRight(),distanceWithWindOptions.get(j).getNbsails(),distanceOar+distanceWind);
-                System.out.println(option.getDistance());
                 distanceOptionList.add(option);
             }
         }
-        System.out.println("on passe aussi la et "+distanceOptionList.size());
         return distanceOptionList;
     }
 
@@ -79,7 +73,7 @@ public class DistanceOption {
     }
 
     public void getDetail() {
-        System.out.println("Distance: " + this.getDistance() + "m avec les rames suivante: " + this.getOarLeftRight()[0] + ":" + this.getOarLeftRight()[1]);
+        Display.info("Distance: " + this.getDistance() + "m avec les rames suivante: " + this.getOarLeftRight()[0] + ":" + this.getOarLeftRight()[1]);
     }
     public int getSails() {
         return sails;

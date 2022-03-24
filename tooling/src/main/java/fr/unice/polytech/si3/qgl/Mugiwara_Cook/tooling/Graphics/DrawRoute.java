@@ -1,5 +1,6 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.tooling.Graphics;
 
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Display;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes.Circle;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.tooling.Route;
 
@@ -35,11 +36,11 @@ public class DrawRoute extends JPanel {
         int k = 0;
 
         for (int i = 0; i < this.nbCoup - 1; i++) {
-//            System.out.println(route.getPositionArrayList().get(i).getListPosition());
+//            Display.info(route.getPositionArrayList().get(i).getListPosition());
             if (i % 1000 == 0) {
                 g.setColor(new Color(255, 0, 0));
                 g.fillOval((int) (route.getPositionArrayList().get(i).getX()) / DIVI - 3 + largeur / 2, (int) (-route.getPositionArrayList().get(i).getY()) / DIVI - 3 + hauteur / 2, 6, 6);
-                System.out.println(route.getPositionArrayList().get(i).getListPosition()+",");
+                Display.info(route.getPositionArrayList().get(i).getListPosition()+",");
                 k++;
             }
             g.setColor(new Color(0, 0, 0));

@@ -68,7 +68,7 @@ public class Cockpit implements ICockpit {
         try {
             String json = this.actionJSON.getActionJson();
             this.actionJSON.clearActions();
-            System.out.println(json);
+            Display.info(json);
             return json;
         } catch (JsonProcessingException e) {
             e.printStackTrace();
