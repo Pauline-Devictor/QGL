@@ -42,14 +42,6 @@ class SailorTest {
     }
 
     @Test
-    void findSpecificClosestEquipementFromSailor() {
-        ArrayList<Equipment> entities = new ArrayList<>();
-        entities.add((Equipment) rame1);
-        entities.add((Equipment) rame2);
-        assertEquals((Equipment) rame1,sailor2.findSpecificClosestEquipementFromSailor(sailor2,"oar",entities));
-    }
-
-    @Test
     void attach1Oar(){
         sailor1.attachEquipment(rame1);
         assertEquals(sailor1.getEquipment(),rame1);
@@ -76,11 +68,14 @@ class SailorTest {
     }
 
     @Test
-    void toFarFromEquipement(){
-        sailor2 = new Sailor(1,0,0,"un autre nom");
-        rame2 = new Oar(5,1);
-        boolean true1= sailor2.itemIsTooFar(rame2);
-        assertTrue(true1);
+    void tooFarFromEquipement(){
+        sailor2 = new Sailor(0,0,0,"un autre nom");
+        rame2 = new Oar(6,0);
+        assertTrue(sailor2.itemIsTooFar(rame2));
+        rame2 = new Oar(0,6);
+        assertTrue(sailor2.itemIsTooFar(rame2));
+        rame2 = new Oar(2,3);
+        assertFalse(sailor2.itemIsTooFar(rame2));
     }
 
     @Test
@@ -107,24 +102,51 @@ class SailorTest {
         assertFalse(false1);
     }
     @Test
-    void moveToEquipment(){
+    void moveToEquipmentX(){
         ActionJSON actionJson = new ActionJSON();
         sailor2.attachEquipment(rame1);
         assertTrue(sailor2.moveToEquipment(actionJson));
         assertEquals(sailor2.getX(),rame1.getX());
-        assertEquals(sailor2.getY(),rame1.getY());
         //Cas négatifs
         sailor2.setX(-6);
         assertFalse(sailor2.moveToEquipment(actionJson));
         assertEquals(sailor2.getX(),-1);
-        sailor2.setX(0);
-        //Cas Y
+
+        sailor2.setX(-1);
+        assertTrue(sailor2.moveToEquipment(actionJson));
+        assertEquals(sailor2.getX(),0);
+
+        sailor2.setX(6);
+        assertFalse(sailor2.moveToEquipment(actionJson));
+        assertEquals(sailor2.getX(),1);
+
+        sailor2.setX(1);
+        assertTrue(sailor2.moveToEquipment(actionJson));
+        assertEquals(sailor2.getX(),0);
+
+
+    }
+    @Test
+    void moveToEquipmentY(){
+        ActionJSON actionJson = new ActionJSON();
+        assertEquals(sailor2.getY(),rame1.getY());
+        sailor2.attachEquipment(rame1);
+
         sailor2.setY(-6);
         assertFalse(sailor2.moveToEquipment(actionJson));
         assertEquals(sailor2.getY(),-1);
+
+        sailor2.setY(-1);
+        assertTrue(sailor2.moveToEquipment(actionJson));
+        assertEquals(sailor2.getY(),0);
+
         sailor2.setY(6);
         assertFalse(sailor2.moveToEquipment(actionJson));
         assertEquals(sailor2.getY(),1);
+
+        sailor2.setY(1);
+        assertTrue(sailor2.moveToEquipment(actionJson));
+        assertEquals(sailor2.getY(),0);
     }
     @Test
     void dontMoveToEquipement(){

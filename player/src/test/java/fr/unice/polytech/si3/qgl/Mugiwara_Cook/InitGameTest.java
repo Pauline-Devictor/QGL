@@ -10,6 +10,7 @@ import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.Deck;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.Ship;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Equipment;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Oar;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Sail;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -20,6 +21,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class InitGameTest {
     InitGame initGame;
+    Sailor sailor = new Sailor(0,0,0,"Bobby");
+
     @BeforeEach
     void setup(){
         Position position = new Position(0,0,0);
@@ -58,7 +61,12 @@ public class InitGameTest {
     @Test
     void sailorUsableTest(){
         assertTrue(initGame.getUsableSailorSail().isEmpty());
-        //TODO rajouter le cas ou des sailors sont utilisables
+        Sailor[] sailors = new Sailor[1];
+        Sail sail = new Sail(0,0,true);
+        sailor.attachEquipment(sail);
+        sailors[0] = sailor;
+        initGame.setSailors(sailors);
+        assertEquals(initGame.getUsableSailorSail().size(),1);
 
     }
 }

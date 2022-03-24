@@ -58,27 +58,6 @@ public class Sailor {
         return y;
     }
 
-    /**
-     * @param sailor               un rameur donné
-     * @param chosenEquipementType le type de l'equipement que l'on a choisi
-     * @param entities             l'attribut entities de la classe Ship
-     * @return
-     */
-    public Equipment findSpecificClosestEquipementFromSailor(Sailor sailor, String chosenEquipementType, ArrayList<Equipment> entities) {
-        Equipment closestEquipement = null;
-        boolean trouve = false;
-
-        for (int i = 0; i < entities.size(); i++) {
-            if (!trouve && entities.get(i).getType().equals(chosenEquipementType)) {
-                closestEquipement = entities.get(i);
-                trouve = true;
-            }
-            if (entities.get(i).getType().equals(chosenEquipementType) && trouve && abs(entities.get(i).getX() - sailor.getX()) <= abs(closestEquipement.getX() - sailor.getX()) && abs(entities.get(i).getY() - sailor.getY()) <= abs(closestEquipement.getY() - sailor.getY()))
-                closestEquipement = entities.get(i);
-        }
-        return closestEquipement;
-    }
-
     public boolean assign() {
         if (this.equipment == null) return false;
         return true;
