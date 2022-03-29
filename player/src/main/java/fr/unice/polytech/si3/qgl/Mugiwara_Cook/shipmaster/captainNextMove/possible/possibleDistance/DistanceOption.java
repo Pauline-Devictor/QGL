@@ -12,12 +12,14 @@ public class DistanceOption {
     double distance;
 
 
-    public DistanceOption(int[] oarLeftRight,int sails,double distance){
+    /**public DistanceOption(int[] oarLeftRight,int sails,double distance){
         this.oarLeftRightAndSails=oarLeftRight;
         this.sails=sails;
         this.distance=distance;
 
-    }
+    }**/
+
+
     /**
      * Renvois une liste de couple angle et des compostion de rames
      * @param leftCount nombre de rames à gauche
@@ -38,20 +40,6 @@ public class DistanceOption {
         return distanceOptionList;
     }
 
-    public static List<DistanceOption> addOarDistanceWithWindDistance(List<DistanceWithWindOption> distanceWithWindOptions,List<DistanceOption> distanceOptions) {
-        List<DistanceOption> distanceOptionList = new ArrayList<>();
-        for(int i=0;i< distanceOptions.size();i++){
-            for(int j=0;j< distanceWithWindOptions.size();j++){
-                double distanceOar =distanceOptions.get(i).getDistance();
-                double distanceWind=distanceWithWindOptions.get(j).getDistance();
-
-                distanceOptions.get(i).getOarLeftRight()[2]=distanceWithWindOptions.get(j).getNbsails();
-                DistanceOption option=new DistanceOption(distanceOptions.get(i).getOarLeftRight(),distanceWithWindOptions.get(j).getNbsails(),distanceOar+distanceWind);
-                distanceOptionList.add(option);
-            }
-        }
-        return distanceOptionList;
-    }
 
     /**
      * @param distance distance que la composition de rame nous fait parcourir
@@ -75,13 +63,13 @@ public class DistanceOption {
     public void getDetail() {
         Display.info("Distance: " + this.getDistance() + "m avec les rames suivante: " + this.getOarLeftRight()[0] + ":" + this.getOarLeftRight()[1]);
     }
-    public int getSails() {
+    /**public int getSails() {
         return sails;
-    }
+    }**/
 
-    public void setSails(int sails) {
+    /**public void setSails(int sails) {
         this.sails = sails;
-    }
+    }**/
 
     public void setDistance(double distance) {
         this.distance = distance;

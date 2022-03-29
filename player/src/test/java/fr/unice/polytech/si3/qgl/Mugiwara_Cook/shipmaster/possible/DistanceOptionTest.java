@@ -1,14 +1,12 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.possible;
 
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Sailor;
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Equipment;
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Oar;
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove.possible.DistanceOption;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove.CalculateDistanceHelper;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove.possible.possibleDistance.DistanceOption;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static java.lang.Double.NaN;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DistanceOptionTest {
     DistanceOption distanceOption;
@@ -23,11 +21,11 @@ public class DistanceOptionTest {
 
     @Test
     void distanceOptionCalcul(){
-        DistanceOption result = distanceOption.distance(1,0,1);
+        DistanceOption result = CalculateDistanceHelper.distance(1,0,1);
         assertEquals(result.getDistance(),165);
         assertEquals(result.getOarLeftRight()[0],1);
         assertEquals(result.getOarLeftRight()[1],0);
-        result = distanceOption.distance(0,0,0);
+        result = CalculateDistanceHelper.distance(0,0,0);
         assertEquals(result.getDistance(),NaN);
         assertEquals(result.getOarLeftRight()[0],0);
         assertEquals(result.getOarLeftRight()[1],0);
