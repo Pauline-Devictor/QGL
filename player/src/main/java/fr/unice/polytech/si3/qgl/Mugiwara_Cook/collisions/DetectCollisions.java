@@ -4,6 +4,7 @@ import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.Point;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.Position;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes.Circle;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes.Polygon;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes.Rectangle;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes.Shape;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.Reef;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.Ship;
@@ -25,12 +26,12 @@ public class DetectCollisions {
         return reef.getShape();
     }
 
-    ///pour l'instant il n'y a pas de marge sur le rayon
+
     public boolean collisionWithCircle(Polygon safetyTriangle,double radius){
         boolean collision = false;
         Point center = new Point(reef.getPosition().getX(),reef.getPosition().getY());
         for (Point safetyTrianglePoint : safetyTriangle.getVertices()) {
-            if(distance(safetyTrianglePoint,center) >= radius); // rajouter la marche ici : 2x la longeur du bateau
+            if(distance(safetyTrianglePoint,center) <= radius + ((Rectangle)ship.getShape()).getHeight()*2);
             collision = true;
             break;
         }
@@ -53,6 +54,11 @@ public class DetectCollisions {
         }
         return true;
     }
+
+    /**
+    public boolean collisionWithRectangle(Polygon safetyTriangle){
+    }
+     */
 
     /// Décider comment le construire A MODIFIER pour le point fictional
     public Polygon buildSafetyTriangle(Position start,Position finish){
@@ -87,7 +93,8 @@ public class DetectCollisions {
         return xVectorTriangle*yVectorPolygon - yVectorTriangle*xVectorPolygon;
     }
 
-    // Rajouter le cas du rectangle
+    // Rajouter le cas du rectangle !!!
+
     public boolean detectCollision(Position start, Position finish) {
 
         boolean collision;
