@@ -117,20 +117,21 @@ public class InitGame {
         return false;
     }
 
-    @JsonIgnore
-    public Sailor sailorSail(Sail sail) {
-        List<Sailor> sailorsSail = new ArrayList<>();
-        for (int i = 0; i < sailors.length; i++) {
-            if (sailors[i].getEquipment() != null && sailors[i].getEquipment().getType().equals("sail"))
-                return sailors[i];
-            return sailors[i];
-        }
-        return null;
-    }
-
-
-    public boolean isSailorOnTheEquipment(Equipment equipment, Sailor sailor) {
-        if (sailor.getX() == equipment.getX() && sailor.getY() == equipment.getY()) return true;
-        return false;
-    }
+//    @JsonIgnore
+//    public Sailor sailorSail(Sail sail) {
+//        List<Sailor> sailorsSail = new ArrayList<>();
+//        for (int i = 0; i < sailors.length; i++) {
+//            if (sailors[i].getEquipment() != null && sailors[i].getEquipment().getType().equals("sail"))
+//                return sailors[i];
+//            else
+//                return sailors[i];
+//        }
+//        return null;
+//    }
+//
+//
+//    public boolean isSailorOnTheEquipment(Equipment equipment, Sailor sailor) {
+//        if (sailor.getX() == equipment.getX() && sailor.getY() == equipment.getY()) return true;
+//        return false;
+//    }
 }

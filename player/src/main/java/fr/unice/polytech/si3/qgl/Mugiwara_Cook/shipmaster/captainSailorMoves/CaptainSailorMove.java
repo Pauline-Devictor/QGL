@@ -33,7 +33,7 @@ public class CaptainSailorMove {
             assignSpecificEquipement("rudder", 1);
             nbsailors--;
         }
-        if (nbsailors >= 1 && this.ship.getEquipement("sail").size()>=1) {
+        if (nbsailors >= 1 && this.ship.getEquipement("sail").size() >= 1) {
 
             assignSpecificEquipement("sail", 1);
             nbsailors--;
@@ -44,11 +44,11 @@ public class CaptainSailorMove {
                 nbsailors -= 2;
             }
         }
-        if (nbsailors >= 1 && this.ship.getEquipement("sail").size()>=2){
+        if (nbsailors >= 1 && this.ship.getEquipement("sail").size() >= 2) {
 
             assignSpecificEquipement("sail", 1);
             nbsailors--;
-        };
+        }
     }
 
     public void assignSpecificEquipement(String equipement, int numberSailorAssign) {
@@ -76,5 +76,4 @@ public class CaptainSailorMove {
                 this.sailors[i].moveToEquipment(actionJSON);
         }
     }
-
 }

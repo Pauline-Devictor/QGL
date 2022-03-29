@@ -49,7 +49,7 @@ public class AngleOption {
      * @return le couple angle delta
      */
     public static AngleOption angle(int oarLeft, int oarRight, int oarTotal) {
-        return new AngleOption((Math.PI / 2) / ((oarTotal) / 2) * (oarRight - oarLeft), oarRight - oarLeft);
+        return new AngleOption((Math.PI / 2) / (((double) oarTotal) / 2) * (oarRight - oarLeft), oarRight - oarLeft);
     }
 
     public void getDetail() {

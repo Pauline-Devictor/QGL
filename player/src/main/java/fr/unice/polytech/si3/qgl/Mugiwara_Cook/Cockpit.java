@@ -2,6 +2,7 @@ package fr.unice.polytech.si3.qgl.Mugiwara_Cook;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
@@ -41,7 +42,7 @@ public class Cockpit implements ICockpit {
         try {
             this.initGame = myMapper.readValue(game, InitGame.class);
         } catch (JsonProcessingException e) {
-            e.printStackTrace();
+            Display.debug(e.getMessage());
         }
 
         captain2 = new Captain(this.initGame, this.actionJSON);
@@ -60,7 +61,7 @@ public class Cockpit implements ICockpit {
         try {
             nextRound = myMapper.readValue(round, NextRound.class);
         } catch (JsonProcessingException e) {
-            e.printStackTrace();
+            Display.debug(e.getMessage());
         }
 
         captain2.nextMove(nextRound);
@@ -71,7 +72,7 @@ public class Cockpit implements ICockpit {
             Display.info(json);
             return json;
         } catch (JsonProcessingException e) {
-            e.printStackTrace();
+            Display.debug(e.getMessage());
         }
 
         return null;

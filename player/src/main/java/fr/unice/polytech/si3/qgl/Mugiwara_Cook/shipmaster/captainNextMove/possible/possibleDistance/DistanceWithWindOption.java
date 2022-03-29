@@ -3,20 +3,19 @@ package fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove.possi
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.Wind;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove.CalculateAngleHelper;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove.CalculateDistanceHelper;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class DistanceWithWindOption {
-
-
+    @Getter
+    @Setter
     int nbsails;
+    @Getter
+    @Setter
     double distance;
-
-    public DistanceWithWindOption(int nbsails, double distance) {
-        this.distance = distance;
-        this.nbsails = nbsails;
-    }
 
     public static List<DistanceWithWindOption> creationDistanceOptionWithWindFromSailsCount(int allSailsUsable, int allSails, Wind wind, double boatOrientation) {
         List<DistanceWithWindOption> listDistanceWithWindOption = new ArrayList<>();
@@ -27,23 +26,10 @@ public class DistanceWithWindOption {
         return listDistanceWithWindOption;
     }
 
-    public int getNbsails() {
-        return nbsails;
-    }
-
-    public void setNbsails(int nbsails) {
+    public DistanceWithWindOption(int nbsails, double distance) {
+        this.distance = distance;
         this.nbsails = nbsails;
     }
-
-    public double getDistance() {
-        return distance;
-    }
-
-    public void setDistance(double distance) {
-        this.distance = distance;
-    }
-
-
 }
 
 

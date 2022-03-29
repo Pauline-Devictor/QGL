@@ -6,13 +6,10 @@ import lombok.Getter;
 import lombok.Setter;
 
 abstract public class VisibleEntity {
-    @Getter
     @Setter
     String type;
-    @Getter
     @Setter
     Shape shape;
-    @Getter
     @Setter
     Position position;
 

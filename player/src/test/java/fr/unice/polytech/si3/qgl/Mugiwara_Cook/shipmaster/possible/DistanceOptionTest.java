@@ -23,11 +23,11 @@ public class DistanceOptionTest {
     void distanceOptionCalcul(){
         DistanceOption result = CalculateDistanceHelper.distance(1,0,1);
         assertEquals(result.getDistance(),165);
-        assertEquals(result.getOarLeftRight()[0],1);
-        assertEquals(result.getOarLeftRight()[1],0);
+        assertEquals(result.getOarLeftRightAndSails()[0],1);
+        assertEquals(result.getOarLeftRightAndSails()[1],0);
         result = CalculateDistanceHelper.distance(0,0,0);
         assertEquals(result.getDistance(),NaN);
-        assertEquals(result.getOarLeftRight()[0],0);
-        assertEquals(result.getOarLeftRight()[1],0);
+        assertEquals(result.getOarLeftRightAndSails()[0],0);
+        assertEquals(result.getOarLeftRightAndSails()[1],0);
     }
 }

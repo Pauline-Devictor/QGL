@@ -83,7 +83,7 @@ public class Ship {
         ArrayList<Equipment> equipments = new ArrayList<>();
         if (entities != null) {
             for (Equipment e : entities) {
-                if (e != null && e.getType() == type) equipments.add(e);
+                if (e != null && e.getType().equals(type)) equipments.add(e);
             }
         }
         return equipments;

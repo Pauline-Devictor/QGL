@@ -15,32 +15,32 @@ class DistanceOptionTest {
     void distanceOption2LeftOar_2RightOar_4Max() {
         DistanceOption distanceOption = CalculateDistanceHelper.distance(2, 2, 4);
         assertEquals(165, distanceOption.getDistance());
-        assertEquals(2, distanceOption.getOarLeftRight()[0]);
-        assertEquals(2, distanceOption.getOarLeftRight()[1]);
+        assertEquals(2, distanceOption.getOarLeftRightAndSails()[0]);
+        assertEquals(2, distanceOption.getOarLeftRightAndSails()[1]);
     }
 
     @Test
     void distanceOption2LeftOar_2RightOar_8Max() {
         DistanceOption distanceOption = CalculateDistanceHelper.distance(2, 2, 8);
         assertEquals(82.5, distanceOption.getDistance());
-        assertEquals(2, distanceOption.getOarLeftRight()[0]);
-        assertEquals(2, distanceOption.getOarLeftRight()[1]);
+        assertEquals(2, distanceOption.getOarLeftRightAndSails()[0]);
+        assertEquals(2, distanceOption.getOarLeftRightAndSails()[1]);
     }
 
     @Test
     void distanceOption2LeftOar_4RightOar_8Max() {
         DistanceOption distanceOption = CalculateDistanceHelper.distance(2, 4, 8);
         assertEquals(123.75, distanceOption.getDistance());
-        assertEquals(2, distanceOption.getOarLeftRight()[0]);
-        assertEquals(4, distanceOption.getOarLeftRight()[1]);
+        assertEquals(2, distanceOption.getOarLeftRightAndSails()[0]);
+        assertEquals(4, distanceOption.getOarLeftRightAndSails()[1]);
     }
 
     @Test
     void distanceOption4LeftOar_1RightOar_8Max() {
         DistanceOption distanceOption = CalculateDistanceHelper.distance(4, 1, 8);
         assertEquals(103.125, distanceOption.getDistance());
-        assertEquals(4, distanceOption.getOarLeftRight()[0]);
-        assertEquals(1, distanceOption.getOarLeftRight()[1]);
+        assertEquals(4, distanceOption.getOarLeftRightAndSails()[0]);
+        assertEquals(1, distanceOption.getOarLeftRightAndSails()[1]);
     }
 
     @Test
@@ -50,7 +50,7 @@ class DistanceOptionTest {
         List<int[]> oarsDistanceOptionList = new ArrayList<>();
         for (DistanceOption option : distanceOptionList) {
             distanceDistanceOptionList.add(option.getDistance());
-            oarsDistanceOptionList.add(option.getOarLeftRight());
+            oarsDistanceOptionList.add(option.getOarLeftRightAndSails());
         }
         assertTrue(distanceDistanceOptionList.contains(0.0));
         assertEquals(0, oarsDistanceOptionList.get(0)[0]);
@@ -74,7 +74,7 @@ class DistanceOptionTest {
         List<int[]> oarsDistanceOptionList = new ArrayList<>();
         for (DistanceOption option : distanceOptionList) {
             distanceDistanceOptionList.add(option.getDistance());
-            oarsDistanceOptionList.add(option.getOarLeftRight());
+            oarsDistanceOptionList.add(option.getOarLeftRightAndSails());
         }
         assertTrue(distanceDistanceOptionList.contains(41.25));
         assertEquals(0, oarsDistanceOptionList.get(0)[0]);
@@ -100,7 +100,7 @@ class DistanceOptionTest {
         for (DistanceOption option : distanceOptionList) {
             option.getDetail();
             distanceDistanceOptionList.add(option.getDistance());
-            oarsDistanceOptionList.add(option.getOarLeftRight());
+            oarsDistanceOptionList.add(option.getOarLeftRightAndSails());
         }
         assertTrue(distanceDistanceOptionList.contains(41.25));
         assertEquals(2, oarsDistanceOptionList.get(0)[0]);
@@ -120,8 +120,8 @@ class DistanceOptionTest {
 
         DistanceOption distanceOption = CalculateDistanceHelper.distance(2, 4, 8);
         assertEquals(123.75, distanceOption.getDistance());
-        assertEquals(2, distanceOption.getOarLeftRight()[0]);
-        assertEquals(4, distanceOption.getOarLeftRight()[1]);
+        assertEquals(2, distanceOption.getOarLeftRightAndSails()[0]);
+        assertEquals(4, distanceOption.getOarLeftRightAndSails()[1]);
     }
 }
 

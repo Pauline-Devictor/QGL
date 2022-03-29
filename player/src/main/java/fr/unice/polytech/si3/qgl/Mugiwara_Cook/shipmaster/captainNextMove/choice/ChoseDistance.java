@@ -23,7 +23,7 @@ public class ChoseDistance {
                 distanceClosest = distanceOp;
             }
         }
-        return distanceClosest.getOarLeftRight();
+        return distanceClosest.getOarLeftRightAndSails();
     }
     public static int[] choiceBestNbSail(int[] nbOfOarsUsed, Checkpoint checkpoint, Ship ship, Position position,Wind wind) {
         int[] nbOarAndNbSail={nbOfOarsUsed[0],nbOfOarsUsed[1],0};
