@@ -117,7 +117,11 @@ class DistanceOptionTest {
     void distanceOptionFromOarCount_4LeftOar_1RightOar_8MaxImpossible() {
         List<DistanceOption> distanceOptionList = DistanceOption.creationDistanceOptionFromOarCount(2, 4, 1, 8);
         assertEquals(0, distanceOptionList.size());
-    }
 
+        DistanceOption distanceOption = CalculateDistanceHelper.distance(2, 4, 8);
+        assertEquals(123.75, distanceOption.getDistance());
+        assertEquals(2, distanceOption.getOarLeftRight()[0]);
+        assertEquals(4, distanceOption.getOarLeftRight()[1]);
+    }
 }
 
