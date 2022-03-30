@@ -4,21 +4,33 @@ import fr.unice.polytech.si3.qgl.Mugiwara_Cook.MyMapper;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Sailor;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.game.ActionJSON;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.game.InitGame;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.Position;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes.Shape;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.Deck;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.Ship;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Equipment;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Oar;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Rudder;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Sail;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
 
 class CaptainSailorMoveTest {
     ActionJSON actionJSON;
     CaptainSailorMove captainSailorMove;
     File jsonInit;
     InitGame initGame;
+    Ship ship;
+    List<Equipment> equipmentList;
+
 
     @BeforeEach
     void start() throws IOException {
@@ -27,6 +39,23 @@ class CaptainSailorMoveTest {
         initGame = new MyMapper().readValue(jsonInit, InitGame.class);
         captainSailorMove = new CaptainSailorMove(initGame.getShip(), initGame.getSailors());
         initGame.setSailors(new Sailor[]{initGame.getSailors()[0]});
+        ship = mock(Ship.class);
+
+
+        Equipment oar1 = new Oar(1, 2);
+        Equipment oar2 = new Oar(2, 2);
+        Equipment oar3 = new Oar(3, 2);
+        Equipment oar4 = new Oar(3, 0);
+        Equipment oar5 = new Oar(4, 0);
+        Equipment oar6 = new Oar(5, 0);
+        Equipment sail1 = new Sail(3, 1, false);
+        Equipment sail2 = new Sail(5, 1, false);
+        Equipment rudder = new Rudder(6, 1);
+        equipmentList = new ArrayList<>(List.of(oar1, oar2, oar3, oar4, oar5, oar6, rudder, sail1, sail2));
+        Position postion = mock(Position.class);
+        Shape shape = mock(Shape.class);
+        Deck deck = mock(Deck.class);
+        ship = new Ship(100, postion, "bateau", deck, equipmentList, shape);
     }
 
     @Test
@@ -55,6 +84,71 @@ class CaptainSailorMoveTest {
         assertEquals(0, this.actionJSON.getListAction().size());
         this.captainSailorMove.moveToAssignEquipment(this.actionJSON);
         assertEquals(0, this.actionJSON.getListAction().size());
+    }
+
+
+    @Test
+    void assignEquipement() {
+        Sailor sailor1 = new Sailor(1, 1, 2, "a");
+        Sailor sailor2 = new Sailor(2, 2, 2, "b");
+        Sailor sailor3 = new Sailor(3, 3, 2, "c");
+        Sailor sailor4 = new Sailor(4, 3, 0, "d");
+        Sailor sailor5 = new Sailor(5, 4, 0, "e");
+        Sailor sailor6 = new Sailor(6, 5, 0, "f");
+        Sailor sailor7 = new Sailor(7, 3, 1, "g");
+        Sailor[] listSailor = {sailor7, sailor2, sailor3, sailor5, sailor6, sailor4, sailor1};
+        CaptainSailorMove captainSailorMove1 = new CaptainSailorMove(ship, listSailor);
+        captainSailorMove1.assignEquipement();
+        int countOar = 0;
+        int countSail = 0;
+        int countRudder = 0;
+        for (int i = 0; i < listSailor.length; i++) {
+            if (listSailor[i].getEquipment().getType().equals("oar")) {
+                countOar++;
+            } else if (listSailor[i].getEquipment().getType().equals("sail")) {
+                countSail++;
+            } else if (listSailor[i].getEquipment().getType().equals("rudder")) {
+                countRudder++;
+            }
+        }
+        assertEquals(countOar, 4);
+        assertEquals(countSail, 2);
+        assertEquals(countRudder, 1);
+
+
+    }
+
+    @Test
+    public void assignSpecificEquipement() {
+        Sailor sailor1 = new Sailor(1, 1, 2, "a");
+        Sailor sailor2 = new Sailor(2, 2, 2, "b");
+        Sailor sailor3 = new Sailor(3, 3, 2, "c");
+        Sailor sailor4 = new Sailor(4, 3, 0, "d");
+        Sailor sailor5 = new Sailor(5, 4, 0, "e");
+        Sailor sailor6 = new Sailor(6, 5, 0, "f");
+        Sailor sailor7 = new Sailor(7, 3, 1, "g");
+        Sailor[] listSailor = {sailor7, sailor2, sailor3, sailor5, sailor6, sailor4, sailor1};
+        CaptainSailorMove captainSailorMove1 = new CaptainSailorMove(ship, listSailor);
+        captainSailorMove1.assignSpecificEquipement("oar", 5);
+        int countOar = 0;
+        int countSail = 0;
+        int countRudder = 0;
+        for (int i = 0; i < listSailor.length; i++) {
+            if (listSailor[i].getEquipment() != null) {
+                if (listSailor[i].getEquipment().getType().equals("oar")) {
+                    countOar++;
+                } else if (listSailor[i].getEquipment().getType().equals("sail")) {
+                    countSail++;
+                } else if (listSailor[i].getEquipment().getType().equals("rudder")) {
+                    countRudder++;
+                }
+            }
+
+        }
+        assertEquals(countOar, 5);
+        assertEquals(countSail, 0);
+        assertEquals(countRudder, 0);
+
     }
 
 
