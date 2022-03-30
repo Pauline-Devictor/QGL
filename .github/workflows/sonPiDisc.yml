@@ -33,10 +33,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Dossier
-        run: cd ..
+#      - name: Dossier
+#        run: mvn -f qgl-21-22-mugiwara_cook/player/pom.xml
       - name: Run Mutation Testing
-        run: mvn package -Ppitest org.pitest:pitest-maven:mutationCoverage
+        run: mvn -f qgl-21-22-mugiwara_cook/player/pom.xml -Ppitest org.pitest:pitest-maven:mutationCoverage
 
   discordPerform:
     if: ${{ always() && needs.build.result == 'success' }}
