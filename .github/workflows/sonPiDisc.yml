@@ -27,8 +27,9 @@ jobs:
 #      - name: Run Mutation Testing
 #        run: mvn package -Ppitest org.pitest:pitest-maven:mutationCoverage
 
-  discord:
-    name: Discord
+  discordPerform:
+    needs: [ Build ]
+    name: Discord message
     runs-on: ubuntu-latest
 
     steps:
@@ -36,6 +37,22 @@ jobs:
         uses: Sniddl/discord-commits@v1.3
         with:
           webhook: "https://discord.com/api/webhooks/958658739844554792/6iX1_fez9_jJ7ctiOTY3NKiGeFSdB-dL1sBhWdW8Mrk-_y1R6W9Sfj_8tPpFVhViPbcG"
-          message: "Successful commit"
+          message: "Successful build: {{ commit.title }}"
           embed: '{ "title": "{{ commit.title }}", "description": "{{ commit.description }}", "url": "{{ commit.url }}", "author": { "name": "{{ commit.author.name }} ({{ commit.author.username }})", "icon_url": "https://avatars.io/gravatar/{{ commit.author.email }}"} }'
+
+
+  discordFail:
+    if: ${{  needs.build.result == 'failure' }}
+    needs: [ Build ]
+    name: Discord message
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Discord Commits Message
+        uses: Sniddl/discord-commits@v1.3
+        with:
+          webhook: "https://discord.com/api/webhooks/958658739844554792/6iX1_fez9_jJ7ctiOTY3NKiGeFSdB-dL1sBhWdW8Mrk-_y1R6W9Sfj_8tPpFVhViPbcG"
+          message: "Fail build: {{ commit.title }}"
+          embed: '{ "title": "{{ commit.title }}", "description": "{{ commit.description }}", "url": "{{ commit.url }}", "author": { "name": "{{ commit.author.name }} ({{ commit.author.username }})", "icon_url": "https://avatars.io/gravatar/{{ commit.author.email }}"} }'
+
 
