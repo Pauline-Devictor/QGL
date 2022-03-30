@@ -24,8 +24,16 @@ jobs:
       - name: Maven build
         run: mvn clean package
 
-#      - name: Run Mutation Testing
-#        run: mvn package -Ppitest org.pitest:pitest-maven:mutationCoverage
+
+  mutation:
+    if: ${{ always() && needs.build.result == 'success' }}
+    needs: [ Build ]
+    name: Mutation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Run Mutation Testing
+        run: mvn package -Ppitest org.pitest:pitest-maven:mutationCoverage
 
   discordPerform:
     if: ${{ always() && needs.build.result == 'success' }}
@@ -38,7 +46,7 @@ jobs:
         uses: Sniddl/discord-commits@v1.3
         with:
           webhook: "https://discord.com/api/webhooks/958658739844554792/6iX1_fez9_jJ7ctiOTY3NKiGeFSdB-dL1sBhWdW8Mrk-_y1R6W9Sfj_8tPpFVhViPbcG"
-          message: "Successful build {{ github.event.head_commit.message }}"  #: {{ github.event.head_commit.message }}
+          message: "Successful build"  #: {{ github.event.head_commit.message }}
 #          embed: '{ "title": "{{ commit.title }}", "description": "{{ commit.description }}", "url": "{{ commit.url }}", "author": { "name": "{{ commit.author.name }} ({{ commit.author.username }})", "icon_url": "https://avatars.io/gravatar/{{ commit.author.email }}"} }'
 
 
@@ -54,6 +62,6 @@ jobs:
         with:
           webhook: "https://discord.com/api/webhooks/958658739844554792/6iX1_fez9_jJ7ctiOTY3NKiGeFSdB-dL1sBhWdW8Mrk-_y1R6W9Sfj_8tPpFVhViPbcG"
           message: "Fail build"
-          embed: '{ "title": "{{ commit.title }}", "description": "{{ commit.description }}", "url": "{{ commit.url }}", "author": { "name": "{{ commit.author.name }} ({{ commit.author.username }})", "icon_url": "https://avatars.io/gravatar/{{ commit.author.email }}"} }'
+#          embed: '{ "title": "{{ commit.title }}", "description": "{{ commit.description }}", "url": "{{ commit.url }}", "author": { "name": "{{ commit.author.name }} ({{ commit.author.username }})", "icon_url": "https://avatars.io/gravatar/{{ commit.author.email }}"} }'
 
 
