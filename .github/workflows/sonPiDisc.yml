@@ -86,7 +86,8 @@ jobs:
         with:
           java-version: 1.17
       - name: Run Mutation Testing
-        run: mvn verify -Ppit
+        run: mvn verify -Ppitest
+
       - name: Publish Artifact
         uses: actions/upload-artifact@v3
         with:
