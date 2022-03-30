@@ -43,7 +43,7 @@ public class Cockpit implements ICockpit {
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
-        captain2 = 3
+        
         captain2 = new Captain(this.initGame, this.actionJSON);
 
     }
