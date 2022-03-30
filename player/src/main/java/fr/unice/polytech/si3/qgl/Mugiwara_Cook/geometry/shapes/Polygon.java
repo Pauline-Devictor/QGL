@@ -6,10 +6,8 @@ import lombok.Setter;
 
 public class Polygon extends Shape {
     public final static String TYPE = "polygon";
-    @Getter
     @Setter
     double orientation;
-    @Getter
     @Setter
     Point[] vertices;
 

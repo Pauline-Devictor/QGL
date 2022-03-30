@@ -13,7 +13,7 @@ import java.util.List;
 
 public class ChoseDistance {
 
-    
+
     public static int[] choiceBestNbOar(AngleOption angleOption, Checkpoint checkpoint, Ship ship, Position position) {
         double distance = distanceBetweenPointAndCheckpoint(checkpoint, position.getX(), position.getY());
         List<DistanceOption> distanceOption = DistanceOption.creationDistanceOptionFromOarCount(angleOption.getDelta(), ship.getNbUsableOarsLeft(), ship.getNbUsableOarsRight(), ship.getNbOars());
@@ -25,31 +25,28 @@ public class ChoseDistance {
         }
         return distanceClosest.getOarLeftRightAndSails();
     }
-    public static int[] choiceBestNbSail(int[] nbOfOarsUsed, Checkpoint checkpoint, Ship ship, Position position,Wind wind) {
-        int[] nbOarAndNbSail={nbOfOarsUsed[0],nbOfOarsUsed[1],0};
+
+    public static int[] choiceBestNbSail(int[] nbOfOarsUsed, Checkpoint checkpoint, Ship ship, Position position, Wind wind) {
+        int[] nbOarAndNbSail = {nbOfOarsUsed[0], nbOfOarsUsed[1], 0};
         double distance = CalculateDistanceHelper.remainingDistance(nbOfOarsUsed, checkpoint, ship, position);
-        List<DistanceWithWindOption> distanceWithWindOptions= DistanceWithWindOption.creationDistanceOptionWithWindFromSailsCount(ship.getNbUsableSails(),ship.getNbEquipment("sail"),wind,ship.getPosition().getOrientation());
+        List<DistanceWithWindOption> distanceWithWindOptions = DistanceWithWindOption.creationDistanceOptionWithWindFromSailsCount(ship.getNbUsableSails(), ship.getNbEquipment("sail"), wind, ship.getPosition().getOrientation());
         DistanceWithWindOption distanceClosest = distanceWithWindOptions.get(0);
-        nbOarAndNbSail[2]=distanceClosest.getNbsails();
+        nbOarAndNbSail[2] = distanceClosest.getNbsails();
         for (DistanceWithWindOption distanceOp : distanceWithWindOptions) {
             if (distanceOp.getDistance() <= distance && distanceOp.getDistance() > distanceClosest.getDistance()) {
                 distanceClosest = distanceOp;
-                nbOarAndNbSail[2]=distanceOp.getNbsails();
+                nbOarAndNbSail[2] = distanceOp.getNbsails();
             }
         }
         return nbOarAndNbSail;
     }
 
-    public static int[] choiceBestNbOarAndSail(AngleOption angleOption, Checkpoint checkpoint, Ship ship, Position position, Wind wind){
-        int[] nbOfOarsUsed =choiceBestNbOar(angleOption,checkpoint,ship,position);
-        return choiceBestNbSail(nbOfOarsUsed,checkpoint,ship,position,wind);
+    public static int[] choiceBestNbOarAndSail(AngleOption angleOption, Checkpoint checkpoint, Ship ship, Position position, Wind wind) {
+        int[] nbOfOarsUsed = choiceBestNbOar(angleOption, checkpoint, ship, position);
+        return choiceBestNbSail(nbOfOarsUsed, checkpoint, ship, position, wind);
     }
-
-
 
     public static double distanceBetweenPointAndCheckpoint(Checkpoint checkpoint, double xPoint, double yPoint) {
         return (double) Math.sqrt(Math.pow(checkpoint.getPosition().getX() - xPoint, 2) + Math.pow(checkpoint.getPosition().getY() - yPoint, 2));
     }
-
-
 }
