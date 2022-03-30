@@ -28,7 +28,7 @@ jobs:
 #        run: mvn package -Ppitest org.pitest:pitest-maven:mutationCoverage
 
   discordPerform:
-    if: ${{  needs.build.result == 'success' }}
+    if: ${{ always() && needs.build.result == 'success' }}
     needs: [ Build ]
     name: Discord message
     runs-on: ubuntu-latest
@@ -43,7 +43,7 @@ jobs:
 
 
   discordFail:
-    if: ${{  needs.build.result == 'failure' }}
+    if: ${{ always() && needs.build.result == 'failure' }}
     needs: [ Build ]
     name: Discord message
     runs-on: ubuntu-latest
