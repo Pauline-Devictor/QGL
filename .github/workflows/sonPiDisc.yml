@@ -22,10 +22,14 @@ jobs:
         run: mvn clean package
 
   mutation:
+    runs-on: ubuntu-latest
+    steps:
       - name: Run Mutation Testing
-        run: mvn package -Ppitest org.pitest:pitest-maven:mutationCoverage
+      run: mvn package -Ppitest org.pitest:pitest-maven:mutationCoverage
 
   discord:
+    runs-on: ubuntu-latest
+    steps:
       - name: Discord Commits Message
         uses: Sniddl/discord-commits@v1.3
         with:
