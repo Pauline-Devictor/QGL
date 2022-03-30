@@ -67,6 +67,22 @@ class ChoseDistanceTest {
     }
 
     @Test
+    void choiceBestNbOarMiddle() {
+        ship = mock(Ship.class);
+        when(ship.getNbUsableOarsLeft()).thenReturn(4);
+        when(ship.getNbUsableOarsRight()).thenReturn(4);
+        when(ship.getNbOars()).thenReturn(8);
+
+        AngleOption angleOption = new AngleOption(0, 0);
+        Checkpoint checkpointx500y0 = new Checkpoint(new Position(20, 0, 0), new Circle(100));
+        Position positionShip = new Position(0, 0, 0);
+
+        int[] oarsOption = ChoseDistance.choiceBestNbOar(angleOption, checkpointx500y0, ship, positionShip);
+        assertEquals(0, oarsOption[0]);
+        assertEquals(0, oarsOption[1]);
+    }
+
+    @Test
     void choiceBestNbOarProche() {
         ship = mock(Ship.class);
         when(ship.getNbUsableOarsLeft()).thenReturn(2);
@@ -98,32 +114,34 @@ class ChoseDistanceTest {
         assertEquals(2, oarsOption[1]);
     }
 
-//    @Test
-//    void choiceBestNbOarProcheSail() {
-//        ship = mock(Ship.class);
-//        when(ship.getNbUsableOarsLeft()).thenReturn(2);
-//        when(ship.getNbUsableOarsRight()).thenReturn(2);
-//        when(ship.getNbOars()).thenReturn(4);
-//
-//        AngleOption angleOption = new AngleOption(0, 0);
-//        Checkpoint checkpointx100y0 = new Checkpoint(new Position(100, 0, 0), new Circle(100));
-//        Position positionShip = new Position(0, 0, 0);
-//
-//        int[] oarsOption = ChoseDistance.choiceBestNbOar(angleOption, checkpointx100y0, ship, positionShip);
-//        assertEquals(1, oarsOption[0]);
-//        assertEquals(1, oarsOption[1]);
-//    }
+    @Test
+    void choiceBestNbOarProcheSail() {
+        Wind wind = new Wind(0, 100);
+        ship = mock(Ship.class);
+
+        Checkpoint checkpointx100y0 = new Checkpoint(new Position(50, 0, 0), new Circle(100));
+        Position positionShip = new Position(0, 0, 0);
+        when(ship.getPosition()).thenReturn(positionShip);
+        when(ship.getNbEquipment("sail")).thenReturn(2);
+        when(ship.getNbUsableSails()).thenReturn(1);
+        when(ship.getNbOars()).thenReturn(4);
+
+        int[] oarsOption = ChoseDistance.choiceBestNbSail(new int[]{0, 0}, checkpointx100y0, ship, positionShip, wind);
+        assertEquals(0, oarsOption[0]);
+        assertEquals(0, oarsOption[1]);
+        assertEquals(1, oarsOption[2]);
+    }
 
     @Test
     void choiceBestNbOarPileSail() {
-        Wind wind = new Wind(0,100);
+        Wind wind = new Wind(0, 100);
         ship = mock(Ship.class);
 
         Checkpoint checkpointx100y0 = new Checkpoint(new Position(165, 0, 0), new Circle(100));
         Position positionShip = new Position(0, 0, 0);
         when(ship.getPosition()).thenReturn(positionShip);
 
-        int[] oarsOption = ChoseDistance.choiceBestNbSail(new int[]{2, 2}, checkpointx100y0, ship, positionShip , wind);
+        int[] oarsOption = ChoseDistance.choiceBestNbSail(new int[]{2, 2}, checkpointx100y0, ship, positionShip, wind);
         assertEquals(2, oarsOption[0]);
         assertEquals(2, oarsOption[1]);
         assertEquals(0, oarsOption[2]);
