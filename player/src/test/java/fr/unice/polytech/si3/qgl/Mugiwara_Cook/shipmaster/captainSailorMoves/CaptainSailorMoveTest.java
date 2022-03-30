@@ -151,5 +151,56 @@ class CaptainSailorMoveTest {
 
     }
 
+    @Test
+    public void assignSpecificEquipementWithOneSailors() {
+        Sailor sailor1 = new Sailor(1, 1, 2, "a");
+        Sailor[] listSailor = {sailor1};
+        CaptainSailorMove captainSailorMove1 = new CaptainSailorMove(ship, listSailor);
+        captainSailorMove1.assignEquipement();
+        int countOar = 0;
+        int countSail = 0;
+        int countRudder = 0;
+        for (int i = 0; i < listSailor.length; i++) {
+            if (listSailor[i].getEquipment().getType().equals("oar")) {
+                countOar++;
+            } else if (listSailor[i].getEquipment().getType().equals("sail")) {
+                countSail++;
+            } else if (listSailor[i].getEquipment().getType().equals("rudder")) {
+                countRudder++;
+            }
+        }
+        assertEquals(countOar, 0);
+        assertEquals(countSail, 0);
+        assertEquals(countRudder, 1);
+    }
+
+    @Test
+    public void assignSpecificEquipementWith5Sailors() {
+        Sailor sailor1 = new Sailor(1, 1, 2, "a");
+        Sailor sailor2 = new Sailor(2, 2, 2, "b");
+        Sailor sailor3 = new Sailor(3, 3, 2, "c");
+        Sailor sailor4 = new Sailor(4, 3, 0, "d");
+        Sailor sailor5 = new Sailor(5, 4, 0, "e");
+        Sailor[] listSailor = {sailor1,sailor2,sailor3,sailor4,sailor5};
+        CaptainSailorMove captainSailorMove1 = new CaptainSailorMove(ship, listSailor);
+        captainSailorMove1.assignEquipement();
+        int countOar = 0;
+        int countSail = 0;
+        int countRudder = 0;
+        for (int i = 0; i < listSailor.length; i++) {
+            if (listSailor[i].getEquipment().getType().equals("oar")) {
+                countOar++;
+            } else if (listSailor[i].getEquipment().getType().equals("sail")) {
+                countSail++;
+            } else if (listSailor[i].getEquipment().getType().equals("rudder")) {
+                countRudder++;
+            }
+        }
+        assertEquals(countOar, 2);
+        assertEquals(countSail, 2);
+        assertEquals(countRudder, 1);
+    }
+
+
 
 }
