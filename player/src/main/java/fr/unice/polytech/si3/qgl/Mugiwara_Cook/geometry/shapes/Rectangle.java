@@ -6,13 +6,10 @@ import lombok.Setter;
 public class Rectangle extends Shape {
     public final static String TYPE = "rectangle";
     @Getter
-    @Setter
     double width;
     @Getter
-    @Setter
     double height;
     @Getter
-    @Setter
     double orientation;
 
     public Rectangle(double width, double height, double orientation) {

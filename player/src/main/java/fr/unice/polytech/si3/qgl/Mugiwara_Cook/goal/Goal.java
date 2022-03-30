@@ -6,7 +6,6 @@ import lombok.Setter;
 
 abstract public class Goal {
     @Getter
-    @Setter
     String mode;
 
     public Goal(String mode){

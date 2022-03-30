@@ -6,7 +6,6 @@ import lombok.Setter;
 public class Circle extends Shape {
     public final static String TYPE = "circle";
     @Getter
-    @Setter
     double radius;
 
     public Circle(double radius) {
