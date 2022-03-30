@@ -39,13 +39,6 @@ public class DeserializeShape extends StdDeserializer<Shape> {
             case "circle":
                 double radius = node.get("radius").asDouble();
                 return new Circle(radius);
-
-            case "polygon":
-                double orientation2 = node.get("orientation").asDouble();
-                String verticesString = node.get("vertices").toString();
-                MyMapper mapper = new MyMapper();
-                Point[] vertices = mapper.readValue(verticesString, Point[].class);
-                return new Polygon(orientation2,vertices);
             default:
                 return null;
         }

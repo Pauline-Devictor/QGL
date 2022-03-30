@@ -166,8 +166,4 @@ class SailorTest {
         assertTrue(sailor1.sailorIsAllowedToMove(3,2));
         assertTrue(sailor1.sailorIsAllowedToMove(0,0));
     }
-
-    @Test //TODO
-    void CanmoveToEquipment(){
-    }
 }
