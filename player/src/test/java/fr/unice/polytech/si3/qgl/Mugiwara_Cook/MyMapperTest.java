@@ -7,6 +7,7 @@ import fr.unice.polytech.si3.qgl.Mugiwara_Cook.game.NextRound;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes.Rectangle;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes.Shape;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.goal.Goal;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.VisibleEntity;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -111,5 +112,56 @@ class MyMapperTest {
                 "    \"mode\": \"Nothing\"\n" +
                 "  }\n" +
                 "}", InitGame.class).getGoal());
+    }
+    @Test
+    void nullVisibleEntities()throws IOException {
+        assertNull(myMapper.readValue(" {\n" +
+                "      \"type\": \"nothing\",\n" +
+                "      \"position\": {\n" +
+                "        \"x\": 500,\n" +
+                "        \"y\": 0,\n" +
+                "        \"orientation\": 0\n" +
+                "      },\n" +
+                "      \"shape\": {\n" +
+                "        \"type\": \"rectangle\",\n" +
+                "        \"width\": 50,\n" +
+                "        \"height\": 500,\n" +
+                "        \"orientation\": 0\n" +
+                "      },\n" +
+                "      \"strength\": 40\n" +
+                "    }", VisibleEntity.class));
+    }
+    @Test
+    void streamEntities()throws IOException {
+        assertNotNull(myMapper.readValue("{\n" +
+                "      \"type\": \"stream\",\n" +
+                "      \"position\": {\n" +
+                "        \"x\": 500,\n" +
+                "        \"y\": 0,\n" +
+                "        \"orientation\": 0\n" +
+                "      },\n" +
+                "      \"shape\": {\n" +
+                "        \"type\": \"rectangle\",\n" +
+                "        \"width\": 50,\n" +
+                "        \"height\": 500,\n" +
+                "        \"orientation\": 0\n" +
+                "      },\n" +
+                "      \"strength\": 40\n" +
+                "    }", VisibleEntity.class));
+    }
+    @Test
+    void reefEntities()throws IOException {
+        assertNotNull(myMapper.readValue("{\n" +
+                "      \"type\": \"reef\",\n" +
+                "      \"position\": {\n" +
+                "        \"x\": 240,\n" +
+                "        \"y\": 40,\n" +
+                "        \"orientation\": 0\n" +
+                "      },\n" +
+                "      \"shape\":{\n" +
+                "        \"type\": \"circle\",\n" +
+                "        \"radius\": 30\n" +
+                "      }\n" +
+                "    }", VisibleEntity.class));
     }
 }
