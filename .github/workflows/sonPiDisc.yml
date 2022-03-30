@@ -35,7 +35,7 @@ jobs:
 #      - name: Dossier
 #        run: mvn -f qgl-21-22-mugiwara_cook/player/pom.xml
       - name: Run Mutation Testing
-        run: mvn verify -Ppitest
+        run: mvn -f player/pom.xml verify -Ppitest
 
   discordPerform:
     if: ${{ always() && needs.build.result == 'success' }}
