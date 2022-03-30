@@ -22,7 +22,6 @@ jobs:
       - name: Maven build
         run: mvn clean package
 
-
   mutation:
     if: ${{ needs.build.result == 'success' }}
     needs: [ Build ]
@@ -42,6 +41,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: my-artifact
+          path: ./
 
   discord:
     needs: [ Build, Mutation ]
