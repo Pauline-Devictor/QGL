@@ -34,7 +34,7 @@ jobs:
 
     steps:
       - name: Dossier
-        run: ls -l
+        run: cd ..
       - name: Run Mutation Testing
         run: mvn package -Ppitest org.pitest:pitest-maven:mutationCoverage
 
