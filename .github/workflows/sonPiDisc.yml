@@ -35,7 +35,7 @@ jobs:
 #      - name: Dossier
 #        run: mvn -f qgl-21-22-mugiwara_cook/player/pom.xml
       - name: Run Mutation Testing
-        run: mvn verify -Ppitest #  -f player/pom.xml
+        run: mvn -f pom.xml verify -Ppitest #  -f player/pom.xml
 
   discordPerform:
     if: ${{ always() && needs.build.result == 'success' }}
@@ -48,7 +48,7 @@ jobs:
         uses: Sniddl/discord-commits@v1.3
         with:
           webhook: "https://discord.com/api/webhooks/958658739844554792/6iX1_fez9_jJ7ctiOTY3NKiGeFSdB-dL1sBhWdW8Mrk-_y1R6W9Sfj_8tPpFVhViPbcG"
-          message: "Successful build {{current.project.path}}"  #: {{ github.event.head_commit.message }}
+          message: "Successful build"  #: {{ github.event.head_commit.message }}
 #          embed: '{ "title": "{{ commit.title }}", "description": "{{ commit.description }}", "url": "{{ commit.url }}", "author": { "name": "{{ commit.author.name }} ({{ commit.author.username }})", "icon_url": "https://avatars.io/gravatar/{{ commit.author.email }}"} }'
 
 
