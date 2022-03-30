@@ -21,8 +21,15 @@ jobs:
       - name: Maven build
         run: mvn clean package
 
-      - name: Discord Commits
+  mutation:
+      - name: Run Mutation Testing
+        run: mvn package -Ppitest org.pitest:pitest-maven:mutationCoverage
+
+  discord:
+      - name: Discord Commits Message
         uses: Sniddl/discord-commits@v1.3
         with:
           webhook: "https://discord.com/api/webhooks/958486282735071312/hEz4ZkcN6b6f-uKruZJAS2Y3m8foboLoBxLI5DSVA_ViWiVtZvTpCn6Uo50SwBpl-mIe"
-          message: "@everyone Successful commit"
+          message: "Successful commit"
+          embed: '{ "title": "{{ commit.title }}", "description": "{{ commit.description }}", "url": "{{ commit.url }}", "author": { "name": "{{ commit.author.name }} ({{ commit.author.username }})", "icon_url": "https://avatars.io/gravatar/{{ commit.author.email }}"} }'
+
