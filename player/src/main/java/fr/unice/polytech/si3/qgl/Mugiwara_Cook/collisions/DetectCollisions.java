@@ -11,7 +11,7 @@ import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.Ship;
 
 import java.util.ArrayList;
 
-/// Faut modifier certains points pour les remplacer par des positions
+
 public class DetectCollisions {
 
     Reef reef;
@@ -63,28 +63,6 @@ public class DetectCollisions {
         } return false;
     }
 
-    /**
-    // Methode initiale
-    public boolean collisionWithPolygon(Polygon safetyTriangle, Point[] vertices) {
-        for (int j = 0; j < 3; j++) {
-            for (int i = 0; i < vertices.length; i++) {
-                Point A = vertices[i];
-                Point B;
-                if (i == vertices.length - 1) {
-                    B = vertices[0];
-                } else {
-                    B = vertices[i + 1];
-                }
-                System.out.println(i+ "-ème déterminant :" + calculDeterminant(A, B,safetyTriangle.getVertices()[j]));
-                if (calculDeterminant(A, B, safetyTriangle.getVertices()[j]) >= 0) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-     */
-
     public boolean collisionWithRectangle(Polygon safetyTriangle, Point[] rectangleVertices) {
         Point closestReefPoint = findCLosestPointFromPolygonOrRectangle(rectangleVertices, safetyTriangle);
         for (int i = 0; i < 3; i++) {
@@ -102,8 +80,6 @@ public class DetectCollisions {
         return true;
     }
 
-    // A DECALER DANS RECTANGLE POTENTIELLEMENT
-    // IL FAUT IMPERATIVEMENT REARRAGER L'ORDRE DES POINTS POUR ASSURER LE PARCOURS DANS LE SENS HORAIRE
     public Point[] getRectangleVertices() {
         double height = ((Rectangle) reef.getShape()).getHeight() / 2;
         double width = ((Rectangle) reef.getShape()).getWidth() / 2;
@@ -127,7 +103,6 @@ public class DetectCollisions {
         return closestPoint;
     }
 
-    /// Décider comment le construire A MODIFIER pour le point fictional
     public Polygon buildSafetyTriangle(Position start, Position finish) {
         Point fictionalPoint = new Point(0, 0);
         Point startPoint = new Point(start.getX(), start.getY());
