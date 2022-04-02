@@ -1,3 +1,5 @@
+
+
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.collisions;
 
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.Point;
@@ -134,3 +136,4 @@ public class AvoidCollisions {
         return furthestPoint;
     }
 }
+

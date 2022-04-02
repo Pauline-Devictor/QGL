@@ -1,3 +1,5 @@
+/**
+
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.collisions;
 
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.Point;
@@ -133,7 +135,7 @@ public class AvoidCollisionsTest {
         assertEquals(polygonDistance,avoidCollisionsPolygon.determineDistance(reefCenter.getX(),reefCenter.getY()));
     }
 
-    /**
+    // COMMENTED CODE
     @Test
     void resolveEquation(){
         double A = 1+(double)50/30;
@@ -152,7 +154,8 @@ public class AvoidCollisionsTest {
         assertEquals(x,solution.getX());
         assertEquals(y,solution.getY());
     }
-    */
+    //
+
 
     @Test
     void determineRightPosition(){
@@ -186,3 +189,5 @@ public class AvoidCollisionsTest {
     }
 
 }
+
+*/
