@@ -7,6 +7,7 @@ import lombok.Setter;
 
 abstract public class VisibleEntity {
     @Setter
+    @Getter
     String type;
     @Setter
     Shape shape;

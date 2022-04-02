@@ -68,7 +68,7 @@ public class CaptainSailorMove {
     }
 
     /**
-     * Deplace les marins vers leur rame attitré
+     * Deplace les marins vers leur rame attitrée
      */
     public void moveToAssignEquipment(ActionJSON actionJSON) {
         for (int i = 0; i < this.sailors.length; i++) {

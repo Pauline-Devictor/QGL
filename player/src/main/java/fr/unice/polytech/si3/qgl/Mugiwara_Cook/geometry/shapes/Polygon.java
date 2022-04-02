@@ -9,6 +9,7 @@ public class Polygon extends Shape {
     @Setter
     double orientation;
     @Setter
+    @Getter
     Point[] vertices;
 
     public Polygon(double orientation, Point[] vertices) {

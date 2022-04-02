@@ -1,22 +1,34 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry;
 
-import lombok.Getter;
-import lombok.Setter;
-
 public class Point {
-    @Getter
-    @Setter
-    int x;
-    @Getter
-    @Setter
-    int y;
+    double x;
+    double y;
 
-    public Point() {
+    public Point(){
         //Json
-    }
+        }
 
-    public Point(int x, int y) {
+    public Point(double x, double y){
         this.x = x;
         this.y = y;
     }
+
+    public double getX() {
+        return x;
+    }
+
+    public void setX(double x) {
+        this.x = x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    public void setY(double y) {
+        this.y = y;
+    }
+
+
+
 }
