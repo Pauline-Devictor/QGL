@@ -46,11 +46,11 @@ public class Spotter {
 
         List<List<Integer>> map = new ArrayList<>();
         CollisionDetector collisionDetector= new CollisionDetector();
-        for(double y=nextRound.getShip().getPosition().getY();y<getMapHeight();){
+        for(double y=nextRound.getShip().getPosition().getY()+squareSize/2;y<getMapHeight();){
             List mapLine = new ArrayList<>();
-            y+=squareSize/2;
-            for(double x=nextRound.getShip().getPosition().getX();x<getMapWidth();){
-                x+=squareSize/2;
+
+            for(double x=nextRound.getShip().getPosition().getX()+squareSize/2;x<getMapWidth();){
+
                 for(Object reef : reefs){
                     if(collisionDetector.detectCollision(new Point(x,y),(Reef) reef)){
                         mapLine.add(1);
@@ -58,10 +58,13 @@ public class Spotter {
                         mapLine.add(0);
                     }
                 }
+                x+=squareSize;
             }
             map.add(mapLine);
+            y+=squareSize;
         }
-        return isThereAPath(map) ? map : buildMap((int)(squareSize*1.3));
+        //return isThereAPath(map) ? map : buildMap((int)(squareSize*1.3));
+        return map;
     }
 
 
