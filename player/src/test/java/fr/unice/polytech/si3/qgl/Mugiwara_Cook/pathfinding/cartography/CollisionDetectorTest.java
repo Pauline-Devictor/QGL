@@ -1,6 +1,6 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.pathfinding.cartography;
 
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.collisions.DetectCollisions;
+
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.Point;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.Position;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes.Circle;
