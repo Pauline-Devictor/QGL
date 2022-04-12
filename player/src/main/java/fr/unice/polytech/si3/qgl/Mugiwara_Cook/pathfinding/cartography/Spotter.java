@@ -17,50 +17,57 @@ public class Spotter {
     @Getter
     ArrayList reefs;
 
-    public Spotter(NextRound nextRound,Checkpoint currentCheckpoint){
-        this.nextRound=nextRound;
-        this.currentCheckpoint=currentCheckpoint;
+    public Spotter(NextRound nextRound, Checkpoint currentCheckpoint) {
+        this.nextRound = nextRound;
+        this.currentCheckpoint = currentCheckpoint;
         setReefs();
     }
 
-    public void setReefs(){
+    public void setReefs() {
         reefs = new ArrayList<Reef>();
-        for(VisibleEntity visibleEntity : nextRound.getVisibleEntities()){
-            if(visibleEntity.getType().equals("reef")){
-                reefs.add((Reef)visibleEntity);
+        for (VisibleEntity visibleEntity : nextRound.getVisibleEntities()) {
+            if (visibleEntity.getType().equals("reef")) {
+                reefs.add((Reef) visibleEntity);
             }
         }
     }
 
-    public double getMapHeight(){
-        return Math.abs(nextRound.getShip().getPosition().getY()-currentCheckpoint.getPosition().getY())*1.2;
+    public double getMapHeight() {
+        return Math.abs(nextRound.getShip().getPosition().getY() - currentCheckpoint.getPosition().getY()) * 1.2;
     }
 
-    public double getMapWidth(){
-        return Math.abs(nextRound.getShip().getPosition().getX()-currentCheckpoint.getPosition().getX())*1.2;
+    public double getMapWidth() {
+        return Math.abs(nextRound.getShip().getPosition().getX() - currentCheckpoint.getPosition().getX()) * 1.2;
     }
 
     // L'argument de cette méthode va définir la taille des carrés lors de l'échantillonage
-    public List<List<Integer>> buildMap(int squareSize){
+    public List<List<Integer>> buildMap(int squareSize) {
 
         List<List<Integer>> map = new ArrayList<>();
-        CollisionDetector collisionDetector= new CollisionDetector();
-        for(double y=nextRound.getShip().getPosition().getY()+squareSize/2;y<getMapHeight();){
+        int x = 0;
+        int y = 0;
+        CollisionDetector collisionDetector = new CollisionDetector();
+        for (double yReal = nextRound.getShip().getPosition().getY() + squareSize / 2; yReal - nextRound.getShip().getPosition().getY() < getMapHeight(); ) {
             List mapLine = new ArrayList<>();
 
-            for(double x=nextRound.getShip().getPosition().getX()+squareSize/2;x<getMapWidth();){
+            for (double xReal = nextRound.getShip().getPosition().getX() + squareSize / 2; xReal - nextRound.getShip().getPosition().getX() < getMapWidth(); ) {
 
-                for(Object reef : reefs){
-                    if(collisionDetector.detectCollision(new Point(x,y),(Reef) reef)){
-                        mapLine.add(1);
+                for (Object reef : reefs) {
+                    if (collisionDetector.detectCollision(new Point(xReal, yReal), (Reef) reef)) {
+                        //mapLine.add(1);
+                        mapLine.add(new Node(x, y, xReal, yReal, true));
                     } else {
-                        mapLine.add(0);
+                        //mapLine.add(0);
+                        mapLine.add(new Node(x,y,xReal,yReal,false));
                     }
                 }
-                x+=squareSize;
+                xReal += squareSize;
+                x++;
             }
             map.add(mapLine);
-            y+=squareSize;
+            yReal += squareSize;
+            y++;
+            x = 0;
         }
         return map;
     }

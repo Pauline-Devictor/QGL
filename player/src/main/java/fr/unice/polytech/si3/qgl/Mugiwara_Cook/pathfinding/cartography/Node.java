@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public class Node {
     int x;
     int y;
-    int xReal;
-    int yReal;
+    double xReal;
+    double yReal;
     int f;
     int g;
     int h;
@@ -15,9 +15,11 @@ public class Node {
     Node previous;
     boolean wall;
 
-    public Node(int x, int y, boolean wall) {
+    public Node(int x, int y,double xReal,double yReal, boolean wall) {
         this.x = x;
         this.y = y;
+        this.xReal = xReal;
+        this.yReal = yReal;
         this.wall = wall;
         this.voisin = new ArrayList<>();
     }

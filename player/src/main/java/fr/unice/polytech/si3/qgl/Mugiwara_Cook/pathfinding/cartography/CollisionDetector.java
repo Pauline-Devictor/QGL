@@ -13,16 +13,16 @@ public class CollisionDetector {
     // Cette classe va servir a détecter quelles cases ne sont pas libres pour le pathfinding
     // A noter que les méthodes de détection ne prennent en compte aucune marge de sécurité
 
-    public CollisionDetector(){
+    public CollisionDetector() {
 
     }
 
-    public boolean collisionWithCircle(Point mapPoint,Reef reef){
-        return distance(mapPoint,reef.getPosition()) <= ((Circle)reef.getShape()).getRadius();
+    public boolean collisionWithCircle(Point mapPoint, Reef reef) {
+        return distance(mapPoint, reef.getPosition()) <= ((Circle) reef.getShape()).getRadius();
     }
 
     //Les deux méthodes sont pour l'instant séparés elles vont être réecrite pour éviter la duplication de code
-    public boolean collisionWithRectangle(Point mapPoint,Reef reef){
+    public boolean collisionWithRectangle(Point mapPoint, Reef reef) {
         Point rectangleVertices[] = getRectangleVertices(reef);
         for (int i = 0; i < rectangleVertices.length; i++) {
             Point A = rectangleVertices[i];
@@ -39,8 +39,8 @@ public class CollisionDetector {
         return true;
     }
 
-    public boolean collisionWithPolygon(Point mapPoint,Reef reef){
-        Point polygonVertices[] = ((Polygon)reef.getShape()).getVertices(); // Cette méthode ne peut pas marcher tant qu'on a pas rangé l'ordre des points comme on veut !
+    public boolean collisionWithPolygon(Point mapPoint, Reef reef) {
+        Point polygonVertices[] = ((Polygon) reef.getShape()).getVertices(); // Cette méthode ne peut pas marcher tant qu'on a pas rangé l'ordre des points comme on veut !
         for (int i = 0; i < polygonVertices.length; i++) {
             Point A = polygonVertices[i];
             Point B;
@@ -57,15 +57,15 @@ public class CollisionDetector {
     }
 
 
-    public boolean detectCollision(Point mapPoint,Reef reef){
-        if(reef.getShape().getType().equals("circle")){
+    public boolean detectCollision(Point mapPoint, Reef reef) {
+        if (reef.getShape().getType().equals("circle")) {
             return collisionWithCircle(mapPoint, reef);
         }
-        if (reef.getShape().getType().equals("rectangle")){
+        if (reef.getShape().getType().equals("rectangle")) {
             return collisionWithRectangle(mapPoint, reef);
         }
-        if (reef.getShape().getType().equals("polygon")){
-            return collisionWithPolygon(mapPoint,reef);
+        if (reef.getShape().getType().equals("polygon")) {
+            return collisionWithPolygon(mapPoint, reef);
         }
         return false;
     }
