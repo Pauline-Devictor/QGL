@@ -5,7 +5,6 @@ import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.Point;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.Checkpoint;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.Reef;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.VisibleEntity;
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.Ship;
 import lombok.Getter;
 
 import java.util.ArrayList;
@@ -63,19 +62,6 @@ public class Spotter {
             map.add(mapLine);
             y+=squareSize;
         }
-        //return isThereAPath(map) ? map : buildMap((int)(squareSize*1.3));
         return map;
-    }
-
-
-    public boolean isThereAPath(List<List<Integer>>map){
-        for(int i=0;i<map.size();i++){
-            for(int j=0;j<map.get(0).size();j++){
-                if(map.get(i).get(j)!=0){
-                    return true;
-                }
-            }
-        }
-        return false;
     }
 }
