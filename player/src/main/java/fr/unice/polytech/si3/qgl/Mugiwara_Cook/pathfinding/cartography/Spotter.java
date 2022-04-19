@@ -12,6 +12,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Spotter {
+    @Getter
+    Node nodeStart;
+    @Getter
+    Node nodeEnd;
 
     @Getter
     List<List<Node>> map;
@@ -27,8 +31,8 @@ public class Spotter {
 
         double[] extremum = fourextremum(shipPosition, checkpointArrayList);
 
-        double diffX = Math.abs(extremum[1]) + Math.abs(extremum[0]);
-        double diffY = Math.abs(extremum[3]) + Math.abs(extremum[2]);
+        double diffX = extremum[1] - extremum[0];
+        double diffY = extremum[3] - extremum[2];
 
         double tailleDiffX = diffX / nbLargeur;
         double tailleDiffY = diffY / nbLargeur;
@@ -38,7 +42,7 @@ public class Spotter {
         for (int i = 0; i < nbLargeur; i++) {
             listNode = new ArrayList<>();
             for (int k = 0; k < nbLargeur; k++) {
-                listNode.add(new Node(i, k, tailleDiffX * i + tailleDiffX / 2, tailleDiffY * k + tailleDiffY / 2, false));
+                listNode.add(new Node(i, k, tailleDiffX * i + tailleDiffX / 2 + extremum[0], tailleDiffY * k + tailleDiffY / 2 + extremum[2], false));
             }
             map.add(listNode);
         }
@@ -59,15 +63,16 @@ public class Spotter {
             }
 
             if (checkpoint.getPosition().getY() > maxY) {
-                maxX = checkpoint.getPosition().getY();
+                maxY = checkpoint.getPosition().getY();
             } else if (checkpoint.getPosition().getY() < minY) {
-                minX = checkpoint.getPosition().getY();
+                minY = checkpoint.getPosition().getY();
             }
         }
         return new double[]{minX, maxX, minY, maxY};
     }
 
-    public boolean updateMap(List<VisibleEntity> visibleEntityList) {
+    public boolean updateMap(List<VisibleEntity> visibleEntityList, Position shipPosition, Position positionCheckpoint) {
+        boolean mofifier = false;
         CollisionDetector collisionDetector = new CollisionDetector();
         for (VisibleEntity visibleEntity : visibleEntityList) {
             if (visibleEntity.getType().equals("reef") && !reefs.contains((Reef) visibleEntity)) {
@@ -75,12 +80,33 @@ public class Spotter {
                     for (Node node : nodeList) {
                         if (collisionDetector.detectCollision(new Point(node.getXReal(), node.getYReal()), (Reef) visibleEntity)) {
                             node.setWall(true);
+                            mofifier = true;
                         }
                     }
                 }
                 reefs.add((Reef) visibleEntity);
             }
         }
+
+        this.nodeStart = closetNodeFromPosition(shipPosition);
+        this.nodeEnd = closetNodeFromPosition(positionCheckpoint);
+
+        return mofifier;
+    }
+
+
+    public Node closetNodeFromPosition(Position position) {
+        double disMin = 1000000;
+        Node nodeMin = null;
+        for (List<Node> nodeList : this.map) {
+            for (Node node : nodeList) {
+                if (Math.sqrt(Math.pow(node.getXReal() - position.getX(), 2) + Math.pow(node.getYReal() - position.getY(), 2)) < disMin) {
+                    disMin = Math.sqrt(Math.pow(node.getXReal() - position.getX(), 2) + Math.pow(node.getYReal() - position.getY(), 2));
+                    nodeMin = node;
+                }
+            }
+        }
+        return nodeMin;
     }
 
 //    public void setReefs(List<VisibleEntity> visibleEntityList) {

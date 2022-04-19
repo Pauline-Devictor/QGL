@@ -81,7 +81,7 @@ public class Node {
         }
     }
 
-    public void getDetail() {
-        System.out.println(this.x + " " + this.y + " " + this.xReal + " " + this.yReal + " " + this.wall);
+    public String getDetail() {
+        return this.xReal + ":" + this.yReal;
     }
 }
