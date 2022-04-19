@@ -27,12 +27,11 @@ class PathFindindTest {
         carte.get(1).get(1).setWall(true);
         carte.get(3).get(4).setWall(true);
 
-        PathFindind pathFindind = new PathFindind(carte.get(0).get(0), carte.get(4).get(4), carte);
+        PathFindind pathFindind = new PathFindind(carte);
         List<Node> nodeList = null;
-        if (pathFindind.findPath())
+        if (pathFindind.findPath(carte.get(0).get(0), carte.get(4).get(4)))
             nodeList = pathFindind.getPath();
 
-        System.out.println();
         for (List<Node> subCarte2 : carte) {
             for (Node nodePath : subCarte2) {
                 System.out.print(nodePath.getColor() + " ");

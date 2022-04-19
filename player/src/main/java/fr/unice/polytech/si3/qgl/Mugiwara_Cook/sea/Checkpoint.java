@@ -1,5 +1,6 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.Position;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes.Shape;
 import lombok.Getter;
@@ -13,12 +14,19 @@ public class Checkpoint {
     @Setter
     Shape shape;
 
+    @JsonIgnore
+    @Getter
+    @Setter
+    Boolean essential;
+
+
     public Checkpoint() {
-        //Json
+        essential = true;
     }
 
     public Checkpoint(Position position, Shape shape) {
         this.position = position;
         this.shape = shape;
+        this.essential = false;
     }
 }

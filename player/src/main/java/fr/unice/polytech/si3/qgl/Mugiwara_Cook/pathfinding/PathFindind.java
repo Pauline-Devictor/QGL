@@ -10,9 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PathFindind {
-    Node start;
-    Node end;
-
     List<Node> openSet;
     List<Node> closeSet;
     boolean endAlgo = false;
@@ -23,16 +20,14 @@ public class PathFindind {
 
     List<List<Node>> carte;
 
-    public PathFindind(Node start, Node end, List<List<Node>> carte) {
-        this.start = start;
-        this.end = end;
+    public PathFindind(List<List<Node>> carte) {
         this.carte = carte;
         this.openSet = new ArrayList<>();
-        openSet.add(start);
         this.closeSet = new ArrayList<>();
     }
 
-    boolean findPath() {  //return null si pas de chemin
+    public boolean findPath(Node start, Node end) {  //return null si pas de chemin
+        openSet.add(start);
         for (List<Node> nodeList : carte) {
             for (Node node : nodeList) {
                 node.addVoisin(carte);
@@ -74,7 +69,7 @@ public class PathFindind {
                         }
 
                         if (newPath) {
-                            i.setH(heuristique(i));
+                            i.setH(heuristique(i, end));
                             i.setF((int) (i.getG() + i.getH()));
                             i.setPrevious(current);
                         }
@@ -116,14 +111,14 @@ public class PathFindind {
 //        print(grid[i])
     }
 
-    double heuristique(Node currentNode) {
+    double heuristique(Node currentNode, Node end) {
         return Math.sqrt(Math.pow(end.getX() - currentNode.getX(), 2) + Math.pow(end.getY() - currentNode.getY(), 2));
     }
 
     void nodeToCheckpoint() {
         this.pathCheckpoint = new ArrayList<>();
         for (Node node : this.path) {
-            this.pathCheckpoint.add(new Checkpoint(new Position(node.getXReal(), node.getYReal(),0),new Circle(20)));
+            this.pathCheckpoint.add(new Checkpoint(new Position(node.getXReal(), node.getYReal(), 0), new Circle(20)));
         }
     }
 }
