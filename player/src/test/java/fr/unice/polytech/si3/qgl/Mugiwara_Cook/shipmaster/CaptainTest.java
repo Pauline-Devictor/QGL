@@ -5,12 +5,19 @@ import fr.unice.polytech.si3.qgl.Mugiwara_Cook.MyMapper;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.game.ActionJSON;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.game.InitGame;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.game.NextRound;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.Position;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes.Rectangle;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.Checkpoint;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.Reef;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.VisibleEntity;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CaptainTest {
     Cockpit cockpit;
@@ -131,4 +138,16 @@ public class CaptainTest {
         captain.getCurrentCheckpoint().getPosition().setY(100);
         assertFalse(captain.inCheckpoint(next));
     }
+
+    @Test//TODO
+    void updateMapNewCheckpoints(){
+        VisibleEntity[] visibleEntityList =  new VisibleEntity[1];
+        visibleEntityList[0] = new Reef(new Position(6, 6, 0), new Rectangle(20, 20, 0));
+        next.setVisibleEntities(visibleEntityList);
+        ArrayList<Checkpoint> checkpoints = captain.checkpointsPath;
+
+        captain.updateMap(next);
+        assertTrue(checkpoints.size() != captain.checkpointsPath.size());
+    }
+
 }
