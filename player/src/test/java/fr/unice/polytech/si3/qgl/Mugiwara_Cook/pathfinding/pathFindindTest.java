@@ -15,7 +15,7 @@ class PathFindindTest {
         for (int i = 0; i < 5; i++) {
             subCarte = new ArrayList<>();
             for (int k = 0; k < 5; k++) {
-                subCarte.add(new Node(i, k, i, k, false));
+                subCarte.add(new Node(k, i, k, i, false));
             }
             carte.add(subCarte);
         }
@@ -26,11 +26,14 @@ class PathFindindTest {
         carte.get(1).get(3).setWall(true);
         carte.get(1).get(1).setWall(true);
         carte.get(3).get(4).setWall(true);
+        carte.get(2).get(0).setWall(true);
+        carte.get(2).get(1).setWall(true);
+        carte.get(2).get(2).setWall(true);
+//        carte.get(2).get(3).setWall(true);
+        carte.get(2).get(1).setWall(true);
 
         PathFindind pathFindind = new PathFindind(carte);
-        List<Node> nodeList = null;
-        if (pathFindind.findPath(carte.get(0).get(0), carte.get(4).get(4)))
-            nodeList = pathFindind.getPath();
+        pathFindind.findPath(carte.get(0).get(0), carte.get(4).get(4));
 
         for (List<Node> subCarte2 : carte) {
             for (Node nodePath : subCarte2) {

@@ -33,6 +33,16 @@ public class PathFindind {
                 node.addVoisin(carte);
             }
         }
+
+        for (List<Node> nodeList : carte) {
+            for (Node node : nodeList) {
+                System.out.println("Pour nodev: " + node.getX() + ":" + node.getY());
+                for (Node nodeVoisin : node.getVoisin()) {
+                    System.out.print("Voisin: " + nodeVoisin.getX() + ":" + nodeVoisin.getY() + " ");
+                }
+                System.out.println();
+            }
+        }
         this.path = new ArrayList<>();
         while (true) {
             if (openSet.size() > 0) {

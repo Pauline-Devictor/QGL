@@ -50,17 +50,17 @@ public class Node {
     }
 
     public void addVoisin(List<List<Node>> grid) {
-        int cols = grid.size();
-        int rows = grid.get(0).size();
-//        System.out.println("Colone: " + cols + " et lignes: " + rows);
+        int cols = grid.get(0).size();
+        int rows = grid.size();
+        System.out.println("Colone: " + cols + " et lignes: " + rows + " 1er: " + this.x);
         if (this.x < cols - 1)
-            this.voisin.add(grid.get(this.x + 1).get(this.y));
+            this.voisin.add(grid.get(this.y).get(this.x + 1));
         if (this.x > 0)
-            this.voisin.add(grid.get(this.x - 1).get(this.y));
+            this.voisin.add(grid.get(this.y).get(this.x - 1));
         if (this.y < rows - 1)
-            this.voisin.add(grid.get(this.x).get(this.y + 1));
+            this.voisin.add(grid.get(this.y + 1).get(this.x));
         if (this.y > 0)
-            this.voisin.add(grid.get(this.x).get(this.y - 1));
+            this.voisin.add(grid.get(this.y - 1).get(this.x));
 //        if (this.x < cols - 1 && this.y < rows - 1)
 //            this.voisin.add(grid.get(this.x + 1).get(this.y + 1));
 //        if (this.x > 0 && this.y > 0)

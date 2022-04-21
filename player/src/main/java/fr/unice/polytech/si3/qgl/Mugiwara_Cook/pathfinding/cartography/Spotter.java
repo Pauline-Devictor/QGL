@@ -93,7 +93,6 @@ public class Spotter {
                 for (List<Node> nodeList : this.map) {
                     for (Node node : nodeList) {
                         if (collisionDetector.detectCollision(new Point(node.getXReal(), node.getYReal()), (Reef) visibleEntity)) {
-                            System.out.println("Il est bon le NODE: " + node.getXReal() + "+" + node.getYReal());
                             node.setWall(true);
                             mofifier = true;
                         }
