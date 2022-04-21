@@ -3,15 +3,11 @@ package fr.unice.polytech.si3.qgl.Mugiwara_Cook.pathfinding.cartography;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.Point;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.Position;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes.Circle;
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes.Polygon;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes.Rectangle;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.Reef;
 
 
 public class CollisionDetector {
-
-    // Cette classe va servir a détecter quelles cases ne sont pas libres pour le pathfinding
-    // A noter que les méthodes de détection ne prennent en compte aucune marge de sécurité
 
     public CollisionDetector() {
 
@@ -39,33 +35,12 @@ public class CollisionDetector {
         return true;
     }
 
-    public boolean collisionWithPolygon(Point mapPoint, Reef reef) {
-        Point polygonVertices[] = ((Polygon) reef.getShape()).getVertices(); // Cette méthode ne peut pas marcher tant qu'on a pas rangé l'ordre des points comme on veut !
-        for (int i = 0; i < polygonVertices.length; i++) {
-            Point A = polygonVertices[i];
-            Point B;
-            if (i == polygonVertices.length - 1) {
-                B = polygonVertices[0];
-            } else {
-                B = polygonVertices[i + 1];
-            }
-            if (calculDeterminant(A, B, mapPoint) > 0) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-
     public boolean detectCollision(Point mapPoint, Reef reef) {
         if (reef.getShape().getType().equals("circle")) {
             return collisionWithCircle(mapPoint, reef);
         }
         if (reef.getShape().getType().equals("rectangle")) {
             return collisionWithRectangle(mapPoint, reef);
-        }
-        if (reef.getShape().getType().equals("polygon")) {
-            return collisionWithPolygon(mapPoint, reef);
         }
         return false;
     }
