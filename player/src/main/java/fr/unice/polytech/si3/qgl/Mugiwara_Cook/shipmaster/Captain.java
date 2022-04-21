@@ -100,7 +100,7 @@ public class Captain {
                 <= ((Circle) currentCheckpoint.getShape()).getRadius());
     }
 
-    public void updateMap(NextRound nextRound) {//TODo tests
+    public void updateMap(NextRound nextRound) {
         ArrayList<VisibleEntity> visibleEntitiesArray = new ArrayList<>(List.of(nextRound.getVisibleEntities()));
         if (spotter.updateMap(visibleEntitiesArray, nextRound.getShip().getPosition(), currentCheckpoint.getPosition())) {
             if (pathFindind.findPath(this.spotter.getNodeStart(), this.spotter.getNodeEnd())) {
