@@ -139,7 +139,7 @@ public class CaptainTest {
         assertFalse(captain.inCheckpoint(next));
     }
 
-    @Test//TODO
+    @Test
     void updateMapNewCheckpoints(){
         VisibleEntity[] visibleEntityList =  new VisibleEntity[1];
         visibleEntityList[0] = new Reef(new Position(6, 6, 0), new Rectangle(20, 20, 0));
