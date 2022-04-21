@@ -4,7 +4,6 @@ package fr.unice.polytech.si3.qgl.Mugiwara_Cook.pathfinding.cartography;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.Point;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.Position;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes.Circle;
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes.Polygon;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes.Rectangle;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.Reef;
 import org.junit.jupiter.api.Test;
@@ -38,27 +37,26 @@ public class CollisionDetectorTest {
         assertEquals(200,collisionDetector.distance(safetyPoint,reefPoint));
     }
 
-    /**
+
     @Test
     void getRectangleVertices(){
         Position reefCenter = new Position(500,500,0.0);
         Rectangle rectangle = new Rectangle(50,100,0.0);
         Reef rectangleReef = new Reef(reefCenter,rectangle);
         collisionDetector = new CollisionDetector();
-        Point rectangleVertices1 = new Point(550,525);
-        Point rectangleVertices2 = new Point(550,475);
-        Point rectangleVertices3 = new Point(450,525);
-        Point rectangleVertices4 = new Point(450,475);
+        Point rectangleVertices1 = new Point(525,550);
+        Point rectangleVertices2 = new Point(475,550);
+        Point rectangleVertices3 = new Point(525,450);
+        Point rectangleVertices4 = new Point(475,450);
         assertEquals(rectangleVertices1.getX(),collisionDetector.getRectangleVertices(rectangleReef)[0].getX());
         assertEquals(rectangleVertices1.getY(),collisionDetector.getRectangleVertices(rectangleReef)[0].getY());
-        assertEquals(rectangleVertices2.getX(),collisionDetector.getRectangleVertices(rectangleReef)[1].getX());
-        assertEquals(rectangleVertices2.getY(),collisionDetector.getRectangleVertices(rectangleReef)[1].getY());
-        assertEquals(rectangleVertices3.getX(),collisionDetector.getRectangleVertices(rectangleReef)[3].getX());
-        assertEquals(rectangleVertices3.getY(),collisionDetector.getRectangleVertices(rectangleReef)[3].getY());
+        assertEquals(rectangleVertices3.getX(),collisionDetector.getRectangleVertices(rectangleReef)[1].getX());
+        assertEquals(rectangleVertices3.getY(),collisionDetector.getRectangleVertices(rectangleReef)[1].getY());
+        assertEquals(rectangleVertices2.getX(),collisionDetector.getRectangleVertices(rectangleReef)[3].getX());
+        assertEquals(rectangleVertices2.getY(),collisionDetector.getRectangleVertices(rectangleReef)[3].getY());
         assertEquals(rectangleVertices4.getX(),collisionDetector.getRectangleVertices(rectangleReef)[2].getX());
         assertEquals(rectangleVertices4.getY(),collisionDetector.getRectangleVertices(rectangleReef)[2].getY());
     }
-     */
 
     @Test
     void collisionWithCircleFalse(){
@@ -187,6 +185,7 @@ public class CollisionDetectorTest {
         assertTrue(collisionDetector.detectCollision(point7,reef));
     }
 
+    /**
     @Test
     void detectCollisionPolygonFalse(){
         Point point1 =  new Point(400,399);
@@ -207,7 +206,7 @@ public class CollisionDetectorTest {
         assertFalse(collisionDetector.collisionWithPolygon(point3,reef));
         assertFalse(collisionDetector.collisionWithPolygon(point4,reef));
     }
-    /**
+
     @Test
     void dectectCollsisionPolygonTrue(){
         Point point1 =  new Point(500,500);

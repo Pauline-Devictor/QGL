@@ -49,6 +49,20 @@ public class Spotter {
     }
 
 
+    public Node closetNodeFromPosition(Position position) {
+        double disMin = 1000000;
+        Node nodeMin = null;
+        for (List<Node> nodeList : this.map) {
+            for (Node node : nodeList) {
+                if (Math.sqrt(Math.pow(node.getXReal() - position.getX(), 2) + Math.pow(node.getYReal() - position.getY(), 2)) < disMin) {
+                    disMin = Math.sqrt(Math.pow(node.getXReal() - position.getX(), 2) + Math.pow(node.getYReal() - position.getY(), 2));
+                    nodeMin = node;
+                }
+            }
+        }
+        return nodeMin;
+    }
+
     public double[] fourextremum(Position shipPosition, ArrayList<Checkpoint> checkpointArrayList) {
         double minX = shipPosition.getX();
         double maxX = shipPosition.getX();
@@ -95,57 +109,48 @@ public class Spotter {
     }
 
 
-    public Node closetNodeFromPosition(Position position) {
-        double disMin = 1000000;
-        Node nodeMin = null;
-        for (List<Node> nodeList : this.map) {
-            for (Node node : nodeList) {
-                if (Math.sqrt(Math.pow(node.getXReal() - position.getX(), 2) + Math.pow(node.getYReal() - position.getY(), 2)) < disMin) {
-                    disMin = Math.sqrt(Math.pow(node.getXReal() - position.getX(), 2) + Math.pow(node.getYReal() - position.getY(), 2));
-                    nodeMin = node;
-                }
-            }
-        }
-        return nodeMin;
+    /**
+    public double getMapHeight() {
+        return Math.abs(nextRound.getShip().getPosition().getY() - currentCheckpoint.getPosition().getY()) * 1.2;
     }
 
-//    public void setReefs(List<VisibleEntity> visibleEntityList) {
-//        for (VisibleEntity visibleEntity : visibleEntityList) {
-//            if (visibleEntity.getType().equals("reef") && !reefs.contains(visibleEntity)) {
-//                reefs.add((Reef) visibleEntity);
-//            }
-//        }
-//    }
+    public double getMapWidth() {
+        return Math.abs(nextRound.getShip().getPosition().getX() - currentCheckpoint.getPosition().getX()) * 1.2;
+    }
 
     // L'argument de cette méthode va définir la taille des carrés lors de l'échantillonage
-//    public List<List<Integer>> buildMap(int squareSize) {
-//
-//        List<List<Integer>> map = new ArrayList<>();
-//        int x = 0;
-//        int y = 0;
-//        CollisionDetector collisionDetector = new CollisionDetector();
-//        for (double yReal = nextRound.getShip().getPosition().getY() + squareSize / 2; yReal - nextRound.getShip().getPosition().getY() < getMapHeight(); ) {
-//            List mapLine = new ArrayList<>();
-//
-//            for (double xReal = nextRound.getShip().getPosition().getX() + squareSize / 2; xReal - nextRound.getShip().getPosition().getX() < getMapWidth(); ) {
-//
-//                for (Object reef : reefs) {
-//                    if (collisionDetector.detectCollision(new Point(xReal, yReal), (Reef) reef)) {
-//                        //mapLine.add(1);
-//                        mapLine.add(new Node(x, y, xReal, yReal, true));
-//                    } else {
-//                        //mapLine.add(0);
-//                        mapLine.add(new Node(x, y, xReal, yReal, false));
-//                    }
-//                }
-//                xReal += squareSize;
-//                x++;
-//            }
-//            map.add(mapLine);
-//            yReal += squareSize;
-//            y++;
-//            x = 0;
-//        }
-//        return map;
-//    }
+    public List<List<Node>> buildMap(int squareSize) {
+
+        List<List<Node>> map = new ArrayList<>();
+        int x = 0;
+        int y = 0;
+        CollisionDetector collisionDetector = new CollisionDetector();
+        for (double yReal = nextRound.getShip().getPosition().getY() + squareSize / 2; yReal - nextRound.getShip().getPosition().getY() <= getMapHeight(); ) {
+            List mapLine = new ArrayList<>();
+
+            for (double xReal = nextRound.getShip().getPosition().getX() + squareSize / 2; xReal - nextRound.getShip().getPosition().getX() <= getMapWidth(); ) {
+
+                boolean wall = false;
+
+                for (Reef reef : reefs) {
+
+                    if (collisionDetector.detectCollision(new Point(xReal, yReal), reef)) {
+                        //mapLine.add(new Node(x, y, xReal, yReal, true));
+                        wall = true;
+                        //break;
+                    }
+                    //mapLine.add(new Node(x,y,xReal,yReal,false));
+                }
+                mapLine.add(new Node(x, y, xReal, yReal, wall));
+                xReal += squareSize;
+                x++;
+            }
+            map.add(mapLine);
+            yReal += squareSize;
+            y++;
+            x = 0;
+        }
+        return map;
+    }
+     */
 }
