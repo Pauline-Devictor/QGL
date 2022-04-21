@@ -27,7 +27,7 @@ class SpotterTest {
     void createMap() {
         Spotter spotter = new Spotter();
 
-        spotter.createMap(15, new Position(-5, 0, 0), new ArrayList<>(List.of(new Checkpoint(new Position(10, 15, 0), new Circle(5)))));
+        spotter.createMap(50, new Position(-20, -10, 0), new ArrayList<>(List.of(new Checkpoint(new Position(30, 40, 0), new Circle(5)))));
 
         List<List<Node>> carte = spotter.getMap();
 
@@ -37,13 +37,12 @@ class SpotterTest {
             }
             System.out.println();
         }
-
     }
 
     @Test
     void fourextremum() {
         Spotter spotter = new Spotter();
-        double[] extremun = spotter.fourextremum(new Position(-5, 0, 0), new ArrayList<Checkpoint>(List.of(new Checkpoint(new Position(10, 15, 0), new Circle(5)))));
+        double[] extremun = spotter.fourextremum(new Position(1336, 735, 0), new ArrayList<Checkpoint>(List.of(new Checkpoint(new Position(10006, 3131, 0), new Circle(5)),new Checkpoint(new Position(3552, -2532, 0), new Circle(5)),new Checkpoint(new Position(9719, 514, 0), new Circle(5)),new Checkpoint(new Position(4478, 4980, 0), new Circle(5)))));
 
         for (int i = 0; i < 4; i++) {
             System.out.println(extremun[i]);
@@ -53,13 +52,12 @@ class SpotterTest {
     @Test
     void updateMap() {
 
-        List<VisibleEntity> visibleEntityList = new ArrayList<>(List.of(new Reef(new Position(5, 5, 0), new Rectangle(2, 2, 0))));
+        List<VisibleEntity> visibleEntityList = new ArrayList<>(List.of(new Reef(new Position(3044, 957, 0), new Rectangle(400, 1800, 0))));
         Spotter spotter = new Spotter();
 
-        spotter.createMap(15, new Position(-5, 0, 0), new ArrayList<>(List.of(new Checkpoint(new Position(10, 15, 0), new Circle(5)))));
+        spotter.createMap(100, new Position(500, 735, 0), new ArrayList<Checkpoint>(List.of(new Checkpoint(new Position(10006, 3131, 0), new Circle(5)),new Checkpoint(new Position(3552, -2532, 0), new Circle(5)),new Checkpoint(new Position(9719, 514, 0), new Circle(5)),new Checkpoint(new Position(4478, 4980, 0), new Circle(5)))));
 
-        System.out.println(spotter.updateMap(visibleEntityList, new Position(-5, 0, 0), new Position(10, 15, 0)));
-//        System.out.println(spotter.updateMap(visibleEntityList));
+        System.out.println(spotter.updateMap(visibleEntityList, new Position(3044, 957, 0), new Position(10006, 3131, 0)));
 
         spotter.getNodeEnd().setColor("A");
         spotter.getNodeStart().setColor("D");
@@ -71,6 +69,9 @@ class SpotterTest {
 
         List<List<Node>> carte = spotter.getMap();
 
+        System.out.println("TEST2");
+        System.out.println(carte.get(0).get(0).getDetail());
+
         for (List<Node> subCarte2 : carte) {
             for (Node nodePath : subCarte2) {
                 System.out.print(nodePath.getDetail() + nodePath.getColor() + " ");
@@ -80,7 +81,7 @@ class SpotterTest {
 
         for (List<Node> subCarte2 : carte) {
             for (Node nodePath : subCarte2) {
-                System.out.print(nodePath.getColor() + " ");
+                System.out.print(nodePath.getColor());
             }
             System.out.println();
         }

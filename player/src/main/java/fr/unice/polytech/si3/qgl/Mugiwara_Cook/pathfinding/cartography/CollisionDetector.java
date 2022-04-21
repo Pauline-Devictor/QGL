@@ -50,10 +50,10 @@ public class CollisionDetector {
         double width = ((Rectangle) reef.getShape()).getWidth() / 2;
         double xReefCenter = reef.getPosition().getX();
         double yReefCenter = reef.getPosition().getY();
-        Point vertice1 = new Point(xReefCenter + width, yReefCenter + height);
-        Point vertice2 = new Point(xReefCenter + width, yReefCenter - height);
-        Point vertice3 = new Point(yReefCenter - width, yReefCenter - height);
-        Point vertice4 = new Point(yReefCenter - width, yReefCenter + height);
+        Point vertice1 = new Point(xReefCenter + height, yReefCenter + width);
+        Point vertice2 = new Point(xReefCenter + height, yReefCenter - width);
+        Point vertice3 = new Point(yReefCenter - height, yReefCenter - width);
+        Point vertice4 = new Point(yReefCenter - height, yReefCenter + width);
         Point rectangleVertices[] = {vertice1, vertice2, vertice3, vertice4};
         return rectangleVertices;
     }

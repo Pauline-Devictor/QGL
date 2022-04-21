@@ -42,7 +42,7 @@ public class Spotter {
         for (int i = 0; i < nbLargeur; i++) {
             listNode = new ArrayList<>();
             for (int k = 0; k < nbLargeur; k++) {
-                listNode.add(new Node(i, k, tailleDiffX * i + tailleDiffX / 2 + extremum[0], tailleDiffY * k + tailleDiffY / 2 + extremum[2], false));
+                listNode.add(new Node(k, i, tailleDiffX * k + tailleDiffX / 2 + extremum[0], tailleDiffY * i + tailleDiffY / 2 + extremum[2], false));
             }
             map.add(listNode);
         }
@@ -93,6 +93,7 @@ public class Spotter {
                 for (List<Node> nodeList : this.map) {
                     for (Node node : nodeList) {
                         if (collisionDetector.detectCollision(new Point(node.getXReal(), node.getYReal()), (Reef) visibleEntity)) {
+                            System.out.println("Il est bon le NODE: " + node.getXReal() + "+" + node.getYReal());
                             node.setWall(true);
                             mofifier = true;
                         }
