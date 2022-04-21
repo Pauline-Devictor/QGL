@@ -82,6 +82,6 @@ public class Node {
     }
 
     public String getDetail() {
-        return this.xReal + ":" + this.yReal;
+        return this.xReal + ":" + this.yReal + "(" + this.x + ":" + this.y + ")";
     }
 }

@@ -54,7 +54,7 @@ public class Captain {
                 Display.info("Ne pas etre lier");
         });
         spotter = new Spotter();
-        spotter.createMap(40, initGame.getShip().getPosition(), defaultCheckpoints);
+        spotter.createMap(70, initGame.getShip().getPosition(), defaultCheckpoints);
         pathFindind = new PathFindind(spotter.getMap());
     }
 
