@@ -53,26 +53,23 @@ class SpotterTest {
     @Test
     void updateMap() {
 
-        List<VisibleEntity> visibleEntityList = new ArrayList<>(List.of(new Reef(new Position(3044, 957, 0), new Rectangle(400, 1800, 0))));
+        List<VisibleEntity> visibleEntityList = new ArrayList<>(List.of(new Reef(new Position(3000, 1000, 0), new Rectangle(400, 1800, 0))));  //2800:1900 3200:1900
+
         Spotter spotter = new Spotter();
+        spotter.createMap(100, new Position(1336, 735, 0), new ArrayList<Checkpoint>(List.of(new Checkpoint(new Position(10006, 3131, 0), new Circle(5)), new Checkpoint(new Position(3552, -2532, 0), new Circle(5)), new Checkpoint(new Position(9719, 514, 0), new Circle(5)), new Checkpoint(new Position(4478, 4980, 0), new Circle(5)))));
+        List<List<Node>> carte = spotter.getMap();
+        PathFindind pathFindind = new PathFindind(carte);
 
-        spotter.createMap(100, new Position(500, 735, 0), new ArrayList<Checkpoint>(List.of(new Checkpoint(new Position(10006, 3131, 0), new Circle(5)), new Checkpoint(new Position(3552, -2532, 0), new Circle(5)), new Checkpoint(new Position(9719, 514, 0), new Circle(5)), new Checkpoint(new Position(4478, 4980, 0), new Circle(5)))));
+        spotter.updateMap(new ArrayList<>(), new Position(1336, 735, 0), new Position(10006, 3131, 0));
+        pathFindind.findPath(spotter.getNodeStart(), spotter.getNodeEnd());
 
-        System.out.println(spotter.updateMap(visibleEntityList, new Position(500, 735, 0), new Position(10006, 3131, 0)));
+        spotter.updateMap(visibleEntityList, new Position(1336, 735, 0), new Position(10006, 3131, 0));
+        pathFindind.findPath(spotter.getNodeStart(), spotter.getNodeEnd());
+
 
         spotter.getNodeEnd().setColor("A");
         spotter.getNodeStart().setColor("D");
 
-//        visibleEntityList = new ArrayList<>(List.of(new Reef(new Position(5,0,0),new Rectangle(5,5,0))));
-
-//        System.out.println(spotter.updateMap(visibleEntityList));
-
-        List<List<Node>> carte = spotter.getMap();
-        PathFindind pathFindind = new PathFindind(carte);
-
-        pathFindind.findPath(spotter.getNodeStart(), spotter.getNodeEnd());
-
-        System.out.println("TEST2");
         System.out.println(carte.get(0).get(0).getDetail());
 
         for (List<Node> subCarte2 : carte) {

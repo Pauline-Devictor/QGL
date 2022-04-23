@@ -42,7 +42,6 @@ public class Captain {
         if (this.initGame.getGoal().getClass() == RegattaGoal.class) {
             this.currentCheckpoint = ((RegattaGoal) this.initGame.getGoal()).getCheckpoints()[this.nbCurrentCheckpoint];
             defaultCheckpoints.addAll(List.of(((RegattaGoal) this.initGame.getGoal()).getCheckpoints()));
-            ;
         }
 
         this.captainSailorMove.assignEquipement();
@@ -53,8 +52,9 @@ public class Captain {
             else
                 Display.info("Ne pas etre lier");
         });
+
         spotter = new Spotter();
-        spotter.createMap(70, initGame.getShip().getPosition(), defaultCheckpoints);
+        spotter.createMap(100, initGame.getShip().getPosition(), defaultCheckpoints);
         pathFindind = new PathFindind(spotter.getMap());
     }
 
@@ -65,29 +65,41 @@ public class Captain {
      * @param nextRound
      */
     public void nextMove(NextRound nextRound) {
-        if (nextRound.getVisibleEntities() != null) {
-            updateMap(nextRound);
-        }
         this.captainSailorMove.moveToAssignEquipment(this.actionJSON);
+
+        if (nextRound.getVisibleEntities() != null || checkpointsPath.size() == 0)
+            updateMap(nextRound);
+
 
         if (this.inCheckpoint(nextRound)) {
             this.nbCurrentCheckpoint++;
             this.currentCheckpoint = ((RegattaGoal) this.initGame.getGoal()).getCheckpoints()[this.nbCurrentCheckpoint];
-            Display.info("OBEJTIF CHECKPOINT: " + this.currentCheckpoint.getPosition().getY() + ":" + this.currentCheckpoint.getPosition().getX());
+            this.checkpointsPath = new ArrayList<>();
+            updateMap(nextRound);
+//            Display.info("OBEJTIF CHECKPOINT: " + this.currentCheckpoint.getPosition().getY() + ":" + this.currentCheckpoint.getPosition().getX());
+        }
+
+//        System.out.println(checkpointsPath.get(0).getPosition().getX() + ":" + checkpointsPath.get(0).getPosition().getY());
+
+        if (this.inCheckpoint(nextRound, checkpointsPath.get(0))) {
+            System.out.println("CHECKPOINTPATH ATEINT");
+            checkpointsPath.remove(0);
         }
 
         if (initGame.allSailorIsOnAssign())
-            this.choseActions.moveToTheNextCheckpoint(this.currentCheckpoint, nextRound);
+            this.choseActions.moveToTheNextCheckpoint(checkpointsPath.get(0), nextRound);
 
         spotter.getNodeEnd().setColor("A");
         spotter.getNodeStart().setColor("D");
+
         for (List<Node> subCarte2 : spotter.getMap()) {
             for (Node nodePath : subCarte2) {
-                System.out.print(nodePath.getColor() + " ");
+                System.out.print(nodePath.getColor() + "");
             }
             System.out.println();
         }
-        System.out.println("Séparation");
+        System.out.println("----------------------------------------------------------------------------------------------------");
+
     }
 
     /**
@@ -100,12 +112,16 @@ public class Captain {
                 <= ((Circle) currentCheckpoint.getShape()).getRadius());
     }
 
+    public boolean inCheckpoint(NextRound nextRound, Checkpoint checkpoint) {
+        return (nextRound.getShip().getPosition().distance(checkpoint.getPosition())
+                <= ((Circle) checkpoint.getShape()).getRadius());
+    }
+
     public void updateMap(NextRound nextRound) {
         ArrayList<VisibleEntity> visibleEntitiesArray = new ArrayList<>(List.of(nextRound.getVisibleEntities()));
-        if (spotter.updateMap(visibleEntitiesArray, nextRound.getShip().getPosition(), currentCheckpoint.getPosition())) {
+        if (spotter.updateMap(visibleEntitiesArray, nextRound.getShip().getPosition(), currentCheckpoint.getPosition()) || checkpointsPath.size() == 0) {
             if (pathFindind.findPath(this.spotter.getNodeStart(), this.spotter.getNodeEnd())) {
                 checkpointsPath = new ArrayList<>(pathFindind.getPathCheckpoint());
-                currentCheckpoint = checkpointsPath.get(nbCurrentCheckpoint);
             }
         }
     }

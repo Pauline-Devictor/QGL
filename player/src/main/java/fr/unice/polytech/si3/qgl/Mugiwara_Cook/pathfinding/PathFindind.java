@@ -7,6 +7,7 @@ import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.Checkpoint;
 import lombok.Getter;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class PathFindind {
@@ -20,27 +21,32 @@ public class PathFindind {
 
     List<List<Node>> carte;
 
+    int pathNb;
+
     public PathFindind(List<List<Node>> carte) {
         this.carte = carte;
         this.openSet = new ArrayList<>();
         this.closeSet = new ArrayList<>();
+        this.pathNb = 0;
+    }
+
+    public void reset() {
+        this.openSet = new ArrayList<>();
+        this.closeSet = new ArrayList<>();
+        for (List<Node> nodeList : carte) {
+            for (Node node : nodeList) {
+                node.reset();
+            }
+        }
     }
 
     public boolean findPath(Node start, Node end) {  //return null si pas de chemin
+        this.reset();
+        System.out.println("UPDATE PATH");
         openSet.add(start);
         for (List<Node> nodeList : carte) {
             for (Node node : nodeList) {
                 node.addVoisin(carte);
-            }
-        }
-
-        for (List<Node> nodeList : carte) {
-            for (Node node : nodeList) {
-                System.out.println("Pour nodev: " + node.getX() + ":" + node.getY());
-                for (Node nodeVoisin : node.getVoisin()) {
-                    System.out.print("Voisin: " + nodeVoisin.getX() + ":" + nodeVoisin.getY() + " ");
-                }
-                System.out.println();
             }
         }
         this.path = new ArrayList<>();
@@ -55,7 +61,7 @@ public class PathFindind {
                 if (current == end) {
                     color(current);
                     endAlgo = true; //????
-                    System.out.println("END");
+                    System.out.println("SOLUTION ? true");
                     break;
                 }
 
@@ -87,7 +93,7 @@ public class PathFindind {
                 }
 
             } else {
-                System.out.println("NO SOLUTION");
+                System.out.println("SOLUTION ? false");
                 return false;
             }
         }
@@ -112,8 +118,10 @@ public class PathFindind {
         }
 
         for (Node nodePath : path) {
+//            nodePath.setColor("@" + this.pathNb); //GREEN
             nodePath.setColor("@"); //GREEN
         }
+        this.pathNb++;
 
 //
 //        print("AFFICHAGE \n")
@@ -126,9 +134,56 @@ public class PathFindind {
     }
 
     void nodeToCheckpoint() {
+        boolean vert = false;
+        boolean horiz = false;
+
         this.pathCheckpoint = new ArrayList<>();
+        Collections.reverse(this.path);
+//        Node lastNode = this.path.get(0);
+//        this.pathCheckpoint.add(new Checkpoint(new Position(lastNode.getXReal(), lastNode.getYReal(), 0), new Circle(50)));
+//
+//        for (int i = 1; i < this.path.size(); i++) {
+//            System.out.println(lastNode.getY() + " LAST NODE " + lastNode.getX());
+//            System.out.println(lastNode.getY() + "==" + this.path.get(i).getY() + "&&" + lastNode.getX() + "!=" + this.path.get(i).getX());
+//            if (lastNode.getY() != this.path.get(i).getY() && lastNode.getX() == this.path.get(i).getX()) {
+//                System.out.println("lastNode.getY() != this.path.get(i).getY() && lastNode.getX() == this.path.get(i).getX()");
+//                vert = true;
+//                if (horiz) {
+//                    System.out.println("ADD1");
+//                    horiz = false;
+//                    this.pathCheckpoint.add(new Checkpoint(new Position(lastNode.getXReal(), lastNode.getYReal(), 0), new Circle(50)));
+//                    lastNode.setColor("+");
+//                }
+//
+//            } else if (lastNode.getY() == this.path.get(i).getY() && lastNode.getX() != this.path.get(i).getX()) {
+//                System.out.println("lastNode.getY() == this.path.get(i).getY() && lastNode.getX() != this.path.get(i).getX()");
+//                horiz = true;
+//                if (vert) {
+//                    System.out.println("ADD2");
+//                    vert = false;
+//                    this.pathCheckpoint.add(new Checkpoint(new Position(lastNode.getXReal(), lastNode.getYReal(), 0), new Circle(50)));
+//                    lastNode.setColor("+");
+//                }
+//
+//            } else {
+//                System.out.println("DIAGO");
+//                vert = false;
+//                horiz = false;
+//                this.pathCheckpoint.add(new Checkpoint(new Position(lastNode.getXReal(), lastNode.getYReal(), 0), new Circle(50)));
+//                lastNode.setColor("+");
+//
+//            }
+//            lastNode = this.path.get(i);
+//            System.out.println("vert: " + vert + ", horiz: " + horiz);
+//        }
+
         for (Node node : this.path) {
-            this.pathCheckpoint.add(new Checkpoint(new Position(node.getXReal(), node.getYReal(), 0), new Circle(20)));
+            this.pathCheckpoint.add(new Checkpoint(new Position(node.getXReal(), node.getYReal(), 0), new Circle(50)));
+            System.out.print(node.getDetail() + ", ");
         }
+        System.out.println();
+
+//        Collections.reverse(this.pathCheckpoint);
+
     }
 }
