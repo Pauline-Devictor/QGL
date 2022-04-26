@@ -158,4 +158,84 @@ public class CollisionDetector2 {
 
         }
     }
+
+    /**public void grisline(Node node1, Node node2, List<List<Node>> map) {
+     System.out.println("grislineLARGE");
+     node1.setWallNeighborTrue();
+     node2.setWallNeighborTrue();
+
+     int[] currentNode = {node1.getX(), node1.getY()};
+
+     if (node2.getX() - node1.getX() == 0) {
+     aRename1(node1, node2, map, currentNode);
+     } else if (node2.getY() - node1.getY() == 0) {
+     aRename2(node1, node2, map, currentNode);
+     } else {
+     aRename5(node1, node2, map, currentNode);
+
+     }
+     }
+
+     private void aRename5(Node node1, Node node2, List<List<Node>> map, int[] currentNode) {
+     double slope = slopeBetweenNodes(map.get(currentNode[1]).get(currentNode[0]), node2);
+     //            System.out.println("slope: " + slope);
+     if (slope > 0) {
+     aRename3(node1, node2, map, currentNode, slope);
+     }
+     if (slope < 0) {
+     aRename4(node1, node2, map, currentNode, slope);
+     }
+     if (!(map.get(currentNode[1]).get(currentNode[0]).equals(node2))) {
+     this.grisline(map.get(currentNode[1]).get(currentNode[0]), node2, map);
+     }
+     }
+
+     void aRename4(Node node1, Node node2, List<List<Node>> map, int[] currentNode, double slope) {
+     if (node2.getX() < node1.getX())
+     map.get(currentNode[1]).get(--currentNode[0]).setWallNeighborTrue();
+     else
+     map.get(currentNode[1]).get(++currentNode[0]).setWallNeighborTrue();
+     //                System.out.println(map.get(currentNode[1]).get(currentNode[0]).getDetail());
+     for (int i = 0; i > slope; i--) {
+     if (node2.getX() < node1.getX())
+     map.get(++currentNode[1]).get(currentNode[0]).setWallNeighborTrue();
+     else
+     map.get(--currentNode[1]).get(currentNode[0]).setWallNeighborTrue();
+     //                    System.out.println(map.get(currentNode[1]).get(currentNode[0]).getDetail());
+     }
+     }
+
+     void aRename3(Node node1, Node node2, List<List<Node>> map, int[] currentNode, double slope) {
+     if (node2.getX() > node1.getX())
+     map.get(currentNode[1]).get(++currentNode[0]).setWallNeighborTrue();
+     else
+     map.get(currentNode[1]).get(--currentNode[0]).setWallNeighborTrue();
+     //                System.out.println(map.get(currentNode[1]).get(currentNode[0]).getDetail());
+     for (int i = 0; i < slope; i++) {
+     if (node2.getX() > node1.getX())
+     map.get(++currentNode[1]).get(currentNode[0]).setWallNeighborTrue();
+     else
+     map.get(--currentNode[1]).get(currentNode[0]).setWallNeighborTrue();
+     //                    System.out.println(map.get(currentNode[1]).get(currentNode[0]).getDetail());
+     }
+     }
+
+     void aRename2(Node node1, Node node2, List<List<Node>> map, int[] currentNode) {
+     while (!(map.get(currentNode[1]).get(currentNode[0]).equals(node2))) {
+     if (node2.getX() > node1.getX())
+     map.get(currentNode[1]).get(++currentNode[0]).setWallNeighborTrue();
+     else
+     map.get(currentNode[1]).get(--currentNode[0]).setWallNeighborTrue();
+     //                System.out.println(map.get(currentNode[1]).get(currentNode[0]).getDetail());
+     }
+     }
+
+     void aRename1(Node node1, Node node2, List<List<Node>> map, int[] currentNode) {
+     while (!(map.get(currentNode[1]).get(currentNode[0]).equals(node2))) {
+     if (node2.getY() > node1.getY())
+     map.get(++currentNode[1]).get(currentNode[0]).setWallNeighborTrue();
+     else
+     map.get(--currentNode[1]).get(currentNode[0]).setWallNeighborTrue();
+     }
+     }**/
 }

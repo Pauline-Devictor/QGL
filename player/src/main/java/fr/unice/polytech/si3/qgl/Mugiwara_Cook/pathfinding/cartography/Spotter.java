@@ -48,6 +48,7 @@ public class Spotter {
         }
     }
 
+    //peut etre a refactor 
     public double[] fourextremum(Position shipPosition, ArrayList<Checkpoint> checkpointArrayList) {
         double minX = shipPosition.getX();
         double maxX = shipPosition.getX();
@@ -100,6 +101,47 @@ public class Spotter {
         System.out.println("UPDATE MAP ? " + mofifier);
         return mofifier;
     }
+
+    /**public boolean updateMap(List<VisibleEntity> visibleEntityList, Position shipPosition, Position positionCheckpoint) {
+     List<Reef> newReefs = new ArrayList<>();
+     boolean mofifier = false;
+     CollisionDetector2 collisionDetector2 = new CollisionDetector2();
+     mofifier = aRename(visibleEntityList, newReefs, mofifier, collisionDetector2);
+
+     this.nodeStart = closetNodeFromPosition(shipPosition);
+     this.nodeEnd = closetNodeFromPosition(positionCheckpoint);
+     System.out.println("UPDATE MAP ? " + mofifier);
+     return mofifier;
+     }
+
+     private boolean aRename(List<VisibleEntity> visibleEntityList, List<Reef> newReefs, boolean mofifier, CollisionDetector2 collisionDetector2) {
+     for (VisibleEntity visibleEntity : visibleEntityList) {
+     if (visibleEntity.getType().equals("reef")) {
+     if (reefs.size() != 0) {
+     mofifier = isMofifier(newReefs, mofifier, collisionDetector2, (Reef) visibleEntity);
+     reefs.addAll(newReefs);
+     } else {
+     System.out.println("LE PREMIER");
+     collisionDetector2.gris(((Reef) visibleEntity), this.map);
+     reefs.add((Reef) visibleEntity);
+     mofifier = true;
+     }
+     }
+     }
+     return mofifier;
+     }
+
+     private boolean isMofifier(List<Reef> newReefs, boolean mofifier, CollisionDetector2 collisionDetector2, Reef visibleEntity) {
+     for (Reef reef : this.reefs) {
+     if (reef.getPosition().getX() != visibleEntity.getPosition().getX()) {
+     collisionDetector2.gris(visibleEntity, this.map);
+     newReefs.add(visibleEntity);
+     mofifier = true;
+     break;
+     }
+     }
+     return mofifier;
+     }**/
 
     public Node closetNodeFromPosition(Position position) {
         double disMin = 1000000;
