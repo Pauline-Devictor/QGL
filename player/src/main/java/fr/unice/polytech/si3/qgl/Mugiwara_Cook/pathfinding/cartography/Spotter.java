@@ -48,7 +48,6 @@ public class Spotter {
         }
     }
 
-    //peut etre a refactor 
     public double[] fourextremum(Position shipPosition, ArrayList<Checkpoint> checkpointArrayList) {
         double minX = shipPosition.getX();
         double maxX = shipPosition.getX();
@@ -101,7 +100,7 @@ public class Spotter {
         System.out.println("UPDATE MAP ? " + mofifier);
         return mofifier;
     }
-
+    
     /**public boolean updateMap(List<VisibleEntity> visibleEntityList, Position shipPosition, Position positionCheckpoint) {
      List<Reef> newReefs = new ArrayList<>();
      boolean mofifier = false;

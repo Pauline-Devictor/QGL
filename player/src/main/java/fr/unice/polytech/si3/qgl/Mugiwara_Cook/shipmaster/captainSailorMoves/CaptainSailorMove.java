@@ -38,11 +38,11 @@ public class CaptainSailorMove {
             assignSpecificEquipement("sail", 1);
             nbsailors--;
         }
-        if (nbsailors >= 1 && this.ship.getEquipement("watch").size() >= 1) {
+        /**if (nbsailors >= 1 && this.ship.getEquipement("watch").size() >= 1) {
 
             assignSpecificEquipement("watch", 1);
             nbsailors--;
-        }
+        }**/
         while (nbsailors >= 2) {
             if (nbsailors >= 2 && this.ship.getEquipement("oar").size() >= 2) {
                 assignSpecificEquipement("oar", 2);
