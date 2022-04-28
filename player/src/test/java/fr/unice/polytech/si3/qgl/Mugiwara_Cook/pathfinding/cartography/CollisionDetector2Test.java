@@ -9,8 +9,6 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class CollisionDetector2Test {
 
     @Test
@@ -46,7 +44,7 @@ class CollisionDetector2Test {
         Node nodeFind = null;
 
         try {
-            nodeFind = collisionDetector2.closetNodeFromPoint(pointRecherche, carte);
+            nodeFind = collisionDetector2.closestNodeFromPoint(pointRecherche, carte);
         } catch (Exception e) {
             System.out.println("Out of the map");
         }
@@ -71,7 +69,7 @@ class CollisionDetector2Test {
         Reef reef = new Reef(new Position(50, 50, 0), new Rectangle(15, 60, 0));
 
         CollisionDetector2 collisionDetector2 = new CollisionDetector2();
-        collisionDetector2.gris(reef, carte);
+        collisionDetector2.coloringTheReef(reef, carte);
 
         for (List<Node> subCarte2 : carte) {
             for (Node nodePath : subCarte2) {
@@ -99,7 +97,7 @@ class CollisionDetector2Test {
         System.out.println(node2.getDetail());
 
         CollisionDetector2 collisionDetector2 = new CollisionDetector2();
-        collisionDetector2.grisline(node1, node2, carte);
+        collisionDetector2.coloringline(node1, node2, carte);
 
         for (List<Node> subCarte2 : carte) {
             for (Node nodePath : subCarte2) {

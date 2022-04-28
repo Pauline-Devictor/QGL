@@ -1,7 +1,5 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.pathfinding.cartography;
 
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.game.NextRound;
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.Point;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.Position;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.Checkpoint;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.Reef;
@@ -70,77 +68,47 @@ public class Spotter {
         return new double[]{minX, maxX, minY, maxY};
     }
 
+
     public boolean updateMap(List<VisibleEntity> visibleEntityList, Position shipPosition, Position positionCheckpoint) {
         List<Reef> newReefs = new ArrayList<>();
         boolean mofifier = false;
         CollisionDetector2 collisionDetector2 = new CollisionDetector2();
-        for (VisibleEntity visibleEntity : visibleEntityList) {
-            if (visibleEntity.getType().equals("reef")) {
-                if (reefs.size() != 0) {
-                    for (Reef reef : this.reefs) {
-                        if (reef.getPosition().getX() != ((Reef) visibleEntity).getPosition().getX()) {
-                            collisionDetector2.gris(((Reef) visibleEntity), this.map);
-                            newReefs.add((Reef) visibleEntity);
-                            mofifier = true;
-                            break;
-                        }
-                    }
-                    reefs.addAll(newReefs);
-                } else {
-                    System.out.println("LE PREMIER");
-                    collisionDetector2.gris(((Reef) visibleEntity), this.map);
-                    reefs.add((Reef) visibleEntity);
-                    mofifier = true;
-                }
-            }
-        }
+        mofifier = findReefInMap(visibleEntityList, newReefs, mofifier, collisionDetector2);
 
         this.nodeStart = closetNodeFromPosition(shipPosition);
         this.nodeEnd = closetNodeFromPosition(positionCheckpoint);
         System.out.println("UPDATE MAP ? " + mofifier);
         return mofifier;
     }
-    
-    /**public boolean updateMap(List<VisibleEntity> visibleEntityList, Position shipPosition, Position positionCheckpoint) {
-     List<Reef> newReefs = new ArrayList<>();
-     boolean mofifier = false;
-     CollisionDetector2 collisionDetector2 = new CollisionDetector2();
-     mofifier = aRename(visibleEntityList, newReefs, mofifier, collisionDetector2);
 
-     this.nodeStart = closetNodeFromPosition(shipPosition);
-     this.nodeEnd = closetNodeFromPosition(positionCheckpoint);
-     System.out.println("UPDATE MAP ? " + mofifier);
-     return mofifier;
-     }
+    private boolean findReefInMap(List<VisibleEntity> visibleEntityList, List<Reef> newReefs, boolean mofifier, CollisionDetector2 collisionDetector2) {
+        for (VisibleEntity visibleEntity : visibleEntityList) {
+            if (visibleEntity.getType().equals("reef")) {
+                if (reefs.size() != 0) {
+                    mofifier = UpdateMapWithReefNotAlreadyFound(newReefs, mofifier, collisionDetector2, (Reef) visibleEntity);
+                    reefs.addAll(newReefs);
+                } else {
+                    System.out.println("LE PREMIER");
+                    collisionDetector2.coloringTheReef(((Reef) visibleEntity), this.map);
+                    reefs.add((Reef) visibleEntity);
+                    mofifier = true;
+                }
+            }
+        }
+        return mofifier;
+    }
 
-     private boolean aRename(List<VisibleEntity> visibleEntityList, List<Reef> newReefs, boolean mofifier, CollisionDetector2 collisionDetector2) {
-     for (VisibleEntity visibleEntity : visibleEntityList) {
-     if (visibleEntity.getType().equals("reef")) {
-     if (reefs.size() != 0) {
-     mofifier = isMofifier(newReefs, mofifier, collisionDetector2, (Reef) visibleEntity);
-     reefs.addAll(newReefs);
-     } else {
-     System.out.println("LE PREMIER");
-     collisionDetector2.gris(((Reef) visibleEntity), this.map);
-     reefs.add((Reef) visibleEntity);
-     mofifier = true;
-     }
-     }
-     }
-     return mofifier;
-     }
-
-     private boolean isMofifier(List<Reef> newReefs, boolean mofifier, CollisionDetector2 collisionDetector2, Reef visibleEntity) {
-     for (Reef reef : this.reefs) {
-     if (reef.getPosition().getX() != visibleEntity.getPosition().getX()) {
-     collisionDetector2.gris(visibleEntity, this.map);
-     newReefs.add(visibleEntity);
-     mofifier = true;
-     break;
-     }
-     }
-     return mofifier;
-     }**/
+    boolean UpdateMapWithReefNotAlreadyFound(List<Reef> newReefs, boolean mofifier, CollisionDetector2 collisionDetector2, Reef visibleEntity) {
+        for (Reef reef : this.reefs) {
+            if (reef.getPosition().getX() != visibleEntity.getPosition().getX()) {
+                collisionDetector2.coloringTheReef(visibleEntity, this.map);
+                newReefs.add(visibleEntity);
+                mofifier = true;
+                break;
+            }
+        }
+        return mofifier;
+    }
 
     public Node closetNodeFromPosition(Position position) {
         double disMin = 1000000;
