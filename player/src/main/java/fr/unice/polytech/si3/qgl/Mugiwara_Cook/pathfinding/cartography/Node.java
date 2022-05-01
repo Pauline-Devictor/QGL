@@ -28,6 +28,7 @@ public class Node {
     @Getter
     String color;
     @Getter
+    @Setter
     ArrayList<Node> voisin;
     @Setter
     @Getter

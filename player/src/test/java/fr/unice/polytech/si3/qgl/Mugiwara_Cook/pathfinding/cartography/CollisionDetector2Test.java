@@ -24,6 +24,8 @@ class CollisionDetector2Test {
         }
     }
 
+    
+
     @Test
     void closetNodeFromPoint() {
 
