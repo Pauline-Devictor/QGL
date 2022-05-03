@@ -54,7 +54,7 @@ public class Captain {
         });
 
         spotter = new Spotter();
-        spotter.createMap(100, initGame.getShip().getPosition(), defaultCheckpoints);
+        spotter.createMap(150, initGame.getShip().getPosition(), defaultCheckpoints);
         pathFindind = new PathFindind(spotter.getMap());
     }
 
@@ -83,7 +83,13 @@ public class Captain {
 
         if (this.inCheckpoint(nextRound, checkpointsPath.get(0))) {
             System.out.println("CHECKPOINTPATH ATEINT");
-            checkpointsPath.remove(0);
+            if (checkpointsPath.size() < 4) {
+                checkpointsPath.remove(0);
+            } else {
+                checkpointsPath.remove(0);
+                checkpointsPath.remove(0);
+            }
+
         }
 
         if (initGame.allSailorIsOnAssign())

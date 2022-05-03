@@ -126,66 +126,6 @@ public class CollisionDetector2 {
         return ((double) (node2.getYReal() - node1.getYReal())) / (node2.getXReal() - node1.getXReal());
     }
 
-    /**
-     * public void grisline(Node node1, Node node2, List<List<Node>> map) {
-     * node1.setWallNeighborTrue();
-     * node2.setWallNeighborTrue();
-     * <p>
-     * int[] currentNode = {node1.getX(), node1.getY()};
-     * <p>
-     * if (node2.getX() - node1.getX() == 0) {
-     * while (!(map.get(currentNode[1]).get(currentNode[0]).equals(node2))) {
-     * if (node2.getY() > node1.getY())
-     * map.get(++currentNode[1]).get(currentNode[0]).setWallNeighborTrue();
-     * else
-     * map.get(--currentNode[1]).get(currentNode[0]).setWallNeighborTrue();
-     * }
-     * } else if (node2.getY() - node1.getY() == 0) {
-     * while (!(map.get(currentNode[1]).get(currentNode[0]).equals(node2))) {
-     * if (node2.getX() > node1.getX())
-     * map.get(currentNode[1]).get(++currentNode[0]).setWallNeighborTrue();
-     * else
-     * map.get(currentNode[1]).get(--currentNode[0]).setWallNeighborTrue();
-     * //                System.out.println(map.get(currentNode[1]).get(currentNode[0]).getDetail());
-     * }
-     * } else {
-     * double slope = slopeBetweenNodes(map.get(currentNode[1]).get(currentNode[0]), node2);
-     * //            System.out.println("slope: " + slope);
-     * if (slope > 0) {
-     * if (node2.getX() > node1.getX())
-     * map.get(currentNode[1]).get(++currentNode[0]).setWallNeighborTrue();
-     * else
-     * map.get(currentNode[1]).get(--currentNode[0]).setWallNeighborTrue();
-     * //                System.out.println(map.get(currentNode[1]).get(currentNode[0]).getDetail());
-     * for (int i = 0; i < slope; i++) {
-     * if (node2.getX() > node1.getX())
-     * map.get(++currentNode[1]).get(currentNode[0]).setWallNeighborTrue();
-     * else
-     * map.get(--currentNode[1]).get(currentNode[0]).setWallNeighborTrue();
-     * //                    System.out.println(map.get(currentNode[1]).get(currentNode[0]).getDetail());
-     * }
-     * }
-     * if (slope < 0) {
-     * if (node2.getX() < node1.getX())
-     * map.get(currentNode[1]).get(--currentNode[0]).setWallNeighborTrue();
-     * else
-     * map.get(currentNode[1]).get(++currentNode[0]).setWallNeighborTrue();
-     * //                System.out.println(map.get(currentNode[1]).get(currentNode[0]).getDetail());
-     * for (int i = 0; i > slope; i--) {
-     * if (node2.getX() < node1.getX())
-     * map.get(++currentNode[1]).get(currentNode[0]).setWallNeighborTrue();
-     * else
-     * map.get(--currentNode[1]).get(currentNode[0]).setWallNeighborTrue();
-     * //                    System.out.println(map.get(currentNode[1]).get(currentNode[0]).getDetail());
-     * }
-     * }
-     * if (!(map.get(currentNode[1]).get(currentNode[0]).equals(node2))) {
-     * this.coloringline(map.get(currentNode[1]).get(currentNode[0]), node2, map);
-     * }
-     * <p>
-     * }
-     * }
-     **/
 
     public void coloringline(Node node1, Node node2, List<List<Node>> map) {
         System.out.println("grislineLARGE");
@@ -206,6 +146,9 @@ public class CollisionDetector2 {
 
     void join2NodesComplexSlope(Node node1, Node node2, List<List<Node>> map, int[] currentNode) {
         double slope = slopeBetweenNodes(map.get(currentNode[1]).get(currentNode[0]), node2);
+        if (slopeGoal == 0) {
+            slopeGoal = slope;
+        }
         //            System.out.println("slope: " + slope);
         if (slope > 0) {
             join2NodesPositiveSlope(node1, node2, map, currentNode, slope);
@@ -220,30 +163,30 @@ public class CollisionDetector2 {
 
     void join2NodesNegativeSlope(Node node1, Node node2, List<List<Node>> map, int[] currentNode, double slope) {
         if (node2.getX() < node1.getX())
-            map.get(currentNode[1]).get(--currentNode[0]).setWallNeighborTrue();
+            map.get(currentNode[1]).get(--currentNode[0]).setWall(true);
         else
-            map.get(currentNode[1]).get(++currentNode[0]).setWallNeighborTrue();
+            map.get(currentNode[1]).get(++currentNode[0]).setWall(true);
         //                System.out.println(map.get(currentNode[1]).get(currentNode[0]).getDetail());
         for (int i = 0; i > slope - slopeGoal; i--) {
             if (node2.getX() < node1.getX())
-                map.get(++currentNode[1]).get(currentNode[0]).setWallNeighborTrue();
+                map.get(++currentNode[1]).get(currentNode[0]).setWall(true);
             else
-                map.get(--currentNode[1]).get(currentNode[0]).setWallNeighborTrue();
+                map.get(--currentNode[1]).get(currentNode[0]).setWall(true);
 //                    System.out.println(map.get(currentNode[1]).get(currentNode[0]).getDetail());
         }
     }
 
     void join2NodesPositiveSlope(Node node1, Node node2, List<List<Node>> map, int[] currentNode, double slope) {  // currentNode [x, y]
         if (node2.getX() > node1.getX())
-            map.get(currentNode[1]).get(++currentNode[0]).setWallNeighborTrue();
+            map.get(currentNode[1]).get(++currentNode[0]).setWall(true);
         else
-            map.get(currentNode[1]).get(--currentNode[0]).setWallNeighborTrue();
+            map.get(currentNode[1]).get(--currentNode[0]).setWall(true);
         //                System.out.println(map.get(currentNode[1]).get(currentNode[0]).getDetail());
         for (int i = 0; i < slope - slopeGoal; i++) {
             if (node2.getX() > node1.getX())
-                map.get(++currentNode[1]).get(currentNode[0]).setWallNeighborTrue();
+                map.get(++currentNode[1]).get(currentNode[0]).setWall(true);
             else
-                map.get(--currentNode[1]).get(currentNode[0]).setWallNeighborTrue();
+                map.get(--currentNode[1]).get(currentNode[0]).setWall(true);
 //                    System.out.println(map.get(currentNode[1]).get(currentNode[0]).getDetail());
             //                    System.out.println(map.get(currentNode[1]).get(currentNode[0]).getDetail());
         }

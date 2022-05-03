@@ -65,7 +65,7 @@ public class Spotter {
                 minY = checkpoint.getPosition().getY();
             }
         }
-        return new double[]{minX, maxX, minY, maxY};
+        return new double[]{minX - 200, maxX + 3000, minY, maxY + 600};
     }
 
 
