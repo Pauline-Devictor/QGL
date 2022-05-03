@@ -2,6 +2,7 @@ package fr.unice.polytech.si3.qgl.Mugiwara_Cook.pathfinding.cartography;
 
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.Point;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.Position;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes.Circle;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes.Rectangle;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.Reef;
 
@@ -10,16 +11,43 @@ import java.util.List;
 
 public class CollisionDetector2 {
 
+    double slopeGoal;
+
     public CollisionDetector2() {
         //Rien
     }
 
     ///!\/!\/!\  forme List<Point>: [x0y0,x1y0,x1y1,x0y1]  /!\/!\/!\
 
+
     public void coloringTheReef(Reef reef, List<List<Node>> map) {
         if (reef.getShape().getType().equals("rectangle")) {
             this.coloringRectangleReef(reef, map);
         }
+        if (reef.getShape().getType().equals("circle")) {
+            this.grisCircleReef(reef, map);
+        }
+    }
+
+    private void grisCircleReef(Reef reef, List<List<Node>> map) {
+        Reef reefSqrt = this.circleToSqrt(reef);
+
+        for (int i = 0; i < 16; i++) {
+            reefSqrt.getPosition().setOrientation(i * Math.PI / 16);
+            coloringRectangleReef(reefSqrt, map);
+        }
+
+    }
+
+    public Reef circleToSqrt(Reef reef) {
+        Position positionSqrt = reef.getPosition();
+        Circle circle = (Circle) reef.getShape();
+        double[] left = {positionSqrt.getX() - circle.getRadius(), positionSqrt.getY()};
+        double[] right = {positionSqrt.getX() + circle.getRadius(), positionSqrt.getY()};
+
+        double side = Math.sqrt(Math.pow(left[0] - right[0], 2) + Math.pow(left[1] - right[1], 2));
+
+        return new Reef(new Position(positionSqrt.getX(), positionSqrt.getY(), 0), new Rectangle(side, side, 0));
     }
 
     public void coloringRectangleReef(Reef reef, List<List<Node>> map) {
@@ -40,6 +68,7 @@ public class CollisionDetector2 {
         int sizecoin = reefcoinNode.size();
 
         for (int i = 0; i < sizecoin; i++) {
+            slopeGoal = 0;
             this.coloringline(reefcoinNode.get(i), reefcoinNode.get((i + 1) % (sizecoin)), map);
         }
     }
@@ -66,7 +95,7 @@ public class CollisionDetector2 {
     public Point rotationPoint(Point coinRectangle, Position positionReef) {
         double xReefCenter = positionReef.getX();
         double yReefCenter = positionReef.getY();
-        double orientationReef = Math.abs(positionReef.getOrientation());
+        double orientationReef = positionReef.getOrientation() - (Math.PI / 2);
 
         //(xa-xg).cos théta - (ya-yg).sin théta + xg  || (ya-yg).cos théta + (xa-xg).sin théta + yg
         return new Point((coinRectangle.getX() - xReefCenter) * Math.cos(orientationReef) - (coinRectangle.getY() - yReefCenter) * Math.sin(orientationReef) + xReefCenter
@@ -94,67 +123,69 @@ public class CollisionDetector2 {
 
     public double slopeBetweenNodes(Node node1, Node node2) {
 //        System.out.println(node2.getY() + " " + node1.getY() + " ++ " + node2.getX() + " " + node1.getX());
-        return ((double) (node2.getY() - node1.getY())) / (node2.getX() - node1.getX());
+        return ((double) (node2.getYReal() - node1.getYReal())) / (node2.getXReal() - node1.getXReal());
     }
 
-    /**public void grisline(Node node1, Node node2, List<List<Node>> map) {
-        node1.setWallNeighborTrue();
-        node2.setWallNeighborTrue();
-
-        int[] currentNode = {node1.getX(), node1.getY()};
-
-        if (node2.getX() - node1.getX() == 0) {
-            while (!(map.get(currentNode[1]).get(currentNode[0]).equals(node2))) {
-                if (node2.getY() > node1.getY())
-                    map.get(++currentNode[1]).get(currentNode[0]).setWallNeighborTrue();
-                else
-                    map.get(--currentNode[1]).get(currentNode[0]).setWallNeighborTrue();
-            }
-        } else if (node2.getY() - node1.getY() == 0) {
-            while (!(map.get(currentNode[1]).get(currentNode[0]).equals(node2))) {
-                if (node2.getX() > node1.getX())
-                    map.get(currentNode[1]).get(++currentNode[0]).setWallNeighborTrue();
-                else
-                    map.get(currentNode[1]).get(--currentNode[0]).setWallNeighborTrue();
-//                System.out.println(map.get(currentNode[1]).get(currentNode[0]).getDetail());
-            }
-        } else {
-            double slope = slopeBetweenNodes(map.get(currentNode[1]).get(currentNode[0]), node2);
-//            System.out.println("slope: " + slope);
-            if (slope > 0) {
-                if (node2.getX() > node1.getX())
-                    map.get(currentNode[1]).get(++currentNode[0]).setWallNeighborTrue();
-                else
-                    map.get(currentNode[1]).get(--currentNode[0]).setWallNeighborTrue();
-//                System.out.println(map.get(currentNode[1]).get(currentNode[0]).getDetail());
-                for (int i = 0; i < slope; i++) {
-                    if (node2.getX() > node1.getX())
-                        map.get(++currentNode[1]).get(currentNode[0]).setWallNeighborTrue();
-                    else
-                        map.get(--currentNode[1]).get(currentNode[0]).setWallNeighborTrue();
-//                    System.out.println(map.get(currentNode[1]).get(currentNode[0]).getDetail());
-                }
-            }
-            if (slope < 0) {
-                if (node2.getX() < node1.getX())
-                    map.get(currentNode[1]).get(--currentNode[0]).setWallNeighborTrue();
-                else
-                    map.get(currentNode[1]).get(++currentNode[0]).setWallNeighborTrue();
-//                System.out.println(map.get(currentNode[1]).get(currentNode[0]).getDetail());
-                for (int i = 0; i > slope; i--) {
-                    if (node2.getX() < node1.getX())
-                        map.get(++currentNode[1]).get(currentNode[0]).setWallNeighborTrue();
-                    else
-                        map.get(--currentNode[1]).get(currentNode[0]).setWallNeighborTrue();
-//                    System.out.println(map.get(currentNode[1]).get(currentNode[0]).getDetail());
-                }
-            }
-            if (!(map.get(currentNode[1]).get(currentNode[0]).equals(node2))) {
-                this.coloringline(map.get(currentNode[1]).get(currentNode[0]), node2, map);
-            }
-
-        }
-    }**/
+    /**
+     * public void grisline(Node node1, Node node2, List<List<Node>> map) {
+     * node1.setWallNeighborTrue();
+     * node2.setWallNeighborTrue();
+     * <p>
+     * int[] currentNode = {node1.getX(), node1.getY()};
+     * <p>
+     * if (node2.getX() - node1.getX() == 0) {
+     * while (!(map.get(currentNode[1]).get(currentNode[0]).equals(node2))) {
+     * if (node2.getY() > node1.getY())
+     * map.get(++currentNode[1]).get(currentNode[0]).setWallNeighborTrue();
+     * else
+     * map.get(--currentNode[1]).get(currentNode[0]).setWallNeighborTrue();
+     * }
+     * } else if (node2.getY() - node1.getY() == 0) {
+     * while (!(map.get(currentNode[1]).get(currentNode[0]).equals(node2))) {
+     * if (node2.getX() > node1.getX())
+     * map.get(currentNode[1]).get(++currentNode[0]).setWallNeighborTrue();
+     * else
+     * map.get(currentNode[1]).get(--currentNode[0]).setWallNeighborTrue();
+     * //                System.out.println(map.get(currentNode[1]).get(currentNode[0]).getDetail());
+     * }
+     * } else {
+     * double slope = slopeBetweenNodes(map.get(currentNode[1]).get(currentNode[0]), node2);
+     * //            System.out.println("slope: " + slope);
+     * if (slope > 0) {
+     * if (node2.getX() > node1.getX())
+     * map.get(currentNode[1]).get(++currentNode[0]).setWallNeighborTrue();
+     * else
+     * map.get(currentNode[1]).get(--currentNode[0]).setWallNeighborTrue();
+     * //                System.out.println(map.get(currentNode[1]).get(currentNode[0]).getDetail());
+     * for (int i = 0; i < slope; i++) {
+     * if (node2.getX() > node1.getX())
+     * map.get(++currentNode[1]).get(currentNode[0]).setWallNeighborTrue();
+     * else
+     * map.get(--currentNode[1]).get(currentNode[0]).setWallNeighborTrue();
+     * //                    System.out.println(map.get(currentNode[1]).get(currentNode[0]).getDetail());
+     * }
+     * }
+     * if (slope < 0) {
+     * if (node2.getX() < node1.getX())
+     * map.get(currentNode[1]).get(--currentNode[0]).setWallNeighborTrue();
+     * else
+     * map.get(currentNode[1]).get(++currentNode[0]).setWallNeighborTrue();
+     * //                System.out.println(map.get(currentNode[1]).get(currentNode[0]).getDetail());
+     * for (int i = 0; i > slope; i--) {
+     * if (node2.getX() < node1.getX())
+     * map.get(++currentNode[1]).get(currentNode[0]).setWallNeighborTrue();
+     * else
+     * map.get(--currentNode[1]).get(currentNode[0]).setWallNeighborTrue();
+     * //                    System.out.println(map.get(currentNode[1]).get(currentNode[0]).getDetail());
+     * }
+     * }
+     * if (!(map.get(currentNode[1]).get(currentNode[0]).equals(node2))) {
+     * this.coloringline(map.get(currentNode[1]).get(currentNode[0]), node2, map);
+     * }
+     * <p>
+     * }
+     * }
+     **/
 
     public void coloringline(Node node1, Node node2, List<List<Node>> map) {
         System.out.println("grislineLARGE");
@@ -193,26 +224,27 @@ public class CollisionDetector2 {
         else
             map.get(currentNode[1]).get(++currentNode[0]).setWallNeighborTrue();
         //                System.out.println(map.get(currentNode[1]).get(currentNode[0]).getDetail());
-        for (int i = 0; i > slope; i--) {
+        for (int i = 0; i > slope - slopeGoal; i--) {
             if (node2.getX() < node1.getX())
                 map.get(++currentNode[1]).get(currentNode[0]).setWallNeighborTrue();
             else
                 map.get(--currentNode[1]).get(currentNode[0]).setWallNeighborTrue();
-            //                    System.out.println(map.get(currentNode[1]).get(currentNode[0]).getDetail());
+//                    System.out.println(map.get(currentNode[1]).get(currentNode[0]).getDetail());
         }
     }
 
-    void join2NodesPositiveSlope(Node node1, Node node2, List<List<Node>> map, int[] currentNode, double slope) {
+    void join2NodesPositiveSlope(Node node1, Node node2, List<List<Node>> map, int[] currentNode, double slope) {  // currentNode [x, y]
         if (node2.getX() > node1.getX())
             map.get(currentNode[1]).get(++currentNode[0]).setWallNeighborTrue();
         else
             map.get(currentNode[1]).get(--currentNode[0]).setWallNeighborTrue();
         //                System.out.println(map.get(currentNode[1]).get(currentNode[0]).getDetail());
-        for (int i = 0; i < slope; i++) {
+        for (int i = 0; i < slope - slopeGoal; i++) {
             if (node2.getX() > node1.getX())
                 map.get(++currentNode[1]).get(currentNode[0]).setWallNeighborTrue();
             else
                 map.get(--currentNode[1]).get(currentNode[0]).setWallNeighborTrue();
+//                    System.out.println(map.get(currentNode[1]).get(currentNode[0]).getDetail());
             //                    System.out.println(map.get(currentNode[1]).get(currentNode[0]).getDetail());
         }
     }
