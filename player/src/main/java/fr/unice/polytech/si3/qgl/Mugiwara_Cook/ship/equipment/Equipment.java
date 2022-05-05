@@ -29,7 +29,7 @@ abstract public class Equipment {
     @Setter
     Sailor sailor = null;
 
-    public Equipment(String type, int x, int y) {
+    protected Equipment(String type, int x, int y) {
         this.type = type;
         this.x = x;
         this.y = y;

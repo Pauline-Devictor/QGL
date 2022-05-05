@@ -8,7 +8,7 @@ abstract public class Goal {
     @Getter
     String mode;
 
-    public Goal(String mode){
+    protected Goal(String mode){
             this.mode = mode;
     }
 }

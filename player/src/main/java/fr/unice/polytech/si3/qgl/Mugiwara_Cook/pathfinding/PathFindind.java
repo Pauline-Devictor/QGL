@@ -104,12 +104,6 @@ public class PathFindind {
 
 
     void color(Node current) {
-//        for i in closeSet:
-//        i.color = "."  #RED
-//
-//        for i in openSet:
-//        i.color = "+"  #GREEN
-
         this.path = new ArrayList<>();
         Node tempN = current;
         path.add(tempN);
@@ -119,15 +113,9 @@ public class PathFindind {
         }
 
         for (Node nodePath : path) {
-//            nodePath.setColor("@" + this.pathNb); //GREEN
-            nodePath.setColor("@"); //GREEN
+            nodePath.setColor("@");
         }
         this.pathNb++;
-
-//
-//        print("AFFICHAGE \n")
-//        for i in range(len(grid)):
-//        print(grid[i])
     }
 
     double heuristique(Node currentNode, Node end) {
@@ -140,51 +128,11 @@ public class PathFindind {
 
         this.pathCheckpoint = new ArrayList<>();
         Collections.reverse(this.path);
-//        Node lastNode = this.path.get(0);
-//        this.pathCheckpoint.add(new Checkpoint(new Position(lastNode.getXReal(), lastNode.getYReal(), 0), new Circle(50)));
-//
-//        for (int i = 1; i < this.path.size(); i++) {
-//            System.out.println(lastNode.getY() + " LAST NODE " + lastNode.getX());
-//            System.out.println(lastNode.getY() + "==" + this.path.get(i).getY() + "&&" + lastNode.getX() + "!=" + this.path.get(i).getX());
-//            if (lastNode.getY() != this.path.get(i).getY() && lastNode.getX() == this.path.get(i).getX()) {
-//                System.out.println("lastNode.getY() != this.path.get(i).getY() && lastNode.getX() == this.path.get(i).getX()");
-//                vert = true;
-//                if (horiz) {
-//                    System.out.println("ADD1");
-//                    horiz = false;
-//                    this.pathCheckpoint.add(new Checkpoint(new Position(lastNode.getXReal(), lastNode.getYReal(), 0), new Circle(50)));
-//                    lastNode.setColor("+");
-//                }
-//
-//            } else if (lastNode.getY() == this.path.get(i).getY() && lastNode.getX() != this.path.get(i).getX()) {
-//                System.out.println("lastNode.getY() == this.path.get(i).getY() && lastNode.getX() != this.path.get(i).getX()");
-//                horiz = true;
-//                if (vert) {
-//                    System.out.println("ADD2");
-//                    vert = false;
-//                    this.pathCheckpoint.add(new Checkpoint(new Position(lastNode.getXReal(), lastNode.getYReal(), 0), new Circle(50)));
-//                    lastNode.setColor("+");
-//                }
-//
-//            } else {
-//                System.out.println("DIAGO");
-//                vert = false;
-//                horiz = false;
-//                this.pathCheckpoint.add(new Checkpoint(new Position(lastNode.getXReal(), lastNode.getYReal(), 0), new Circle(50)));
-//                lastNode.setColor("+");
-//
-//            }
-//            lastNode = this.path.get(i);
-//            System.out.println("vert: " + vert + ", horiz: " + horiz);
-//        }
-
         for (Node node : this.path) {
             this.pathCheckpoint.add(new Checkpoint(new Position(node.getXReal(), node.getYReal(), 0), new Circle(50)));
             System.out.print(node.getDetail() + ", ");
         }
         System.out.println();
-
-//        Collections.reverse(this.pathCheckpoint);
 
     }
 }

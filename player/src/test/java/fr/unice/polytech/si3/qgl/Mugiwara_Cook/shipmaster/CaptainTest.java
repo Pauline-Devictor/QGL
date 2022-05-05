@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CaptainTest {
+class CaptainTest {
     Cockpit cockpit;
     Captain captain;
     MyMapper myMapper;

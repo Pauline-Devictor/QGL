@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import static java.lang.Double.NaN;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class DistanceOptionTest {
+class DistanceOptionTest {
     DistanceOption distanceOption;
     int[] oarArrayInt = new int[2];
 

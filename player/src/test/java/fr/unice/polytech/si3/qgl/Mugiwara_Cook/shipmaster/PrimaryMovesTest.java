@@ -97,15 +97,15 @@ class PrimaryMovesTest {
         captainSailorMove.assignSpecificEquipement("oar",4);
         primaryMoves.primaryMoveOar(0,0);
         String actions=actionJSON.getListAction().toString();
-        assertEquals(actions,"[]");
+        assertEquals("[]",actions);
     }
     @Test  //todo
     void primaryMoveOar1left1right(){
         captainSailorMove.assignSpecificEquipement("oar",6);
         primaryMoves.primaryMoveOar(1,1);
         String actions=actionJSON.getListAction().get(0).getType();
-        assertEquals(actionJSON.getListAction().size(),2);
-        assertTrue(actions.equals("OAR"));
+        assertEquals(2,actionJSON.getListAction().size());
+        assertEquals("OAR", actions);
     }
 
 
@@ -114,10 +114,10 @@ class PrimaryMovesTest {
         captainSailorMove.assignSpecificEquipement("rudder",1);
         primaryMoves.primaryMoveTurn(1.2);
         String actions=actionJSON.getListAction().get(0).getType();
-        assertEquals(actionJSON.getListAction().size(),1);
-        assertTrue(actions.equals("TURN"));
+        assertEquals(1,actionJSON.getListAction().size());
+        assertEquals("TURN", actions);
         Turn turn=(Turn) actionJSON.getListAction().get(0);
-        assertEquals(turn.getRotation(),1.2);
+        assertEquals(1.2,turn.getRotation());
     }
 
     @Test
@@ -125,10 +125,10 @@ class PrimaryMovesTest {
         captainSailorMove.assignSpecificEquipement("rudder",1);
         primaryMoves.primaryMoveTurn(-1.2);
         String actions=actionJSON.getListAction().get(0).getType();
-        assertEquals(actionJSON.getListAction().size(),1);
-        assertTrue(actions.equals("TURN"));
+        assertEquals(1,actionJSON.getListAction().size());
+        assertEquals("TURN", actions);
         Turn turn=(Turn) actionJSON.getListAction().get(0);
-        assertEquals(turn.getRotation(),-1.2);
+        assertEquals(-1.2,turn.getRotation());
     }
 
     @Test
@@ -161,18 +161,18 @@ class PrimaryMovesTest {
         sailorsAssignedToSail.add(sailor3);
         when(initGame1.allSailorAssignedTo("sail")).thenReturn(sailorsAssignedToSail);
         primaryMoves1.primaryMoveSail(0);
-        assertEquals(primaryMoves1.actionJSON.getListAction().size(),0);
+        assertEquals(0,primaryMoves1.actionJSON.getListAction().size());
         when(initGame1.getUsableSailorSail()).thenReturn(sailorsAssignedToSail);
         System.out.println(sailorsAssignedToSail.size());
         primaryMoves1.primaryMoveSail(2);
         List<Action> actions=actionJSON1.getListAction();
         System.out.println(sailorsAssignedToSail.size());
-        assertEquals(actions.size(),2);
-        assertEquals(actions.get(0).getType(),"LIFT_SAIL");
-        assertEquals(actions.get(1).getType(),"LIFT_SAIL");
+        assertEquals(2,actions.size());
+        assertEquals("LIFT_SAIL",actions.get(0).getType());
+        assertEquals("LIFT_SAIL",actions.get(1).getType());
         primaryMoves1.primaryMoveSail(1);
-        assertEquals(actions.size(),3);
-        assertEquals(actions.get(2).getType(),"LOWER_SAIL");
+        assertEquals(3,actions.size());
+        assertEquals("LOWER_SAIL",actions.get(2).getType());
 
     }
 

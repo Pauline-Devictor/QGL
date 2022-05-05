@@ -13,7 +13,9 @@ import java.util.List;
 
 public class ChoseDistance {
 
+    ChoseDistance(){
 
+    }
     public static int[] choiceBestNbOar(AngleOption angleOption, Checkpoint checkpoint, Ship ship, Position position) {
         double distance = distanceBetweenPointAndCheckpoint(checkpoint, position.getX(), position.getY());
         List<DistanceOption> distanceOption = DistanceOption.creationDistanceOptionFromOarCount(angleOption.getDelta(), ship.getNbUsableOarsLeft(), ship.getNbUsableOarsRight(), ship.getNbOars());

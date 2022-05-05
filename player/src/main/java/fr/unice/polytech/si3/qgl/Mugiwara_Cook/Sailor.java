@@ -45,8 +45,8 @@ public class Sailor {
      * @return la distance en x pour atteindre la rame
      */
     public int howManyCaseFarFromOarX(Equipment equipment) {
-        int x = equipment.getX() - this.x;
-        return x;
+        int xdistance = equipment.getX() - this.x;
+        return xdistance;
     }
 
     /**
@@ -54,8 +54,8 @@ public class Sailor {
      * @return la distance en y pour atteindre la rame
      */
     public int howManyCaseFarFromOarY(Equipment equipment) {
-        int y = equipment.getY() - this.y;
-        return y;
+        int ydistance = equipment.getY() - this.y;
+        return ydistance;
     }
 
     public boolean assign() {

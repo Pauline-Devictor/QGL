@@ -36,7 +36,6 @@ public class Cockpit implements ICockpit {
      * @param game A Json with the beginning data
      */
     public void initGame(String game) {
-        new Display();
         Display.info("Init game input: " + game);
 
         try {

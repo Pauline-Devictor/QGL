@@ -114,15 +114,15 @@ class SailorTest {
 
         sailor2.setX(-1);
         assertTrue(sailor2.moveToEquipment(actionJson));
-        assertEquals(sailor2.getX(),0);
+        assertEquals(0,sailor2.getX());
 
         sailor2.setX(6);
         assertFalse(sailor2.moveToEquipment(actionJson));
-        assertEquals(sailor2.getX(),1);
+        assertEquals(1,sailor2.getX());
 
         sailor2.setX(1);
         assertTrue(sailor2.moveToEquipment(actionJson));
-        assertEquals(sailor2.getX(),0);
+        assertEquals(0,sailor2.getX());
 
 
     }
@@ -134,19 +134,19 @@ class SailorTest {
 
         sailor2.setY(-6);
         assertFalse(sailor2.moveToEquipment(actionJson));
-        assertEquals(sailor2.getY(),-1);
+        assertEquals(-1,sailor2.getY());
 
         sailor2.setY(-1);
         assertTrue(sailor2.moveToEquipment(actionJson));
-        assertEquals(sailor2.getY(),0);
+        assertEquals(0,sailor2.getY());
 
         sailor2.setY(6);
         assertFalse(sailor2.moveToEquipment(actionJson));
-        assertEquals(sailor2.getY(),1);
+        assertEquals(1,sailor2.getY());
 
         sailor2.setY(1);
         assertTrue(sailor2.moveToEquipment(actionJson));
-        assertEquals(sailor2.getY(),0);
+        assertEquals(0,sailor2.getY());
     }
     @Test
     void dontMoveToEquipement(){

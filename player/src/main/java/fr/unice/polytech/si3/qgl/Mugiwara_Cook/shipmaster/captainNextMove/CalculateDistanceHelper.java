@@ -9,6 +9,9 @@ import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove.possib
 
 public class CalculateDistanceHelper {
 
+    CalculateDistanceHelper() {
+
+    }
     public static DistanceWithWindOption distanceForWind(int sailsTotal, int sailsUsed, double angleBetweenBoatAndWind, Wind wind) {
         if (sailsTotal != 0) {
             double sailsTotalDouble = (double) sailsTotal;

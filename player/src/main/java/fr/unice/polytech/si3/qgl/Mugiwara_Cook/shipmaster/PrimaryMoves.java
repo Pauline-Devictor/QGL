@@ -45,7 +45,6 @@ public class PrimaryMoves {
         List<Sailor> usableSailorsForSail =initGame.getUsableSailorSail();
         int nbSailsOpenned = 0;
         for (Equipment s : sails) {
-            s = (Sail) s;
             if (((Sail) s).isOpenned()) nbSailsOpenned++;
         }
         setUpSails(nbsails, sailorsAssignedToSail, nbSailsOpenned,usableSailorsForSail);

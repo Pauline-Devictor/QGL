@@ -14,7 +14,7 @@ abstract public class VisibleEntity {
     @Setter
     Position position;
 
-    public VisibleEntity(String type, Shape shape, Position position) {
+    protected VisibleEntity(String type, Shape shape, Position position) {
         this.type = type;
         this.shape = shape;
         this.position = position;

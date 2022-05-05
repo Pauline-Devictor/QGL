@@ -8,7 +8,7 @@ public class Display {
 
 
 
-    public Display() {
+    Display() {
         System.setProperty("java.util.logging.SimpleFormatter.format", "%5$s %n");
         LOGGER.setLevel(Level.INFO);
     }

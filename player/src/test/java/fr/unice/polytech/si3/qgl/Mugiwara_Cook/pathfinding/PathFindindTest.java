@@ -45,33 +45,33 @@ class PathFindindTest {
             System.out.println();
         }
 
-        assertTrue(carte.get(0).get(0).getColor().equals("@"));
-        assertTrue(carte.get(0).get(1).getColor().equals("@"));
-        assertTrue(carte.get(0).get(2).getColor().equals("@"));
-        assertTrue(carte.get(0).get(3).getColor().equals("@"));
-        assertTrue(carte.get(1).get(4).getColor().equals("@"));
-        assertTrue(carte.get(2).get(3).getColor().equals("@"));
-        assertTrue(carte.get(3).get(2).getColor().equals("@"));
-        assertTrue(carte.get(4).get(1).getColor().equals("@"));
+        assertEquals("@", carte.get(0).get(0).getColor());
+        assertEquals("@", carte.get(0).get(1).getColor());
+        assertEquals("@", carte.get(0).get(2).getColor());
+        assertEquals("@", carte.get(0).get(3).getColor());
+        assertEquals("@", carte.get(1).get(4).getColor());
+        assertEquals("@", carte.get(2).get(3).getColor());
+        assertEquals("@", carte.get(3).get(2).getColor());
+        assertEquals("@", carte.get(4).get(1).getColor());
 
-        assertTrue(carte.get(1).get(0).getColor().equals("#"));
-        assertTrue(carte.get(1).get(1).getColor().equals("#"));
-        assertTrue(carte.get(1).get(2).getColor().equals("#"));
-        assertTrue(carte.get(1).get(3).getColor().equals("#"));
-        assertTrue(carte.get(2).get(0).getColor().equals("#"));
-        assertTrue(carte.get(2).get(1).getColor().equals("#"));
-        assertTrue(carte.get(2).get(2).getColor().equals("#"));
-        assertTrue(carte.get(3).get(4).getColor().equals("#"));
+        assertEquals("#", carte.get(1).get(0).getColor());
+        assertEquals("#", carte.get(1).get(1).getColor());
+        assertEquals("#", carte.get(1).get(2).getColor());
+        assertEquals("#", carte.get(1).get(3).getColor());
+        assertEquals("#", carte.get(2).get(0).getColor());
+        assertEquals("#", carte.get(2).get(1).getColor());
+        assertEquals("#", carte.get(2).get(2).getColor());
+        assertEquals("#", carte.get(3).get(4).getColor());
 
-        assertTrue(carte.get(0).get(4).getColor().equals("."));
-        assertTrue(carte.get(2).get(4).getColor().equals("."));
-        assertTrue(carte.get(3).get(0).getColor().equals("."));
-        assertTrue(carte.get(3).get(1).getColor().equals("."));
-        assertTrue(carte.get(3).get(3).getColor().equals("."));
-        assertTrue(carte.get(4).get(0).getColor().equals("."));
-        assertTrue(carte.get(4).get(2).getColor().equals("."));
-        assertTrue(carte.get(4).get(3).getColor().equals("."));
-        assertTrue(carte.get(4).get(4).getColor().equals("."));
+        assertEquals(".", carte.get(0).get(4).getColor());
+        assertEquals(".", carte.get(2).get(4).getColor());
+        assertEquals(".", carte.get(3).get(0).getColor());
+        assertEquals(".", carte.get(3).get(1).getColor());
+        assertEquals(".", carte.get(3).get(3).getColor());
+        assertEquals(".", carte.get(4).get(0).getColor());
+        assertEquals(".", carte.get(4).get(2).getColor());
+        assertEquals(".", carte.get(4).get(3).getColor());
+        assertEquals(".", carte.get(4).get(4).getColor());
 
     }
 

@@ -13,8 +13,9 @@ import static fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove
 
 public class ChoseAngle {
 
-    private static final Logger logger =Logger.getLogger(ChoseAngle.class.getName());
+    ChoseAngle(){
 
+    }
     public static AngleOption choiceBestDelta(List<AngleOption> angleOptionList, Checkpoint checkpoint, Ship ship) {
         AngleOption bestAngleOption = null;
         if (isOkayToUseOnlyTheRudderToTurn(checkpoint, ship) != 0) {

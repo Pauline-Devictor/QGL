@@ -76,10 +76,7 @@ public class Captain {
             this.currentCheckpoint = ((RegattaGoal) this.initGame.getGoal()).getCheckpoints()[this.nbCurrentCheckpoint];
             this.checkpointsPath = new ArrayList<>();
             updateMap(nextRound);
-//            Display.info("OBEJTIF CHECKPOINT: " + this.currentCheckpoint.getPosition().getY() + ":" + this.currentCheckpoint.getPosition().getX());
         }
-
-//        System.out.println(checkpointsPath.get(0).getPosition().getX() + ":" + checkpointsPath.get(0).getPosition().getY());
 
         if (this.inCheckpoint(nextRound, checkpointsPath.get(0))) {
             Display.info("CHECKPOINTPATH ATEINT");

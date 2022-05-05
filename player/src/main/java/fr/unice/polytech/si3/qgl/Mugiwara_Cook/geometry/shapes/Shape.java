@@ -8,7 +8,7 @@ abstract public class Shape {
     @Setter
     String type;
 
-    public Shape(String type) {
+    protected Shape(String type) {
         this.type = type;
     }
 }

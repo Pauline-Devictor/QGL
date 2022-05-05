@@ -18,8 +18,6 @@ public class CollisionDetector2 {
         //Rien
     }
 
-    ///!\/!\/!\  forme List<Point>: [x0y0,x1y0,x1y1,x0y1]  /!\/!\/!\
-
 
     public void coloringTheReef(Reef reef, List<List<Node>> map) {
         if (reef.getShape().getType().equals("rectangle")) {
@@ -57,7 +55,6 @@ public class CollisionDetector2 {
         List<Node> reefcoinNode = new ArrayList<>();
 
         for (Point point : reefcoin) {
-//            Display.info("Point: " + point.getY() + "+" + point.getX());
             try {
                 reefcoinNode.add(this.closestNodeFromPoint(point, map));
             } catch (Exception e) {
@@ -98,17 +95,15 @@ public class CollisionDetector2 {
         double yReefCenter = positionReef.getY();
         double orientationReef = positionReef.getOrientation() - (Math.PI / 2);
 
-        //(xa-xg).cos théta - (ya-yg).sin théta + xg  || (ya-yg).cos théta + (xa-xg).sin théta + yg
         return new Point((coinRectangle.getX() - xReefCenter) * Math.cos(orientationReef) - (coinRectangle.getY() - yReefCenter) * Math.sin(orientationReef) + xReefCenter
                 , (coinRectangle.getY() - yReefCenter) * Math.cos(orientationReef) + (coinRectangle.getX() - xReefCenter) * Math.sin(orientationReef) + yReefCenter);
     }
 
 
-    public Node closestNodeFromPoint(Point point, List<List<Node>> map) throws Exception {
+    public Node closestNodeFromPoint(Point point, List<List<Node>> map) {
         double squareSizeX = map.get(0).get(1).getXReal() - map.get(0).get(0).getXReal();
         double squareSizeY = map.get(1).get(0).getYReal() - map.get(0).get(0).getYReal();
 
-//        Display.info(squareSizeX + "]" + squareSizeY);
 
         Point startMap = new Point(map.get(0).get(0).getXReal() - squareSizeX / 2, map.get(0).get(0).getYReal() - squareSizeY / 2);
         Display.info(startMap.getX() + "[" + startMap.getY());
@@ -123,7 +118,6 @@ public class CollisionDetector2 {
     }
 
     public double slopeBetweenNodes(Node node1, Node node2) {
-//        Display.info(node2.getY() + " " + node1.getY() + " ++ " + node2.getX() + " " + node1.getX());
         return ((double) (node2.getYReal() - node1.getYReal())) / (node2.getXReal() - node1.getXReal());
     }
 
@@ -149,7 +143,6 @@ public class CollisionDetector2 {
         if (slopeGoal == 0) {
             slopeGoal = slope;
         }
-        //            Display.info("slope: " + slope);
         if (slope > 0) {
             join2NodesPositiveSlope(node1, node2, map, currentNode, slope);
         }
@@ -166,13 +159,11 @@ public class CollisionDetector2 {
             map.get(currentNode[1]).get(--currentNode[0]).setWall(true);
         else
             map.get(currentNode[1]).get(++currentNode[0]).setWall(true);
-        //               Display.info(map.get(currentNode[1]).get(currentNode[0]).getDetail());
         for (int i = 0; i > slope - slopeGoal; i--) {
             if (node2.getX() < node1.getX())
                 map.get(++currentNode[1]).get(currentNode[0]).setWall(true);
             else
                 map.get(--currentNode[1]).get(currentNode[0]).setWall(true);
-//                    Display.info(map.get(currentNode[1]).get(currentNode[0]).getDetail());
         }
     }
 
@@ -181,14 +172,11 @@ public class CollisionDetector2 {
             map.get(currentNode[1]).get(++currentNode[0]).setWall(true);
         else
             map.get(currentNode[1]).get(--currentNode[0]).setWall(true);
-        //                Display.info(map.get(currentNode[1]).get(currentNode[0]).getDetail());
         for (int i = 0; i < slope - slopeGoal; i++) {
             if (node2.getX() > node1.getX())
                 map.get(++currentNode[1]).get(currentNode[0]).setWall(true);
             else
                 map.get(--currentNode[1]).get(currentNode[0]).setWall(true);
-//                    Display.info(map.get(currentNode[1]).get(currentNode[0]).getDetail());
-            //                    Display.info(map.get(currentNode[1]).get(currentNode[0]).getDetail());
         }
     }
 
@@ -198,7 +186,6 @@ public class CollisionDetector2 {
                 map.get(currentNode[1]).get(++currentNode[0]).setWallNeighborTrue();
             else
                 map.get(currentNode[1]).get(--currentNode[0]).setWallNeighborTrue();
-            //                Display.info(map.get(currentNode[1]).get(currentNode[0]).getDetail());
         }
     }
 

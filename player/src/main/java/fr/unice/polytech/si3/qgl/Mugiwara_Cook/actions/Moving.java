@@ -9,7 +9,7 @@ import lombok.Setter;
 import static java.lang.Math.abs;
 
 
-public class Moving extends Action { //TODO condition xdistance and ydistance
+public class Moving extends Action {
     public final static String TYPE = "MOVING";
     @Getter
     //@Setter

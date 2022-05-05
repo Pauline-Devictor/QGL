@@ -7,7 +7,7 @@ abstract public class Action {
     //@Setter
     String type;
 
-    public Action(String type) {
+    protected Action(String type) {
         this.type = type;
     }
 }

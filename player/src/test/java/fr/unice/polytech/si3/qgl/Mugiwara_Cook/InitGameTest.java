@@ -19,7 +19,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class InitGameTest {
+class InitGameTest {
     InitGame initGame;
     Sailor sailor = new Sailor(0,0,0,"Bobby");
 
@@ -56,7 +56,7 @@ public class InitGameTest {
     @Test
     void sailorRudderNull(){
         assertFalse(initGame.sailorRudder());
-        assertEquals(initGame.getUsableSailorRudder(),null);
+        assertNull(initGame.getUsableSailorRudder());
     }
     @Test
     void sailorUsableTest(){
@@ -66,7 +66,7 @@ public class InitGameTest {
         sailor.attachEquipment(sail);
         sailors[0] = sailor;
         initGame.setSailors(sailors);
-        assertEquals(initGame.getUsableSailorSail().size(),1);
+        assertEquals(1,initGame.getUsableSailorSail().size());
 
     }
 }

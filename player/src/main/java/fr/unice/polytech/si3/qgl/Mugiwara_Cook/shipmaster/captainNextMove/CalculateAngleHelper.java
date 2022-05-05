@@ -4,6 +4,9 @@ import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.Checkpoint;
 
 public class CalculateAngleHelper {
 
+    CalculateAngleHelper(){
+
+    }
     /**
      * calcule l'angle entre l'orientation du bateau et le prochain checkpoint
      *
