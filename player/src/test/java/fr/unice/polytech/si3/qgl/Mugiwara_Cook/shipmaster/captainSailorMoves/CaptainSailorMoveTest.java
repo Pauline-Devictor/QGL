@@ -111,9 +111,9 @@ class CaptainSailorMoveTest {
                 countRudder++;
             }
         }
-        assertEquals(countOar, 4);
-        assertEquals(countSail, 2);
-        assertEquals(countRudder, 1);
+        assertEquals(4, countOar);
+        assertEquals(2, countSail);
+        assertEquals(1, countRudder);
 
 
     }
@@ -145,9 +145,9 @@ class CaptainSailorMoveTest {
             }
 
         }
-        assertEquals(countOar, 5);
-        assertEquals(countSail, 0);
-        assertEquals(countRudder, 0);
+        assertEquals(5, countOar);
+        assertEquals(0, countSail);
+        assertEquals(0, countRudder);
 
     }
 
@@ -169,9 +169,9 @@ class CaptainSailorMoveTest {
                 countRudder++;
             }
         }
-        assertEquals(countOar, 0);
-        assertEquals(countSail, 0);
-        assertEquals(countRudder, 1);
+        assertEquals(0, countOar);
+        assertEquals(0, countSail);
+        assertEquals(1, countRudder);
     }
 
     @Test
@@ -196,9 +196,9 @@ class CaptainSailorMoveTest {
                 countRudder++;
             }
         }
-        assertEquals(countOar, 2);
-        assertEquals(countSail, 2);
-        assertEquals(countRudder, 1);
+        assertEquals(2, countOar);
+        assertEquals(2, countSail);
+        assertEquals(1, countRudder);
     }
 
 

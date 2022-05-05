@@ -33,30 +33,30 @@ class CalculateAngleHelperTest {
 
     @Test
     void angleBetweenPointAndCheckpoint() {
-        assertEquals(CalculateAngleHelper.angleBetweenPointAndCheckpoint(checkpoint, positionBoat.getX(), positionBoat.getY(), positionBoat.getOrientation()), 0.21460183660255117);
+        assertEquals(0.21460183660255117,CalculateAngleHelper.angleBetweenPointAndCheckpoint(checkpoint, positionBoat.getX(), positionBoat.getY(), positionBoat.getOrientation()));
     }
 
     @Test
     void setAngleBetweenBoatAndWind() {
-        assertEquals(CalculateAngleHelper.angleBetweenBoatAndWind(positionBoat.getOrientation(), wind.getOrientation()), 1);
+        assertEquals(1,CalculateAngleHelper.angleBetweenBoatAndWind(positionBoat.getOrientation(), wind.getOrientation()));
     }
 
     @Test
     void realAngleBetweenPointAndCheckpointAligned() {
-        assertEquals(CalculateAngleHelper.realAngleBetweenPointAndCheckpoint(checkpoint, 0, 0, 0, 0), 0);
+        assertEquals(0,CalculateAngleHelper.realAngleBetweenPointAndCheckpoint(checkpoint, 0, 0, 0, 0));
     }
 
     @Test
     void realAngleBetweenPointAndCheckpointAngleTurnToTheLeft() {
-        double angleBetweenShipOriantationAndCheckpoint = 2.0;
-        assertEquals(CalculateAngleHelper.realAngleBetweenPointAndCheckpoint(checkpoint, positionBoat.getX(), positionBoat.getY(), positionBoat.getOrientation(), angleBetweenShipOriantationAndCheckpoint), angleBetweenShipOriantationAndCheckpoint);
+        double angleBetweenShipOrientationAndCheckpoint = 2.0;
+        assertEquals(angleBetweenShipOrientationAndCheckpoint,CalculateAngleHelper.realAngleBetweenPointAndCheckpoint(checkpoint, positionBoat.getX(), positionBoat.getY(), positionBoat.getOrientation(), angleBetweenShipOrientationAndCheckpoint));
     }
 
     @Test
     void realAngleBetweenPointAndCheckpointAngleTurnToTheRight() {
-        double angleBetweenShipOriantationAndCheckpoint = 2.0;
+        double angleBetweenShipOrientationAndCheckpoint = 2.0;
         positionBoat = new Position(0.0, 0.0, 3.0);
-        assertEquals(CalculateAngleHelper.realAngleBetweenPointAndCheckpoint(checkpoint, positionBoat.getX(), positionBoat.getY(), positionBoat.getOrientation(), angleBetweenShipOriantationAndCheckpoint), -angleBetweenShipOriantationAndCheckpoint);
+        assertEquals(-angleBetweenShipOrientationAndCheckpoint,CalculateAngleHelper.realAngleBetweenPointAndCheckpoint(checkpoint, positionBoat.getX(), positionBoat.getY(), positionBoat.getOrientation(), angleBetweenShipOrientationAndCheckpoint));
     }
 
 }

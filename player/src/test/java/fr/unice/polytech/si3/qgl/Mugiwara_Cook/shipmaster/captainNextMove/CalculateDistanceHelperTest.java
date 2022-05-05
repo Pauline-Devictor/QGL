@@ -53,7 +53,7 @@ class CalculateDistanceHelperTest {
         int oarRight = 3;
         int oarTotal = 9;
         double result = CalculateDistanceHelper.distanceBrowsed(oarLeft, oarRight, oarTotal);
-        assertEquals(result, 91.66666666666667);
+        assertEquals(91.66666666666667, result);
     }
 
     @Test
@@ -65,7 +65,7 @@ class CalculateDistanceHelperTest {
         Position positionBoat = new Position(0, 0, 1);
         when(checkpoint.getPosition()).thenReturn(positionCheckpoint);
         when(ship.getNbOars()).thenReturn(9);
-        assertEquals(CalculateDistanceHelper.remainingDistance(nbOarsUsed, checkpoint, ship, positionBoat), 332.59740204526184);
+        assertEquals(332.59740204526184,CalculateDistanceHelper.remainingDistance(nbOarsUsed, checkpoint, ship, positionBoat));
     }
 
     @Test
@@ -73,7 +73,7 @@ class CalculateDistanceHelperTest {
         Position positionCheckpoint = new Position(300, 300, 0);
         Position positionBoat = new Position(0, 0, 1);
         when(checkpoint.getPosition()).thenReturn(positionCheckpoint);
-        assertEquals(CalculateDistanceHelper.distanceBetweenPointAndCheckpoint(checkpoint, positionBoat.getX(), positionBoat.getY()), 424.26406871192853);
+        assertEquals(424.26406871192853,CalculateDistanceHelper.distanceBetweenPointAndCheckpoint(checkpoint, positionBoat.getX(), positionBoat.getY()));
     }
 
 }

@@ -45,7 +45,7 @@ class ChoseAngleTest {
         positionBoat=new Position(100,0,0);
         when(ship.getPosition()).thenReturn(positionBoat);
         double zero=ChoseAngle.isOkayToUseOnlyTheRudderToTurn(checkpoint,ship);
-        assertTrue(zero==0);
+        assertEquals(0, zero);
     }
 
     @Test

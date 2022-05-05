@@ -22,12 +22,12 @@ class DistanceOptionTest {
     @Test
     void distanceOptionCalcul(){
         DistanceOption result = CalculateDistanceHelper.distance(1,0,1);
-        assertEquals(result.getDistance(),165);
-        assertEquals(result.getOarLeftRightAndSails()[0],1);
-        assertEquals(result.getOarLeftRightAndSails()[1],0);
+        assertEquals(165,result.getDistance());
+        assertEquals(1,result.getOarLeftRightAndSails()[0]);
+        assertEquals(0,result.getOarLeftRightAndSails()[1]);
         result = CalculateDistanceHelper.distance(0,0,0);
-        assertEquals(result.getDistance(),NaN);
-        assertEquals(result.getOarLeftRightAndSails()[0],0);
-        assertEquals(result.getOarLeftRightAndSails()[1],0);
+        assertEquals(NaN,result.getDistance());
+        assertEquals(0,result.getOarLeftRightAndSails()[0]);
+        assertEquals(0,result.getOarLeftRightAndSails()[1]);
     }
 }
