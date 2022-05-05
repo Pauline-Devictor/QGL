@@ -5,7 +5,7 @@ import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes.Shape;
 import lombok.Getter;
 import lombok.Setter;
 
-abstract public class VisibleEntity {
+public abstract class VisibleEntity {
     @Setter
     @Getter
     String type;

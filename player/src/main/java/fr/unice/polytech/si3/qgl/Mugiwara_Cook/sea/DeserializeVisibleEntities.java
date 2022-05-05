@@ -23,7 +23,7 @@ public class DeserializeVisibleEntities  extends StdDeserializer<VisibleEntity> 
 
     @Override
     public VisibleEntity deserialize(JsonParser jp, DeserializationContext ctxt)
-            throws IOException, JsonProcessingException {
+            throws IOException{
         JsonNode node = jp.getCodec().readTree(jp);
         String type = node.get("type").asText();
         MyMapper mapper = new MyMapper();
@@ -34,7 +34,7 @@ public class DeserializeVisibleEntities  extends StdDeserializer<VisibleEntity> 
         return createVisibleEntity(type,node,position,shape);
     }
 
-    public VisibleEntity createVisibleEntity(String type,JsonNode node,Position position,Shape shape) throws JsonProcessingException {
+    public VisibleEntity createVisibleEntity(String type,JsonNode node,Position position,Shape shape){
         switch (type){
             case "reef":
                 return new Reef(position,shape);

@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 public class Stream extends VisibleEntity {
-    public final static String TYPE = "stream";
+    public static final String TYPE = "stream";
     @Setter
     double strength;
 

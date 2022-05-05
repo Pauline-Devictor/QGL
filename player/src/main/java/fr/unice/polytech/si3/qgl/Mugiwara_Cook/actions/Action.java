@@ -2,7 +2,7 @@ package fr.unice.polytech.si3.qgl.Mugiwara_Cook.actions;
 
 import lombok.Getter;
 
-abstract public class Action {
+public abstract class Action {
     @Getter
     //@Setter
     String type;

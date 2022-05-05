@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Ship {
-    public final static String TYPE = "ship";
+    public static final String TYPE = "ship";
     String type = TYPE;
     @Getter
     @Setter

@@ -4,7 +4,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Display {
-    public final static Logger LOGGER = Logger.getLogger("");
+    public static final Logger LOGGER = Logger.getLogger("");
 
 
 

@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 public class Polygon extends Shape {
-    public final static String TYPE = "polygon";
+    public static final  String TYPE = "polygon";
     @Setter
     double orientation;
     @Setter

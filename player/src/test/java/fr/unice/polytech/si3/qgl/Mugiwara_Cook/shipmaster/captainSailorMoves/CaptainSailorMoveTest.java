@@ -119,7 +119,7 @@ class CaptainSailorMoveTest {
     }
 
     @Test
-    public void assignSpecificEquipement() {
+    void assignSpecificEquipement() {
         Sailor sailor1 = new Sailor(1, 1, 2, "a");
         Sailor sailor2 = new Sailor(2, 2, 2, "b");
         Sailor sailor3 = new Sailor(3, 3, 2, "c");
@@ -152,7 +152,7 @@ class CaptainSailorMoveTest {
     }
 
     @Test
-    public void assignSpecificEquipementWithOneSailors() {
+    void assignSpecificEquipementWithOneSailors() {
         Sailor sailor1 = new Sailor(1, 1, 2, "a");
         Sailor[] listSailor = {sailor1};
         CaptainSailorMove captainSailorMove1 = new CaptainSailorMove(ship, listSailor);
@@ -175,7 +175,7 @@ class CaptainSailorMoveTest {
     }
 
     @Test
-    public void assignSpecificEquipementWith5Sailors() {
+    void assignSpecificEquipementWith5Sailors() {
         Sailor sailor1 = new Sailor(1, 1, 2, "a");
         Sailor sailor2 = new Sailor(2, 2, 2, "b");
         Sailor sailor3 = new Sailor(3, 3, 2, "c");

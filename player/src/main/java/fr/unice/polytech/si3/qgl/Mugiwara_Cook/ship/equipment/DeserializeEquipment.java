@@ -1,7 +1,6 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment;
 
 import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
@@ -20,7 +19,7 @@ public class DeserializeEquipment  extends StdDeserializer<Equipment> {
 
     @Override
     public Equipment deserialize(JsonParser jp, DeserializationContext ctxt)
-            throws IOException, JsonProcessingException {
+            throws IOException{
         JsonNode node = jp.getCodec().readTree(jp);
         String type = node.get("type").asText();
         int x = node.get("x").asInt();

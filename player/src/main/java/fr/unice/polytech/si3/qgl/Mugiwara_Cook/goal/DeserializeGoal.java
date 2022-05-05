@@ -22,7 +22,7 @@ public class DeserializeGoal  extends StdDeserializer<Goal> {
 
     @Override
     public Goal deserialize(JsonParser jp, DeserializationContext ctxt)
-            throws IOException, JsonProcessingException {
+            throws IOException{
         JsonNode node = jp.getCodec().readTree(jp);
         String mode = node.get("mode").asText();
         return createGoal(mode,node);

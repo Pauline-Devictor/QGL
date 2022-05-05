@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 public class RegattaGoal extends Goal {
-    public final static String MODE = "REGATTA";
+    public static final  String MODE = "REGATTA";
     public String mode = MODE;
     @Getter
     @Setter

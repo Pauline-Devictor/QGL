@@ -1,7 +1,6 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.actions;
 
 import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
@@ -20,14 +19,14 @@ public class DeserializeAction extends StdDeserializer<Action> {
 
     @Override
     public Action deserialize(JsonParser jp, DeserializationContext ctxt)
-            throws IOException, JsonProcessingException {
+            throws IOException{
         JsonNode node = jp.getCodec().readTree(jp);
         String type = node.get("type").asText();
         int sailorId = node.get("sailorId").asInt();
         return createShape(type,sailorId,node);
     }
     //add in MyMapper
-    public Action createShape(String type,int sailorId,JsonNode node) throws JsonProcessingException {
+    public Action createShape(String type,int sailorId,JsonNode node){
         switch (type){
 
             case "LIFT_SAIL":

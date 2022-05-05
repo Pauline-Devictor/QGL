@@ -1,12 +1,9 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes;
 
 import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.MyMapper;
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.Point;
 
 import java.io.IOException;
 
@@ -22,13 +19,13 @@ public class DeserializeShape extends StdDeserializer<Shape> {
 
     @Override
     public Shape deserialize(JsonParser jp, DeserializationContext ctxt)
-            throws IOException, JsonProcessingException {
+            throws IOException {
         JsonNode node = jp.getCodec().readTree(jp);
         String type = node.get("type").asText();
         return createShape(type,node);
     }
 
-    public Shape createShape(String type,JsonNode node) throws JsonProcessingException {
+    public Shape createShape(String type,JsonNode node) {
         switch (type){
             case "rectangle":
                 double width = node.get("width").asDouble();

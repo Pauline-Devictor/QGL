@@ -14,8 +14,8 @@ public class CalculateDistanceHelper {
     }
     public static DistanceWithWindOption distanceForWind(int sailsTotal, int sailsUsed, double angleBetweenBoatAndWind, Wind wind) {
         if (sailsTotal != 0) {
-            double sailsTotalDouble = (double) sailsTotal;
-            double sailsUsedDouble = (double) sailsUsed;
+            double sailsTotalDouble = sailsTotal;
+            double sailsUsedDouble = sailsUsed;
             double distance = (sailsUsedDouble / sailsTotalDouble) * wind.getStrength() * Math.cos(angleBetweenBoatAndWind);
             return new DistanceWithWindOption(sailsUsed, distance);
         } else return new DistanceWithWindOption(0, 0);
@@ -29,11 +29,11 @@ public class CalculateDistanceHelper {
      * @param oarTotal nombre de rames total
      * @return le couple distance ,
      */
-    static public DistanceOption distance(int oarLeft, int oarRight, int oarTotal) {
+    public static DistanceOption distance(int oarLeft, int oarRight, int oarTotal) {
         return new DistanceOption((165 * (oarLeft + oarRight)) / (double) oarTotal, new int[]{oarLeft, oarRight, 0});
     }
 
-    static public double distanceBrowsed(int oarLeft, int oarRight, int oarTotal) {
+    public static double distanceBrowsed(int oarLeft, int oarRight, int oarTotal) {
         return (165 * (oarLeft + oarRight)) / (double) oarTotal;
 
 
@@ -45,7 +45,7 @@ public class CalculateDistanceHelper {
 
 
     public static double distanceBetweenPointAndCheckpoint(Checkpoint checkpoint, double xPoint, double yPoint) {
-        return (double) Math.sqrt(Math.pow(checkpoint.getPosition().getX() - xPoint, 2) + Math.pow(checkpoint.getPosition().getY() - yPoint, 2));
+        return Math.sqrt(Math.pow(checkpoint.getPosition().getX() - xPoint, 2) + Math.pow(checkpoint.getPosition().getY() - yPoint, 2));
     }
 
 }

@@ -6,9 +6,7 @@ import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Sailor;
 import lombok.Getter;
 import lombok.Setter;
 
-import static java.lang.Math.abs;
-
-abstract public class Equipment {
+public abstract class Equipment {
     @Getter
     //@Setter
     protected String type;

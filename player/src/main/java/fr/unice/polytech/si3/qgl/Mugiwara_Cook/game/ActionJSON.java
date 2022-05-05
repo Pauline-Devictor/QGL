@@ -21,7 +21,7 @@ public class ActionJSON {
     }
 
     public void addAction(ArrayList<Action> arraylistAction) {
-        arraylistAction.forEach(action -> this.addAction(action));
+        arraylistAction.forEach(this::addAction);
     }
 
     public void clearActions() {

@@ -52,7 +52,7 @@ public class PathFindind {
         }
         this.path = new ArrayList<>();
         while (true) {
-            if (openSet.size() > 0) {
+            if (!openSet.isEmpty()) {
                 int lowerIndex = 0;
                 for (int i = 0; i < openSet.size(); i++) {
                     if (openSet.get(i).getF() < openSet.get(lowerIndex).getF())
@@ -123,8 +123,6 @@ public class PathFindind {
     }
 
     void nodeToCheckpoint() {
-        boolean vert = false;
-        boolean horiz = false;
 
         this.pathCheckpoint = new ArrayList<>();
         Collections.reverse(this.path);

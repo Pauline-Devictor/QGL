@@ -45,8 +45,7 @@ public class Sailor {
      * @return la distance en x pour atteindre la rame
      */
     public int howManyCaseFarFromOarX(Equipment equipment) {
-        int xdistance = equipment.getX() - this.x;
-        return xdistance;
+        return equipment.getX() - this.x;
     }
 
     /**
@@ -54,13 +53,11 @@ public class Sailor {
      * @return la distance en y pour atteindre la rame
      */
     public int howManyCaseFarFromOarY(Equipment equipment) {
-        int ydistance = equipment.getY() - this.y;
-        return ydistance;
+        return equipment.getY() - this.y;
     }
 
     public boolean assign() {
-        if (this.equipment == null) return false;
-        return true;
+        return !(this.equipment == null);
     }
 
     public void attachEquipment(Equipment equipment) {
@@ -100,7 +97,6 @@ public class Sailor {
      * @return un boolean qui dit vrai s'il respect les conditions, faux sinon
      */
     public boolean sailorIsAllowedToMove(int xdistance, int ydistance) {
-        if (abs(xdistance) + abs(ydistance) <= 5) return true;
-        return false;
+        return  (abs(xdistance) + abs(ydistance) <= 5);
     }
 }
