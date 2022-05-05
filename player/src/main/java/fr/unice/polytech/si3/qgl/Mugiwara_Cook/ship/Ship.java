@@ -1,20 +1,16 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Sailor;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.Position;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes.Shape;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Equipment;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Oar;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Rudder;
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Sail;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Ship {
     public static final String TYPE = "ship";
@@ -105,22 +101,20 @@ public class Ship {
         return this.getOars().stream()
                 .filter(oar -> oar.getY() == 0)
                 .filter(oar -> oar.getSailor() != null)
-                .filter(oar -> oar.getSailor().onIsAssignEquipment())
-                .collect(Collectors.toList()).size();
+                .filter(oar -> oar.getSailor().onIsAssignEquipment()).toList().size();
+
     }
     @JsonIgnore
     public int getNbUsableSails() {
         return this.getEquipement("sail").stream()
                 .filter(sail -> sail.getSailor() != null)
-                .filter(sail -> sail.getSailor().onIsAssignEquipment())
-                .collect(Collectors.toList()).size();
+                .filter(sail -> sail.getSailor().onIsAssignEquipment()).toList().size();
     }
     @JsonIgnore
     public List<Equipment> getUsableSails() {
         return this.getEquipement("sail").stream()
                 .filter(sail -> sail.getSailor() != null)
-                .filter(sail -> sail.getSailor().onIsAssignEquipment())
-                .collect(Collectors.toList());
+                .filter(sail -> sail.getSailor().onIsAssignEquipment()).toList();
     }
 
 
@@ -132,8 +126,7 @@ public class Ship {
         return this.getOars().stream()
                 .filter(oar -> (this.getDeck().getWidth() - 1) == oar.getY())
                 .filter(oar -> oar.getSailor() != null)
-                .filter(oar -> oar.getSailor().onIsAssignEquipment())
-                .collect(Collectors.toList()).size();
+                .filter(oar -> oar.getSailor().onIsAssignEquipment()).toList().size();
     }
 
     /**

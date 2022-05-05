@@ -1,9 +1,8 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster;
 
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Display;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Sailor;
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.actions.Lift_Sail;
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.actions.Lower_Sail;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.actions.LiftSail;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.actions.LowerSail;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.actions.Oar;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.actions.Turn;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.game.ActionJSON;
@@ -11,7 +10,6 @@ import fr.unice.polytech.si3.qgl.Mugiwara_Cook.game.InitGame;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Equipment;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Sail;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class PrimaryMoves {
@@ -56,7 +54,7 @@ public class PrimaryMoves {
             if (nbSailsOpenned > nbsails) {
                 Sail sail = (Sail) sailorsAssignedToSail.get(count).getEquipment();
                 if (sail.isOpenned()) {
-                    actionJSON.addAction(new Lower_Sail(usableSailorsToSail.get(count).getId()));
+                    actionJSON.addAction(new LowerSail(usableSailorsToSail.get(count).getId()));
                     sail.setOpenned(false);
                     nbSailsOpenned--;
 
@@ -65,7 +63,7 @@ public class PrimaryMoves {
             if (nbSailsOpenned < nbsails) {
                 Sail sail = (Sail) sailorsAssignedToSail.get(count).getEquipment();
                 if (!sail.isOpenned()) {
-                    actionJSON.addAction(new Lift_Sail(usableSailorsToSail.get(count).getId()));
+                    actionJSON.addAction(new LiftSail(usableSailorsToSail.get(count).getId()));
                     sail.setOpenned(true);
                     nbSailsOpenned++;
 

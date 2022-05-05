@@ -4,7 +4,6 @@ import lombok.Getter;
 
 public abstract class Action {
     @Getter
-    //@Setter
     String type;
 
     protected Action(String type) {

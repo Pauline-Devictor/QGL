@@ -3,7 +3,7 @@ package fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes;
 import lombok.Getter;
 
 public class Rectangle extends Shape {
-    public static final  String TYPE = "rectangle";
+    public static final String rectangle = "rectangle";
     @Getter
     double width;
     @Getter
@@ -12,7 +12,7 @@ public class Rectangle extends Shape {
     double orientation;
 
     public Rectangle(double width, double height, double orientation) {
-        super(TYPE);
+        super(rectangle);
         this.width = width;
         this.height = height;
         this.orientation = orientation;

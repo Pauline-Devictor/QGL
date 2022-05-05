@@ -57,7 +57,7 @@ public class Sailor {
     }
 
     public boolean assign() {
-        return !(this.equipment == null);
+        return this.equipment != null;
     }
 
     public void attachEquipment(Equipment equipment) {

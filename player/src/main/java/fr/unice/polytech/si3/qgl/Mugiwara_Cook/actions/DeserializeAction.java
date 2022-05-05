@@ -30,9 +30,9 @@ public class DeserializeAction extends StdDeserializer<Action> {
         switch (type){
 
             case "LIFT_SAIL":
-                return new Lift_Sail(sailorId);
+                return new LiftSail(sailorId);
             case "LOWER_SAIL":
-                return new Lower_Sail(sailorId);
+                return new LowerSail(sailorId);
             case "MOVING":
                 int xdistance = node.get("xdistance").asInt();
                 int ydistance = node.get("ydistance").asInt();

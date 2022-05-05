@@ -7,13 +7,13 @@ import lombok.Setter;
  * Voile
  */
 public class Sail extends Equipment {
-    public static final String TYPE = "sail";
+    public static final String sail = "sail";
     @Getter
     @Setter
     boolean openned;
 
     public Sail(int x, int y, boolean openned) {
-        super(TYPE, x, y);
+        super(sail, x, y);
         this.openned = openned;
     }
 }

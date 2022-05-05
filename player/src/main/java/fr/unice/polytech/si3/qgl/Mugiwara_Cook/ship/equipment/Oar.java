@@ -7,14 +7,14 @@ import lombok.Setter;
  * Rame
  */
 public class Oar extends Equipment {
-    public static final String TYPE = "oar";
+    public static final String oar = "oar";
     @JsonIgnore
     @Setter
     boolean used = false;
 
 
     public Oar(int x, int y) {
-        super(TYPE, x, y);
+        super(oar, x, y);
     }
 
     public boolean isUsed() {

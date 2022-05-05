@@ -29,14 +29,14 @@ public class DeserializeGoal  extends StdDeserializer<Goal> {
     }
 
     public Goal createGoal(String mode,JsonNode node) throws JsonProcessingException {
-        switch (mode){
-            case "REGATTA":
-                String checkpointString = node.get("checkpoints").toString();
-                MyMapper mapper = new MyMapper();
-                Checkpoint[] checkpoints = mapper.readValue(checkpointString, Checkpoint[].class);
-                return new RegattaGoal(checkpoints);
-            default:
-                return null;
+        if (mode.equals("REGATTA")) {
+            String checkpointString = node.get("checkpoints").toString();
+            MyMapper mapper = new MyMapper();
+            Checkpoint[] checkpoints = mapper.readValue(checkpointString, Checkpoint[].class);
+            return new RegattaGoal(checkpoints);
+        }
+        else {
+            return null;
         }
     }
 }

@@ -36,14 +36,14 @@ public abstract class Equipment {
     public Sailor findClosestSailorWithOutAssignEquipment(Sailor[] sailors) {
         Sailor closestSailor = null;
 
-        for (Sailor sailor : sailors) {
-            if (!(sailor.assign()))
-                closestSailor = sailor;
+        for (Sailor currentSailor : sailors) {
+            if (!(currentSailor.assign()))
+                closestSailor = currentSailor;
         }
 
-        for (Sailor sailor : sailors) {
-            if (closestSailor != null && sailor.sailorIsAllowedToMove(sailor.getX() - this.getX(), sailor.getY() - this.getY()) && !(sailor.assign())) {
-                closestSailor = sailor;
+        for (Sailor currentSailor : sailors) {
+            if (closestSailor != null && currentSailor.sailorIsAllowedToMove(currentSailor.getX() - this.getX(), currentSailor.getY() - this.getY()) && !(currentSailor.assign())) {
+                closestSailor = currentSailor;
             }
         }
 

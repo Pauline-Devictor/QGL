@@ -6,13 +6,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  * Vigie
  */
 public class Watch extends Equipment {
-    public static final String TYPE = "watch";
+    public static final String watch = "watch";
     @JsonIgnore
     //@Setter
     boolean used = false;
 
     public Watch(int x, int y) {
-        super(TYPE, x, y);
+        super(watch, x, y);
     }
 
     public boolean isUsed() {

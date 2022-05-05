@@ -44,8 +44,8 @@ public class InitGame {
                 .filter(sailor -> sailor.getEquipment() != null)
                 .filter(sailor -> sailor.getEquipment().getType().equals("oar"))
                 .filter(sailor -> sailor.getEquipment().getY() == 0)
-                .filter(Sailor::onIsAssignEquipment)
-                .collect(Collectors.toList());
+                .filter(Sailor::onIsAssignEquipment).toList();
+
     }
 
     @JsonIgnore
@@ -54,15 +54,13 @@ public class InitGame {
                 .filter(sailor -> sailor.getEquipment() != null)
                 .filter(sailor -> sailor.getEquipment().getType().equals("oar"))
                 .filter(sailor -> sailor.getEquipment().getY() == (this.ship.getDeck().getWidth() - 1))
-                .filter(Sailor::onIsAssignEquipment)
-                .collect(Collectors.toList());
+                .filter(Sailor::onIsAssignEquipment).toList();
     }
 
     @JsonIgnore
     public boolean allSailorIsOnAssign() {
         for (int i = 0; i < sailors.length; i++) {
-            if (sailors[i].getEquipment() != null)
-                if (!(sailors[i].onIsAssignEquipment()))
+            if (sailors[i].getEquipment() != null && !(sailors[i].onIsAssignEquipment()))
                     return false;
         }
         return true;
@@ -95,8 +93,7 @@ public class InitGame {
         return Arrays.stream(this.sailors)
                 .filter(sailor -> sailor.getEquipment() != null)
                 .filter(sailor -> sailor.getEquipment().getType().equals("sail"))
-                .filter(Sailor::onIsAssignEquipment)
-                .collect(Collectors.toList());
+                .filter(Sailor::onIsAssignEquipment).toList();
     }
 
 
