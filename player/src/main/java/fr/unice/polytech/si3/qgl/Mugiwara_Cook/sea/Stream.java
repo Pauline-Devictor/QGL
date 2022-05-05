@@ -5,12 +5,12 @@ import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes.Shape;
 import lombok.Setter;
 
 public class Stream extends VisibleEntity {
-    public static final String entityType = "stream";
+    public static final String EntityType = "stream";
     @Setter
     double strength;
 
     public Stream(Position position, Shape shape, double strength) {
-        super(entityType, shape, position);
+        super(EntityType, shape, position);
         this.strength = strength;
     }
 }

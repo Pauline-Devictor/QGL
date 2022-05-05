@@ -5,13 +5,13 @@ import lombok.Getter;
 import lombok.Setter;
 
 public class RegattaGoal extends Goal {
-    public static final String regatta = "REGATTA";
+    public static final String Regatta = "REGATTA";
     @Getter
     @Setter
     public Checkpoint[] checkpoints;
 
     public RegattaGoal(Checkpoint[] checkpoints) {
-        super(regatta);
+        super(Regatta);
         this.checkpoints = checkpoints;
     }
 }

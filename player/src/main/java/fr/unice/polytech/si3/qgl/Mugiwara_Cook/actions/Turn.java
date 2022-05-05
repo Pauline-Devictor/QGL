@@ -5,14 +5,14 @@ import lombok.Getter;
 import static java.lang.Math.abs;
 
 public class Turn extends Action {
-    public static final String actionType = "TURN";
+    public static final String ActionType = "TURN";
     @Getter
     int sailorId;
     @Getter
     double rotation;
 
     public Turn(int sailorId, double rotation) {
-        super(actionType);
+        super(ActionType);
         this.sailorId = sailorId;
         if (abs(rotation) <= Math.PI/2)
             this.rotation = rotation;
