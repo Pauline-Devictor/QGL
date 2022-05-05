@@ -1,14 +1,11 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster;
 
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Cockpit;
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Display;
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.MyMapper;
+
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Sailor;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.actions.Action;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.actions.Turn;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.game.ActionJSON;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.game.InitGame;
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.game.NextRound;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.Position;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes.Circle;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes.Rectangle;
@@ -26,10 +23,8 @@ import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainSailorMoves.Cap
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
@@ -51,7 +46,6 @@ class PrimaryMovesTest {
     }
 
     private InitGame createInitGame() {
-        Random rand = new Random();
         Checkpoint checkpoint1 = new Checkpoint(new Position(-5586.701434159062, -195.31249999999972, 0), new Circle(200));
 
 
@@ -152,7 +146,6 @@ class PrimaryMovesTest {
         Sailor sailor1= new Sailor(1,3,1,"a");
         Sailor sailor2= new Sailor(2,5,1,"b");
         Sailor sailor3= new Sailor(3,4,1,"c");
-        Sailor sailor4= new Sailor(4,2,1,"d");
         sailor1.setEquipment(sail1);
         sailor2.setEquipment(sail2);
         sailor3.setEquipment(sail3);

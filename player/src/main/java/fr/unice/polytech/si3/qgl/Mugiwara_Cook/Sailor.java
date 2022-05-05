@@ -4,12 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.actions.Moving;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.game.ActionJSON;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Equipment;
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Oar;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.lang.reflect.Type;
-import java.util.ArrayList;
 
 import static java.lang.Math.abs;
 

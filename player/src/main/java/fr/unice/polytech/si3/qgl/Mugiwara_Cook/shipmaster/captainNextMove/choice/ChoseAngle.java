@@ -6,7 +6,6 @@ import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.Ship;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove.possible.possibleAngle.AngleOption;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 import static fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove.CalculateAngleHelper.angleBetweenPointAndCheckpoint;
 import static fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove.CalculateAngleHelper.realAngleBetweenPointAndCheckpoint;

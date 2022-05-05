@@ -13,7 +13,6 @@ public class AngleOption {
     double angle;
     @Getter
     int delta; //NBoarRight - NBoarLeft
-    double completAngleRudder;
 
 
     /**

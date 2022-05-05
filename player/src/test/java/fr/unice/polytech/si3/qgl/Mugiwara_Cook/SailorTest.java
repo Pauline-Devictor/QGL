@@ -1,14 +1,9 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook;
 
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.actions.Action;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.game.ActionJSON;
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Equipment;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Oar;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static java.lang.Math.abs;
 import static org.junit.jupiter.api.Assertions.*;

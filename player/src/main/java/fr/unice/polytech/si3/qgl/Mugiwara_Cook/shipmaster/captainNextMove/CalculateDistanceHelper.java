@@ -14,9 +14,7 @@ public class CalculateDistanceHelper {
     }
     public static DistanceWithWindOption distanceForWind(int sailsTotal, int sailsUsed, double angleBetweenBoatAndWind, Wind wind) {
         if (sailsTotal != 0) {
-            double sailsTotalDouble = sailsTotal;
-            double sailsUsedDouble = sailsUsed;
-            double distance = (sailsUsedDouble / sailsTotalDouble) * wind.getStrength() * Math.cos(angleBetweenBoatAndWind);
+            double distance = ((double) sailsUsed / (double) sailsTotal) * wind.getStrength() * Math.cos(angleBetweenBoatAndWind);
             return new DistanceWithWindOption(sailsUsed, distance);
         } else return new DistanceWithWindOption(0, 0);
     }

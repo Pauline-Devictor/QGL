@@ -62,7 +62,6 @@ public class Captain {
      * Permet a la fois de deplacer les marins sur le bateau (leur assigne une rame)
      * puis calcule de meilleur moves en fonction du deplacement des marins
      *
-     * @param nextRound
      */
     public void nextMove(NextRound nextRound) {
         this.captainSailorMove.moveToAssignEquipment(this.actionJSON);

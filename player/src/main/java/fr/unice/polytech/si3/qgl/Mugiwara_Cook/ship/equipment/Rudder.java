@@ -6,16 +6,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  * Gouvernail
  */
 public class Rudder extends Equipment {
-    public static final String rudder = "rudder";
-    @JsonIgnore
-    //@Setter
-    boolean used = false;
+    public static final String equipmentType = "rudder";
 
     public Rudder(int x, int y) {
-        super(rudder, x, y);
+        super(equipmentType, x, y);
     }
 
-    public boolean isUsed() {
-        return used;
-    }
+
 }

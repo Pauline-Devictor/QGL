@@ -4,11 +4,7 @@ import fr.unice.polytech.si3.qgl.Mugiwara_Cook.*;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.game.*;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.Ship;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Equipment;
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Sail;
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class CaptainSailorMove {
     Ship ship;
@@ -58,8 +54,7 @@ public class CaptainSailorMove {
     public void assignSpecificEquipement(String equipement, int numberSailorAssign) {
         int numberAssign = 0;
         List<Equipment> equipmentArrayList = this.ship.getEquipement(equipement).stream()
-                .filter(equipment -> equipment.getSailor() == null)
-                .collect(Collectors.toList());
+                .filter(equipment -> equipment.getSailor() == null).toList();
         Display.info(equipmentArrayList.get(0).getType());
         while (numberAssign < numberSailorAssign && numberAssign < this.sailors.length) {
             Sailor sailor = equipmentArrayList.get(numberAssign).findClosestSailorWithOutAssignEquipment(this.sailors);
@@ -75,9 +70,9 @@ public class CaptainSailorMove {
      * Deplace les marins vers leur rame attitrée
      */
     public void moveToAssignEquipment(ActionJSON actionJSON) {
-        for (int i = 0; i < this.sailors.length; i++) {
-            if (this.sailors[i].getEquipment() != null && !(this.sailors[i].onIsAssignEquipment()))
-                this.sailors[i].moveToEquipment(actionJSON);
+        for (Sailor sailor : this.sailors) {
+            if (sailor.getEquipment() != null && !(sailor.onIsAssignEquipment()))
+                sailor.moveToEquipment(actionJSON);
         }
     }
 }

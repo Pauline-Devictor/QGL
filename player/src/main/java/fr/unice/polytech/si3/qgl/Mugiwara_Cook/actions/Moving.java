@@ -5,7 +5,7 @@ import lombok.Getter;
 
 
 public class Moving extends Action {
-    public static final String moving = "MOVING";
+    public static final String actionType = "MOVING";
     @Getter
     int sailorId;
     @Getter
@@ -14,7 +14,7 @@ public class Moving extends Action {
     int ydistance;
 
     public Moving(int sailorId, int xdistance, int ydistance) {
-        super(moving);
+        super(actionType);
         this.sailorId = sailorId;
         this.xdistance = xdistance;
         this.ydistance = ydistance;

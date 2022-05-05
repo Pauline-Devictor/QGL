@@ -1,17 +1,11 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.pathfinding.cartography;
 
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.Position;
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.Checkpoint;
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.Wind;
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.Ship;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 class NodeTest {
     Node node;
@@ -59,11 +53,11 @@ class NodeTest {
     @Test
     void setWallNeighborTrue(){
         node.setWallNeighborTrue();
-        assertEquals(true,node.wall);
-        assertEquals(true,node2.wall);
-        assertEquals(true,node3.wall);
-        assertEquals(true,node4.wall);
-        assertEquals(true,node5.wall);
+        assertTrue(node.wall);
+        assertTrue(node2.wall);
+        assertTrue(node3.wall);
+        assertTrue(node4.wall);
+        assertTrue(node5.wall);
 
     }
 

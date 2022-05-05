@@ -11,7 +11,6 @@ import lombok.Setter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class InitGame {
     @Getter
@@ -59,9 +58,9 @@ public class InitGame {
 
     @JsonIgnore
     public boolean allSailorIsOnAssign() {
-        for (int i = 0; i < sailors.length; i++) {
-            if (sailors[i].getEquipment() != null && !(sailors[i].onIsAssignEquipment()))
-                    return false;
+        for (Sailor sailor : sailors) {
+            if (sailor.getEquipment() != null && !(sailor.onIsAssignEquipment()))
+                return false;
         }
         return true;
     }
@@ -69,9 +68,9 @@ public class InitGame {
     @JsonIgnore
     public List<Sailor> allSailorAssignedTo(String equipment) {
         List<Sailor> sailorsAssignedToAnSpecificEquipement = new ArrayList<>();
-        for (int i = 0; i < sailors.length; i++) {
-            if (sailors[i].getEquipment().getType().equals(equipment)) {
-                sailorsAssignedToAnSpecificEquipement.add(sailors[i]);
+        for (Sailor sailor : sailors) {
+            if (sailor.getEquipment().getType().equals(equipment)) {
+                sailorsAssignedToAnSpecificEquipement.add(sailor);
             }
         }
         return sailorsAssignedToAnSpecificEquipement;
@@ -99,9 +98,9 @@ public class InitGame {
 
     @JsonIgnore
     public boolean sailorRudder() {
-        for (int i = 0; i < sailors.length; i++) {
-            if (sailors[i].getEquipment() != null && sailors[i].getEquipment().getType().equals("rudder") && sailors[i].onIsAssignEquipment() )
-                    return true;
+        for (Sailor sailor : sailors) {
+            if (sailor.getEquipment() != null && sailor.getEquipment().getType().equals("rudder") && sailor.onIsAssignEquipment())
+                return true;
         }
         return false;
     }

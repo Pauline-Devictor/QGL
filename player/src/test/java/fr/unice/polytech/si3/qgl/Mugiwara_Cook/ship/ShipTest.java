@@ -3,7 +3,6 @@ package fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Sailor;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.Position;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes.Circle;
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes.Shape;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Equipment;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Oar;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Rudder;
@@ -18,7 +17,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ShipTest {
 
-    public final static String TYPE = "ship";
     Position position;
     List<Equipment> entities=new ArrayList<>();
     Ship ship;

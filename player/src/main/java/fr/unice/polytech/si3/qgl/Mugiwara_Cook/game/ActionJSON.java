@@ -20,10 +20,6 @@ public class ActionJSON {
         listAction.add(action);
     }
 
-    public void addAction(ArrayList<Action> arraylistAction) {
-        arraylistAction.forEach(this::addAction);
-    }
-
     public void clearActions() {
         listAction.clear();
     }

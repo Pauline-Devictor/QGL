@@ -118,7 +118,7 @@ public class CollisionDetector2 {
     }
 
     public double slopeBetweenNodes(Node node1, Node node2) {
-        return ((double) (node2.getYReal() - node1.getYReal())) / (node2.getXReal() - node1.getXReal());
+        return (node2.getYReal() - node1.getYReal()) / (node2.getXReal() - node1.getXReal());
     }
 
 

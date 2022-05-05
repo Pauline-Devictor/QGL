@@ -102,13 +102,11 @@ class CaptainSailorMoveTest {
         int countOar = 0;
         int countSail = 0;
         int countRudder = 0;
-        for (int i = 0; i < listSailor.length; i++) {
-            if (listSailor[i].getEquipment().getType().equals("oar")) {
-                countOar++;
-            } else if (listSailor[i].getEquipment().getType().equals("sail")) {
-                countSail++;
-            } else if (listSailor[i].getEquipment().getType().equals("rudder")) {
-                countRudder++;
+        for (Sailor sailor : listSailor) {
+            switch (sailor.getEquipment().getType()) {
+                case "oar" -> countOar++;
+                case "sail" -> countSail++;
+                case "rudder" -> countRudder++;
             }
         }
         assertEquals(4, countOar);
@@ -133,14 +131,12 @@ class CaptainSailorMoveTest {
         int countOar = 0;
         int countSail = 0;
         int countRudder = 0;
-        for (int i = 0; i < listSailor.length; i++) {
-            if (listSailor[i].getEquipment() != null) {
-                if (listSailor[i].getEquipment().getType().equals("oar")) {
-                    countOar++;
-                } else if (listSailor[i].getEquipment().getType().equals("sail")) {
-                    countSail++;
-                } else if (listSailor[i].getEquipment().getType().equals("rudder")) {
-                    countRudder++;
+        for (Sailor sailor : listSailor) {
+            if (sailor.getEquipment() != null) {
+                switch (sailor.getEquipment().getType()) {
+                    case "oar" -> countOar++;
+                    case "sail" -> countSail++;
+                    case "rudder" -> countRudder++;
                 }
             }
 
@@ -160,13 +156,11 @@ class CaptainSailorMoveTest {
         int countOar = 0;
         int countSail = 0;
         int countRudder = 0;
-        for (int i = 0; i < listSailor.length; i++) {
-            if (listSailor[i].getEquipment().getType().equals("oar")) {
-                countOar++;
-            } else if (listSailor[i].getEquipment().getType().equals("sail")) {
-                countSail++;
-            } else if (listSailor[i].getEquipment().getType().equals("rudder")) {
-                countRudder++;
+        for (Sailor sailor : listSailor) {
+            switch (sailor.getEquipment().getType()) {
+                case "oar" -> countOar++;
+                case "sail" -> countSail++;
+                case "rudder" -> countRudder++;
             }
         }
         assertEquals(0, countOar);
@@ -187,13 +181,11 @@ class CaptainSailorMoveTest {
         int countOar = 0;
         int countSail = 0;
         int countRudder = 0;
-        for (int i = 0; i < listSailor.length; i++) {
-            if (listSailor[i].getEquipment().getType().equals("oar")) {
-                countOar++;
-            } else if (listSailor[i].getEquipment().getType().equals("sail")) {
-                countSail++;
-            } else if (listSailor[i].getEquipment().getType().equals("rudder")) {
-                countRudder++;
+        for (Sailor sailor : listSailor) {
+            switch (sailor.getEquipment().getType()) {
+                case "oar" -> countOar++;
+                case "sail" -> countSail++;
+                case "rudder" -> countRudder++;
             }
         }
         assertEquals(2, countOar);

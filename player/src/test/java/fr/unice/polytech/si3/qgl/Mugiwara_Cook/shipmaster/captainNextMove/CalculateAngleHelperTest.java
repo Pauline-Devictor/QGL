@@ -1,6 +1,6 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove;
 
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Display;
+
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.Position;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.Checkpoint;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.Wind;
@@ -14,7 +14,6 @@ import static org.mockito.Mockito.when;
 
 class CalculateAngleHelperTest {
 
-    double angleBetweenBoatAndWind;
     Wind wind;
     Checkpoint checkpoint;
     Ship ship;
