@@ -28,23 +28,23 @@ public class CaptainSailorMove {
             assignSpecificEquipement("oar", 2);
             nbsailors -= 2;
         }
-        if (nbsailors >= 1 && this.ship.getEquipement("rudder").size() >= 1) {
+        if (nbsailors >= 1 && !this.ship.getEquipement("rudder").isEmpty()) {
 
             assignSpecificEquipement("rudder", 1);
             nbsailors--;
         }
-        if (nbsailors >= 1 && this.ship.getEquipement("sail").size() >= 1) {
+        if (nbsailors >= 1 && !this.ship.getEquipement("sail").isEmpty()) {
 
             assignSpecificEquipement("sail", 1);
             nbsailors--;
         }
-        if (nbsailors >= 1 && this.ship.getEquipement("watch").size() >= 1) {
+        if (nbsailors >= 1 && !this.ship.getEquipement("watch").isEmpty()) {
 
             assignSpecificEquipement("watch", 1);
             nbsailors--;
         }
         while (nbsailors >= 2) {
-            if (nbsailors >= 2 && this.ship.getEquipement("oar").size() >= 2) {
+            if (this.ship.getEquipement("oar").size() >= 2) {
                 assignSpecificEquipement("oar", 2);
                 nbsailors -= 2;
             }
@@ -52,7 +52,6 @@ public class CaptainSailorMove {
         if (nbsailors >= 1 && this.ship.getEquipement("sail").size() >= 2) {
 
             assignSpecificEquipement("sail", 1);
-            nbsailors--;
         }
     }
 

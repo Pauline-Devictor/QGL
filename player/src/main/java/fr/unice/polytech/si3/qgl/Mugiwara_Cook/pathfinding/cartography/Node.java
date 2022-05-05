@@ -114,7 +114,6 @@ public class Node {
         this.setWall(true);
         for (Node node1 : this.voisin) {
             node1.setWall(true);
-//            System.out.print("Node =>");
         }
     }
 

@@ -67,7 +67,7 @@ public class Captain {
     public void nextMove(NextRound nextRound) {
         this.captainSailorMove.moveToAssignEquipment(this.actionJSON);
 
-        if (nextRound.getVisibleEntities() != null || checkpointsPath.size() == 0)
+        if (nextRound.getVisibleEntities() != null || checkpointsPath.isEmpty())
             updateMap(nextRound);
 
 
@@ -82,7 +82,7 @@ public class Captain {
 //        System.out.println(checkpointsPath.get(0).getPosition().getX() + ":" + checkpointsPath.get(0).getPosition().getY());
 
         if (this.inCheckpoint(nextRound, checkpointsPath.get(0))) {
-            System.out.println("CHECKPOINTPATH ATEINT");
+            Display.info("CHECKPOINTPATH ATEINT");
             if (checkpointsPath.size() < 4) {
                 checkpointsPath.remove(0);
             } else {
@@ -104,7 +104,7 @@ public class Captain {
             }
             System.out.println();
         }
-        System.out.println("----------------------------------------------------------------------------------------------------");
+        Display.info("----------------------------------------------------------------------------------------------------");
 
     }
 
@@ -123,12 +123,10 @@ public class Captain {
                 <= ((Circle) checkpoint.getShape()).getRadius());
     }
 
-    public void updateMap(NextRound nextRound) {
+    public void updateMap(NextRound nextRound) {//SI c'est cassé c'est moi en corrigeant la dette
         ArrayList<VisibleEntity> visibleEntitiesArray = new ArrayList<>(List.of(nextRound.getVisibleEntities()));
-        if (spotter.updateMap(visibleEntitiesArray, nextRound.getShip().getPosition(), currentCheckpoint.getPosition()) || checkpointsPath.size() == 0) {
-            if (pathFindind.findPath(this.spotter.getNodeStart(), this.spotter.getNodeEnd())) {
+        if ((spotter.updateMap(visibleEntitiesArray, nextRound.getShip().getPosition(), currentCheckpoint.getPosition()) || checkpointsPath.isEmpty()) && (pathFindind.findPath(this.spotter.getNodeStart(), this.spotter.getNodeEnd()))) {
                 checkpointsPath = new ArrayList<>(pathFindind.getPathCheckpoint());
-            }
         }
     }
 }

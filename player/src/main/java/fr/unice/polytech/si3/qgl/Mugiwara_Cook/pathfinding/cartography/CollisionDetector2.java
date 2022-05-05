@@ -1,5 +1,6 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.pathfinding.cartography;
 
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Display;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.Point;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.Position;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes.Circle;
@@ -51,16 +52,16 @@ public class CollisionDetector2 {
     }
 
     public void coloringRectangleReef(Reef reef, List<List<Node>> map) {
-        System.out.println("Un rocher rectangle");
+        Display.info("Un rocher rectangle");
         List<Point> reefcoin = rotationRectangle(reef);
         List<Node> reefcoinNode = new ArrayList<>();
 
         for (Point point : reefcoin) {
-//            System.out.println("Point: " + point.getY() + "+" + point.getX());
+//            Display.info("Point: " + point.getY() + "+" + point.getX());
             try {
                 reefcoinNode.add(this.closestNodeFromPoint(point, map));
             } catch (Exception e) {
-                System.out.println("Out of the map");
+                Display.info("Out of the map");
             }
 
         }
@@ -107,28 +108,27 @@ public class CollisionDetector2 {
         double squareSizeX = map.get(0).get(1).getXReal() - map.get(0).get(0).getXReal();
         double squareSizeY = map.get(1).get(0).getYReal() - map.get(0).get(0).getYReal();
 
-//        System.out.println(squareSizeX + "]" + squareSizeY);
+//        Display.info(squareSizeX + "]" + squareSizeY);
 
         Point startMap = new Point(map.get(0).get(0).getXReal() - squareSizeX / 2, map.get(0).get(0).getYReal() - squareSizeY / 2);
-        System.out.println(startMap.getX() + "[" + startMap.getY());
+        Display.info(startMap.getX() + "[" + startMap.getY());
 
         double distanceX = point.getX() - startMap.getX();
         double distanceY = point.getY() - startMap.getY();
 
-        System.out.println((int) ((int) distanceX / squareSizeX) + " {1} " + (int) ((int) distanceY / squareSizeY));
-        System.out.println(distanceX + " {2} " + distanceY + " pour un ptn: " + point.getX() + ":" + point.getY());
+        Display.info((int) ((int) distanceX / squareSizeX) + " {1} " + (int) ((int) distanceY / squareSizeY));
+        Display.info(distanceX + " {2} " + distanceY + " pour un ptn: " + point.getX() + ":" + point.getY());
 
         return map.get((int) ((int) distanceY / squareSizeY)).get((int) ((int) distanceX / squareSizeX));
     }
 
     public double slopeBetweenNodes(Node node1, Node node2) {
-//        System.out.println(node2.getY() + " " + node1.getY() + " ++ " + node2.getX() + " " + node1.getX());
+//        Display.info(node2.getY() + " " + node1.getY() + " ++ " + node2.getX() + " " + node1.getX());
         return ((double) (node2.getYReal() - node1.getYReal())) / (node2.getXReal() - node1.getXReal());
     }
 
 
     public void coloringline(Node node1, Node node2, List<List<Node>> map) {
-        System.out.println("grislineLARGE");
         node1.setWallNeighborTrue();
         node2.setWallNeighborTrue();
 
@@ -149,7 +149,7 @@ public class CollisionDetector2 {
         if (slopeGoal == 0) {
             slopeGoal = slope;
         }
-        //            System.out.println("slope: " + slope);
+        //            Display.info("slope: " + slope);
         if (slope > 0) {
             join2NodesPositiveSlope(node1, node2, map, currentNode, slope);
         }
@@ -166,13 +166,13 @@ public class CollisionDetector2 {
             map.get(currentNode[1]).get(--currentNode[0]).setWall(true);
         else
             map.get(currentNode[1]).get(++currentNode[0]).setWall(true);
-        //                System.out.println(map.get(currentNode[1]).get(currentNode[0]).getDetail());
+        //               Display.info(map.get(currentNode[1]).get(currentNode[0]).getDetail());
         for (int i = 0; i > slope - slopeGoal; i--) {
             if (node2.getX() < node1.getX())
                 map.get(++currentNode[1]).get(currentNode[0]).setWall(true);
             else
                 map.get(--currentNode[1]).get(currentNode[0]).setWall(true);
-//                    System.out.println(map.get(currentNode[1]).get(currentNode[0]).getDetail());
+//                    Display.info(map.get(currentNode[1]).get(currentNode[0]).getDetail());
         }
     }
 
@@ -181,14 +181,14 @@ public class CollisionDetector2 {
             map.get(currentNode[1]).get(++currentNode[0]).setWall(true);
         else
             map.get(currentNode[1]).get(--currentNode[0]).setWall(true);
-        //                System.out.println(map.get(currentNode[1]).get(currentNode[0]).getDetail());
+        //                Display.info(map.get(currentNode[1]).get(currentNode[0]).getDetail());
         for (int i = 0; i < slope - slopeGoal; i++) {
             if (node2.getX() > node1.getX())
                 map.get(++currentNode[1]).get(currentNode[0]).setWall(true);
             else
                 map.get(--currentNode[1]).get(currentNode[0]).setWall(true);
-//                    System.out.println(map.get(currentNode[1]).get(currentNode[0]).getDetail());
-            //                    System.out.println(map.get(currentNode[1]).get(currentNode[0]).getDetail());
+//                    Display.info(map.get(currentNode[1]).get(currentNode[0]).getDetail());
+            //                    Display.info(map.get(currentNode[1]).get(currentNode[0]).getDetail());
         }
     }
 
@@ -198,7 +198,7 @@ public class CollisionDetector2 {
                 map.get(currentNode[1]).get(++currentNode[0]).setWallNeighborTrue();
             else
                 map.get(currentNode[1]).get(--currentNode[0]).setWallNeighborTrue();
-            //                System.out.println(map.get(currentNode[1]).get(currentNode[0]).getDetail());
+            //                Display.info(map.get(currentNode[1]).get(currentNode[0]).getDetail());
         }
     }
 

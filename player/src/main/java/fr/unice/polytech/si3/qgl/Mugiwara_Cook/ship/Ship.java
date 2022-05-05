@@ -105,21 +105,21 @@ public class Ship {
         return this.getOars().stream()
                 .filter(oar -> oar.getY() == 0)
                 .filter(oar -> oar.getSailor() != null)
-                .filter(oar -> oar.getSailor().onIsAssignEquipment() == true)
+                .filter(oar -> oar.getSailor().onIsAssignEquipment())
                 .collect(Collectors.toList()).size();
     }
     @JsonIgnore
     public int getNbUsableSails() {
         return this.getEquipement("sail").stream()
                 .filter(sail -> sail.getSailor() != null)
-                .filter(sail -> sail.getSailor().onIsAssignEquipment() == true)
+                .filter(sail -> sail.getSailor().onIsAssignEquipment())
                 .collect(Collectors.toList()).size();
     }
     @JsonIgnore
     public List<Equipment> getUsableSails() {
         return this.getEquipement("sail").stream()
                 .filter(sail -> sail.getSailor() != null)
-                .filter(sail -> sail.getSailor().onIsAssignEquipment() == true)
+                .filter(sail -> sail.getSailor().onIsAssignEquipment())
                 .collect(Collectors.toList());
     }
 
@@ -132,7 +132,7 @@ public class Ship {
         return this.getOars().stream()
                 .filter(oar -> (this.getDeck().getWidth() - 1) == oar.getY())
                 .filter(oar -> oar.getSailor() != null)
-                .filter(oar -> oar.getSailor().onIsAssignEquipment() == true)
+                .filter(oar -> oar.getSailor().onIsAssignEquipment())
                 .collect(Collectors.toList()).size();
     }
 

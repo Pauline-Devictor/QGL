@@ -1,5 +1,6 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.pathfinding.cartography;
 
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Display;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.Position;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.Checkpoint;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.Reef;
@@ -77,18 +78,18 @@ public class Spotter {
 
         this.nodeStart = closetNodeFromPosition(shipPosition);
         this.nodeEnd = closetNodeFromPosition(positionCheckpoint);
-        System.out.println("UPDATE MAP ? " + mofifier);
+        Display.info("UPDATE MAP ? " + mofifier);
         return mofifier;
     }
 
     private boolean findReefInMap(List<VisibleEntity> visibleEntityList, List<Reef> newReefs, boolean mofifier, CollisionDetector2 collisionDetector2) {
         for (VisibleEntity visibleEntity : visibleEntityList) {
             if (visibleEntity.getType().equals("reef")) {
-                if (reefs.size() != 0) {
-                    mofifier = UpdateMapWithReefNotAlreadyFound(newReefs, mofifier, collisionDetector2, (Reef) visibleEntity);
+                if (reefs.isEmpty()) {
+                    mofifier = updateMapWithReefNotAlreadyFound(newReefs, mofifier, collisionDetector2, (Reef) visibleEntity);
                     reefs.addAll(newReefs);
                 } else {
-                    System.out.println("LE PREMIER");
+                    Display.info("LE PREMIER");
                     collisionDetector2.coloringTheReef(((Reef) visibleEntity), this.map);
                     reefs.add((Reef) visibleEntity);
                     mofifier = true;
@@ -98,7 +99,7 @@ public class Spotter {
         return mofifier;
     }
 
-    boolean UpdateMapWithReefNotAlreadyFound(List<Reef> newReefs, boolean mofifier, CollisionDetector2 collisionDetector2, Reef visibleEntity) {
+    boolean updateMapWithReefNotAlreadyFound(List<Reef> newReefs, boolean mofifier, CollisionDetector2 collisionDetector2, Reef visibleEntity) {
         for (Reef reef : this.reefs) {
             if (reef.getPosition().getX() != visibleEntity.getPosition().getX()) {
                 collisionDetector2.coloringTheReef(visibleEntity, this.map);

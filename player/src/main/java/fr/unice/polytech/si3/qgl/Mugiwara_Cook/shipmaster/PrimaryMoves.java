@@ -42,13 +42,13 @@ public class PrimaryMoves {
     public void primaryMoveSail(int nbsails) {
         List<Equipment> sails = initGame.getShip().getUsableSails();
         List<Sailor> sailorsAssignedToSail = initGame.allSailorAssignedTo("sail");
-        List<Sailor> UsableSailorsForSail =initGame.getUsableSailorSail();
+        List<Sailor> usableSailorsForSail =initGame.getUsableSailorSail();
         int nbSailsOpenned = 0;
         for (Equipment s : sails) {
             s = (Sail) s;
             if (((Sail) s).isOpenned()) nbSailsOpenned++;
         }
-        setUpSails(nbsails, sailorsAssignedToSail, nbSailsOpenned,UsableSailorsForSail);
+        setUpSails(nbsails, sailorsAssignedToSail, nbSailsOpenned,usableSailorsForSail);
     }
 
     public void setUpSails(int nbsails, List<Sailor> sailorsAssignedToSail, int nbSailsOpenned,List<Sailor> usableSailorsToSail) {
