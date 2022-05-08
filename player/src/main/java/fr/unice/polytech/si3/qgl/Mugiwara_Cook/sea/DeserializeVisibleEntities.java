@@ -40,6 +40,9 @@ public class DeserializeVisibleEntities  extends StdDeserializer<VisibleEntity> 
             case "stream":
                 double strength = node.get("strength").asDouble();
                 return new Stream(position,shape,strength);
+            case "ship":
+                int life = node.get("life").asInt();
+                return new OtherShip(position,shape,life);
             default:
                 return null;
         }
