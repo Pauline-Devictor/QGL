@@ -45,7 +45,7 @@ jobs:
 #      - name: Send file my-artifact.html to discord channel
 #        uses: sinshutu/upload-to-discord@master
 #        env:
-#          DISCORD_WEBHOOK: "https://discord.com/api/webhooks/958658739844554792/6iX1_fez9_jJ7ctiOTY3NKiGeFSdB-dL1sBhWdW8Mrk-_y1R6W9Sfj_8tPpFVhViPbcG"
+#          DISCORD_WEBHOOK: "https://discord.com/api/webhooks/958486282735071312/hEz4ZkcN6b6f-uKruZJAS2Y3m8foboLoBxLI5DSVA_ViWiVtZvTpCn6Uo50SwBpl-mIe"
 #        with:
 #          args: my-artifact.html
 
@@ -59,28 +59,28 @@ jobs:
         if: ${{ needs.build.result == 'success' && needs.mutation.result  == 'success' }}
         uses: Sniddl/discord-commits@v1.3
         with:
-          webhook: "https://discord.com/api/webhooks/958658739844554792/6iX1_fez9_jJ7ctiOTY3NKiGeFSdB-dL1sBhWdW8Mrk-_y1R6W9Sfj_8tPpFVhViPbcG"
+          webhook: "https://discord.com/api/webhooks/958486282735071312/hEz4ZkcN6b6f-uKruZJAS2Y3m8foboLoBxLI5DSVA_ViWiVtZvTpCn6Uo50SwBpl-mIe"
           message: "Successful build and mutation"  #: {{ github.event.head_commit.message }}
 #          embed: '{ "title": "{{ commit.title }}", "description": "{{ commit.description }}", "url": "{{ commit.url }}", "author": { "name": "{{ commit.author.name }} ({{ commit.author.username }})", "icon_url": "https://avatars.io/gravatar/{{ commit.author.email }}"} }'
       - name: Discord Commits Message mutation fail
         if: ${{ needs.build.result == 'success' && needs.mutation.result == 'failure' }}
         uses: Sniddl/discord-commits@v1.3
         with:
-          webhook: "https://discord.com/api/webhooks/958658739844554792/6iX1_fez9_jJ7ctiOTY3NKiGeFSdB-dL1sBhWdW8Mrk-_y1R6W9Sfj_8tPpFVhViPbcG"
+          webhook: "https://discord.com/api/webhooks/958486282735071312/hEz4ZkcN6b6f-uKruZJAS2Y3m8foboLoBxLI5DSVA_ViWiVtZvTpCn6Uo50SwBpl-mIe"
           message: "Successful build but mutation failed"  #: {{ github.event.head_commit.message }}
           #          embed: '{ "title": "{{ commit.title }}", "description": "{{ commit.description }}", "url": "{{ commit.url }}", "author": { "name": "{{ commit.author.name }} ({{ commit.author.username }})", "icon_url": "https://avatars.io/gravatar/{{ commit.author.email }}"} }'
       - name: Discord Commits Message build fail
         if: ${{ needs.build.result == 'failure' && needs.mutation.result == 'success' }}
         uses: Sniddl/discord-commits@v1.3
         with:
-          webhook: "https://discord.com/api/webhooks/958658739844554792/6iX1_fez9_jJ7ctiOTY3NKiGeFSdB-dL1sBhWdW8Mrk-_y1R6W9Sfj_8tPpFVhViPbcG"
+          webhook: "https://discord.com/api/webhooks/958486282735071312/hEz4ZkcN6b6f-uKruZJAS2Y3m8foboLoBxLI5DSVA_ViWiVtZvTpCn6Uo50SwBpl-mIe"
           message: "Successful mutation but build failed"  #: {{ github.event.head_commit.message }}
           #          embed: '{ "title": "{{ commit.title }}", "description": "{{ commit.description }}", "url": "{{ commit.url }}", "author": { "name": "{{ commit.author.name }} ({{ commit.author.username }})", "icon_url": "https://avatars.io/gravatar/{{ commit.author.email }}"} }'
       - name: Discord Commits Message fail
         if: ${{ needs.build.result == 'failure' && needs.mutation.result == 'failure' }}
         uses: Sniddl/discord-commits@v1.3
         with:
-          webhook: "https://discord.com/api/webhooks/958658739844554792/6iX1_fez9_jJ7ctiOTY3NKiGeFSdB-dL1sBhWdW8Mrk-_y1R6W9Sfj_8tPpFVhViPbcG"
+          webhook: "https://discord.com/api/webhooks/958486282735071312/hEz4ZkcN6b6f-uKruZJAS2Y3m8foboLoBxLI5DSVA_ViWiVtZvTpCn6Uo50SwBpl-mIe"
           message: "Fail build and mutation"  #: {{ github.event.head_commit.message }}
           #          embed: '{ "title": "{{ commit.title }}", "description": "{{ commit.description }}", "url": "{{ commit.url }}", "author": { "name": "{{ commit.author.name }} ({{ commit.author.username }})", "icon_url": "https://avatars.io/gravatar/{{ commit.author.email }}"} }'
 
