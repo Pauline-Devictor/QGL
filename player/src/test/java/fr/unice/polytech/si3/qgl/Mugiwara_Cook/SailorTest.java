@@ -77,24 +77,21 @@ class SailorTest {
     void notToFarFromEquipement(){
         sailor2 = new Sailor(1,0,0,"un autre nom");
         rame2 = new Oar(4,1);
-        boolean false1= sailor2.itemIsTooFar(rame2);
-        assertFalse(false1);
+        assertFalse(sailor2.itemIsTooFar(rame2));
     }
     @Test
     void sailorIsOnEquipement(){
         sailor2 = new Sailor(1,0,0,"un autre nom");
         rame2 = new Oar(0,0);
         sailor2.attachEquipment(rame2);
-        boolean true1= sailor2.onIsAssignEquipment();
-        assertTrue(true1);
+        assertTrue(sailor2.onIsAssignEquipment());
     }
     @Test
     void sailorIsNotOnEquipement(){
         sailor2 = new Sailor(1,0,0,"un autre nom");
         rame2 = new Oar(0,1);
         sailor2.attachEquipment(rame2);
-        boolean false1= sailor2.onIsAssignEquipment();
-        assertFalse(false1);
+        assertFalse(sailor2.onIsAssignEquipment());
     }
     @Test
     void moveToEquipmentX(){
@@ -126,10 +123,16 @@ class SailorTest {
         ActionJSON actionJson = new ActionJSON();
         assertEquals(sailor2.getY(),rame1.getY());
         sailor2.attachEquipment(rame1);
+        sailor1.setX(0);
 
         sailor2.setY(-6);
         assertFalse(sailor2.moveToEquipment(actionJson));
         assertEquals(-1,sailor2.getY());
+
+        sailor2.setY(1);
+        assertTrue(sailor2.moveToEquipment(actionJson));
+        assertEquals(0,sailor2.getY());
+
 
         sailor2.setY(-1);
         assertTrue(sailor2.moveToEquipment(actionJson));
@@ -139,9 +142,7 @@ class SailorTest {
         assertFalse(sailor2.moveToEquipment(actionJson));
         assertEquals(1,sailor2.getY());
 
-        sailor2.setY(1);
-        assertTrue(sailor2.moveToEquipment(actionJson));
-        assertEquals(0,sailor2.getY());
+
     }
     @Test
     void dontMoveToEquipement(){
@@ -160,5 +161,18 @@ class SailorTest {
         assertTrue(sailor1.sailorIsAllowedToMove(0,5));
         assertTrue(sailor1.sailorIsAllowedToMove(3,2));
         assertTrue(sailor1.sailorIsAllowedToMove(0,0));
+    }
+
+    @Test
+    void toofarBoundaries(){
+        sailor1.setX(-4);
+        sailor1.setY(0);
+        rame1 = new Oar(2,0);
+        assertTrue(sailor1.itemIsTooFar(rame1));
+
+        sailor1.setX(0);
+        sailor1.setY(-4);
+        rame1 = new Oar(0,2);
+        assertTrue(sailor1.itemIsTooFar(rame1));
     }
 }

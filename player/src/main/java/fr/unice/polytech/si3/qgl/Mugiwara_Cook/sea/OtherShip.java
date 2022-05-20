@@ -16,7 +16,4 @@ public class OtherShip extends VisibleEntity{
         return life;
     }
 
-    public void setLife(int life) {
-        this.life = life;
-    }
 }

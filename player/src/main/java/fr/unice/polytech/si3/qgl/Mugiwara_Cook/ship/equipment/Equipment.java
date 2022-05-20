@@ -11,10 +11,10 @@ public abstract class Equipment {
     //@Setter
     protected String type;
     @Getter
-    //@Setter
+    @Setter
     protected int x;
     @Getter
-    //@Setter
+    @Setter
     protected int y;
 
     @JsonIgnore

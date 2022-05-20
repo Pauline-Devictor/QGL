@@ -6,6 +6,7 @@ import fr.unice.polytech.si3.qgl.Mugiwara_Cook.game.InitGame;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.game.NextRound;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes.Shape;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.VisibleEntity;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Equipment;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -172,6 +173,54 @@ class MyMapperTest {
                         "type": "circle",
                         "radius": 30
                       }
+                    }""", VisibleEntity.class));
+    }
+    @Test
+    void createRudder() throws JsonProcessingException {
+        assertNotNull(myMapper.readValue("""
+                {
+                "type":"rudder",
+                "x":"0",
+                "y":"0"
+                }
+                """, Equipment.class));
+    }
+    @Test
+    void createSail() throws JsonProcessingException {
+        assertNotNull(myMapper.readValue("""
+                {
+                "type":"sail",
+                "x":"0",
+                "y":"0",
+                "openned":"true"
+                }
+                """, Equipment.class));
+    }
+    @Test
+    void createWatch() throws JsonProcessingException {
+        assertNotNull(myMapper.readValue("""
+                {
+                "type":"watch",
+                "x":"0",
+                "y":"0"
+                }
+                """, Equipment.class));
+    }
+    @Test
+    void createAnotherShip() throws JsonProcessingException {
+        assertNotNull(myMapper.readValue("""
+                 {
+                      "type": "ship",
+                      "position": {
+                        "x": 0,
+                        "y": 0,
+                        "orientation": 0
+                      },
+                      "shape":{
+                        "type": "circle",
+                        "radius": 30
+                      },
+                      "life": 10
                     }""", VisibleEntity.class));
     }
 }

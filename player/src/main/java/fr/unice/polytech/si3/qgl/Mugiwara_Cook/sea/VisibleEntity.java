@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 public abstract class VisibleEntity {
-    @Setter
     @Getter
     String type;
     @Setter
