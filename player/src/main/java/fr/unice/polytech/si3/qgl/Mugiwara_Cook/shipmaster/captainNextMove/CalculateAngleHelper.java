@@ -17,8 +17,12 @@ public class CalculateAngleHelper {
      * @return l'angle entre l'orientation du bateau et le prochain checkpoint
      */
     public static double angleBetweenPointAndCheckpoint(Checkpoint checkpoint, double xPoint, double yPoint, double orientation) {
+        if((checkpoint.getPosition().getX() - xPoint)==0 && (checkpoint.getPosition().getY() - yPoint)==0)
+            return 0;
         double angle = ((checkpoint.getPosition().getX() - xPoint) * Math.cos(orientation) + (checkpoint.getPosition().getY() - yPoint) * Math.sin(orientation))
                 / (Math.sqrt(Math.pow(checkpoint.getPosition().getX() - xPoint, 2) + Math.pow(checkpoint.getPosition().getY() - yPoint, 2)));
+        System.out.println("angle : " + angle);
+        System.out.println("Arcos : " + Math.acos(angle));
         return Math.acos(angle);
     }
 
