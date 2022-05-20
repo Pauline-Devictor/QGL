@@ -131,8 +131,6 @@ public class Ship {
 
     /**
      * Pour le simulateur.
-     *
-     * @return
      */
     @JsonIgnore
     public Position getPositionRoute() {

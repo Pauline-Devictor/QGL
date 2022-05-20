@@ -21,8 +21,6 @@ public class CalculateAngleHelper {
             return 0;
         double angle = ((checkpoint.getPosition().getX() - xPoint) * Math.cos(orientation) + (checkpoint.getPosition().getY() - yPoint) * Math.sin(orientation))
                 / (Math.sqrt(Math.pow(checkpoint.getPosition().getX() - xPoint, 2) + Math.pow(checkpoint.getPosition().getY() - yPoint, 2)));
-        System.out.println("angle : " + angle);
-        System.out.println("Arcos : " + Math.acos(angle));
         return Math.acos(angle);
     }
 

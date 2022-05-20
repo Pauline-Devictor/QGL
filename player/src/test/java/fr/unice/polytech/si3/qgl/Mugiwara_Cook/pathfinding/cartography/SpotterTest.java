@@ -8,16 +8,21 @@ import fr.unice.polytech.si3.qgl.Mugiwara_Cook.pathfinding.PathFindind;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.Checkpoint;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.Reef;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.VisibleEntity;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
 class SpotterTest {
+    Spotter spotter;
+    @BeforeEach
+    void setup(){
+        spotter = new Spotter();
+    }
 
     @Test
     void createMap() {
-        Spotter spotter = new Spotter();
 
         spotter.createMap(50, new Position(-20, -10, 0), new ArrayList<>(List.of(new Checkpoint(new Position(30, 40, 0), new Circle(5)))));
 
@@ -33,7 +38,6 @@ class SpotterTest {
 
     @Test
     void fourextremum() {
-        Spotter spotter = new Spotter();
         double[] extremun = spotter.fourextremum(new Position(1336, 735, 0), new ArrayList<>(List.of(new Checkpoint(new Position(10006, 3131, 0), new Circle(5)), new Checkpoint(new Position(3552, -2532, 0), new Circle(5)), new Checkpoint(new Position(9719, 514, 0), new Circle(5)), new Checkpoint(new Position(4478, 4980, 0), new Circle(5)))));
 
         for (int i = 0; i < 4; i++) {
@@ -46,7 +50,6 @@ class SpotterTest {
 
         List<VisibleEntity> visibleEntityList = new ArrayList<>(List.of(new Reef(new Position(3000, 1000, 0), new Rectangle(400, 1800, 0))));  //2800:1900 3200:1900
 
-        Spotter spotter = new Spotter();
         spotter.createMap(100, new Position(1336, 735, 0), new ArrayList<>(List.of(new Checkpoint(new Position(10006, 3131, 0), new Circle(5)), new Checkpoint(new Position(3552, -2532, 0), new Circle(5)), new Checkpoint(new Position(9719, 514, 0), new Circle(5)), new Checkpoint(new Position(4478, 4980, 0), new Circle(5)))));
         List<List<Node>> carte = spotter.getMap();
         PathFindind pathFindind = new PathFindind(carte);
@@ -76,6 +79,11 @@ class SpotterTest {
             }
             System.out.println();
         }
+
+    }
+
+    @Test
+    void findNoReef(){
 
     }
 }
