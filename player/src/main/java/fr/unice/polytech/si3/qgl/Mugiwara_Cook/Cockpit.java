@@ -54,7 +54,7 @@ public class Cockpit implements ICockpit {
      * @return Json with the list of our actions
      */
     public String nextRound(String round) {
-        Display.info("Next round input: " + round);
+        //Display.info("Next round input: " + round);
 
         try {
             nextRound = myMapper.readValue(round, NextRound.class);
