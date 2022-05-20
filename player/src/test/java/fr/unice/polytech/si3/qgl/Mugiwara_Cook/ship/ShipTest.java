@@ -34,6 +34,7 @@ class ShipTest {
         Sailor sailor7 = new Sailor(7,30,99,"Marin rame6");
         Sailor sailor8 = new Sailor(8,60,99,"Marin rame7");
         Sailor sailor9 = new Sailor(9,90,99,"Marin rame8");
+
         Oar rame1 = new Oar(0,0);
         Oar rame2 = new Oar(30,0);
         Oar rame3 = new Oar(60,0);
@@ -43,6 +44,7 @@ class ShipTest {
         Oar rame7 = new Oar(60,99);
         Oar rame8 = new Oar(90,99);
         Rudder rudder = new Rudder(50,0);
+
         rudder.setSailor(sailor1);
         rame1.setSailor(sailor2);
         rame2.setSailor(sailor3);
@@ -62,6 +64,7 @@ class ShipTest {
         sailor7.attachEquipment(rame6);
         sailor8.attachEquipment(rame7);
         sailor9.attachEquipment(rame8);
+
         sailorArrayList = new ArrayList<>(List.of(sailor1,sailor2,sailor3,sailor4,sailor5,sailor6,sailor7,sailor8,sailor9));
         entities = new ArrayList<>(List.of(rudder,rame1,rame2,rame3,rame4,rame5,rame6,rame7,rame8));
         ship = new Ship(100,position,"test",new Deck(100,100),entities,new Circle(23.0));
@@ -94,6 +97,7 @@ class ShipTest {
             assertEquals(ship.getRudder().get(i).getType(),rudders.get(i).getType());
         }
     }*/
+
     @Test
     void getDataOars(){
         assertEquals(4,ship.getNbUsableOarsRight());
@@ -114,10 +118,68 @@ class ShipTest {
         assertEquals(1,ship.getNbUsableSails());
         List<Sail> sails = new ArrayList<>(List.of(sail));
         assertEquals(ship.getUsableSails().toString(),sails.toString());
+        assertEquals(ship.getType(),"ship");
+
     }
 
     @Test
     void rudderTest(){
         assertEquals(1,ship.getRudder().size());
+        assertEquals(ship.getEquipement("rudder").size(),1);
+
+    }
+
+    @Test
+    void getUsableOarLeft4(){
+        int oarsLeft=ship.getNbUsableOarsLeft();
+        assertEquals(4,oarsLeft);
+    }
+
+    @Test
+    void getUsableOarRight4(){
+        int oarsRight=ship.getNbUsableOarsRight();
+        assertEquals(4,oarsRight);
+    }
+
+    @Test
+    void getUsableSail(){
+        position= new Position(2.3,2.5,9.0);
+        Sailor sailor1 = new Sailor(1,50,0,"Marin sail1");
+        Sailor sailor2 = new Sailor(2,0,0,"Marin sail2");
+        Sailor sailor3=new Sailor(3,90,90,"juste pour remplir la liste");
+
+        Oar oar=new Oar(90,90);
+        Sail sail1=new Sail(50,0,false);
+        Sail sail2=new Sail(0,0,false);
+        sail1.setSailor(sailor1);
+        sail2.setSailor(sailor2);
+        oar.setSailor(sailor3);
+
+        sailor1.attachEquipment(sail1);
+        sailor2.attachEquipment(sail2);
+        sailor3.attachEquipment(oar);
+
+        sailorArrayList = new ArrayList<>(List.of(sailor1,sailor2,sailor3));
+        entities = new ArrayList<>(List.of(sail1,sail2,oar));
+        ship = new Ship(100,position,"test",new Deck(100,100),entities,new Circle(23.0));
+        int sailnb=ship.getNbUsableSails();
+        List<Equipment> sail=ship.getUsableSails();
+        assertEquals(2,sailnb);
+        List<Equipment> expected=new ArrayList<>();
+        expected.add(sail1);
+        expected.add(sail2);
+        assertEquals(expected,sail);
+
+
+
+    }
+
+    @Test
+    void PositionRoute(){
+        Position position=ship.getPositionRoute();
+        Position expected=new Position(2.3,2.5,9.0);
+        assertEquals(expected.getX(),position.getX());
+        assertEquals(expected.getOrientation(),position.getOrientation());
+        assertEquals(expected.getY(),position.getY());
     }
 }

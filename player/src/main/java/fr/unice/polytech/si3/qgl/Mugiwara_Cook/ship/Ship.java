@@ -122,7 +122,7 @@ public class Ship {
 
 
     @JsonIgnore
-    public int getNbUsableOarsRight() {
+    public int  getNbUsableOarsRight() {
         return this.getOars().stream()
                 .filter(oar -> (this.getDeck().getWidth() - 1) == oar.getY())
                 .filter(oar -> oar.getSailor() != null)
