@@ -9,6 +9,7 @@ import java.util.List;
 
 import static fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove.CalculateAngleHelper.angleBetweenPointAndCheckpoint;
 import static fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove.CalculateAngleHelper.realAngleBetweenPointAndCheckpoint;
+import static java.lang.Math.abs;
 
 public class ChoseAngle {
 
@@ -38,7 +39,7 @@ public class ChoseAngle {
 
     public static double isOkayToUseOnlyTheRudderToTurn(Checkpoint checkpoint, Ship ship) {
         double angleBetweenShipOriantationAndCheckpoint = angleBetweenPointAndCheckpoint(checkpoint, ship.getPosition().getX(), ship.getPosition().getY(), ship.getPosition().getOrientation());
-        if (angleBetweenShipOriantationAndCheckpoint >= Math.PI / 4)
+        if (abs(angleBetweenShipOriantationAndCheckpoint) >= Math.PI / 4)
             return 0;
         return realAngleBetweenPointAndCheckpoint(checkpoint, ship.getPosition().getX(), ship.getPosition().getY(), ship.getPosition().getOrientation(), angleBetweenShipOriantationAndCheckpoint);
     }
