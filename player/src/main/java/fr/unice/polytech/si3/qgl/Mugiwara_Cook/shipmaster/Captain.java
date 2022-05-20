@@ -50,10 +50,12 @@ public class Captain {
         this.captainSailorMove.assignEquipement();
 
         this.initGame.getShip().getEntities().forEach(equipment -> {
-            if (equipment.getSailor() != null)
-                Display.info(equipment.getType() + "Lier a: " + equipment.getSailor().getName());
-            else
-                Display.info("Ne pas etre lier");
+            if (equipment.getSailor() != null) {
+                //Display.info(equipment.getType() + "Lier a: " + equipment.getSailor().getName());
+            }
+            else {
+                //Display.info("Ne pas etre lier");
+            }
         });
 
         spotter = new Spotter();
@@ -84,7 +86,7 @@ public class Captain {
         }
 
         if (this.inCheckpoint(nextRound, checkpointsPath.get(0))) {
-            Display.info("CHECKPOINTPATH ATEINT");
+            //Display.info("CHECKPOINTPATH ATEINT");
             if (checkpointsPath.size() < 4) {
                 checkpointsPath.remove(0);
             } else {
@@ -105,7 +107,7 @@ public class Captain {
             }
             System.out.println();
         }
-        Display.info("----------------------------------------------------------------------------------------------------");
+        //Display.info("----------------------------------------------------------------------------------------------------");
     }
 
     /**
