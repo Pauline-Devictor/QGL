@@ -1,5 +1,6 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.pathfinding.cartography;
 
+import com.sun.security.jgss.GSSUtil;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Display;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.Position;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.Checkpoint;
@@ -74,7 +75,7 @@ public class Spotter {
         List<Reef> newReefs = new ArrayList<>();
         boolean mofifier = false;
         CollisionDetector2 collisionDetector2 = new CollisionDetector2();
-        mofifier = findReefInMap(visibleEntityList, newReefs, mofifier, collisionDetector2);
+        mofifier = findReefInMap(visibleEntityList, newReefs, collisionDetector2);
 
         this.nodeStart = closetNodeFromPosition(shipPosition);
         this.nodeEnd = closetNodeFromPosition(positionCheckpoint);
@@ -82,30 +83,33 @@ public class Spotter {
         return mofifier;
     }
 
-    private boolean findReefInMap(List<VisibleEntity> visibleEntityList, List<Reef> newReefs, boolean mofifier, CollisionDetector2 collisionDetector2) {
+    private boolean findReefInMap(List<VisibleEntity> visibleEntityList, List<Reef> newReefs, CollisionDetector2 collisionDetector2) {
+        boolean mofifier = false;
         for (VisibleEntity visibleEntity : visibleEntityList) {
+            System.out.println("+1");
             if (visibleEntity.getType().equals("reef")) {
                 if (reefs.isEmpty()) {
-                    mofifier = updateMapWithReefNotAlreadyFound(newReefs, mofifier, collisionDetector2, (Reef) visibleEntity);
-                    reefs.addAll(newReefs);
-                } else {
-                    //Display.info("LE PREMIER");
+                    System.out.println("LE PREMIER");
                     collisionDetector2.coloringTheReef(((Reef) visibleEntity), this.map);
                     reefs.add((Reef) visibleEntity);
                     mofifier = true;
+                } else {
+                    System.out.println("HERE1: " + reefs.size() + " . " + newReefs.size());
+                    mofifier = updateMapWithReefNotAlreadyFound(newReefs, collisionDetector2, (Reef) visibleEntity);
+                    reefs.addAll(newReefs);
                 }
             }
         }
         return mofifier;
     }
 
-    boolean updateMapWithReefNotAlreadyFound(List<Reef> newReefs, boolean mofifier, CollisionDetector2 collisionDetector2, Reef visibleEntity) {
+    boolean updateMapWithReefNotAlreadyFound(List<Reef> newReefs, CollisionDetector2 collisionDetector2, Reef visibleEntity) {
+        boolean mofifier = false;
         for (Reef reef : this.reefs) {
             if (reef.getPosition().getX() != visibleEntity.getPosition().getX()) {
                 collisionDetector2.coloringTheReef(visibleEntity, this.map);
                 newReefs.add(visibleEntity);
-                mofifier = true;
-                break;
+                return true;
             }
         }
         return mofifier;

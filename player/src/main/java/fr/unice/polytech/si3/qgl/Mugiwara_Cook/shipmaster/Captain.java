@@ -68,12 +68,14 @@ public class Captain {
     public void nextMove(NextRound nextRound) {
         this.captainSailorMove.moveToAssignEquipment(this.actionJSON);
 
+
         if (nextRound.getVisibleEntities().length != 0)
             VisibleEntitiesOn = true;
+
         if (nextRound.getVisibleEntities().length != 0 || checkpointsPath.isEmpty())
             updateMap(nextRound);
 
-
+        System.out.println("VisibleEntitiesOn: " + VisibleEntitiesOn);
         if (this.inCheckpoint(nextRound)) {
             this.nbCurrentCheckpoint++;
             this.currentCheckpoint = ((RegattaGoal) this.initGame.getGoal()).getCheckpoints()[this.nbCurrentCheckpoint];
@@ -122,10 +124,16 @@ public class Captain {
     }
 
     public void updateMap(NextRound nextRound) {//SI c'est cassé c'est moi en corrigeant la dette: ah ?!
+        System.out.println("CALLLL: " + nextRound.getVisibleEntities().length);
         ArrayList<VisibleEntity> visibleEntitiesArray = new ArrayList<>(List.of(nextRound.getVisibleEntities()));
-        if ((spotter.updateMap(visibleEntitiesArray, nextRound.getShip().getPosition(), currentCheckpoint.getPosition()) || checkpointsPath.isEmpty()) &&
+        System.out.println("visibleEntitiesArray: " + visibleEntitiesArray.size());
+        boolean test = spotter.updateMap(visibleEntitiesArray, nextRound.getShip().getPosition(), currentCheckpoint.getPosition());
+        System.out.println("test: " + test);
+        if ((test || checkpointsPath.isEmpty()) &&
                 (pathFindind.findPath(this.spotter.getNodeStart(), this.spotter.getNodeEnd()))) {
-            if (nextRound.getVisibleEntities() != null) {
+            System.out.println("MDDDR");
+            if (nextRound.getVisibleEntities().length != 0) {
+                System.out.println("HERE");
                 checkpointsPath = new ArrayList<>(pathFindind.getPathCheckpoint());
             }
             if (!VisibleEntitiesOn) {
