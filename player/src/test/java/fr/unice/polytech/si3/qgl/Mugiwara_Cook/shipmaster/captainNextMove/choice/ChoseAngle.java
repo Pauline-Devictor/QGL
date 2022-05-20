@@ -81,6 +81,16 @@ class ChoseAngleTest {
     }
 
     @Test
+    void choseAngleForRudder(){
+        positionBoat = new Position(100,200,0.0);
+        checkpoint = new Checkpoint(new Position(200,200,0.0),new Circle(45));
+        double angle = Math.acos(1);
+        AngleOption angleOption = new AngleOption(0,0);
+        assertEquals(CalculateAngleHelper.realAngleBetweenPointAndCheckpoint(checkpoint,100,200,0.0,0.0),angle);
+    }
+
+
+    @Test
     void choiceBestDeltaNull(){
         positionBoat = new Position(300,300,0);
         checkpoint = new Checkpoint(new Position(300,300,90.0),new Circle(45));
