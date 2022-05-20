@@ -20,18 +20,22 @@ public class CaptainSailorMove {
      */
     public void assignEquipement() {
         int nbsailors = this.sailors.length;
-        if (nbsailors >= 2 && this.ship.getEquipement("oar").size() >= 2) {
+        int oars=this.ship.getEquipement("oar").size();
+        int sail=this.ship.getEquipement("sail").size();
+        if (nbsailors >= 2 && oars >= 2) {
             assignSpecificEquipement("oar", 2);
             nbsailors -= 2;
+            oars-=2;
         }
         if (nbsailors >= 1 && !this.ship.getEquipement("rudder").isEmpty()) {
 
             assignSpecificEquipement("rudder", 1);
             nbsailors--;
         }
-        if (nbsailors >= 1 && !this.ship.getEquipement("sail").isEmpty()) {
+        if (nbsailors >= 1 && sail>0) {
 
             assignSpecificEquipement("sail", 1);
+            sail--;
             nbsailors--;
         }
         if (nbsailors >= 1 && !this.ship.getEquipement("watch").isEmpty()) {
@@ -40,15 +44,20 @@ public class CaptainSailorMove {
             nbsailors--;
         }
         while (nbsailors >= 2) {
-            if (!this.ship.getEquipement("oar").isEmpty() && this.ship.getEquipement("oar").size() >= 2) {
+            if (oars >= 2) {
                 assignSpecificEquipement("oar", 2);
                 nbsailors -= 2;
+                oars-=2;
             }
+            else break;
+
         }
-        if (nbsailors >= 1 && this.ship.getEquipement("sail").size() >= 1) {
+        if (nbsailors >= 1 && sail>= 1) {
 
             assignSpecificEquipement("sail", 1);
+            sail--;
         }
+
     }
 
     public void assignSpecificEquipement(String equipement, int numberSailorAssign) {
