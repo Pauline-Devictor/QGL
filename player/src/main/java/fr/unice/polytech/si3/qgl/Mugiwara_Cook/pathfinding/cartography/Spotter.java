@@ -85,7 +85,7 @@ public class Spotter {
     private boolean findReefInMap(List<VisibleEntity> visibleEntityList, List<Reef> newReefs, boolean mofifier, CollisionDetector2 collisionDetector2) {
         for (VisibleEntity visibleEntity : visibleEntityList) {
             if (visibleEntity.getType().equals("reef")) {
-                if (reefs.isEmpty()) {
+                if (!reefs.isEmpty()) {
                     mofifier = updateMapWithReefNotAlreadyFound(newReefs, mofifier, collisionDetector2, (Reef) visibleEntity);
                     reefs.addAll(newReefs);
                 } else {

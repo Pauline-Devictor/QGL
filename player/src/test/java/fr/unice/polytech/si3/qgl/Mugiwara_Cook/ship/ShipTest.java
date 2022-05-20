@@ -42,7 +42,7 @@ class ShipTest {
         Oar rame5 = new Oar(0,99);
         Oar rame6 = new Oar(30,99);
         Oar rame7 = new Oar(60,99);
-        Oar rame8 = new Oar(90,99);
+
         Rudder rudder = new Rudder(50,0);
 
         rudder.setSailor(sailor1);
@@ -53,7 +53,7 @@ class ShipTest {
         rame5.setSailor(sailor6);
         rame6.setSailor(sailor7);
         rame7.setSailor(sailor8);
-        rame8.setSailor(sailor9);
+
 
         sailor1.attachEquipment(rudder);
         sailor2.attachEquipment(rame1);
@@ -63,10 +63,10 @@ class ShipTest {
         sailor6.attachEquipment(rame5);
         sailor7.attachEquipment(rame6);
         sailor8.attachEquipment(rame7);
-        sailor9.attachEquipment(rame8);
+
 
         sailorArrayList = new ArrayList<>(List.of(sailor1,sailor2,sailor3,sailor4,sailor5,sailor6,sailor7,sailor8,sailor9));
-        entities = new ArrayList<>(List.of(rudder,rame1,rame2,rame3,rame4,rame5,rame6,rame7,rame8));
+        entities = new ArrayList<>(List.of(rudder,rame1,rame2,rame3,rame4,rame5,rame6,rame7));
         ship = new Ship(100,position,"test",new Deck(100,100),entities,new Circle(23.0));
     }
 
@@ -100,9 +100,9 @@ class ShipTest {
 
     @Test
     void getDataOars(){
-        assertEquals(4,ship.getNbUsableOarsRight());
+        assertEquals(3,ship.getNbUsableOarsRight());
         assertEquals(4,ship.getNbUsableOarsLeft());
-        assertEquals(8,ship.getNbOars());
+        assertEquals(7,ship.getNbOars());
     }
 
     @Test
@@ -136,9 +136,9 @@ class ShipTest {
     }
 
     @Test
-    void getUsableOarRight4(){
+    void getUsableOarRight3(){
         int oarsRight=ship.getNbUsableOarsRight();
-        assertEquals(4,oarsRight);
+        assertEquals(3,oarsRight);
     }
 
     @Test
@@ -165,6 +165,7 @@ class ShipTest {
         int sailnb=ship.getNbUsableSails();
         List<Equipment> sail=ship.getUsableSails();
         assertEquals(2,sailnb);
+        assertEquals(2,ship.getNbEquipment("sail"));
         List<Equipment> expected=new ArrayList<>();
         expected.add(sail1);
         expected.add(sail2);
@@ -181,5 +182,33 @@ class ShipTest {
         assertEquals(expected.getX(),position.getX());
         assertEquals(expected.getOrientation(),position.getOrientation());
         assertEquals(expected.getY(),position.getY());
+    }
+
+    @Test
+    void withoutSailors(){
+        position= new Position(2.3,2.5,9.0);
+
+        Oar oar=new Oar(90,99);
+        Oar oar2=new Oar(90,0);
+        Sail sail1=new Sail(50,0,false);
+        Sail sail2=new Sail(0,0,false);
+
+
+        sailorArrayList = null;
+        entities = new ArrayList<>(List.of(sail1,sail2,oar,oar2));
+        ship = new Ship(100,position,"test",new Deck(100,100),entities,new Circle(23.0));
+        int sailnb=ship.getNbUsableSails();
+        List<Equipment> sail=ship.getUsableSails();
+        int oarLeft=ship.getNbUsableOarsLeft();
+        int oarlRight=ship.getNbUsableOarsRight();
+        assertEquals(0,oarLeft);
+        assertEquals(0,oarlRight);
+        assertEquals(0,sailnb);
+        assertEquals(2,ship.getNbEquipment("sail"));
+        List<Equipment> expected=new ArrayList<>();
+        assertEquals(expected,sail);
+
+
+
     }
 }
