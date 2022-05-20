@@ -15,6 +15,12 @@ class TurnTest {
         assertEquals(turn.getRotation(),0);
         assertEquals(turn.sailorId,0);
     }
+    @Test
+    void rotationSuppbyFar(){
+        turn=new Turn(0,-1000);
+        assertEquals(turn.getRotation(),0);
+        assertEquals(turn.sailorId,0);
+    }
 
     @Test
     void rotationInfToPiInTwo(){

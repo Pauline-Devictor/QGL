@@ -35,7 +35,7 @@ public class ChoseActions {
         int[] oarAndSailComposition = ChoseDistance.choiceBestNbOarAndSail(new AngleOption(0, 0), checkpoint, initGame.getShip(), nextRound.getShip().getPosition(),nextRound.getWind());
 
         moves.primaryMoveOar(oarAndSailComposition[0], oarAndSailComposition[1]);
-        Display.info("nb sail   " + oarAndSailComposition[2]);
+        //Display.info("nb sail   " + oarAndSailComposition[2]);
         moves.primaryMoveSail(oarAndSailComposition[2]);
     }
 
@@ -45,13 +45,13 @@ public class ChoseActions {
         int[] oarAndSailComposition = ChoseDistance.choiceBestNbOarAndSail(bestAngleOption, checkpoint, initGame.getShip(), nextRound.getShip().getPosition(),nextRound.getWind());
         double angleForRudder = ChoseAngle.choseAngleForRudder(checkpoint, nextRound.getShip(), bestAngleOption);
 
-        Display.info("angleForRudder: " + angleForRudder);
+        //Display.info("angleForRudder: " + angleForRudder);
         if (angleForRudder > Math.PI / 4) angleForRudder = Math.PI / 4;
         if (angleForRudder < -Math.PI / 4) angleForRudder = -Math.PI / 4;
         moves.primaryMoveOar(oarAndSailComposition[0], oarAndSailComposition[1]);
-        Display.info("voila la compo :"+oarAndSailComposition[0]+"  "+oarAndSailComposition[1]+"   "+oarAndSailComposition[2]);
+        //Display.info("voila la compo :"+oarAndSailComposition[0]+"  "+oarAndSailComposition[1]+"   "+oarAndSailComposition[2]);
         moves.primaryMoveTurn(angleForRudder);
-        Display.info("nb sail   "+oarAndSailComposition[2]);
+        //Display.info("nb sail   "+oarAndSailComposition[2]);
         moves.primaryMoveSail(oarAndSailComposition[2]);
     }
 

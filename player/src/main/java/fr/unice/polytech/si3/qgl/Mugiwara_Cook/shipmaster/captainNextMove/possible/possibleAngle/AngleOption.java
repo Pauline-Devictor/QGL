@@ -52,6 +52,6 @@ public class AngleOption {
     }
 
     public void getDetail() {
-        Display.info("Angle: " + this.angle + " lier a un delta de: " + this.delta);
+        //Display.info("Angle: " + this.angle + " lier a un delta de: " + this.delta);
     }
 }

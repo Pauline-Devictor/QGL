@@ -43,7 +43,7 @@ public class PathFindind {
 
     public boolean findPath(Node start, Node end) {  //return null si pas de chemin
         this.reset();
-        Display.info("UPDATE PATH");
+        //Display.info("UPDATE PATH");
         openSet.add(start);
         for (List<Node> nodeList : carte) {
             for (Node node : nodeList) {
@@ -62,7 +62,7 @@ public class PathFindind {
                 if (current == end) {
                     color(current);
                     endAlgo = true; //????
-                    Display.info("SOLUTION ? true");
+                    //Display.info("SOLUTION ? true");
                     break;
                 }
 
@@ -94,7 +94,7 @@ public class PathFindind {
                 }
 
             } else {
-                Display.info("SOLUTION ? false");
+                //Display.info("SOLUTION ? false");
                 return false;
             }
         }
@@ -128,9 +128,9 @@ public class PathFindind {
         Collections.reverse(this.path);
         for (Node node : this.path) {
             this.pathCheckpoint.add(new Checkpoint(new Position(node.getXReal(), node.getYReal(), 0), new Circle(50)));
-            System.out.print(node.getDetail() + ", ");
+            //System.out.print(node.getDetail() + ", ");
         }
-        System.out.println();
+        //System.out.println();
 
     }
 }

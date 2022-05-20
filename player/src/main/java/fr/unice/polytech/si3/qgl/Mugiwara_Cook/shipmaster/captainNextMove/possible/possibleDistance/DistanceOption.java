@@ -45,6 +45,6 @@ public class DistanceOption {
     }
 
     public void getDetail() {
-        Display.info("Distance: " + this.getDistance() + "m avec les rames suivante: " + this.getOarLeftRightAndSails()[0] + ":" + this.getOarLeftRightAndSails()[1]);
+        //Display.info("Distance: " + this.getDistance() + "m avec les rames suivante: " + this.getOarLeftRightAndSails()[0] + ":" + this.getOarLeftRightAndSails()[1]);
     }
 }

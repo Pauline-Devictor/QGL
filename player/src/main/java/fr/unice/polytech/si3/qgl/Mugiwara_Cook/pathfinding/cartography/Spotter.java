@@ -78,7 +78,7 @@ public class Spotter {
 
         this.nodeStart = closetNodeFromPosition(shipPosition);
         this.nodeEnd = closetNodeFromPosition(positionCheckpoint);
-        Display.info("UPDATE MAP ? " + mofifier);
+        //Display.info("UPDATE MAP ? " + mofifier);
         return mofifier;
     }
 
@@ -89,7 +89,7 @@ public class Spotter {
                     mofifier = updateMapWithReefNotAlreadyFound(newReefs, mofifier, collisionDetector2, (Reef) visibleEntity);
                     reefs.addAll(newReefs);
                 } else {
-                    Display.info("LE PREMIER");
+                    //Display.info("LE PREMIER");
                     collisionDetector2.coloringTheReef(((Reef) visibleEntity), this.map);
                     reefs.add((Reef) visibleEntity);
                     mofifier = true;

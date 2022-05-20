@@ -50,7 +50,7 @@ public class CollisionDetector2 {
     }
 
     public void coloringRectangleReef(Reef reef, List<List<Node>> map) {
-        Display.info("Un rocher rectangle");
+        //Display.info("Un rocher rectangle");
         List<Point> reefcoin = rotationRectangle(reef);
         List<Node> reefcoinNode = new ArrayList<>();
 
@@ -58,7 +58,7 @@ public class CollisionDetector2 {
             try {
                 reefcoinNode.add(this.closestNodeFromPoint(point, map));
             } catch (Exception e) {
-                Display.info("Out of the map");
+                //Display.info("Out of the map");
             }
 
         }
@@ -106,13 +106,13 @@ public class CollisionDetector2 {
 
 
         Point startMap = new Point(map.get(0).get(0).getXReal() - squareSizeX / 2, map.get(0).get(0).getYReal() - squareSizeY / 2);
-        Display.info(startMap.getX() + "[" + startMap.getY());
+        //Display.info(startMap.getX() + "[" + startMap.getY());
 
         double distanceX = point.getX() - startMap.getX();
         double distanceY = point.getY() - startMap.getY();
 
-        Display.info((int) ((int) distanceX / squareSizeX) + " {1} " + (int) ((int) distanceY / squareSizeY));
-        Display.info(distanceX + " {2} " + distanceY + " pour un ptn: " + point.getX() + ":" + point.getY());
+        //Display.info((int) ((int) distanceX / squareSizeX) + " {1} " + (int) ((int) distanceY / squareSizeY));
+        //Display.info(distanceX + " {2} " + distanceY + " pour un ptn: " + point.getX() + ":" + point.getY());
 
         return map.get((int) ((int) distanceY / squareSizeY)).get((int) ((int) distanceX / squareSizeX));
     }

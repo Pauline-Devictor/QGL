@@ -12,6 +12,7 @@ public class ActionJSON {
     @Getter
     List<Action> listAction;
 
+
     public ActionJSON() {
         listAction = new ArrayList<>();
     }
