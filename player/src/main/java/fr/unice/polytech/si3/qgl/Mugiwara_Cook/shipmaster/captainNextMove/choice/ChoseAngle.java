@@ -23,9 +23,6 @@ public class ChoseAngle {
             double angleMinimun = Math.PI;
             for (AngleOption angleOption : angleOptionList) {
                 if (angleBetweenPointAndCheckpoint(checkpoint, ship.getPosition().getX(), ship.getPosition().getY(), ship.getPosition().getOrientation() + angleOption.getAngle()) < angleMinimun) {
-                    //Display.info("Orientation ship: " + ship.getPosition().getOrientation());
-                    //Display.info("Orientation angle: " + angleOption.getAngle());
-                    //Display.info(angleMinimun + " > " + angleBetweenPointAndCheckpoint(checkpoint, ship.getPosition().getX(), ship.getPosition().getY(), ship.getPosition().getOrientation() + angleOption.getAngle()));
                     bestAngleOption = angleOption;
                     angleMinimun = angleBetweenPointAndCheckpoint(checkpoint, ship.getPosition().getX(), ship.getPosition().getY(), ship.getPosition().getOrientation() + angleOption.getAngle());
                 }

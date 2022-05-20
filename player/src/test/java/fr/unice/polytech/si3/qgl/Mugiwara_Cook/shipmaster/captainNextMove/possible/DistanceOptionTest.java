@@ -98,7 +98,6 @@ class DistanceOptionTest {
         List<Double> distanceDistanceOptionList = new ArrayList<>();
         List<int[]> oarsDistanceOptionList = new ArrayList<>();
         for (DistanceOption option : distanceOptionList) {
-            option.getDetail();
             distanceDistanceOptionList.add(option.getDistance());
             oarsDistanceOptionList.add(option.getOarLeftRightAndSails());
         }

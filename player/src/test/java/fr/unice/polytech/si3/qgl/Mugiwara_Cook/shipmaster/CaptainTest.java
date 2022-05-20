@@ -156,7 +156,7 @@ class CaptainTest {
     @Test
     void updateMapInitial(){
         captain.updateMap(next);
-        assertFalse(captain.VisibleEntitiesOn);
+        assertFalse(captain.visibleEntitiesOn);
         assertNotNull(captain.checkpointsPath);
     }
 

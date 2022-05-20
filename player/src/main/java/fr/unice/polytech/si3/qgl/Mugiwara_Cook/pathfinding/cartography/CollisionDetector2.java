@@ -1,6 +1,5 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.pathfinding.cartography;
 
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Display;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.Point;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.Position;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes.Circle;
@@ -50,7 +49,6 @@ public class CollisionDetector2 {
     }
 
     public void coloringRectangleReef(Reef reef, List<List<Node>> map) {
-        //Display.info("Un rocher rectangle");
         List<Point> reefcoin = rotationRectangle(reef);
         List<Node> reefcoinNode = new ArrayList<>();
 
@@ -58,7 +56,7 @@ public class CollisionDetector2 {
             try {
                 reefcoinNode.add(this.closestNodeFromPoint(point, map));
             } catch (Exception e) {
-                //Display.info("Out of the map");
+                e.printStackTrace();
             }
 
         }
@@ -110,9 +108,6 @@ public class CollisionDetector2 {
 
         double distanceX = point.getX() - startMap.getX();
         double distanceY = point.getY() - startMap.getY();
-
-        //Display.info((int) ((int) distanceX / squareSizeX) + " {1} " + (int) ((int) distanceY / squareSizeY));
-        //Display.info(distanceX + " {2} " + distanceY + " pour un ptn: " + point.getX() + ":" + point.getY());
 
         return map.get((int) ((int) distanceY / squareSizeY)).get((int) ((int) distanceX / squareSizeX));
     }

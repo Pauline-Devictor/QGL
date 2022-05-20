@@ -1,7 +1,6 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Display;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Sailor;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,8 +17,6 @@ public abstract class Equipment {
     protected int y;
 
     @JsonIgnore
-    //@Getter
-    //@Setter
     boolean used = false;
 
     @JsonIgnore
@@ -50,10 +47,6 @@ public abstract class Equipment {
         this.sailor = closestSailor;
         this.used = true;
 
-        //if (this.sailor == null)
-            //Display.info(this.x + " et " + this.y + " assignee a: personne");
-        //else
-            //Display.info(this.x + " et " + this.y + " assignee a: " + this.sailor.getId());
         return closestSailor;
     }
 

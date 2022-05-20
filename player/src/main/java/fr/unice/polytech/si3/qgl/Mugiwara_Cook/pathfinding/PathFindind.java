@@ -1,6 +1,5 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.pathfinding;
 
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Display;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.Position;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes.Circle;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.pathfinding.cartography.Node;
@@ -43,13 +42,13 @@ public class PathFindind {
 
     public boolean findPath(Node start, Node end) {  //return null si pas de chemin
         this.reset();
-        //Display.info("UPDATE PATH");
         openSet.add(start);
         for (List<Node> nodeList : carte) {
             for (Node node : nodeList) {
                 node.addVoisin(carte);
             }
         }
+
         this.path = new ArrayList<>();
         while (true) {
             if (!openSet.isEmpty()) {
@@ -61,8 +60,7 @@ public class PathFindind {
                 Node current = openSet.get(lowerIndex);
                 if (current == end) {
                     color(current);
-                    endAlgo = true; //????
-                    //Display.info("SOLUTION ? true");
+                    endAlgo = true;
                     break;
                 }
 
@@ -131,6 +129,10 @@ public class PathFindind {
             //System.out.print(node.getDetail() + ", ");
         }
         //System.out.println();
+
+    }
+
+    void prepareMap(){
 
     }
 }

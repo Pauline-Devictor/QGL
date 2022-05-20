@@ -67,7 +67,6 @@ class AngleOptionTest {
         List<Double> angleAngleOptionList = new ArrayList<>();
         List<Integer> deltaAngleOPtionList = new ArrayList<>();
         for (AngleOption option : angleOptionList) {
-            option.getDetail();
             angleAngleOptionList.add(option.getAngle());
             deltaAngleOPtionList.add(option.getDelta());
         }

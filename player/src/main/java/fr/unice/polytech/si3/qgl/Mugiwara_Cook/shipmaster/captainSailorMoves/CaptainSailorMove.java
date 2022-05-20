@@ -55,7 +55,6 @@ public class CaptainSailorMove {
         if (nbsailors >= 1 && sail>= 1) {
 
             assignSpecificEquipement("sail", 1);
-            sail--;
         }
 
     }
@@ -64,7 +63,6 @@ public class CaptainSailorMove {
         int numberAssign = 0;
         List<Equipment> equipmentArrayList = this.ship.getEquipement(equipement).stream()
                 .filter(equipment -> equipment.getSailor() == null).toList();
-        //Display.info(equipmentArrayList.get(0).getType());
         while (numberAssign < numberSailorAssign && numberAssign < this.sailors.length) {
             Sailor sailor = equipmentArrayList.get(numberAssign).findClosestSailorWithOutAssignEquipment(this.sailors);
             if (sailor != null) {

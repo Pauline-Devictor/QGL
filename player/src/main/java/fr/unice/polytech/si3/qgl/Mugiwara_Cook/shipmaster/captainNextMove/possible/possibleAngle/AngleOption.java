@@ -1,6 +1,5 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove.possible.possibleAngle;
 
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Display;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -51,7 +50,4 @@ public class AngleOption {
         return new AngleOption((Math.PI / 2) / (((double) oarTotal) / 2) * (oarRight - oarLeft), oarRight - oarLeft);
     }
 
-    public void getDetail() {
-        //Display.info("Angle: " + this.angle + " lier a un delta de: " + this.delta);
-    }
 }
