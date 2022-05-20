@@ -4,11 +4,8 @@ import lombok.Getter;
 
 public class LowerSail extends Action {
     public static final  String ACTIONTYPE = "LOWER_SAIL";
-    @Getter
-    int sailorId;
 
     public LowerSail(int sailorId) {
-        super(ACTIONTYPE);
-        this.sailorId = sailorId;
+        super(ACTIONTYPE,sailorId);
     }
 }
