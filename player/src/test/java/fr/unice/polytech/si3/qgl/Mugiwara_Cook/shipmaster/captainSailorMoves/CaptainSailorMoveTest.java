@@ -8,10 +8,7 @@ import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.Position;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes.Shape;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.Deck;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.Ship;
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Equipment;
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Oar;
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Rudder;
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Sail;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -102,16 +99,102 @@ class CaptainSailorMoveTest {
         int countOar = 0;
         int countSail = 0;
         int countRudder = 0;
+        int countWatch=0;
         for (Sailor sailor : listSailor) {
             switch (sailor.getEquipment().getType()) {
                 case "oar" -> countOar++;
                 case "sail" -> countSail++;
                 case "rudder" -> countRudder++;
+                case "watch" -> countWatch++;
             }
         }
         assertEquals(4, countOar);
         assertEquals(2, countSail);
         assertEquals(1, countRudder);
+        assertEquals(0,countWatch);
+
+
+    }
+
+    @Test
+    void assignEquipementV3() {
+        Sailor sailor1 = new Sailor(1, 1, 2, "a");
+        Sailor sailor2 = new Sailor(2, 2, 2, "b");
+        Sailor sailor3 = new Sailor(3, 3, 2, "c");
+        Sailor sailor4 = new Sailor(4, 3, 0, "d");
+        Sailor sailor5 = new Sailor(5, 4, 0, "e");
+        Sailor sailor6 = new Sailor(6, 5, 0, "f");
+        Sailor sailor7 = new Sailor(7, 3, 1, "g");
+        Equipment oar1 = new Oar(1, 2);
+        Equipment oar2 = new Oar(2, 2);
+        Equipment oar3 = new Oar(3, 2);
+        Equipment oar4 = new Oar(3, 0);
+        Equipment oar5 = new Oar(4, 0);
+        Equipment watch = new Watch(5, 0);
+        Equipment watch2 = new Watch(3, 1);
+
+        equipmentList=new ArrayList<>(List.of(oar1,oar2,oar3,oar4,oar5,watch,watch2));
+        Position postion = mock(Position.class);
+        Shape shape = mock(Shape.class);
+        Deck deck = mock(Deck.class);
+        ship = new Ship(100, postion, "bateau", deck, equipmentList, shape);
+        Sailor[] listSailor = {sailor7, sailor2, sailor3, sailor5, sailor6, sailor4, sailor1};
+        CaptainSailorMove captainSailorMove1 = new CaptainSailorMove(ship, listSailor);
+        captainSailorMove1.assignEquipement();
+
+        int countOar = 0;
+        int countSail = 0;
+        int countRudder = 0;
+        int countWatch=0;
+        for (Sailor sailor : listSailor) {
+            switch (sailor.getEquipment().getType()) {
+                case "oar" -> countOar++;
+                case "sail" -> countSail++;
+                case "rudder" -> countRudder++;
+                case "watch" -> countWatch++;
+            }
+        }
+        assertEquals(4, countOar);
+        assertEquals(0, countSail);
+        assertEquals(0, countRudder);
+        assertEquals(1,countWatch);
+
+
+    }
+
+    @Test
+    void assignEquipementV2() {
+        Sailor sailor1 = new Sailor(1, 1, 2, "a");
+        Sailor sailor2 = new Sailor(2, 2, 2, "b");
+        Sailor sailor3 = new Sailor(3, 3, 2, "c");
+        Sailor sailor4 = new Sailor(4, 3, 0, "d");
+        Sailor sailor5 = new Sailor(5, 4, 0, "e");
+        Sailor sailor6 = new Sailor(6, 5, 0, "f");
+        Sailor sailor7 = new Sailor(7, 3, 1, "g");
+        Equipment oar1 = new Oar(1, 2);
+        Equipment watch=new Watch(2,2);
+
+        equipmentList = new ArrayList<>(List.of(oar1,watch));
+
+        Sailor[] listSailor = {sailor7, sailor2, sailor3, sailor5, sailor6, sailor4, sailor1};
+        CaptainSailorMove captainSailorMove1 = new CaptainSailorMove(ship, listSailor);
+        captainSailorMove1.assignEquipement();
+        int countOar = 0;
+        int countSail = 0;
+        int countRudder = 0;
+        int countWatch=0;
+        for (Sailor sailor : listSailor) {
+            switch (sailor.getEquipment().getType()) {
+                case "oar" -> countOar++;
+                case "sail" -> countSail++;
+                case "rudder" -> countRudder++;
+                case "watch" -> countWatch++;
+            }
+        }
+        assertEquals(1, countOar);
+        assertEquals(0, countSail);
+        assertEquals(0, countRudder);
+        assertEquals(1,countWatch);
 
 
     }

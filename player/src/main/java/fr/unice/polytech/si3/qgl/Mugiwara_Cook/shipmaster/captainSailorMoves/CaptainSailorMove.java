@@ -40,12 +40,12 @@ public class CaptainSailorMove {
             nbsailors--;
         }
         while (nbsailors >= 2) {
-            if (this.ship.getEquipement("oar").size() >= 2) {
+            if (!this.ship.getEquipement("oar").isEmpty() && this.ship.getEquipement("oar").size() >= 2) {
                 assignSpecificEquipement("oar", 2);
                 nbsailors -= 2;
             }
         }
-        if (nbsailors >= 1 && this.ship.getEquipement("sail").size() >= 2) {
+        if (nbsailors >= 1 && this.ship.getEquipement("sail").size() >= 1) {
 
             assignSpecificEquipement("sail", 1);
         }
