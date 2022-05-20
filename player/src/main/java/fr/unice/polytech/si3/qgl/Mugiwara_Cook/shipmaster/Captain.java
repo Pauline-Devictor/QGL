@@ -33,7 +33,10 @@ public class Captain {
     ArrayList<Checkpoint> checkpointsPath = new ArrayList<>();
     ArrayList<Checkpoint> defaultCheckpoints = new ArrayList<>();
 
+    boolean VisibleEntitiesOn;
+
     public Captain(InitGame initGame, ActionJSON actionJSON) {
+        VisibleEntitiesOn = false;
         this.initGame = initGame;
         this.actionJSON = actionJSON;
         this.choseActions = new ChoseActions(this.actionJSON, this.initGame);
@@ -61,11 +64,12 @@ public class Captain {
     /**
      * Permet a la fois de deplacer les marins sur le bateau (leur assigne une rame)
      * puis calcule de meilleur moves en fonction du deplacement des marins
-     *
      */
     public void nextMove(NextRound nextRound) {
         this.captainSailorMove.moveToAssignEquipment(this.actionJSON);
 
+        if (nextRound.getVisibleEntities() != null)
+            VisibleEntitiesOn = true;
         if (nextRound.getVisibleEntities() != null || checkpointsPath.isEmpty())
             updateMap(nextRound);
 
@@ -85,7 +89,6 @@ public class Captain {
                 checkpointsPath.remove(0);
                 checkpointsPath.remove(0);
             }
-
         }
 
         if (initGame.allSailorIsOnAssign())
@@ -101,7 +104,6 @@ public class Captain {
             System.out.println();
         }
         Display.info("----------------------------------------------------------------------------------------------------");
-
     }
 
     /**
@@ -119,10 +121,15 @@ public class Captain {
                 <= ((Circle) checkpoint.getShape()).getRadius());
     }
 
-    public void updateMap(NextRound nextRound) {//SI c'est cassé c'est moi en corrigeant la dette
+    public void updateMap(NextRound nextRound) {//SI c'est cassé c'est moi en corrigeant la dette: ah ?!
         ArrayList<VisibleEntity> visibleEntitiesArray = new ArrayList<>(List.of(nextRound.getVisibleEntities()));
-        if ((spotter.updateMap(visibleEntitiesArray, nextRound.getShip().getPosition(), currentCheckpoint.getPosition()) || checkpointsPath.isEmpty()) && (pathFindind.findPath(this.spotter.getNodeStart(), this.spotter.getNodeEnd()))) {
+        if ((spotter.updateMap(visibleEntitiesArray, nextRound.getShip().getPosition(), currentCheckpoint.getPosition()) || checkpointsPath.isEmpty()) &&
+                (pathFindind.findPath(this.spotter.getNodeStart(), this.spotter.getNodeEnd()))) {
+            if (nextRound.getVisibleEntities() != null) {
                 checkpointsPath = new ArrayList<>(pathFindind.getPathCheckpoint());
+            }
+            if (!VisibleEntitiesOn)
+                checkpointsPath = new ArrayList<>(List.of(((RegattaGoal) this.initGame.getGoal()).getCheckpoints()[this.nbCurrentCheckpoint]));
         }
     }
 }

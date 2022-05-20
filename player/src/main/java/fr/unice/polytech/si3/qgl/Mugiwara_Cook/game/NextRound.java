@@ -1,7 +1,7 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.game;
 
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.Wind;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.VisibleEntity;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.Wind;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.Ship;
 import lombok.Getter;
 import lombok.Setter;

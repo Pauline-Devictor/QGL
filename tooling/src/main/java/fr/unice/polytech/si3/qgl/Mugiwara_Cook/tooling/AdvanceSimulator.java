@@ -13,14 +13,12 @@ import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes.Shape;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.goal.Goal;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.goal.RegattaGoal;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.Checkpoint;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.VisibleEntity;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.Wind;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.Deck;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.Ship;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Equipment;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Oar;
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Rudder;
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.equipment.Sail;
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.tooling.Moves;
 
 
 import java.util.ArrayList;
@@ -47,6 +45,8 @@ public class AdvanceSimulator {
 
         referee = new Referee(this.init);
     }
+
+
     private InitGame createInitGame() {
         Random rand = new Random();
 
@@ -55,44 +55,37 @@ public class AdvanceSimulator {
 //        Checkpoint checkpoint3 = new Checkpoint(new Position(500, -500, 0), new Circle(80));
 //        Checkpoint checkpoint4 = new Checkpoint(new Position(-500, 500, 0), new Circle(100));
 
-        Checkpoint checkpoint1 = new Checkpoint(new Position(-5586.701434159062, -195.31249999999972, 0), new Circle(200));
-        Checkpoint checkpoint2 = new Checkpoint(new Position(-3259.452411994781, 1835.937500000001, 0), new Circle(200));
-        Checkpoint checkpoint3 = new Checkpoint(new Position(-1401.564537157755, 4108.072916666667, 0), new Circle(200));
-        Checkpoint checkpoint4 = new Checkpoint(new Position(-3650.5867014341584, 1529.9479166666674, 0), new Circle(200));
-        Checkpoint checkpoint5 = new Checkpoint(new Position(-5495.436766623214, 4127.604166666669, 0), new Circle(200));
-        Checkpoint checkpoint6 = new Checkpoint(new Position(-1140.8083441981753, -273.43749999999847, 0), new Circle(200));
-        Checkpoint checkpoint7 = new Checkpoint(new Position(-3604.9543676662297, 2154.9479166666674, 0), new Circle(200));
-        Checkpoint checkpoint8 = new Checkpoint(new Position(3337.6792698826616, 1809.8958333333335, 0), new Circle(200));
+        Checkpoint checkpoint1 = new Checkpoint(new Position(1000, 0, 0), new Circle(200));
+//        Checkpoint checkpoint2 = new Checkpoint(new Position(-3259.452411994781, 1835.937500000001, 0), new Circle(200));
+//        Checkpoint checkpoint3 = new Checkpoint(new Position(-1401.564537157755, 4108.072916666667, 0), new Circle(200));
+//        Checkpoint checkpoint4 = new Checkpoint(new Position(-3650.5867014341584, 1529.9479166666674, 0), new Circle(200));
+//        Checkpoint checkpoint5 = new Checkpoint(new Position(-5495.436766623214, 4127.604166666669, 0), new Circle(200));
+//        Checkpoint checkpoint6 = new Checkpoint(new Position(-1140.8083441981753, -273.43749999999847, 0), new Circle(200));
+//        Checkpoint checkpoint7 = new Checkpoint(new Position(-3604.9543676662297, 2154.9479166666674, 0), new Circle(200));
+//        Checkpoint checkpoint8 = new Checkpoint(new Position(3337.6792698826616, 1809.8958333333335, 0), new Circle(200));
 //        Checkpoint checkpoint9 = new Checkpoint(new Position(-3650.58670143416, 1842.4479166666663, 0), new Circle(100));
 //        Checkpoint checkpoint5 = new Checkpoint(new Position(1132.5943610732181, 2342.236768018018, 0), new Circle(80));
 
-        Checkpoint[] listCheckpoint = {checkpoint1, checkpoint2, checkpoint3, checkpoint4, checkpoint5, checkpoint6, checkpoint7, checkpoint8};
+        Checkpoint[] listCheckpoint = {checkpoint1};
         Goal goal = new RegattaGoal(listCheckpoint);
 
-        Deck deck = new Deck(3, 7);  //longeur, largeur
+        Deck deck = new Deck(2, 1);  //longeur, largeur
 
-        Equipment oar1 = new Oar(1, 2);
-        Equipment oar2 = new Oar(2, 2);
-        Equipment oar3 = new Oar(3, 2);
-        Equipment oar4 = new Oar(4, 2);
-        Equipment oar5 = new Oar(5, 2);
-        Equipment oar6 = new Oar(1, 0);
-        Equipment oar7 = new Oar(2, 0);
-        Equipment oar8 = new Oar(3, 0);
-        Equipment oar9 = new Oar(4, 0);
-        Equipment oar10 = new Oar(5, 0);
-
-        Equipment sail=new Sail(3,1,false);
-        Equipment sail2=new Sail(5,1,false);
+        Equipment oar1 = new Oar(1, 0);
+        Equipment oar2 = new Oar(0, 1);
 
 
-        Equipment rudder = new Rudder(6, 1);
-        List<Equipment> equipmentList = new ArrayList<>(List.of(oar1, oar2, oar3, oar6, oar6, oar7, oar8, oar4, oar5, oar9, oar10, rudder,sail,sail2));
+//        Equipment sail=new Sail(3,1,false);
+//        Equipment sail2=new Sail(5,1,false);
 
-        Shape shapeShip = new Rectangle(2, 4, 0);
-        Ship ship = new Ship(100, new Position(-3650.58670143416, 1842.4479166666663, -2.740166925631097), "BOAT", deck, equipmentList, shapeShip);
 
-        final int NB_MARIN = 11;
+//        Equipment rudder = new Rudder(6, 1);
+        List<Equipment> equipmentList = new ArrayList<>(List.of(oar1, oar2));
+
+        Shape shapeShip = new Rectangle(1, 2, 0);
+        Ship ship = new Ship(100, new Position(0, 0, 0), "BOAT", deck, equipmentList, shapeShip);
+
+        final int NB_MARIN = 2;
         Sailor[] listSailor = new Sailor[NB_MARIN];
         for (int i = 0; i < NB_MARIN; i++) {
             listSailor[i] = new Sailor(i, rand.nextInt(deck.getLength()), rand.nextInt(deck.getWidth()), "Marin" + i);
@@ -108,8 +101,11 @@ public class AdvanceSimulator {
         Checkpoint[] checkpoint = ((RegattaGoal) this.init.getGoal()).getCheckpoints();
         int checkpointNumber = 0;
 
+
+        VisibleEntity[] visibleEntities = new VisibleEntity[]{};
+
         for (int i = 0; i < TURN; i++) {
-            NextRound nextRound = new NextRound(this.init.getShip(), new Wind(-2.3, 100), null);
+            NextRound nextRound = new NextRound(this.init.getShip(), new Wind(-2.3, 100), visibleEntities);
 
             String nextRoundjSON;
             String action = null;
