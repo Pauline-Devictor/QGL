@@ -88,7 +88,7 @@ public class Spotter {
         for (VisibleEntity visibleEntity : visibleEntityList) {
             System.out.println("+1");
             if (visibleEntity.getType().equals("reef")) {
-                if (reefs.isEmpty()) {
+                if (!reefs.isEmpty()) {
                     System.out.println("LE PREMIER");
                     collisionDetector2.coloringTheReef(((Reef) visibleEntity), this.map);
                     reefs.add((Reef) visibleEntity);

@@ -122,7 +122,7 @@ public class Captain {
         boolean test = spotter.updateMap(visibleEntitiesArray, nextRound.getShip().getPosition(), currentCheckpoint.getPosition());
         if ((test || checkpointsPath.isEmpty()) &&
                 (pathFindind.findPath(this.spotter.getNodeStart(), this.spotter.getNodeEnd()))) {
-            if (nextRound.getVisibleEntities().length != 0) {
+            if (nextRound.getVisibleEntities().length > 0) {
                 checkpointsPath = new ArrayList<>(pathFindind.getPathCheckpoint());
             }
             if (!VisibleEntitiesOn) {
