@@ -31,7 +31,9 @@ public class Spotter {
         double[] extremum = fourextremum(shipPosition, checkpointArrayList);
 
         double diffX = extremum[1] - extremum[0];
+
         double diffY = extremum[3] - extremum[2];
+
 
         double tailleDiffX = diffX / nbSquaresSide;
         double tailleDiffY = diffY / nbSquaresSide;
