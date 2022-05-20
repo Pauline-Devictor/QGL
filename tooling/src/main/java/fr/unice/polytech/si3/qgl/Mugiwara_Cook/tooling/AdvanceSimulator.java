@@ -29,7 +29,7 @@ public class AdvanceSimulator {
     InitGame init;
     Cockpit cockpit = new Cockpit();
     Referee referee;
-    private static final int TURN = 500;
+    private static final int TURN = 60;
 
     public AdvanceSimulator() {
         this.init = this.createInitGame();
@@ -55,8 +55,8 @@ public class AdvanceSimulator {
 //        Checkpoint checkpoint3 = new Checkpoint(new Position(500, -500, 0), new Circle(80));
 //        Checkpoint checkpoint4 = new Checkpoint(new Position(-500, 500, 0), new Circle(100));
 
-        Checkpoint checkpoint1 = new Checkpoint(new Position(1000, 0, 0), new Circle(200));
-//        Checkpoint checkpoint2 = new Checkpoint(new Position(-3259.452411994781, 1835.937500000001, 0), new Circle(200));
+        Checkpoint checkpoint1 = new Checkpoint(new Position(1890.4823989569727, -1738.2812500000007, 0), new Circle(100));
+        Checkpoint checkpoint2 = new Checkpoint(new Position(-143.41590612777003, 1861.9791666666665, 0), new Circle(200));
 //        Checkpoint checkpoint3 = new Checkpoint(new Position(-1401.564537157755, 4108.072916666667, 0), new Circle(200));
 //        Checkpoint checkpoint4 = new Checkpoint(new Position(-3650.5867014341584, 1529.9479166666674, 0), new Circle(200));
 //        Checkpoint checkpoint5 = new Checkpoint(new Position(-5495.436766623214, 4127.604166666669, 0), new Circle(200));
@@ -66,26 +66,29 @@ public class AdvanceSimulator {
 //        Checkpoint checkpoint9 = new Checkpoint(new Position(-3650.58670143416, 1842.4479166666663, 0), new Circle(100));
 //        Checkpoint checkpoint5 = new Checkpoint(new Position(1132.5943610732181, 2342.236768018018, 0), new Circle(80));
 
-        Checkpoint[] listCheckpoint = {checkpoint1};
+        Checkpoint[] listCheckpoint = {checkpoint1,checkpoint2};
         Goal goal = new RegattaGoal(listCheckpoint);
 
-        Deck deck = new Deck(2, 1);  //longeur, largeur
+        Deck deck = new Deck(2, 4);  //longeur, largeur
 
         Equipment oar1 = new Oar(1, 0);
-        Equipment oar2 = new Oar(0, 1);
-
+        Equipment oar2 = new Oar(1, 1);
+        Equipment oar3 = new Oar(2, 0);
+        Equipment oar4 = new Oar(2, 1);
+        Equipment oar5 = new Oar(3, 0);
+        Equipment oar6 = new Oar(3, 1);
 
 //        Equipment sail=new Sail(3,1,false);
 //        Equipment sail2=new Sail(5,1,false);
 
 
 //        Equipment rudder = new Rudder(6, 1);
-        List<Equipment> equipmentList = new ArrayList<>(List.of(oar1, oar2));
+        List<Equipment> equipmentList = new ArrayList<>(List.of(oar1, oar2, oar3, oar4, oar5, oar6));
 
         Shape shapeShip = new Rectangle(1, 2, 0);
         Ship ship = new Ship(100, new Position(0, 0, 0), "BOAT", deck, equipmentList, shapeShip);
 
-        final int NB_MARIN = 2;
+        final int NB_MARIN = 6;
         Sailor[] listSailor = new Sailor[NB_MARIN];
         for (int i = 0; i < NB_MARIN; i++) {
             listSailor[i] = new Sailor(i, rand.nextInt(deck.getLength()), rand.nextInt(deck.getWidth()), "Marin" + i);

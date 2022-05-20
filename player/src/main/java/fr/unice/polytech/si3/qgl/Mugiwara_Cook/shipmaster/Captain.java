@@ -68,9 +68,9 @@ public class Captain {
     public void nextMove(NextRound nextRound) {
         this.captainSailorMove.moveToAssignEquipment(this.actionJSON);
 
-        if (nextRound.getVisibleEntities() != null)
+        if (nextRound.getVisibleEntities().length != 0)
             VisibleEntitiesOn = true;
-        if (nextRound.getVisibleEntities() != null || checkpointsPath.isEmpty())
+        if (nextRound.getVisibleEntities().length != 0 || checkpointsPath.isEmpty())
             updateMap(nextRound);
 
 
@@ -128,8 +128,14 @@ public class Captain {
             if (nextRound.getVisibleEntities() != null) {
                 checkpointsPath = new ArrayList<>(pathFindind.getPathCheckpoint());
             }
-            if (!VisibleEntitiesOn)
+            if (!VisibleEntitiesOn) {
+                System.out.println("JE SUIS LA" + nextRound.getVisibleEntities());
                 checkpointsPath = new ArrayList<>(List.of(((RegattaGoal) this.initGame.getGoal()).getCheckpoints()[this.nbCurrentCheckpoint]));
+            }
+        }
+
+        for (Checkpoint checkpoint : checkpointsPath) {
+            System.out.println("G: " + checkpoint.getPosition().getX());
         }
     }
 }
