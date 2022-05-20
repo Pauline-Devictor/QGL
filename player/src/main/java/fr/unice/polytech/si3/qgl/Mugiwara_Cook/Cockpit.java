@@ -35,7 +35,6 @@ public class Cockpit implements ICockpit {
      * @param game A Json with the beginning data
      */
     public void initGame(String game) {
-        //Display.info("Init game input: " + game);
 
         try {
             this.initGame = myMapper.readValue(game, InitGame.class);
@@ -54,7 +53,6 @@ public class Cockpit implements ICockpit {
      * @return Json with the list of our actions
      */
     public String nextRound(String round) {
-        //Display.info("Next round input: " + round);
 
         try {
             nextRound = myMapper.readValue(round, NextRound.class);
@@ -67,7 +65,6 @@ public class Cockpit implements ICockpit {
         try {
             String json = this.actionJSON.getActionJson();
             this.actionJSON.clearActions();
-            //Display.info(json);
             return json;
         } catch (JsonProcessingException e) {
             //Display.debug(e.getMessage());

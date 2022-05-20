@@ -56,7 +56,7 @@ public class CollisionDetector2 {
             try {
                 reefcoinNode.add(this.closestNodeFromPoint(point, map));
             } catch (Exception e) {
-                e.printStackTrace();
+                //Display.debug(e.getMessage());
             }
 
         }
@@ -104,7 +104,6 @@ public class CollisionDetector2 {
 
 
         Point startMap = new Point(map.get(0).get(0).getXReal() - squareSizeX / 2, map.get(0).get(0).getYReal() - squareSizeY / 2);
-        //Display.info(startMap.getX() + "[" + startMap.getY());
 
         double distanceX = point.getX() - startMap.getX();
         double distanceY = point.getY() - startMap.getY();
