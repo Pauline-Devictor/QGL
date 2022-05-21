@@ -58,6 +58,28 @@ class SpotterTest {
         assertFalse(spotter.map.get(0).get(1).wall);
 
         assertEquals(spotter.map.size(),2);
+        assertEquals(spotter.map.get(0).size(),2);
+    }
+
+    @Test
+    void createMap3(){
+        Spotter spotter = new Spotter();
+        ArrayList<Checkpoint> checkpointArrayList = new ArrayList<>((List.of(new Checkpoint(new Position(200,200,0.0),new Circle(50)),new Checkpoint(new Position(300,300,0.0),new Circle(45)))));
+        Position shipPosition = new Position(100,100,0.0);
+        spotter.createMap(4,shipPosition,checkpointArrayList);
+
+        assertEquals(spotter.map.get(1).get(0).x,0);
+        assertEquals(spotter.map.get(1).get(0).y,1);
+        assertEquals(spotter.map.get(1).get(0).xReal,325);
+        assertEquals(spotter.map.get(1).get(0).yReal,400);
+        assertFalse(spotter.map.get(1).get(0).wall);
+
+        assertEquals(spotter.map.get(1).get(1).x,1);
+        assertEquals(spotter.map.get(1).get(1).y,1);
+        assertEquals(spotter.map.get(1).get(1).xReal,1175);
+        assertEquals(spotter.map.get(1).get(1).yReal,400);
+        assertFalse(spotter.map.get(1).get(1).wall);
+
     }
 
     @Test
@@ -79,6 +101,19 @@ class SpotterTest {
         assertEquals(extremum[1],3100);
         assertEquals(extremum[2],0.0);
         assertEquals(extremum[3],700);
+    }
+
+    @Test
+    void fourExtremum2(){
+        Spotter spotter = new Spotter();
+        ArrayList<Checkpoint> checkpointArrayList = new ArrayList<>((List.of(new Checkpoint(new Position(100,100,0.0),new Circle(50)),new Checkpoint(new Position(400,400,0.0),new Circle(45)),new Checkpoint(new Position(100,400,0.0),new Circle(45)))));
+        Position shipPosition = new Position(300,300,0.0);
+        double extremum[] = spotter.fourextremum(shipPosition,checkpointArrayList);
+
+        assertEquals(extremum[1],checkpointArrayList.get(1).getPosition().getX()+3000);
+        assertEquals(extremum[0],checkpointArrayList.get(0).getPosition().getX()-200);
+        assertEquals(extremum[2],checkpointArrayList.get(0).getPosition().getX());
+        assertEquals(extremum[3],checkpointArrayList.get(1).getPosition().getX()+600);
     }
 
     @Test
@@ -119,7 +154,52 @@ class SpotterTest {
     }
 
     @Test
-    void findNoReef(){
-
+    void updateMapFalse(){
+        Spotter spotter = new Spotter();
+        List<VisibleEntity> visibleEntityList = new ArrayList<>();
+        Position shipPosition = new Position(500,500,0.0);
+        Position checkpointPosition = new Position(1000,1000,0.0);
+        Checkpoint checkpoint = new Checkpoint(checkpointPosition,new Circle(45));
+        assertFalse(spotter.updateMap(visibleEntityList,shipPosition,checkpointPosition));
     }
+
+    @Test
+    void updateMapTrue(){
+        Spotter spotter = new Spotter();
+        List<VisibleEntity> visibleEntityList = new ArrayList<>();
+        VisibleEntity visibleEntityReef = new Reef(new Position(600,600,0.0),new Circle(50));
+        VisibleEntity visibleEntityReef2 = new Reef(new Position(800,800,0.0),new Circle(100));
+        visibleEntityList.add(visibleEntityReef);
+        visibleEntityList.add(visibleEntityReef2);
+        Position shipPosition = new Position(500,500,0.0);
+        Position checkpointPosition = new Position(1000,1000,0.0);
+        Checkpoint checkpoint = new Checkpoint(checkpointPosition,new Circle(45));
+        assertTrue(spotter.updateMap(visibleEntityList,shipPosition,checkpointPosition));
+    }
+
+    @Test
+    void findReef(){
+        List<VisibleEntity> visibleEntityReef = new ArrayList<>();
+        VisibleEntity visibleEntity = new Reef(new Position(600,600,0.0),new Circle(50));
+        visibleEntityReef.add(visibleEntity);
+        Spotter spotter = new Spotter();
+        List<Reef> reefList = new ArrayList<>(List.of(new Reef(new Position(700,700,0.0),new Circle(90))));
+        boolean modifier = false;
+        assertTrue(spotter.findReefInMap(visibleEntityReef,reefList,modifier,new CollisionDetector2()));
+    }
+
+    @Test
+    void findReef2(){
+        List<VisibleEntity> visibleEntityReef = new ArrayList<>();
+        VisibleEntity visibleEntity = new Reef(new Position(600,600,0.0),new Circle(50));
+        visibleEntityReef.add(visibleEntity);
+        Spotter spotter = new Spotter();
+        List<Reef> reefList = new ArrayList<>(List.of(new Reef(new Position(700,700,0.0),new Circle(90))));
+        boolean modifier = false;
+        CollisionDetector2 collisionDetector2 = new CollisionDetector2();
+        spotter.updateMapWithReefNotAlreadyFound(reefList,modifier,collisionDetector2,reefList.get(0));
+        assertTrue(spotter.findReefInMap(visibleEntityReef,reefList,modifier,collisionDetector2));
+    }
+
+
 }
