@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class CollisionDetector2Test {
 
@@ -98,10 +99,207 @@ class CollisionDetector2Test {
     }
 
     @Test
-    void join2nodesHorizontalSlope(){
+    void join2nodesHorizontalSlopeLeftToRight() {
+        List<Node> subCarte;
+        List<List<Node>> carte = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            subCarte = new ArrayList<>();
+            for (int k = 0; k < 10; k++) {
+                subCarte.add(new Node(k, i, k * 10 + 5, i * 20 + 10, false));
+            }
+            carte.add(subCarte);
+        }
 
+        CollisionDetector2 collisionDetector2 = new CollisionDetector2();
+        collisionDetector2.join2nodesHorizontalSlope(carte.get(0).get(0), carte.get(0).get(4), carte, new int[]{0, 0});
 
+        assertEquals("#", carte.get(0).get(1).getColor());
+        assertEquals("#", carte.get(0).get(2).getColor());
+        assertEquals("#", carte.get(0).get(3).getColor());
+        assertEquals("#", carte.get(0).get(4).getColor());
     }
+
+    @Test
+    void join2nodesHorizontalSlopeRightToLeft() {
+        List<Node> subCarte;
+        List<List<Node>> carte = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            subCarte = new ArrayList<>();
+            for (int k = 0; k < 10; k++) {
+                subCarte.add(new Node(k, i, k * 10 + 5, i * 20 + 10, false));
+            }
+            carte.add(subCarte);
+        }
+
+        CollisionDetector2 collisionDetector2 = new CollisionDetector2();
+        collisionDetector2.join2nodesHorizontalSlope(carte.get(0).get(4), carte.get(0).get(0), carte, new int[]{4, 0});
+
+        assertEquals("#", carte.get(0).get(0).getColor());
+        assertEquals("#", carte.get(0).get(1).getColor());
+        assertEquals("#", carte.get(0).get(2).getColor());
+        assertEquals("#", carte.get(0).get(3).getColor());
+    }
+
+
+    @Test
+    void join2nodesVerticalSlopeTopToBottom() {
+        List<Node> subCarte;
+        List<List<Node>> carte = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            subCarte = new ArrayList<>();
+            for (int k = 0; k < 10; k++) {
+                subCarte.add(new Node(k, i, k * 10 + 5, i * 20 + 10, false));
+            }
+            carte.add(subCarte);
+        }
+
+        CollisionDetector2 collisionDetector2 = new CollisionDetector2();
+        collisionDetector2.join2nodesVerticalSlope(carte.get(0).get(1), carte.get(4).get(1), carte, new int[]{1, 0});
+
+        assertEquals("#", carte.get(1).get(1).getColor());
+        assertEquals("#", carte.get(2).get(1).getColor());
+        assertEquals("#", carte.get(3).get(1).getColor());
+        assertEquals("#", carte.get(4).get(1).getColor());
+    }
+
+    @Test
+    void join2nodesVerticalSlopeBottomToTop() {
+        List<Node> subCarte;
+        List<List<Node>> carte = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            subCarte = new ArrayList<>();
+            for (int k = 0; k < 10; k++) {
+                subCarte.add(new Node(k, i, k * 10 + 5, i * 20 + 10, false));
+            }
+            carte.add(subCarte);
+        }
+
+        CollisionDetector2 collisionDetector2 = new CollisionDetector2();
+        collisionDetector2.join2nodesVerticalSlope(carte.get(4).get(1), carte.get(0).get(1), carte, new int[]{1, 4});
+
+        assertEquals("#", carte.get(0).get(1).getColor());
+        assertEquals("#", carte.get(1).get(1).getColor());
+        assertEquals("#", carte.get(2).get(1).getColor());
+        assertEquals("#", carte.get(3).get(1).getColor());
+    }
+
+    @Test
+    void join2NodesPositiveSlopeLeftToRight() {
+        List<Node> subCarte;
+        List<List<Node>> carte = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            subCarte = new ArrayList<>();
+            for (int k = 0; k < 10; k++) {
+                subCarte.add(new Node(k, i, k * 10 + 5, i * 10 + 5, false));
+            }
+            carte.add(subCarte);
+        }
+
+        CollisionDetector2 collisionDetector2 = new CollisionDetector2();
+        collisionDetector2.join2NodesPositiveSlope(carte.get(0).get(0), carte.get(8).get(2), carte, new int[]{0, 0}, 6, 2);
+
+        assertEquals("#", carte.get(0).get(1).getColor());
+        assertEquals("#", carte.get(1).get(1).getColor());
+        assertEquals("#", carte.get(2).get(1).getColor());
+        assertEquals("#", carte.get(3).get(1).getColor());
+        assertEquals("#", carte.get(4).get(1).getColor());
+    }
+
+    @Test
+    void join2NodesPositiveSlopeRightToLeft() {
+        List<Node> subCarte;
+        List<List<Node>> carte = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            subCarte = new ArrayList<>();
+            for (int k = 0; k < 10; k++) {
+                subCarte.add(new Node(k, i, k * 10 + 5, i * 10 + 5, false));
+            }
+            carte.add(subCarte);
+        }
+
+        CollisionDetector2 collisionDetector2 = new CollisionDetector2();
+        collisionDetector2.join2NodesPositiveSlope(carte.get(8).get(2), carte.get(0).get(0), carte, new int[]{2, 8}, 6, 2);
+
+        assertEquals("#", carte.get(4).get(1).getColor());
+        assertEquals("#", carte.get(5).get(1).getColor());
+        assertEquals("#", carte.get(6).get(1).getColor());
+        assertEquals("#", carte.get(7).get(1).getColor());
+        assertEquals("#", carte.get(8).get(1).getColor());
+    }
+
+    @Test
+    void join2NodesNegativeSlopeRightToLeft() {
+        List<Node> subCarte;
+        List<List<Node>> carte = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            subCarte = new ArrayList<>();
+            for (int k = 0; k < 10; k++) {
+                subCarte.add(new Node(k, i, k * 10 + 5, i * 10 + 5, false));
+            }
+            carte.add(subCarte);
+        }
+
+        CollisionDetector2 collisionDetector2 = new CollisionDetector2();
+        collisionDetector2.join2NodesNegativeSlope(carte.get(0).get(4), carte.get(4).get(2), carte, new int[]{4, 0}, -2, -2);
+
+        assertEquals("#", carte.get(0).get(3).getColor());
+        assertEquals("#", carte.get(1).get(3).getColor());
+        assertEquals("#", carte.get(2).get(3).getColor());
+        assertEquals("#", carte.get(3).get(3).getColor());
+        assertEquals("#", carte.get(4).get(3).getColor());
+    }
+
+    @Test
+    void join2NodesNegativeSlopeLeftToRight() {
+        List<Node> subCarte;
+        List<List<Node>> carte = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            subCarte = new ArrayList<>();
+            for (int k = 0; k < 10; k++) {
+                subCarte.add(new Node(k, i, k * 10 + 5, i * 10 + 5, false));
+            }
+            carte.add(subCarte);
+        }
+
+        CollisionDetector2 collisionDetector2 = new CollisionDetector2();
+        collisionDetector2.join2NodesNegativeSlope(carte.get(8).get(2), carte.get(0).get(4), carte, new int[]{2, 8}, -2, -2);
+
+        assertEquals("#", carte.get(4).get(3).getColor());
+        assertEquals("#", carte.get(5).get(3).getColor());
+        assertEquals("#", carte.get(6).get(3).getColor());
+        assertEquals("#", carte.get(7).get(3).getColor());
+        assertEquals("#", carte.get(8).get(3).getColor());
+    }
+
+//    @Test
+//    void join2NodesComplexSlopePositif() {
+//        List<Node> subCarte;
+//        List<List<Node>> carte = new ArrayList<>();
+//        for (int i = 0; i < 10; i++) {
+//            subCarte = new ArrayList<>();
+//            for (int k = 0; k < 10; k++) {
+//                subCarte.add(new Node(k, i, k * 10 + 5, i * 10 + 5, false));
+//            }
+//            carte.add(subCarte);
+//        }
+//
+//        CollisionDetector2 collisionDetector2 = new CollisionDetector2();
+//        collisionDetector2.join2NodesComplexSlope(carte.get(0).get(0), carte.get(8).get(2), carte, new int[]{0, 0});
+//
+//        for (List<Node> subCarte2 : carte) {
+//            for (Node nodePath : subCarte2) {
+//                System.out.print(nodePath.getColor());
+//            }
+//            System.out.println();
+//        }
+//
+//        assertEquals("#", carte.get(0).get(1).getColor());
+//        assertEquals("#", carte.get(1).get(1).getColor());
+//        assertEquals("#", carte.get(2).get(1).getColor());
+//        assertEquals("#", carte.get(3).get(1).getColor());
+//        assertEquals("#", carte.get(4).get(1).getColor());
+//
+//    }
 
 
     @Test

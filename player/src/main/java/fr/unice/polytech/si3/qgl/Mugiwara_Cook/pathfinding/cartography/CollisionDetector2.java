@@ -140,22 +140,30 @@ public class CollisionDetector2 {
             slopeGoal = slope;
         }
         if (slope > 0) {
-            join2NodesPositiveSlope(node1, node2, map, currentNode, slope);
+            join2NodesPositiveSlope(node1, node2, map, currentNode, slope, slopeGoal);
         }
         if (slope < 0) {
-            join2NodesNegativeSlope(node1, node2, map, currentNode, slope);
+            join2NodesNegativeSlope(node1, node2, map, currentNode, slope, slopeGoal);
         }
         if (!(map.get(currentNode[1]).get(currentNode[0]).equals(node2))) {
+            System.out.println("YYYYY");
             this.coloringline(map.get(currentNode[1]).get(currentNode[0]), node2, map);
         }
     }
 
-    void join2NodesNegativeSlope(Node node1, Node node2, List<List<Node>> map, int[] currentNode, double slope) {
+    void join2NodesNegativeSlope(Node node1, Node node2, List<List<Node>> map, int[] currentNode, double slope, double slopeGoal) {
         if (node2.getX() < node1.getX())
             map.get(currentNode[1]).get(--currentNode[0]).setWall(true);
         else
             map.get(currentNode[1]).get(++currentNode[0]).setWall(true);
         for (int i = 0; i > slope + slopeGoal; i--) {
+            for (List<Node> subCarte2 : map) {
+                for (Node nodePath : subCarte2) {
+                    System.out.print(nodePath.getColor());
+                }
+                System.out.println();
+            }
+            System.out.println();
             if (node2.getX() < node1.getX())
                 map.get(++currentNode[1]).get(currentNode[0]).setWall(true);
             else
@@ -163,7 +171,7 @@ public class CollisionDetector2 {
         }
     }
 
-    void join2NodesPositiveSlope(Node node1, Node node2, List<List<Node>> map, int[] currentNode, double slope) {  // currentNode [x, y]
+    void join2NodesPositiveSlope(Node node1, Node node2, List<List<Node>> map, int[] currentNode, double slope, double slopeGoal) {  // currentNode [x, y]
         if (node2.getX() > node1.getX())
             map.get(currentNode[1]).get(++currentNode[0]).setWall(true);
         else
