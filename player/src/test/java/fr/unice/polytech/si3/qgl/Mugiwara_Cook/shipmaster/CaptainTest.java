@@ -10,6 +10,7 @@ import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.Checkpoint;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainSailorMoves.CaptainSailorMove;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -111,65 +112,91 @@ class CaptainTest {
         this.captain = this.cockpit.getCaptain2();
         spy(captain);
     }
+
     @Test
-    void shipInCheckpoint(){
+    void shipInCheckpoint() {
         assertTrue(captain.inCheckpoint(next));
     }
 
     @Test
-    void shipInLimitOfCheckpoint(){
+    void isAssigned() {
+        boolean true1 = captain.initGame.getSailors()[0].getEquipment() != null;
+        assertEquals(true1, true);
+    }
+
+    @Test
+    void shipInLimitOfCheckpoint() {
         captain.getCurrentCheckpoint().getPosition().setX(50);
         assertTrue(captain.inCheckpoint(next));
     }
 
     @Test
-    void shipOutOfCheckpoint(){
+    void shipOutOfCheckpoint() {
         captain.getCurrentCheckpoint().getPosition().setX(100);
         assertFalse(captain.inCheckpoint(next));
     }
 
     @Test
-    void shipInWithWidthCheckpoint(){
+    void shipInWithWidthCheckpoint() {
         captain.getCurrentCheckpoint().getPosition().setX(99);
         assertFalse(captain.inCheckpoint(next));
     }
 
     @Test
-    void shipInWithHeightCheckpoint(){
+    void shipInWithHeightCheckpoint() {
         captain.getCurrentCheckpoint().getPosition().setY(100);
         assertFalse(captain.inCheckpoint(next));
     }
 
     @Test
-    void shipInCheckpoint2(){
-        Checkpoint checkpoint = new Checkpoint(new Position(20,20,0.0),new Circle(100));
-        assertTrue(captain.inCheckpoint(next,checkpoint));
+    void shipInCheckpoint2() {
+        Checkpoint checkpoint = new Checkpoint(new Position(20, 20, 0.0), new Circle(100));
+        assertTrue(captain.inCheckpoint(next, checkpoint));
     }
 
     @Test
-    void shipInLimitOfCheckpoint2(){
-        Checkpoint checkpoint = new Checkpoint(new Position(50,0,0.0),new Circle(50));
-        assertTrue(captain.inCheckpoint(next,checkpoint));
+    void shipInLimitOfCheckpoint2() {
+        Checkpoint checkpoint = new Checkpoint(new Position(50, 0, 0.0), new Circle(50));
+        assertTrue(captain.inCheckpoint(next, checkpoint));
 
     }
 
     @Test
-    void shipOutOfCheckpoint2(){
-        Checkpoint checkpoint = new Checkpoint(new Position(100,100,0.0),new Circle(50));
-        assertFalse(captain.inCheckpoint(next,checkpoint));
+    void shipOutOfCheckpoint2() {
+        Checkpoint checkpoint = new Checkpoint(new Position(100, 100, 0.0), new Circle(50));
+        assertFalse(captain.inCheckpoint(next, checkpoint));
     }
 
     @Test
-    void updateMapInitial(){
+    void updateMapInitial() {
         captain.updateMap(next);
         assertFalse(captain.visibleEntitiesOn);
         assertNotNull(captain.checkpointsPath);
     }
 
     @Test
-    void verifyCallAssignEquipmentInConstructor(){
+    void verifyCallAssignEquipmentInConstructor() {
         Captain cpt = new Captain(this.cockpit.getInitGame(), new ActionJSON(), mock(CaptainSailorMove.class));
-        verify(cpt.getCaptainSailorMove(),times(1)).assignEquipement();
+        verify(cpt.getCaptainSailorMove(), times(1)).assignEquipement();
     }
 
+    @Test
+    void nextMoveTest(){
+        captain.nextMove(next);
+        boolean true1= captain.spotter.getNodeStart().getColor().equals("D");
+        boolean true2= captain.spotter.getNodeEnd().getColor().equals("A");
+        boolean true3 = captain.initGame.getSailors()[0].getEquipment() != null;
+        boolean true4= (captain.visibleEntitiesOn==true);
+        assertTrue(true1);
+        assertTrue(true2);
+        assertTrue(true3);
+        assertTrue(true4);
+
+
+    }
+
+
+
 }
+
+

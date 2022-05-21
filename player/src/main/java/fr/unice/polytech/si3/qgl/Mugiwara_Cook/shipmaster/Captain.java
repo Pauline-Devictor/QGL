@@ -64,10 +64,10 @@ public class Captain {
         this.choseActions = new ChoseActions(this.actionJSON, this.initGame);
         this.captainSailorMove = mockedOne;
 
-        if (this.initGame.getGoal().getClass() == RegattaGoal.class) {
-            this.currentCheckpoint = ((RegattaGoal) this.initGame.getGoal()).getCheckpoints()[this.nbCurrentCheckpoint];
-            defaultCheckpoints.addAll(List.of(((RegattaGoal) this.initGame.getGoal()).getCheckpoints()));
-        }
+
+        this.currentCheckpoint = ((RegattaGoal) this.initGame.getGoal()).getCheckpoints()[this.nbCurrentCheckpoint];
+        defaultCheckpoints.addAll(List.of(((RegattaGoal) this.initGame.getGoal()).getCheckpoints()));
+
 
         this.captainSailorMove.assignEquipement();
 
