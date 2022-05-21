@@ -2,6 +2,8 @@ package fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainNextMove;
 
 
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.Position;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes.Circle;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes.Shape;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.Checkpoint;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.Wind;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.ship.Ship;
@@ -57,5 +59,54 @@ class CalculateAngleHelperTest {
         positionBoat = new Position(0.0, 0.0, 3.0);
         assertEquals(-angleBetweenShipOrientationAndCheckpoint,CalculateAngleHelper.realAngleBetweenPointAndCheckpoint(checkpoint, positionBoat.getX(), positionBoat.getY(), positionBoat.getOrientation(), angleBetweenShipOrientationAndCheckpoint));
     }
+
+    @Test
+    void realAngleBetweenPointAndCheckpointAngleEquals() {
+        Position position = new Position(1,0,0);
+        Shape shape = new Circle(50);
+        Checkpoint checkpoint1 = new Checkpoint(position,shape);
+
+        double angleBetweenShipOrientationAndCheckpoint = 2.0;
+        positionBoat = new Position(0.0, 0.0, angleBetweenShipOrientationAndCheckpoint / 2);
+
+        assertEquals(angleBetweenShipOrientationAndCheckpoint, CalculateAngleHelper.angleBetweenPointAndCheckpoint(checkpoint1, positionBoat.getX(), positionBoat.getY(), positionBoat.getOrientation() + (angleBetweenShipOrientationAndCheckpoint / 2)));
+
+        assertEquals(-angleBetweenShipOrientationAndCheckpoint,CalculateAngleHelper.realAngleBetweenPointAndCheckpoint(checkpoint1, positionBoat.getX(), positionBoat.getY(), positionBoat.getOrientation(), angleBetweenShipOrientationAndCheckpoint));
+    }
+
+    @Test
+    void limitAngleBetweenPointAndCheckpoint(){
+        Position position = new Position(0,0,0);
+        Shape shape = new Circle(50);
+        Checkpoint checkpoint1 = new Checkpoint(position,shape);
+
+        positionBoat = new Position(1, 0, 0);
+        assertEquals(Math.PI,CalculateAngleHelper.angleBetweenPointAndCheckpoint(checkpoint1, positionBoat.getX(), positionBoat.getY(), positionBoat.getOrientation()));
+
+
+        positionBoat = new Position(0, 1, Math.PI/2);
+        assertEquals(Math.PI,CalculateAngleHelper.angleBetweenPointAndCheckpoint(checkpoint1, positionBoat.getX(), positionBoat.getY(), positionBoat.getOrientation()));
+
+
+    }
+
+    @Test
+    void otherLimitAngleBetweenPointAndCheckpoint(){
+        Position position = new Position(1,0,0);
+        Shape shape = new Circle(50);
+        Checkpoint checkpoint1 = new Checkpoint(position,shape);
+
+        positionBoat = new Position(2, 0, 0);
+        assertEquals(Math.PI,CalculateAngleHelper.angleBetweenPointAndCheckpoint(checkpoint1, positionBoat.getX(), positionBoat.getY(), positionBoat.getOrientation()));
+
+
+        position = new Position(0,1,0);
+        checkpoint1 = new Checkpoint(position,shape);
+        positionBoat = new Position(0, 2, Math.PI/2);
+        assertEquals(Math.PI,CalculateAngleHelper.angleBetweenPointAndCheckpoint(checkpoint1, positionBoat.getX(), positionBoat.getY(), positionBoat.getOrientation()));
+
+
+    }
+
 
 }
