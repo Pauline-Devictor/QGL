@@ -181,20 +181,17 @@ class CaptainTest {
     }
 
     @Test
-    void nextMoveTest(){
+    void nextMoveTest() {
         captain.nextMove(next);
-        boolean true1= captain.spotter.getNodeStart().getColor().equals("D");
-        boolean true2= captain.spotter.getNodeEnd().getColor().equals("A");
+        boolean true1 = captain.spotter.getNodeStart().getColor().equals("D");
+        boolean true2 = captain.spotter.getNodeEnd().getColor().equals("A");
         boolean true3 = captain.initGame.getSailors()[0].getEquipment() != null;
-        boolean true4= (captain.visibleEntitiesOn==true);
+        boolean true4 = (captain.visibleEntitiesOn == true);
         assertTrue(true1);
         assertTrue(true2);
         assertTrue(true3);
         assertTrue(true4);
-
-
     }
-
 
 
 }

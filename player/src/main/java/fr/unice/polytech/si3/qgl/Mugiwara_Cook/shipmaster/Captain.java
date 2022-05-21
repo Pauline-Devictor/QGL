@@ -97,10 +97,10 @@ public class Captain {
         }
 
         if (this.inCheckpoint(nextRound, checkpointsPath.get(0))) {
-            Display.info("CHECKPOINTPATH ATEINT");
             if (checkpointsPath.size() < 4) {
                 checkpointsPath.remove(0);
             } else {
+                checkpointsPath.remove(0);
                 checkpointsPath.remove(0);
                 checkpointsPath.remove(0);
             }
@@ -111,14 +111,6 @@ public class Captain {
 
         spotter.getNodeEnd().setColor("A");
         spotter.getNodeStart().setColor("D");
-
-        for (List<Node> subCarte2 : spotter.getMap()) {
-            for (Node nodePath : subCarte2) {
-                System.out.print(nodePath.getColor() + "");
-            }
-            System.out.println();
-        }
-        Display.info("----------------------------------------------------------------------------------------------------");
     }
 
     /**
@@ -146,10 +138,6 @@ public class Captain {
             if (!visibleEntitiesOn) {
                 checkpointsPath = new ArrayList<>(List.of(((RegattaGoal) this.initGame.getGoal()).getCheckpoints()[this.nbCurrentCheckpoint]));
             }
-        }
-
-        for (Checkpoint checkpoint : checkpointsPath) {
-            System.out.println("G: " + checkpoint.getPosition().getX());
         }
     }
 }

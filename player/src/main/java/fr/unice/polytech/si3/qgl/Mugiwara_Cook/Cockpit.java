@@ -54,7 +54,6 @@ public class Cockpit implements ICockpit {
      * @return Json with the list of our actions
      */
     public String nextRound(String round) {
-
         try {
             nextRound = myMapper.readValue(round, NextRound.class);
         } catch (JsonProcessingException e) {

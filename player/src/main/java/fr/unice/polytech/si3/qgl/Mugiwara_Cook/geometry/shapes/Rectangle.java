@@ -1,11 +1,14 @@
 package fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes;
 
 import lombok.Getter;
+import lombok.Setter;
 
 public class Rectangle extends Shape {
     public static final String SHAPETYPE = "rectangle";
+    @Setter
     @Getter
     double width;
+    @Setter
     @Getter
     double height;
     @Getter

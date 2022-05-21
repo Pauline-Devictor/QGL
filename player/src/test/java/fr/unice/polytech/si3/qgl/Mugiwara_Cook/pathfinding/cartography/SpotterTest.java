@@ -48,13 +48,13 @@ class SpotterTest {
         assertEquals(spotter.map.get(0).get(0).x,0);
         assertEquals(spotter.map.get(0).get(0).y,0);
         assertEquals(spotter.map.get(0).get(0).xReal,625);
-        assertEquals(spotter.map.get(0).get(0).yReal,175);
+        assertEquals(spotter.map.get(0).get(0).yReal,-2075.0);
         assertFalse(spotter.map.get(0).get(0).wall);
 
         assertEquals(spotter.map.get(0).get(1).x,1);
         assertEquals(spotter.map.get(0).get(1).y,0);
         assertEquals(spotter.map.get(0).get(1).xReal,2275);
-        assertEquals(spotter.map.get(0).get(1).yReal,175);
+        assertEquals(spotter.map.get(0).get(1).yReal,-2075.0);
         assertFalse(spotter.map.get(0).get(1).wall);
 
         assertEquals(spotter.map.size(),2);
@@ -71,13 +71,13 @@ class SpotterTest {
         assertEquals(spotter.map.get(1).get(0).x,0);
         assertEquals(spotter.map.get(1).get(0).y,1);
         assertEquals(spotter.map.get(1).get(0).xReal,325);
-        assertEquals(spotter.map.get(1).get(0).yReal,400);
+        assertEquals(spotter.map.get(1).get(0).yReal,-1475.0);
         assertFalse(spotter.map.get(1).get(0).wall);
 
         assertEquals(spotter.map.get(1).get(1).x,1);
         assertEquals(spotter.map.get(1).get(1).y,1);
         assertEquals(spotter.map.get(1).get(1).xReal,1175);
-        assertEquals(spotter.map.get(1).get(1).yReal,400);
+        assertEquals(spotter.map.get(1).get(1).yReal,-1475.0);
         assertFalse(spotter.map.get(1).get(1).wall);
 
     }
@@ -99,7 +99,7 @@ class SpotterTest {
         double extremum[] = spotter.fourextremum(shipPosition,checkpointArrayList);
         assertEquals(extremum[0],-200);
         assertEquals(extremum[1],3100);
-        assertEquals(extremum[2],0.0);
+        assertEquals(extremum[2],-3000.0);
         assertEquals(extremum[3],700);
     }
 
@@ -112,7 +112,7 @@ class SpotterTest {
 
         assertEquals(extremum[1],checkpointArrayList.get(1).getPosition().getX()+3000);
         assertEquals(extremum[0],checkpointArrayList.get(0).getPosition().getX()-200);
-        assertEquals(extremum[2],checkpointArrayList.get(0).getPosition().getX());
+        assertEquals(extremum[2],checkpointArrayList.get(0).getPosition().getX() - 3000);
         assertEquals(extremum[3],checkpointArrayList.get(1).getPosition().getX()+600);
     }
 
@@ -231,7 +231,9 @@ class SpotterTest {
         ArrayList<Checkpoint> checkpointArrayList = new ArrayList<>((List.of(new Checkpoint(new Position(100,100,0.0),new Circle(50)))));
         Position shipPosition = new Position(100,100,0.0);
         spotter.createMap(2,shipPosition,checkpointArrayList);
-        assertEquals(spotter.map.get(0).get(0),spotter.closetNodeFromPosition(shipPosition));
+        System.out.println(spotter.closetNodeFromPosition(shipPosition).getX());
+        System.out.println(spotter.closetNodeFromPosition(shipPosition).getY());
+        assertEquals(spotter.map.get(1).get(0),spotter.closetNodeFromPosition(shipPosition));
     }
 
 

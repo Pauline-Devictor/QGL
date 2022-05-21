@@ -49,5 +49,4 @@ public class ChoseActions {
         moves.primaryMoveTurn(angleForRudder);
         moves.primaryMoveSail(oarAndSailComposition[2]);
     }
-
 }
