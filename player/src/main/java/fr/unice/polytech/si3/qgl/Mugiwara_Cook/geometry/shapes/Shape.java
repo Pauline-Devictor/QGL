@@ -5,7 +5,6 @@ import lombok.Setter;
 
 public abstract class Shape {
     @Getter
-    @Setter
     String type;
 
     protected Shape(String type) {
