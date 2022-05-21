@@ -113,7 +113,7 @@ public class PathFindind {
         for (Node nodePath : path) {
             nodePath.setColor("@");
         }
-        this.pathNb++;
+//        this.pathNb++;
     }
 
     double heuristique(Node currentNode, Node end) {
@@ -129,10 +129,6 @@ public class PathFindind {
             //System.out.print(node.getDetail() + ", ");
         }
         //System.out.println();
-
-    }
-
-    void prepareMap(){
 
     }
 }

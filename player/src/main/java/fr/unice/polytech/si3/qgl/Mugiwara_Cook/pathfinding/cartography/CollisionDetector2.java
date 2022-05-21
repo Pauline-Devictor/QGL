@@ -91,10 +91,13 @@ public class CollisionDetector2 {
     public Point rotationPoint(Point coinRectangle, Position positionReef) {
         double xReefCenter = positionReef.getX();
         double yReefCenter = positionReef.getY();
+
+        double xForRotation = coinRectangle.getX() - xReefCenter;
+        double yForRotation = coinRectangle.getY() - yReefCenter;
         double orientationReef = positionReef.getOrientation() - (Math.PI / 2);
 
-        return new Point((coinRectangle.getX() - xReefCenter) * Math.cos(orientationReef) - (coinRectangle.getY() - yReefCenter) * Math.sin(orientationReef) + xReefCenter
-                , (coinRectangle.getY() - yReefCenter) * Math.cos(orientationReef) + (coinRectangle.getX() - xReefCenter) * Math.sin(orientationReef) + yReefCenter);
+        return new Point(xForRotation * Math.cos(orientationReef) - yForRotation * Math.sin(orientationReef) + xReefCenter
+                , (yForRotation * Math.cos(orientationReef) + xForRotation * Math.sin(orientationReef)) + yReefCenter);
     }
 
 
@@ -128,7 +131,6 @@ public class CollisionDetector2 {
             join2nodesHorizontalSlope(node1, node2, map, currentNode);
         } else {
             join2NodesComplexSlope(node1, node2, map, currentNode);
-
         }
     }
 
@@ -153,7 +155,7 @@ public class CollisionDetector2 {
             map.get(currentNode[1]).get(--currentNode[0]).setWall(true);
         else
             map.get(currentNode[1]).get(++currentNode[0]).setWall(true);
-        for (int i = 0; i > slope - slopeGoal; i--) {
+        for (int i = 0; i > slope + slopeGoal; i--) {
             if (node2.getX() < node1.getX())
                 map.get(++currentNode[1]).get(currentNode[0]).setWall(true);
             else
