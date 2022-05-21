@@ -234,5 +234,12 @@ class SpotterTest {
         assertEquals(spotter.map.get(0).get(0),spotter.closetNodeFromPosition(shipPosition));
     }
 
-
+    @Test
+    void closestNodeFromPosition2(){
+        Spotter spotter = new Spotter();
+        ArrayList<Checkpoint> checkpointArrayList = new ArrayList<>((List.of(new Checkpoint(new Position(100,100,0.0),new Circle(50)))));
+        Position shipPosition = new Position(100,100,0.0);
+        spotter.createMap(200,shipPosition,checkpointArrayList);
+        assertEquals(spotter.closetNodeFromPosition(shipPosition),spotter.map.get(0).get(12));
+    }
 }
