@@ -4,7 +4,7 @@ package fr.unice.polytech.si3.qgl.Mugiwara_Cook.pathfinding.cartography;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.Position;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes.Circle;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes.Rectangle;
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.pathfinding.PathFindind;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.pathfinding.PathFinding;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.Checkpoint;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.Reef;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.VisibleEntity;
@@ -88,7 +88,7 @@ class SpotterTest {
 
         spotter.createMap(100, new Position(1336, 735, 0), new ArrayList<>(List.of(new Checkpoint(new Position(10006, 3131, 0), new Circle(5)), new Checkpoint(new Position(3552, -2532, 0), new Circle(5)), new Checkpoint(new Position(9719, 514, 0), new Circle(5)), new Checkpoint(new Position(4478, 4980, 0), new Circle(5)))));
         List<List<Node>> carte = spotter.getMap();
-        PathFindind pathFindind = new PathFindind(carte);
+        PathFinding pathFindind = new PathFinding(carte);
 
         spotter.updateMap(new ArrayList<>(), new Position(1336, 735, 0), new Position(10006, 3131, 0));
         pathFindind.findPath(spotter.getNodeStart(), spotter.getNodeEnd());

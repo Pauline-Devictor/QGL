@@ -156,10 +156,10 @@ class PrimaryMovesTest {
         primaryMoves1.primaryMoveSail(0);
         assertEquals(0,primaryMoves1.actionJSON.getListAction().size());
         when(initGame1.getUsableSailorSail()).thenReturn(sailorsAssignedToSail);
-        System.out.println(sailorsAssignedToSail.size());
+
         primaryMoves1.primaryMoveSail(2);
         List<Action> actions=actionJSON1.getListAction();
-        System.out.println(sailorsAssignedToSail.size());
+
         assertEquals(2,actions.size());
         assertEquals("LIFT_SAIL",actions.get(0).getType());
         assertEquals("LIFT_SAIL",actions.get(1).getType());

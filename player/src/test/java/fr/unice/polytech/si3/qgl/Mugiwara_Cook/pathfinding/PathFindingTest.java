@@ -35,7 +35,7 @@ class PathFindindTest {
 //        carte.get(2).get(3).setWall(true);
         carte.get(2).get(1).setWall(true);
 
-        PathFindind pathFindind = new PathFindind(carte);
+        PathFinding pathFindind = new PathFinding(carte);
         pathFindind.findPath(carte.get(0).get(0), carte.get(4).get(1));
 
         for (List<Node> subCarte2 : carte) {

@@ -2,13 +2,16 @@ package fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster;
 
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Cockpit;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.MyMapper;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.game.ActionJSON;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.game.NextRound;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.Position;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes.Circle;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.Checkpoint;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.shipmaster.captainSailorMoves.CaptainSailorMove;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,11 +22,12 @@ class CaptainTest {
     MyMapper myMapper;
     File jsonNext;
     NextRound next;
+    String initGame;
 
     @BeforeEach
     void setUp() throws IOException {
         this.cockpit = new Cockpit();
-        this.cockpit.initGame("""
+        initGame = """
                 {
                   "goal": {
                     "mode": "REGATTA",
@@ -99,11 +103,13 @@ class CaptainTest {
                     }
                   ],
                   "shipCount": 1
-                }""");
+                }""";
+        this.cockpit.initGame(initGame);
         myMapper = new MyMapper();
         jsonNext = new File("jsonTest//nextRound.json");
         next = myMapper.readValue(jsonNext, NextRound.class);
         this.captain = this.cockpit.getCaptain2();
+        spy(captain);
     }
     @Test
     void shipInCheckpoint(){
@@ -158,6 +164,12 @@ class CaptainTest {
         captain.updateMap(next);
         assertFalse(captain.visibleEntitiesOn);
         assertNotNull(captain.checkpointsPath);
+    }
+
+    @Test
+    void verifyCallAssignEquipmentInConstructor(){
+        Captain cpt = new Captain(this.cockpit.getInitGame(), new ActionJSON(), mock(CaptainSailorMove.class));
+        verify(cpt.getCaptainSailorMove(),times(1)).assignEquipement();
     }
 
 }
