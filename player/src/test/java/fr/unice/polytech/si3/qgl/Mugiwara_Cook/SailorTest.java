@@ -116,6 +116,10 @@ class SailorTest {
         assertTrue(sailor2.moveToEquipment(actionJson));
         assertEquals(0,sailor2.getX());
 
+        sailor2.setX(0);
+        assertTrue(sailor2.moveToEquipment(actionJson));
+        assertEquals(0,sailor2.getX());
+
 
     }
     @Test

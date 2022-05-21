@@ -4,7 +4,7 @@ import fr.unice.polytech.si3.qgl.Mugiwara_Cook.Display;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.game.*;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.geometry.shapes.*;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.goal.*;
-import fr.unice.polytech.si3.qgl.Mugiwara_Cook.pathfinding.PathFindind;
+import fr.unice.polytech.si3.qgl.Mugiwara_Cook.pathfinding.PathFinding;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.pathfinding.cartography.Node;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.pathfinding.cartography.Spotter;
 import fr.unice.polytech.si3.qgl.Mugiwara_Cook.sea.*;
@@ -19,7 +19,7 @@ import java.util.List;
 public class Captain {
     InitGame initGame;
     ActionJSON actionJSON;
-
+    @Getter
     CaptainSailorMove captainSailorMove;
     ChoseActions choseActions;
 
@@ -28,7 +28,7 @@ public class Captain {
     Checkpoint currentCheckpoint;
     int nbCurrentCheckpoint = 0;
 
-    PathFindind pathFindind;
+    PathFinding pathFindind;
 
     ArrayList<Checkpoint> checkpointsPath = new ArrayList<>();
     ArrayList<Checkpoint> defaultCheckpoints = new ArrayList<>();
@@ -49,10 +49,31 @@ public class Captain {
 
         this.captainSailorMove.assignEquipement();
 
+        spotter = new Spotter();
+        spotter.createMap(150, initGame.getShip().getPosition(), defaultCheckpoints);
+        pathFindind = new PathFinding(spotter.getMap());
+    }
+
+    /**
+     * Constructor for test
+     */
+    public Captain(InitGame initGame, ActionJSON actionJSON, CaptainSailorMove mockedOne) {
+        visibleEntitiesOn = false;
+        this.initGame = initGame;
+        this.actionJSON = actionJSON;
+        this.choseActions = new ChoseActions(this.actionJSON, this.initGame);
+        this.captainSailorMove = mockedOne;
+
+        if (this.initGame.getGoal().getClass() == RegattaGoal.class) {
+            this.currentCheckpoint = ((RegattaGoal) this.initGame.getGoal()).getCheckpoints()[this.nbCurrentCheckpoint];
+            defaultCheckpoints.addAll(List.of(((RegattaGoal) this.initGame.getGoal()).getCheckpoints()));
+        }
+
+        this.captainSailorMove.assignEquipement();
 
         spotter = new Spotter();
         spotter.createMap(150, initGame.getShip().getPosition(), defaultCheckpoints);
-        pathFindind = new PathFindind(spotter.getMap());
+        pathFindind = new PathFinding(spotter.getMap());
     }
 
     /**

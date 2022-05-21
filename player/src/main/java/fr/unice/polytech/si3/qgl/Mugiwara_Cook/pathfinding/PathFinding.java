@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class PathFindind {
+public class PathFinding {
     List<Node> openSet;
     List<Node> closeSet;
     boolean endAlgo = false;
@@ -23,7 +23,7 @@ public class PathFindind {
 
     int pathNb;
 
-    public PathFindind(List<List<Node>> carte) {
+    public PathFinding(List<List<Node>> carte) {
         this.carte = carte;
         this.openSet = new ArrayList<>();
         this.closeSet = new ArrayList<>();
@@ -92,7 +92,6 @@ public class PathFindind {
                 }
 
             } else {
-                //Display.info("SOLUTION ? false");
                 return false;
             }
         }
@@ -126,9 +125,7 @@ public class PathFindind {
         Collections.reverse(this.path);
         for (Node node : this.path) {
             this.pathCheckpoint.add(new Checkpoint(new Position(node.getXReal(), node.getYReal(), 0), new Circle(50)));
-            //System.out.print(node.getDetail() + ", ");
         }
-        //System.out.println();
 
     }
 }

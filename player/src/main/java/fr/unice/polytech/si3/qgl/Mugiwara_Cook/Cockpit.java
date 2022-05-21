@@ -19,6 +19,7 @@ public class Cockpit implements ICockpit {
     ActionJSON actionJSON = new ActionJSON();
 
     @Setter
+    @Getter
     InitGame initGame;
     NextRound nextRound;
 

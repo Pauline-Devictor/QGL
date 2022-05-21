@@ -45,10 +45,10 @@ class ChoseDistanceTest {
 
         assertEquals(1000, distance);
 
-        Checkpoint checkpointx0y500 = new Checkpoint(new Position(0, 500, 0), new Circle(100));
-        distance = CalculateDistanceHelper.distanceBetweenPointAndCheckpoint(checkpointx0y500, 500, 0);
+        Checkpoint checkpointx0y500 = new Checkpoint(new Position(0, -500, 0), new Circle(100));
+        distance = CalculateDistanceHelper.distanceBetweenPointAndCheckpoint(checkpointx0y500, 0, 500);
 
-        assertEquals(Math.round(707.1067811865476 * 100.0) / 100.0, Math.round(distance * 100.0) / 100.0);
+        assertEquals(1000, Math.round(distance * 100.0) / 100.0);
     }
 
     @Test
@@ -207,6 +207,5 @@ class ChoseDistanceTest {
         assertEquals(0, oarsAndSailOption[1]);
         assertEquals(0, oarsAndSailOption[2]);
     }
-
 
 }

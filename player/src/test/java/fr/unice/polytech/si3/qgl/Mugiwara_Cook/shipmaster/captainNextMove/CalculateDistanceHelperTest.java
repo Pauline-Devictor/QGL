@@ -76,4 +76,13 @@ class CalculateDistanceHelperTest {
         assertEquals(424.26406871192853,CalculateDistanceHelper.distanceBetweenPointAndCheckpoint(checkpoint, positionBoat.getX(), positionBoat.getY()));
     }
 
+    @Test
+    void distanceForWindLimit() {
+        this.sailsTotal = 1;
+        this.sailsUsed = 1;
+        DistanceWithWindOption result = CalculateDistanceHelper.distanceForWind(sailsTotal, sailsUsed, Math.PI/4, wind);
+        assertEquals(1.4142135623730951, result.getDistance());
+    }
+
+
 }

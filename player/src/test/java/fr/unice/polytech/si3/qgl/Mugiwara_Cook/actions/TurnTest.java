@@ -28,6 +28,12 @@ class TurnTest {
         assertEquals(turn.getRotation(),Math.PI/2-0.4);
 
     }
+    @Test
+    void rotationEqualsPiInTwo(){
+        turn=new Turn(0,Math.PI/2);
+        assertEquals(turn.getRotation(),Math.PI/2);
+
+    }
 
 
 }

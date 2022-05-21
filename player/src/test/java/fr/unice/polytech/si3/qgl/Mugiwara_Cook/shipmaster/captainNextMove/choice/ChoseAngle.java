@@ -136,12 +136,21 @@ class ChoseAngleTest {
 
     @Test
     void minimumAngleChooseBestDelta(){
-
         when(ship.getPosition()).thenReturn(new Position(100,0,0.0));
         List<AngleOption> angleOptionList = new ArrayList<>();
         angleOptionList.add(new AngleOption(60,0));
         angleOptionList.add(new AngleOption(59,0));
         assertEquals(angleOptionList.get(1),ChoseAngle.choiceBestDelta(angleOptionList,checkpoint,ship));
+    }
+    @Test
+    void ChoseBestDeltaIsOkayToTurnWithRudder(){
+        when(ship.getPosition()).thenReturn(new Position(100,0,0.0));
+        List<AngleOption> angleOptionList = new ArrayList<>();
+        AngleOption angleOption=new AngleOption(0.0,0);
+        angleOptionList.add(angleOption);
+        angleOptionList.add(new AngleOption(60,0));
+        angleOptionList.add(new AngleOption(59,0));
+        assertEquals(angleOption,ChoseAngle.choiceBestDelta(angleOptionList,checkpoint,ship));
     }
 
     @Test
@@ -151,5 +160,45 @@ class ChoseAngleTest {
         List<AngleOption> angleOptionList = new ArrayList<>();
         assertNull(ChoseAngle.choiceBestDelta(angleOptionList,checkpoint,ship));
     }
+
+    @Test
+    void isOkayToUseOnlyTheRudderToTurnLessPI4(){
+        Position position = new Position(30,20,0.0);
+        when(checkpoint.getPosition()).thenReturn(position);
+        double angle = ChoseAngle.isOkayToUseOnlyTheRudderToTurn(checkpoint, ship);
+        assertTrue(angle< Math.PI / 4);
+        assertTrue(angle>-Math.PI/4);
+        System.out.println(angle=0.5880026035475675);
+    }
+
+    @Test
+    void isOkayToUseOnlyTheRudderToTurnMorePI4(){
+        Position position = new Position(0,20,0.0);
+        when(checkpoint.getPosition()).thenReturn(position);
+        double angle = ChoseAngle.isOkayToUseOnlyTheRudderToTurn(checkpoint, ship);
+        assertEquals(0, angle);
+    }
+
+    @Test
+    void isOkayToUseOnlyTheRudderToTurnEqualsPI4(){
+        Position position = new Position(10,10,0.0);
+        when(checkpoint.getPosition()).thenReturn(position);
+        double angle = ChoseAngle.isOkayToUseOnlyTheRudderToTurn(checkpoint, ship);
+        assertEquals(0, angle);
+    }
+
+    @Test
+    void ChoseAngleForRudder(){
+        when(ship.getPosition()).thenReturn(new Position(100,0,0.0));
+        List<AngleOption> angleOptionList = new ArrayList<>();
+        AngleOption angleOption=new AngleOption(60,0);
+        angleOptionList.add(new AngleOption(60,0));
+        angleOptionList.add(new AngleOption(59,0));
+        assertEquals(2.6659340719862734,ChoseAngle.choseAngleForRudder(checkpoint,ship,angleOption));
+
+    }
+
+    
+
 
 }

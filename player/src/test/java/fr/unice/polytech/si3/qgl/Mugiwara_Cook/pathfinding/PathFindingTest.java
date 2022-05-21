@@ -8,7 +8,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class PathFindindTest {
+class PathFindingTest {
 
     @Test
     void findPath5x5() {
@@ -35,7 +35,7 @@ class PathFindindTest {
 //        carte.get(2).get(3).setWall(true);
         carte.get(2).get(1).setWall(true);
 
-        PathFindind pathFindind = new PathFindind(carte);
+        PathFinding pathFindind = new PathFinding(carte);
 
         assertTrue(pathFindind.findPath(carte.get(0).get(0), carte.get(4).get(1)));
 
@@ -115,7 +115,7 @@ class PathFindindTest {
         Node node1 = new Node(2, 5, 0, 0, false);
         Node node2 = new Node(2, 2, 0, 0, false);
 
-        PathFindind pathFindind = new PathFindind(null);
+        PathFinding pathFindind = new PathFinding(null);
 
         assertEquals(3.0, pathFindind.heuristique(node1, node2));
     }
@@ -132,7 +132,7 @@ class PathFindindTest {
             carte.add(subCarte);
         }
 
-        PathFindind pathFindind = new PathFindind(carte);
+        PathFinding pathFindind = new PathFinding(carte);
         assertTrue(pathFindind.findPath(carte.get(0).get(0), carte.get(4).get(1)));
 
 
